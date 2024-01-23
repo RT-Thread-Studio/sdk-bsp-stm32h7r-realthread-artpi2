@@ -8,7 +8,7 @@
  * 2019-04-14     whj4674672   first version
  */
 #include <rtthread.h>
-#include "stm32h7xx.h"
+#include "stm32h7rsxx.h"
 #include "board.h"
 
 int mpu_init(void)

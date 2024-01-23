@@ -12,7 +12,7 @@
 #include <rtdevice.h>
 #include "drv_common.h"
 
-#define LED_PIN GET_PIN(I, 8)
+#define LED_PIN GET_PIN(O, 1)
 
 int main(void)
 {
@@ -30,11 +30,11 @@ int main(void)
     return RT_EOK;
 }
 
-#include "stm32h7xx.h"
+#include "stm32h7rsxx.h"
 static int vtor_config(void)
 {
     /* Vector Table Relocation in Internal QSPI_FLASH */
-    SCB->VTOR = QSPI_BASE;
+    SCB->VTOR = XSPI2_BASE;
     return 0;
 }
 INIT_BOARD_EXPORT(vtor_config);

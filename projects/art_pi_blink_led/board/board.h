@@ -12,7 +12,7 @@
 #define __BOARD_H__
 
 #include <rtthread.h>
-#include <stm32h7xx.h>
+#include <stm32h7rsxx.h>
 #include <drv_common.h>
 
 #ifdef __cplusplus
@@ -23,18 +23,25 @@ extern "C"
 /*-------------------------- CHIP CONFIG BEGIN --------------------------*/
 
 #define CHIP_FAMILY_STM32
-#define CHIP_SERIES_STM32H7
+#define CHIP_SERIES_STM32H7RS
 #define CHIP_NAME_STM32H750XBHX
 
 /*-------------------------- CHIP CONFIG END --------------------------*/
 
 /*-------------------------- ROM/RAM CONFIG BEGIN --------------------------*/
- #define ROM_START              ((uint32_t)0x90000000)
- #define ROM_SIZE               (16384)
- #define ROM_END                ((uint32_t)(ROM_START + ROM_SIZE * 1024))
+/**
+ * @brief H7RS7 SRAM MEMORY Layout
+ * 0x24060000 - 0x23071FFF AXI SRAM shared with ECC
+ * 0x24040000 - 0x2305FFFF AXI SRAM shared with DTCM
+ * 0x24020000 - 0x2403FFFF AXI SRAM
+ * 0x24000000 - 0x2401FFFF AXI SRAM shared with ITCM
+ */
+#define ROM_START              ((uint32_t)0x70000000)
+#define ROM_SIZE               (131072)
+#define ROM_END                ((uint32_t)(ROM_START + ROM_SIZE * 1024))
 
 #define RAM_START              (0x24000000)
-#define RAM_SIZE               (512)
+#define RAM_SIZE               (456)
 #define RAM_END                (RAM_START + RAM_SIZE * 1024)
 
 /*-------------------------- ROM/RAM CONFIG END --------------------------*/
@@ -72,8 +79,8 @@ extern "C"
 #endif
 
 #ifdef BSP_USING_UART4
-#define BSP_UART4_TX_PIN       "PA0"
-#define BSP_UART4_RX_PIN       "PI9"
+#define BSP_UART4_TX_PIN       "PD0"
+#define BSP_UART4_RX_PIN       "PD1"
 #endif
 
 #ifdef BSP_USING_UART6

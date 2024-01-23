@@ -82,9 +82,9 @@ startup_path_prefix = SDK_LIB
 #elif rtconfig.CROSS_TOOL == 'iar':
 #    src += [startup_path_prefix + '/STM32H7xx_HAL/CMSIS/Device/ST/STM32H7xx/Source/Templates/iar/startup_stm32h743xx.s']
 
-# STM32H743xx || STM32H750xx || STM32F753xx
+# STM32H7S7xx
 # You can select chips from the list above
-CPPDEFINES = ['STM32H750xx']
+CPPDEFINES = ['STM32H7S7xx']
 group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)
 
 Return('group')

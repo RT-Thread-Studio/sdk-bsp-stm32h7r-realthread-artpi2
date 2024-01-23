@@ -1,11 +1,11 @@
 menu "Hardware Drivers Config"
-config SOC_STM32H750XB
+config SOC_STM32H7RS
     bool
-    select SOC_SERIES_STM32H7
+    select SOC_SERIES_STM32H7RS
     select RT_USING_COMPONENTS_INIT
     default y
 
-config SOC_SERIES_STM32H7
+config SOC_SERIES_STM32H7RS
     bool
     select ARCH_ARM_CORTEX_M7
     select SOC_FAMILY_STM32

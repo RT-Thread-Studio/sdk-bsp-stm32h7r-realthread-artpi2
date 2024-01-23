@@ -15,7 +15,7 @@
 #include <rtthread.h>
 #include <rthw.h>
 #include <board.h>
-#include <stm32h7xx.h>
+#include <stm32h7rsxx.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -40,7 +40,7 @@ void _Error_Handler(char *s, int num);
 #define STM32_SRAM1_START              RAM_START
 #define STM32_SRAM1_END                RAM_END
 
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
+#if defined(__CC_ARM) || defined(__CLANG_ARM) || defined(__ARMCC_VERSION)
 extern int Image$$RW_IRAM1$$ZI$$Limit;
 #define HEAP_BEGIN      ((void *)&Image$$RW_IRAM1$$ZI$$Limit)
 #elif __ICCARM__

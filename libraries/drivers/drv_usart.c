@@ -33,17 +33,17 @@
 #endif /* DRV_DEBUG */
 #include <rtdbg.h>
 
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
 #define DMA_INSTANCE_TYPE              DMA_Stream_TypeDef
 #endif
 
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
 #define UART_INSTANCE_CLEAR_FUNCTION    __HAL_UART_CLEAR_IT
 #endif
 
 #ifdef RT_SERIAL_USING_DMA
 /* --------------------------  DMA   config  -------------------------- */
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
 #define DMA_INSTANCE_TYPE              DMA_Stream_TypeDef
 #endif
 
@@ -446,14 +446,14 @@ static rt_err_t stm32_gpio_configure(struct stm32_uart_config *config)
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-#if defined(SOC_SERIES_STM32L0) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32L0) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32H7) || defined(SOC_SERIES_STM32H7RS)
     GPIO_InitStruct.Alternate = tx_af_num;
 #endif
     HAL_GPIO_Init(tx_port, &GPIO_InitStruct);
 
     /* rx pin initialize */
     GPIO_InitStruct.Pin = rx_pin;
-#if defined(SOC_SERIES_STM32L0) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32L0) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32H7) || defined(SOC_SERIES_STM32H7RS)
     GPIO_InitStruct.Alternate = rx_af_num;
 #endif
     HAL_GPIO_Init(rx_port, &GPIO_InitStruct);
@@ -579,7 +579,7 @@ static int stm32_putc(struct rt_serial_device *serial, char c)
 
     uart = rt_container_of(serial, struct stm32_uart, serial);
     UART_INSTANCE_CLEAR_FUNCTION(&(uart->handle), UART_FLAG_TC);
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
     uart->handle.Instance->TDR = c;
 #else
     uart->handle.Instance->DR = c;
@@ -600,7 +600,7 @@ static int stm32_getc(struct rt_serial_device *serial)
     {
 #if defined(SOC_SERIES_STM32L4) || defined(SOC_SERIES_STM32F7) || defined(SOC_SERIES_STM32F0) \
     || defined(SOC_SERIES_STM32L0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32H7) \
-    || defined(SOC_SERIES_STM32G4)
+    || defined(SOC_SERIES_STM32H7RS)|| defined(SOC_SERIES_STM32G4)
         ch = uart->handle.Instance->RDR & 0xff;
 #else
         ch = uart->handle.Instance->DR & 0xff;
@@ -717,7 +717,7 @@ static void uart_isr(struct rt_serial_device *serial)
         }
 #if !defined(SOC_SERIES_STM32L4) && !defined(SOC_SERIES_STM32F7) && !defined(SOC_SERIES_STM32F0) \
     && !defined(SOC_SERIES_STM32L0) && !defined(SOC_SERIES_STM32G0) && !defined(SOC_SERIES_STM32H7) \
-    && !defined(SOC_SERIES_STM32G4)
+    && !defined(SOC_SERIES_STM32H7RS) && !defined(SOC_SERIES_STM32G4)
         if (__HAL_UART_GET_FLAG(&(uart->handle), UART_FLAG_LBD) != RESET)
         {
             UART_INSTANCE_CLEAR_FUNCTION(&(uart->handle), UART_FLAG_LBD);
@@ -1128,7 +1128,7 @@ static void stm32_dma_config(struct rt_serial_device *serial, rt_ubase_t flag)
     {
         rt_uint32_t tmpreg = 0x00U;
 
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
         /* enable DMA clock && Delay after an RCC peripheral clock enabling*/
         SET_BIT(RCC->AHB1ENR, dma_config->dma_rcc);
         tmpreg = READ_BIT(RCC->AHB1ENR, dma_config->dma_rcc);
@@ -1145,7 +1145,7 @@ static void stm32_dma_config(struct rt_serial_device *serial, rt_ubase_t flag)
         __HAL_LINKDMA(&(uart->handle), hdmatx, uart->dma_tx.handle);
     }
 
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
     DMA_Handle->Instance                 = dma_config->Instance;
     DMA_Handle->Init.Request             = dma_config->request;
 #endif
@@ -1166,7 +1166,7 @@ static void stm32_dma_config(struct rt_serial_device *serial, rt_ubase_t flag)
     }
 
     DMA_Handle->Init.Priority            = DMA_PRIORITY_MEDIUM;
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7RS)
     DMA_Handle->Init.FIFOMode            = DMA_FIFOMODE_DISABLE;
 #endif
     if (HAL_DMA_DeInit(DMA_Handle) != HAL_OK)
