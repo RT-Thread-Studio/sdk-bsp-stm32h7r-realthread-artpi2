@@ -59,7 +59,7 @@ static rt_err_t console_getchar_rx_ind(rt_device_t dev, rt_size_t size)
 
 void at_cli_init(void)
 {
-    rt_base_t int_lvl;
+    rt_base_t level;
     rt_device_t console;
 
     rt_sem_init(&console_rx_notice, "cli_c", 0, RT_IPC_FLAG_FIFO);
@@ -69,7 +69,7 @@ void at_cli_init(void)
     /* created must success */
     RT_ASSERT(console_rx_fifo);
 
-    int_lvl = rt_hw_interrupt_disable();
+    level = rt_hw_interrupt_disable();
     console = rt_console_get_device();
     if (console)
     {
@@ -78,22 +78,22 @@ void at_cli_init(void)
         rt_device_set_rx_indicate(console, console_getchar_rx_ind);
     }
 
-    rt_hw_interrupt_enable(int_lvl);
+    rt_hw_interrupt_enable(level);
 }
 
 void at_cli_deinit(void)
 {
-    rt_base_t int_lvl;
+    rt_base_t level;
     rt_device_t console;
 
-    int_lvl = rt_hw_interrupt_disable();
+    level = rt_hw_interrupt_disable();
     console = rt_console_get_device();
     if (console && odev_rx_ind)
     {
         /* restore RX indicate */
         rt_device_set_rx_indicate(console, odev_rx_ind);
     }
-    rt_hw_interrupt_enable(int_lvl);
+    rt_hw_interrupt_enable(level);
 
     rt_sem_detach(&console_rx_notice);
     rt_ringbuffer_destroy(console_rx_fifo);
@@ -111,29 +111,22 @@ static void server_cli_parser(void)
     extern at_server_t at_get_server(void);
 
     at_server_t server = at_get_server();
-    rt_base_t int_lvl;
+    rt_base_t level;
     static rt_device_t device_bak;
     static rt_err_t (*getchar_bak)(struct at_server *server, char *ch, rt_int32_t timeout);
-    static char endmark_back[AT_END_MARK_LEN];
 
     /* backup server device and getchar function */
     {
-        int_lvl = rt_hw_interrupt_disable();
+        level = rt_hw_interrupt_disable();
 
         device_bak = server->device;
         getchar_bak = server->get_char;
-
-        rt_memset(endmark_back, 0x00, AT_END_MARK_LEN);
-        rt_memcpy(endmark_back, server->end_mark, strlen(server->end_mark));
 
         /* setup server device as console device */
         server->device = rt_console_get_device();
         server->get_char = at_server_console_getchar;
 
-        rt_memset(server->end_mark, 0x00, AT_END_MARK_LEN);
-        server->end_mark[0] = '\r';
-
-        rt_hw_interrupt_enable(int_lvl);
+        rt_hw_interrupt_enable(level);
     }
 
     if (server)
@@ -149,15 +142,12 @@ static void server_cli_parser(void)
 
     /* restore server device and getchar function */
     {
-        int_lvl = rt_hw_interrupt_disable();
+        level = rt_hw_interrupt_disable();
 
         server->device = device_bak;
         server->get_char = getchar_bak;
 
-        rt_memset(server->end_mark, 0x00, AT_END_MARK_LEN);
-        rt_memcpy(server->end_mark, endmark_back, strlen(endmark_back));
-
-        rt_hw_interrupt_enable(int_lvl);
+        rt_hw_interrupt_enable(level);
     }
 }
 #endif /* AT_USING_SERVER */
@@ -211,7 +201,7 @@ static void client_cli_parser(at_client_t  client)
     char cur_line[FINSH_CMD_SIZE] = { 0 };
     rt_size_t cur_line_len = 0;
     static rt_err_t (*client_odev_rx_ind)(rt_device_t dev, rt_size_t size) = RT_NULL;
-    rt_base_t int_lvl;
+    rt_base_t level;
     rt_thread_t at_client;
     at_status_t client_odev_status;
 
@@ -223,16 +213,16 @@ static void client_cli_parser(at_client_t  client)
             client->status = AT_STATUS_CLI;
         }
 
-        /* backup client device RX indicate */
-        {
-            int_lvl = rt_hw_interrupt_disable();
-            client_odev_rx_ind = client->device->rx_indicate;
-            rt_device_set_rx_indicate(client->device, client_getchar_rx_ind);
-            rt_hw_interrupt_enable(int_lvl);
-        }
-
         rt_sem_init(&client_rx_notice, "cli_r", 0, RT_IPC_FLAG_FIFO);
         client_rx_fifo = rt_ringbuffer_create(AT_CLI_FIFO_SIZE);
+
+        /* backup client device RX indicate */
+        {
+            level = rt_hw_interrupt_disable();
+            client_odev_rx_ind = client->device->rx_indicate;
+            rt_device_set_rx_indicate(client->device, client_getchar_rx_ind);
+            rt_hw_interrupt_enable(level);
+        }
 
         at_client = rt_thread_create("at_cli", at_client_entry, RT_NULL, 512, 8, 8);
         if (client_rx_fifo && at_client)
@@ -278,9 +268,9 @@ static void client_cli_parser(at_client_t  client)
 
             /* restore client device RX indicate */
             {
-                int_lvl = rt_hw_interrupt_disable();
+                level = rt_hw_interrupt_disable();
                 rt_device_set_rx_indicate(client->device, client_odev_rx_ind);
-                rt_hw_interrupt_enable(int_lvl);
+                rt_hw_interrupt_enable(level);
             }
 
             rt_thread_delete(at_client);

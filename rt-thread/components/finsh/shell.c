@@ -35,7 +35,7 @@
 /* finsh thread */
 #ifndef RT_USING_HEAP
     static struct rt_thread finsh_thread;
-    ALIGN(RT_ALIGN_SIZE)
+    rt_align(RT_ALIGN_SIZE)
     static char finsh_thread_stack[FINSH_THREAD_STACK_SIZE];
     struct finsh_shell _shell;
 #endif
@@ -101,16 +101,22 @@ const char *finsh_get_prompt(void)
     if (finsh_prompt_custom)
     {
         strncpy(finsh_prompt, finsh_prompt_custom, sizeof(finsh_prompt) - 1);
-        return finsh_prompt;
     }
-    strcpy(finsh_prompt, _MSH_PROMPT);
+    else
+    {
+        strcpy(finsh_prompt, _MSH_PROMPT);
+    }
 
 #if defined(DFS_USING_POSIX) && defined(DFS_USING_WORKDIR)
     /* get current working directory */
     getcwd(&finsh_prompt[rt_strlen(finsh_prompt)], RT_CONSOLEBUF_SIZE - rt_strlen(finsh_prompt));
 #endif
 
-    strcat(finsh_prompt, ">");
+    if (rt_strlen(finsh_prompt) + 2 < RT_CONSOLEBUF_SIZE)
+    {
+        finsh_prompt[rt_strlen(finsh_prompt)] = '>';
+        finsh_prompt[rt_strlen(finsh_prompt) + 1] = '\0';
+    }
 
     return finsh_prompt;
 }
@@ -135,7 +141,7 @@ rt_uint32_t finsh_get_prompt_mode(void)
  *
  * The parameter 0 disable prompt mode, other values enable prompt mode.
  *
- * @param prompt the prompt mode
+ * @param prompt_mode the prompt mode
  */
 void finsh_set_prompt_mode(rt_uint32_t prompt_mode)
 {
@@ -293,7 +299,7 @@ rt_uint32_t finsh_get_echo()
  */
 rt_err_t finsh_set_password(const char *password)
 {
-    rt_ubase_t level;
+    rt_base_t level;
     rt_size_t pw_len = rt_strlen(password);
 
     if (pw_len < FINSH_PASSWORD_MIN || pw_len > FINSH_PASSWORD_MAX)
@@ -379,6 +385,10 @@ static void shell_auto_complete(char *prefix)
     rt_kprintf("\n");
     msh_auto_complete(prefix);
 
+#ifdef FINSH_USING_OPTION_COMPLETION
+    msh_opt_auto_complete(prefix);
+#endif
+
     rt_kprintf("%s%s", FINSH_PROMPT, prefix);
 }
 
@@ -442,9 +452,27 @@ static void shell_push_history(struct finsh_shell *shell)
 }
 #endif
 
-void finsh_thread_entry(void *parameter)
+#ifdef RT_USING_HOOK
+static void (*_finsh_thread_entry_hook)(void);
+
+/**
+ * @ingroup finsh
+ *
+ * @brief This function set a hook function at the entry of finsh thread
+ *
+ * @param hook the function point to be called
+ */
+void finsh_thread_entry_sethook(void (*hook)(void))
+{
+    _finsh_thread_entry_hook = hook;
+}
+#endif /* RT_USING_HOOK */
+
+static void finsh_thread_entry(void *parameter)
 {
     int ch;
+
+    RT_OBJECT_HOOK_CALL(_finsh_thread_entry_hook, ());
 
     /* normal is echo mode */
 #ifndef FINSH_ECHO_DISABLE_DEFAULT
@@ -529,7 +557,7 @@ void finsh_thread_entry(void *parameter)
                 /* copy the history command */
                 rt_memcpy(shell->line, &shell->cmd_history[shell->current_history][0],
                        FINSH_CMD_SIZE);
-                shell->line_curpos = shell->line_position = strlen(shell->line);
+                shell->line_curpos = shell->line_position = (rt_uint16_t)strlen(shell->line);
                 shell_handle_history(shell);
 #endif
                 continue;
@@ -551,7 +579,7 @@ void finsh_thread_entry(void *parameter)
 
                 rt_memcpy(shell->line, &shell->cmd_history[shell->current_history][0],
                        FINSH_CMD_SIZE);
-                shell->line_curpos = shell->line_position = strlen(shell->line);
+                shell->line_curpos = shell->line_position = (rt_uint16_t)strlen(shell->line);
                 shell_handle_history(shell);
 #endif
                 continue;
@@ -591,7 +619,7 @@ void finsh_thread_entry(void *parameter)
             /* auto complete */
             shell_auto_complete(&shell->line[0]);
             /* re-calculate position */
-            shell->line_curpos = shell->line_position = strlen(shell->line);
+            shell->line_curpos = shell->line_position = (rt_uint16_t)strlen(shell->line);
 
             continue;
         }
@@ -684,7 +712,7 @@ void finsh_thread_entry(void *parameter)
     } /* end of device read */
 }
 
-void finsh_system_function_init(const void *begin, const void *end)
+static void finsh_system_function_init(const void *begin, const void *end)
 {
     _syscall_table_begin = (struct finsh_syscall *) begin;
     _syscall_table_end = (struct finsh_syscall *) end;

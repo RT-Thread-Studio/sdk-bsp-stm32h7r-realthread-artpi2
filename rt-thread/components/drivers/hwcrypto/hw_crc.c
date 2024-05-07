@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -87,7 +87,7 @@ void rt_hwcrypto_crc_destroy(struct rt_hwcrypto_ctx *ctx)
  * @param input     Data buffer to be Processed
  * @param length    Data Buffer length
  *
- * @return          RT_EOK on success.
+ * @return          CRC value
  */
 rt_uint32_t rt_hwcrypto_crc_update(struct rt_hwcrypto_ctx *ctx,
                                              const rt_uint8_t *input,

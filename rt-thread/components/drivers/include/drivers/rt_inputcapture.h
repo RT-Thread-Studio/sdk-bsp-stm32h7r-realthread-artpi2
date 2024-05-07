@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -12,7 +12,6 @@
 #define __RT_INPUT_CAPTURE_H__
 
 #include <rtthread.h>
-#include <rtdevice.h>
 
 #ifdef __cplusplus
 extern "C" {

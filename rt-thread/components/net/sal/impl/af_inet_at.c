@@ -11,7 +11,7 @@
 #include <rtthread.h>
 
 #include <netdb.h>
-#include <sal.h>
+#include <sal_low_lvl.h>
 
 #include <at_socket.h>
 #include <af_inet.h>
@@ -25,7 +25,7 @@
 #ifdef SAL_USING_AT
 
 #ifdef SAL_USING_POSIX
-static int at_poll(struct dfs_fd *file, struct rt_pollreq *req)
+static int at_poll(struct dfs_file *file, struct rt_pollreq *req)
 {
     int mask = 0;
     struct at_socket *sock;
@@ -69,14 +69,25 @@ static const struct sal_socket_ops at_socket_ops =
     at_socket,
     at_closesocket,
     at_bind,
+#ifdef AT_USING_SOCKET_SERVER
+    at_listen,
+#else
     NULL,
+#endif
     at_connect,
+#ifdef AT_USING_SOCKET_SERVER
+    at_accept,
+#else
     NULL,
+#endif
     at_sendto,
+    NULL,
+    NULL,
     at_recvfrom,
     at_getsockopt,
     at_setsockopt,
     at_shutdown,
+    NULL,
     NULL,
     NULL,
     NULL,

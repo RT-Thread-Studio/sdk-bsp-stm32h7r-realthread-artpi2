@@ -23,8 +23,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define COMPILE_TIME_ASSERT(x)
-
 extern int pthread_key_create(pthread_key_t *key, void (*destructor)(void *));
 extern int pthread_key_delete(pthread_key_t key);
 extern void *pthread_getspecific(pthread_key_t key);
@@ -63,7 +61,7 @@ static __inline void *emutls_memalign_alloc(size_t align, size_t size)
 #else
 #define EXTRA_ALIGN_PTR_BYTES (align - 1 + sizeof(void *))
     char *object;
-    if ((object = malloc(EXTRA_ALIGN_PTR_BYTES + size)) == NULL)
+    if ((object = (char *)malloc(EXTRA_ALIGN_PTR_BYTES + size)) == NULL)
         abort();
     base = (void *)(((uintptr_t)(object + EXTRA_ALIGN_PTR_BYTES)) & ~(uintptr_t)(align - 1));
 
@@ -85,13 +83,6 @@ static __inline void emutls_memalign_free(void *base)
 /* Emulated TLS objects are always allocated at run-time. */
 static __inline void *emutls_allocate_object(__emutls_control *control)
 {
-    /* Use standard C types, check with gcc's emutls.o. */
-    typedef unsigned int gcc_word __attribute__((mode(word)));
-    typedef unsigned int gcc_pointer __attribute__((mode(pointer)));
-    COMPILE_TIME_ASSERT(sizeof(size_t) == sizeof(gcc_word));
-    COMPILE_TIME_ASSERT(sizeof(uintptr_t) == sizeof(gcc_pointer));
-    COMPILE_TIME_ASSERT(sizeof(uintptr_t) == sizeof(void *));
-
     size_t size = control->size;
     size_t align = control->align;
     if (align < sizeof(void *))
@@ -190,14 +181,15 @@ emutls_get_address_array(uintptr_t index)
     if (array == NULL)
     {
         uintptr_t new_size = emutls_new_data_array_size(index);
-        array = calloc(new_size + 1, sizeof(void *));
+        array = (emutls_address_array *)calloc(new_size + 1, sizeof(void *));
         emutls_check_array_set_size(array, new_size);
     }
     else if (index > array->size)
     {
         uintptr_t orig_size = array->size;
         uintptr_t new_size = emutls_new_data_array_size(index);
-        array = realloc(array, (new_size + 1) * sizeof(void *));
+        array = (emutls_address_array *)realloc(array, (new_size + 1) * sizeof(void *));
+
         if (array)
             memset(array->data + orig_size, 0,
                    (new_size - orig_size) * sizeof(void *));

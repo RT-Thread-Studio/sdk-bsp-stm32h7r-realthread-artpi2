@@ -17,6 +17,8 @@
  */
 /*@{*/
 
+#include <rtconfig.h>
+
 .cpu cortex-m4
 .syntax unified
 .thumb
@@ -152,6 +154,14 @@ switch_to_thread:
     BICNE   lr, lr, #0x10       /* lr &= ~(1 << 4), set FPCA. */
 #endif
 
+#if defined (RT_USING_MEM_PROTECTION)
+    PUSH    {r0-r3, r12, lr}
+    LDR     r1, =rt_current_thread
+    LDR     r0, [r1]
+    BL      rt_hw_mpu_table_switch
+    POP     {r0-r3, r12, lr}
+#endif
+
 pendsv_exit:
     /* restore interrupt */
     MSR PRIMASK, r2
@@ -207,6 +217,10 @@ rt_hw_context_switch_to:
     /* enable interrupts at processor level */
     CPSIE   F
     CPSIE   I
+
+    /* ensure PendSV exception taken place before subsequent operation */
+    DSB
+    ISB
 
     /* never reach here! */
 

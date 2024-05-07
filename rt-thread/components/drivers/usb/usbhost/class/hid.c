@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,6 +14,10 @@
 #include "hid.h"
 
 #ifdef RT_USBH_HID
+
+#define DBG_TAG           "usbhost.hid"
+#define DBG_LVL           DBG_INFO
+#include <rtdbg.h>
 
 static struct uclass_driver hid_driver;
 static rt_list_t _protocal_list;
@@ -47,9 +51,10 @@ rt_err_t rt_usbh_hid_set_idle(struct uhintf* intf, int duration, int report_id)
     setup.wValue = (duration << 8 )| report_id;
 
     if (rt_usb_hcd_setup_xfer(device->hcd, device->pipe_ep0_out, &setup, timeout) == 8)
-        return RT_EOK;
-    else
-        return -RT_FALSE;
+        if (rt_usb_hcd_pipe_xfer(device->hcd, device->pipe_ep0_in, RT_NULL, 0, timeout) == 0)
+            return RT_EOK;
+
+    return -RT_FALSE;
 }
 
 /**
@@ -303,8 +308,7 @@ static rt_err_t rt_usbh_hid_enable(void* arg)
 
     pro_id = intf->intf_desc->bInterfaceProtocol;
 
-    RT_DEBUG_LOG(RT_DEBUG_USB,
-                 ("HID device enable, protocal id %d\n", pro_id));
+    LOG_D("HID device enable, protocal id %d", pro_id);
 
     protocal = rt_usbh_hid_protocal_find(pro_id);
     if(protocal == RT_NULL)
@@ -341,7 +345,7 @@ static rt_err_t rt_usbh_hid_enable(void* arg)
         if(!(ep_desc->bEndpointAddress & USB_DIR_IN)) continue;
 
         ret = rt_usb_hcd_alloc_pipe(intf->device->hcd, &hid->pipe_in,
-            intf, ep_desc);
+            intf->device, ep_desc);
         if(ret != RT_EOK) return ret;
     }
 
@@ -366,7 +370,7 @@ static rt_err_t rt_usbh_hid_disable(void* arg)
 
     RT_ASSERT(intf != RT_NULL);
 
-    RT_DEBUG_LOG(RT_DEBUG_USB, ("rt_usbh_hid_disable\n"));
+    LOG_D("rt_usbh_hid_disable");
 
     hid = (struct uhid*)intf->user_data;
     if(hid != RT_NULL)

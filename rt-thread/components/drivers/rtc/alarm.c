@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,9 +21,6 @@
 #else
 #define RT_ALARM_DELAY             2
 #endif
-#define RT_ALARM_STATE_INITED   0x02
-#define RT_ALARM_STATE_START    0x01
-#define RT_ALARM_STATE_STOP     0x00
 
 #if (defined(RT_USING_RTC) && defined(RT_USING_ALARM))
 static struct rt_alarm_container _container;
@@ -60,6 +57,9 @@ static rt_err_t alarm_set(struct rt_alarm *alarm)
     wkalarm.tm_sec = alarm->wktime.tm_sec;
     wkalarm.tm_min = alarm->wktime.tm_min;
     wkalarm.tm_hour = alarm->wktime.tm_hour;
+    wkalarm.tm_mday = alarm->wktime.tm_mday;
+    wkalarm.tm_mon = alarm->wktime.tm_mon;
+    wkalarm.tm_year = alarm->wktime.tm_year;
 
     ret = rt_device_control(device, RT_DEVICE_CTRL_RTC_SET_ALARM, &wkalarm);
     if ((ret == RT_EOK) && wkalarm.enable)
@@ -74,6 +74,9 @@ static rt_err_t alarm_set(struct rt_alarm *alarm)
             alarm->wktime.tm_sec = wkalarm.tm_sec;
             alarm->wktime.tm_min = wkalarm.tm_min;
             alarm->wktime.tm_hour = wkalarm.tm_hour;
+            alarm->wktime.tm_mday = wkalarm.tm_mday;
+            alarm->wktime.tm_mon = wkalarm.tm_mon;
+            alarm->wktime.tm_year = wkalarm.tm_year;
         }
     }
 
@@ -170,11 +173,14 @@ static void alarm_wakeup(struct rt_alarm *alarm, struct tm *now)
         case RT_ALARM_WEEKLY:
         {
             /* alarm at wday */
-            sec_alarm += alarm->wktime.tm_wday * 24 * 3600;
-            sec_now += now->tm_wday * 24 * 3600;
+            if (alarm->wktime.tm_wday == now->tm_wday)
+            {
+                sec_alarm += alarm->wktime.tm_wday * 24 * 3600;
+                sec_now += now->tm_wday * 24 * 3600;
 
-            if (((sec_now - sec_alarm) <= RT_ALARM_DELAY) && (sec_now >= sec_alarm))
-                wakeup = RT_TRUE;
+                if (sec_now == sec_alarm)
+                    wakeup = RT_TRUE;
+            }
         }
         break;
         case RT_ALARM_MONTHLY:
@@ -201,7 +207,8 @@ static void alarm_wakeup(struct rt_alarm *alarm, struct tm *now)
 
         if ((wakeup == RT_TRUE) && (alarm->callback != RT_NULL))
         {
-            timestamp = time(RT_NULL);
+            timestamp = (time_t)0;
+            get_timestamp(&timestamp);
             alarm->callback(alarm, timestamp);
         }
     }
@@ -213,7 +220,7 @@ static void alarm_update(rt_uint32_t event)
     struct rt_alarm *alarm;
     rt_int32_t sec_now, sec_alarm, sec_tmp;
     rt_int32_t sec_next = 24 * 3600, sec_prev = 0;
-    time_t timestamp;
+    time_t timestamp = (time_t)0;
     struct tm now;
     rt_list_t *next;
 
@@ -221,12 +228,8 @@ static void alarm_update(rt_uint32_t event)
     if (!rt_list_isempty(&_container.head))
     {
         /* get time of now */
-        timestamp = time(RT_NULL);
-#ifdef _WIN32
-        _gmtime32_s(&now, &timestamp);
-#else
+        get_timestamp(&timestamp);
         gmtime_r(&timestamp, &now);
-#endif
 
         for (next = _container.head.next; next != &_container.head; next = next->next)
         {
@@ -235,12 +238,9 @@ static void alarm_update(rt_uint32_t event)
             alarm_wakeup(alarm, &now);
         }
 
-        timestamp = time(RT_NULL);
-#ifdef _WIN32
-        _gmtime32_s(&now, &timestamp);
-#else
+        /* get time of now */
+        get_timestamp(&timestamp);
         gmtime_r(&timestamp, &now);
-#endif
         sec_now = alarm_mkdaysec(&now);
 
         for (next = _container.head.next; next != &_container.head; next = next->next)
@@ -287,15 +287,19 @@ static void alarm_update(rt_uint32_t event)
         else
         {
             if (_container.current != RT_NULL)
+            {
                 alarm_set(_container.current);
+                if (!(_container.current->flag & RT_ALARM_STATE_START))
+                    _container.current = RT_NULL;
+            }
         }
     }
     rt_mutex_release(&_container.mutex);
 }
 
-static rt_uint32_t days_of_year_month(int tm_year, int tm_mon)
+static int days_of_year_month(int tm_year, int tm_mon)
 {
-    rt_uint32_t ret, year;
+    int ret, year;
 
     year = tm_year + 1900;
     if (tm_mon == 1)
@@ -337,19 +341,15 @@ static rt_bool_t is_valid_date(struct tm *date)
 
 static rt_err_t alarm_setup(rt_alarm_t alarm, struct tm *wktime)
 {
-    rt_err_t ret = RT_ERROR;
-    time_t timestamp;
+    rt_err_t ret = -RT_ERROR;
+    time_t timestamp = (time_t)0;
     struct tm *setup, now;
 
     setup = &alarm->wktime;
     *setup = *wktime;
-    timestamp = time(RT_NULL);
-
-#ifdef _WIN32
-    _gmtime32_s(&now, &timestamp);
-#else
+    /* get time of now */
+    get_timestamp(&timestamp);
     gmtime_r(&timestamp, &now);
-#endif
 
     /* if these are a "don't care" value,we set them to now*/
     if ((setup->tm_sec > 59) || (setup->tm_sec < 0))
@@ -512,7 +512,7 @@ void rt_alarm_update(rt_device_t dev, rt_uint32_t event)
  */
 rt_err_t rt_alarm_control(rt_alarm_t alarm, int cmd, void *arg)
 {
-    rt_err_t ret = RT_ERROR;
+    rt_err_t ret = -RT_ERROR;
 
     RT_ASSERT(alarm != RT_NULL);
 
@@ -547,7 +547,7 @@ rt_err_t rt_alarm_start(rt_alarm_t alarm)
 {
     rt_int32_t sec_now, sec_old, sec_new;
     rt_err_t ret = RT_EOK;
-    time_t timestamp;
+    time_t timestamp = (time_t)0;
     struct tm now;
 
     if (alarm == RT_NULL)
@@ -558,16 +558,13 @@ rt_err_t rt_alarm_start(rt_alarm_t alarm)
     {
         if (alarm_setup(alarm, &alarm->wktime) != RT_EOK)
         {
-            ret = RT_ERROR;
+            ret = -RT_ERROR;
             goto _exit;
         }
 
-        timestamp = time(RT_NULL);
-#ifdef _WIN32
-        _gmtime32_s(&now, &timestamp);
-#else
+        /* get time of now */
+        get_timestamp(&timestamp);
         gmtime_r(&timestamp, &now);
-#endif
 
         alarm->flag |= RT_ALARM_STATE_START;
 
@@ -655,7 +652,7 @@ rt_err_t rt_alarm_delete(rt_alarm_t alarm)
     rt_err_t ret = RT_EOK;
 
     if (alarm == RT_NULL)
-        return RT_ERROR;
+        return -RT_ERROR;
     rt_mutex_take(&_container.mutex, RT_WAITING_FOREVER);
     /* stop the alarm */
     alarm->flag &= ~RT_ALARM_STATE_START;
@@ -731,7 +728,7 @@ struct _alarm_flag
 static const struct _alarm_flag _alarm_flag_tbl[] =
 {
     {"N",        0xffff}, /* none */
-    {"O",       RT_ALARM_ONESHOT}, /* only alarm onece */
+    {"O",       RT_ALARM_ONESHOT}, /* only alarm once */
     {"D",       RT_ALARM_DAILY}, /* alarm everyday */
     {"W",       RT_ALARM_WEEKLY}, /* alarm weekly at Monday or Friday etc. */
     {"Mo",      RT_ALARM_MONTHLY}, /* alarm monthly at someday */
@@ -761,23 +758,21 @@ void rt_alarm_dump(void)
 {
     rt_list_t *next;
     rt_alarm_t alarm;
-    rt_uint8_t index = 0;
 
-    rt_kprintf("| id | YYYY-MM-DD hh:mm:ss | week | flag | en |\n");
-    rt_kprintf("+----+---------------------+------+------+----+\n");
+    rt_kprintf("| hh:mm:ss | week | flag | en |\n");
+    rt_kprintf("+----------+------+------+----+\n");
     for (next = _container.head.next; next != &_container.head; next = next->next)
     {
         alarm = rt_list_entry(next, struct rt_alarm, list);
         rt_uint8_t flag_index = get_alarm_flag_index(alarm->flag);
-        rt_kprintf("| %2d | %04d-%02d-%02d %02d:%02d:%02d |  %2d  |  %2s  | %2d |\n",
-            index++, alarm->wktime.tm_year + 1900, alarm->wktime.tm_mon + 1, alarm->wktime.tm_mday,
+        rt_kprintf("| %02d:%02d:%02d |  %2d  |  %2s  | %2d |\n",
             alarm->wktime.tm_hour, alarm->wktime.tm_min, alarm->wktime.tm_sec,
             alarm->wktime.tm_wday, _alarm_flag_tbl[flag_index].name, alarm->flag & RT_ALARM_STATE_START);
     }
-    rt_kprintf("+----+---------------------+------+------+----+\n");
+    rt_kprintf("+----------+------+------+----+\n");
 }
 
-MSH_CMD_EXPORT_ALIAS(rt_alarm_dump, rt_alarm_dump, dump alarm info);
+MSH_CMD_EXPORT_ALIAS(rt_alarm_dump, list_alarm, list alarm info);
 
 /** \brief initialize alarm service system
  *

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -8,8 +8,10 @@
  * 2019-08-13     balanceTWK   the first version
  */
 
-#include <rtthread.h>
 #include <rtdevice.h>
+
+#define DBG_TAG "incap"
+#define DBG_LVL DBG_WARNING
 #include <rtdbg.h>
 
 static rt_err_t rt_inputcapture_init(struct rt_device *dev)
@@ -79,7 +81,7 @@ static rt_err_t rt_inputcapture_close(struct rt_device *dev)
     return ret;
 }
 
-static rt_size_t rt_inputcapture_read(struct rt_device *dev,
+static rt_ssize_t rt_inputcapture_read(struct rt_device *dev,
                                  rt_off_t          pos,
                                  void             *buffer,
                                  rt_size_t         size)

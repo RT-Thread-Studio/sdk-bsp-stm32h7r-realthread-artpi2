@@ -16,25 +16,6 @@
  */
 /*@{*/
 
-/**
- * this function will reset CPU
- *
- */
-RT_WEAK void rt_hw_cpu_reset()
-{
-}
-
-/**
- * this function will shutdown CPU
- *
- */
-RT_WEAK void rt_hw_cpu_shutdown()
-{
-    rt_kprintf("shutdown...\n");
-
-    while (1);
-}
-
 #ifdef __TI_COMPILER_VERSION__
 #ifdef RT_USING_CPU_FFS
 int __rt_ffs(int value)
@@ -87,9 +68,11 @@ void rt_hw_cpu_dcache_disable()
 }
 
 #elif __GNUC__
+#ifdef RT_USING_CPU_FFS
 int __rt_ffs(int value)
 {
     return __builtin_ffs(value);
 }
+#endif
 #endif
 /*@}*/

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -85,7 +85,7 @@ static uint8_t spi_read_op(struct rt_spi_device *spi_device, uint8_t op, uint8_t
 
 static void spi_write_op(struct rt_spi_device *spi_device, uint8_t op, uint8_t address, uint8_t data)
 {
-    uint32_t level;
+    rt_base_t level;
     uint8_t buffer[2];
 
     level = rt_hw_interrupt_disable();
@@ -381,14 +381,14 @@ static rt_err_t enc28j60_close(rt_device_t dev)
 }
 
 /* Read */
-static rt_size_t enc28j60_read(rt_device_t dev, rt_off_t pos, void *buffer, rt_size_t size)
+static rt_ssize_t enc28j60_read(rt_device_t dev, rt_off_t pos, void *buffer, rt_size_t size)
 {
     rt_set_errno(-RT_ENOSYS);
     return RT_EOK;
 }
 
 /* Write */
-static rt_size_t enc28j60_write(rt_device_t dev, rt_off_t pos, const void *buffer, rt_size_t size)
+static rt_ssize_t enc28j60_write(rt_device_t dev, rt_off_t pos, const void *buffer, rt_size_t size)
 {
     rt_set_errno(-RT_ENOSYS);
     return 0;
@@ -804,7 +804,7 @@ rt_err_t enc28j60_attach(const char *spi_device_name)
             NET_DEBUG("phy_rev:%02X\r\n", enc28j60_dev.phy_rev);
             NET_DEBUG("phy_pn:%02X\r\n", enc28j60_dev.phy_pn);
             NET_DEBUG("phy_id:%08X\r\n", enc28j60_dev.phy_id);
-            return RT_EIO;
+            return -RT_EIO;
         }
     }
 

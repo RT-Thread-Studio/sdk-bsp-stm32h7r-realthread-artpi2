@@ -7,7 +7,7 @@
  * Date           Author       Notes
  * 2018-08-25     armink       the first version
  */
-#include <stdint.h>
+
 #include <stdarg.h>
 #include "ulog.h"
 #include "rthw.h"
@@ -138,6 +138,7 @@ static const char * const color_output_info[] =
 
 /* ulog local object */
 static struct rt_ulog ulog = { 0 };
+static RT_DEFINE_SPINLOCK(_spinlock);
 
 rt_size_t ulog_strcpy(rt_size_t cur_len, char *dst, const char *src)
 {
@@ -190,14 +191,14 @@ static void output_unlock(void)
     }
 
     /* If the scheduler is started and in thread context */
-    if (rt_interrupt_get_nest() == 0 && rt_thread_self() != RT_NULL)
+    if (rt_scheduler_is_available())
     {
         rt_mutex_release(&ulog.output_locker);
     }
     else
     {
 #ifdef ULOG_USING_ISR_LOG
-        rt_hw_interrupt_enable(ulog.output_locker_isr_lvl);
+        rt_spin_unlock_irqrestore(&_spinlock, ulog.output_locker_isr_lvl);
 #endif
     }
 }
@@ -211,14 +212,14 @@ static void output_lock(void)
     }
 
     /* If the scheduler is started and in thread context */
-    if (rt_interrupt_get_nest() == 0 && rt_thread_self() != RT_NULL)
+    if (rt_scheduler_is_available())
     {
         rt_mutex_take(&ulog.output_locker, RT_WAITING_FOREVER);
     }
     else
     {
 #ifdef ULOG_USING_ISR_LOG
-        ulog.output_locker_isr_lvl = rt_hw_interrupt_disable();
+        ulog.output_locker_isr_lvl = rt_spin_lock_irqsave(&_spinlock);
 #endif
     }
 }
@@ -246,20 +247,16 @@ static char *get_log_buf(void)
     }
 }
 
-RT_WEAK rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *tag, rt_bool_t newline,
-        const char *format, va_list args)
+rt_weak rt_size_t ulog_head_formater(char *log_buf, rt_uint32_t level, const char *tag)
 {
     /* the caller has locker, so it can use static variable for reduce stack usage */
-    static rt_size_t log_len, newline_len;
-    static int fmt_result;
+    static rt_size_t log_len;
 
     RT_ASSERT(log_buf);
     RT_ASSERT(level <= LOG_LVL_DBG);
     RT_ASSERT(tag);
-    RT_ASSERT(format);
 
     log_len = 0;
-    newline_len = rt_strlen(ULOG_NEWLINE_SIGN);
 
 #ifdef ULOG_USING_COLOR
     /* add CSI start sign and color info */
@@ -279,32 +276,33 @@ RT_WEAK rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *ta
         static struct timeval now;
         static struct tm *tm, tm_tmp;
         static rt_bool_t check_usec_support = RT_FALSE, usec_is_support = RT_FALSE;
+        time_t t = (time_t)0;
 
         if (gettimeofday(&now, RT_NULL) >= 0)
         {
-            time_t t = now.tv_sec;
-            tm = localtime_r(&t, &tm_tmp);
-            /* show the time format MM-DD HH:MM:SS */
-            rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, "%02d-%02d %02d:%02d:%02d", tm->tm_mon + 1,
-                    tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
-            /* check the microseconds support when kernel is startup */
-            if (!check_usec_support && rt_thread_self() != RT_NULL)
-            {
-                long old_usec = now.tv_usec;
-                /* delay some time for wait microseconds changed */
-                rt_thread_mdelay(10);
-                gettimeofday(&now, RT_NULL);
-                check_usec_support = RT_TRUE;
-                /* the microseconds is not equal between two gettimeofday calls */
-                if (now.tv_usec != old_usec)
-                    usec_is_support = RT_TRUE;
-            }
-            if (usec_is_support)
-            {
-                /* show the millisecond */
-                log_len += rt_strlen(log_buf + log_len);
-                rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, ".%03d", now.tv_usec / 1000);
-            }
+            t = now.tv_sec;
+        }
+        tm = localtime_r(&t, &tm_tmp);
+        /* show the time format MM-DD HH:MM:SS */
+        rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, "%02d-%02d %02d:%02d:%02d", tm->tm_mon + 1,
+                tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
+        /* check the microseconds support when kernel is startup */
+        if (t > 0 && !check_usec_support && rt_thread_self() != RT_NULL)
+        {
+            long old_usec = now.tv_usec;
+            /* delay some time for wait microseconds changed */
+            rt_thread_mdelay(10);
+            gettimeofday(&now, RT_NULL);
+            check_usec_support = RT_TRUE;
+            /* the microseconds is not equal between two gettimeofday calls */
+            if (now.tv_usec != old_usec)
+                usec_is_support = RT_TRUE;
+        }
+        if (usec_is_support)
+        {
+            /* show the millisecond */
+            log_len += rt_strlen(log_buf + log_len);
+            rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, ".%03d", now.tv_usec / 1000);
         }
 
 #else
@@ -355,7 +353,7 @@ RT_WEAK rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *ta
             const char *thread_name = "N/A";
             if (rt_thread_self())
             {
-                thread_name = rt_thread_self()->name;
+                thread_name = rt_thread_self()->parent.name;
             }
             name_len = rt_strnlen(thread_name, RT_NAME_MAX);
             rt_strncpy(log_buf + log_len, thread_name, name_len);
@@ -369,35 +367,36 @@ RT_WEAK rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *ta
 #endif /* ULOG_OUTPUT_THREAD_NAME */
 
     log_len += ulog_strcpy(log_len, log_buf + log_len, ": ");
-    fmt_result = rt_vsnprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, format, args);
 
-    /* calculate log length */
-    if ((log_len + fmt_result <= ULOG_LINE_BUF_SIZE) && (fmt_result > -1))
-    {
-        log_len += fmt_result;
-    }
-    else
-    {
-        /* using max length */
-        log_len = ULOG_LINE_BUF_SIZE;
-    }
+    return log_len;
+}
 
-    /* overflow check and reserve some space for CSI end sign and newline sign */
+
+rt_weak rt_size_t ulog_tail_formater(char *log_buf, rt_size_t log_len, rt_bool_t newline, rt_uint32_t level)
+{
+    /* the caller has locker, so it can use static variable for reduce stack usage */
+    static rt_size_t newline_len;
+
+    RT_ASSERT(log_buf);
+    newline_len = rt_strlen(ULOG_NEWLINE_SIGN);
+    /* overflow check and reserve some space for CSI end sign, newline sign and string end sign */
 #ifdef ULOG_USING_COLOR
-    if (log_len + (sizeof(CSI_END) - 1) + newline_len > ULOG_LINE_BUF_SIZE)
+    if (log_len + (sizeof(CSI_END) - 1) + newline_len + sizeof((char)'\0') > ULOG_LINE_BUF_SIZE)
     {
         /* using max length */
         log_len = ULOG_LINE_BUF_SIZE;
         /* reserve some space for CSI end sign */
         log_len -= (sizeof(CSI_END) - 1);
 #else
-    if (log_len + newline_len > ULOG_LINE_BUF_SIZE)
+    if (log_len + newline_len + sizeof((char)'\0') > ULOG_LINE_BUF_SIZE)
     {
         /* using max length */
         log_len = ULOG_LINE_BUF_SIZE;
 #endif /* ULOG_USING_COLOR */
         /* reserve some space for newline sign */
         log_len -= newline_len;
+        /* reserve some space for string end sign */
+        log_len -= sizeof((char)'\0');
     }
 
     /* package newline sign */
@@ -414,10 +413,93 @@ RT_WEAK rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *ta
     }
 #endif /* ULOG_USING_COLOR */
 
+    /* add string end sign */
+    log_buf[log_len] = '\0';
+
     return log_len;
 }
 
-void ulog_output_to_all_backend(rt_uint32_t level, const char *tag, rt_bool_t is_raw, const char *log, rt_size_t size)
+rt_weak rt_size_t ulog_formater(char *log_buf, rt_uint32_t level, const char *tag, rt_bool_t newline,
+        const char *format, va_list args)
+{
+    /* the caller has locker, so it can use static variable for reduce stack usage */
+    static rt_size_t log_len;
+    static int fmt_result;
+
+    RT_ASSERT(log_buf);
+    RT_ASSERT(format);
+
+    /* log head */
+    log_len = ulog_head_formater(log_buf, level, tag);
+    /* log content */
+    fmt_result = rt_vsnprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, format, args);
+    /* calculate log length */
+    if ((log_len + fmt_result <= ULOG_LINE_BUF_SIZE) && (fmt_result > -1))
+    {
+        log_len += fmt_result;
+    }
+    else
+    {
+        /* using max length */
+        log_len = ULOG_LINE_BUF_SIZE;
+    }
+    /* log tail */
+    return ulog_tail_formater(log_buf, log_len, newline, level);
+}
+
+rt_weak rt_size_t ulog_hex_formater(char *log_buf, const char *tag, const rt_uint8_t *buf, rt_size_t size, rt_size_t width, rt_base_t addr)
+{
+#define __is_print(ch)       ((unsigned int)((ch) - ' ') < 127u - ' ')
+    /* the caller has locker, so it can use static variable for reduce stack usage */
+    static rt_size_t log_len, j;
+    static int fmt_result;
+    char dump_string[8];
+
+    RT_ASSERT(log_buf);
+    RT_ASSERT(buf);
+
+    /* log head */
+    log_len = ulog_head_formater(log_buf, LOG_LVL_DBG, tag);
+    /* log content */
+    fmt_result = rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE, "%04X-%04X: ", addr, addr + size);
+    /* calculate log length */
+    if ((fmt_result > -1) && (fmt_result <= ULOG_LINE_BUF_SIZE))
+    {
+        log_len += fmt_result;
+    }
+    else
+    {
+        log_len = ULOG_LINE_BUF_SIZE;
+    }
+    /* dump hex */
+    for (j = 0; j < width; j++)
+    {
+        if (j < size)
+        {
+            rt_snprintf(dump_string, sizeof(dump_string), "%02X ", buf[j]);
+        }
+        else
+        {
+            rt_strncpy(dump_string, "   ", sizeof(dump_string));
+        }
+        log_len += ulog_strcpy(log_len, log_buf + log_len, dump_string);
+        if ((j + 1) % 8 == 0)
+        {
+            log_len += ulog_strcpy(log_len, log_buf + log_len, " ");
+        }
+    }
+    log_len += ulog_strcpy(log_len, log_buf + log_len, "  ");
+    /* dump char for hex */
+    for (j = 0; j < size; j++)
+    {
+        rt_snprintf(dump_string, sizeof(dump_string), "%c", __is_print(buf[j]) ? buf[j] : '.');
+        log_len += ulog_strcpy(log_len, log_buf + log_len, dump_string);
+    }
+    /* log tail */
+    return ulog_tail_formater(log_buf, log_len, RT_TRUE, LOG_LVL_DBG);
+}
+
+static void ulog_output_to_all_backend(rt_uint32_t level, const char *tag, rt_bool_t is_raw, const char *log, rt_size_t len)
 {
     rt_slist_t *node;
     ulog_backend_t backend;
@@ -441,21 +523,21 @@ void ulog_output_to_all_backend(rt_uint32_t level, const char *tag, rt_bool_t is
             continue;
         }
 #if !defined(ULOG_USING_COLOR) || defined(ULOG_USING_SYSLOG)
-        backend->output(backend, level, tag, is_raw, log, size);
+        backend->output(backend, level, tag, is_raw, log, len);
 #else
-        if (backend->filter && backend->filter(backend, level, tag, is_raw, log, size) == RT_FALSE)
+        if (backend->filter && backend->filter(backend, level, tag, is_raw, log, len) == RT_FALSE)
         {
             /* backend's filter is not match, so skip output */
             continue;
         }
         if (backend->support_color || is_raw)
         {
-            backend->output(backend, level, tag, is_raw, log, size);
+            backend->output(backend, level, tag, is_raw, log, len);
         }
         else
         {
             /* recalculate the log start address and log size when backend not supported color */
-            rt_size_t color_info_len = 0, output_size = size;
+            rt_size_t color_info_len = 0, output_len = len;
             const char *output_log = log;
 
             if (color_output_info[level] != RT_NULL)
@@ -466,9 +548,9 @@ void ulog_output_to_all_backend(rt_uint32_t level, const char *tag, rt_bool_t is
                 rt_size_t color_hdr_len = rt_strlen(CSI_START) + color_info_len;
 
                 output_log += color_hdr_len;
-                output_size -= (color_hdr_len + (sizeof(CSI_END) - 1));
+                output_len -= (color_hdr_len + (sizeof(CSI_END) - 1));
             }
-            backend->output(backend, level, tag, is_raw, output_log, output_size);
+            backend->output(backend, level, tag, is_raw, output_log, output_len);
         }
 #endif /* !defined(ULOG_USING_COLOR) || defined(ULOG_USING_SYSLOG) */
     }
@@ -477,49 +559,54 @@ void ulog_output_to_all_backend(rt_uint32_t level, const char *tag, rt_bool_t is
 static void do_output(rt_uint32_t level, const char *tag, rt_bool_t is_raw, const char *log_buf, rt_size_t log_len)
 {
 #ifdef ULOG_USING_ASYNC_OUTPUT
-
-    if (is_raw == RT_FALSE)
+    rt_size_t log_buf_size = log_len + sizeof((char)'\0');
+    if (ulog.async_enabled)
     {
-        rt_rbb_blk_t log_blk;
-        ulog_frame_t log_frame;
-
-        /* allocate log frame */
-        log_blk = rt_rbb_blk_alloc(ulog.async_rbb, RT_ALIGN(sizeof(struct ulog_frame) + log_len, RT_ALIGN_SIZE));
-        if (log_blk)
+        if (is_raw == RT_FALSE)
         {
-            /* package the log frame */
-            log_frame = (ulog_frame_t) log_blk->buf;
-            log_frame->magic = ULOG_FRAME_MAGIC;
-            log_frame->is_raw = is_raw;
-            log_frame->level = level;
-            log_frame->log_len = log_len;
-            log_frame->tag = tag;
-            log_frame->log = (const char *)log_blk->buf + sizeof(struct ulog_frame);
-            /* copy log data */
-            rt_memcpy(log_blk->buf + sizeof(struct ulog_frame), log_buf, log_len);
-            /* put the block */
-            rt_rbb_blk_put(log_blk);
+            rt_rbb_blk_t log_blk;
+            ulog_frame_t log_frame;
+
+            /* allocate log frame */
+            log_blk = rt_rbb_blk_alloc(ulog.async_rbb, RT_ALIGN(sizeof(struct ulog_frame) + log_buf_size, RT_ALIGN_SIZE));
+            if (log_blk)
+            {
+                /* package the log frame */
+                log_frame = (ulog_frame_t) log_blk->buf;
+                log_frame->magic = ULOG_FRAME_MAGIC;
+                log_frame->is_raw = is_raw;
+                log_frame->level = level;
+                log_frame->log_len = log_len;
+                log_frame->tag = tag;
+                log_frame->log = (const char *)log_blk->buf + sizeof(struct ulog_frame);
+                /* copy log data */
+                rt_strncpy((char *)(log_blk->buf + sizeof(struct ulog_frame)), log_buf, log_buf_size);
+                /* put the block */
+                rt_rbb_blk_put(log_blk);
+                /* send a notice */
+                rt_sem_release(&ulog.async_notice);
+            }
+            else
+            {
+                static rt_bool_t already_output = RT_FALSE;
+                if (already_output == RT_FALSE)
+                {
+                    rt_kprintf("Warning: There is no enough buffer for saving async log,"
+                            " please increase the ULOG_ASYNC_OUTPUT_BUF_SIZE option.\n");
+                    already_output = RT_TRUE;
+                }
+            }
+        }
+        else if (ulog.async_rb)
+        {
+            rt_ringbuffer_put(ulog.async_rb, (const rt_uint8_t *)log_buf, (rt_uint16_t)log_buf_size);
             /* send a notice */
             rt_sem_release(&ulog.async_notice);
         }
-        else
-        {
-            static rt_bool_t already_output = RT_FALSE;
-            if (already_output == RT_FALSE)
-            {
-                rt_kprintf("Warning: There is no enough buffer for saving async log,"
-                        " please increase the ULOG_ASYNC_OUTPUT_BUF_SIZE option.\n");
-                already_output = RT_TRUE;
-            }
-        }
+
+        return;
     }
-    else if (ulog.async_rb)
-    {
-        rt_ringbuffer_put(ulog.async_rb, (const rt_uint8_t *)log_buf, log_len);
-        /* send a notice */
-        rt_sem_release(&ulog.async_notice);
-    }
-#else
+#endif /* ULOG_USING_ASYNC_OUTPUT */
     /* is in thread context */
     if (rt_interrupt_get_nest() == 0)
     {
@@ -536,7 +623,6 @@ static void do_output(rt_uint32_t level, const char *tag, rt_bool_t is_raw, cons
         ulog_console_backend_output(RT_NULL, level, tag, is_raw, log_buf, log_len);
 #endif /* ULOG_BACKEND_USING_CONSOLE */
     }
-#endif /* ULOG_USING_ASYNC_OUTPUT */
 }
 
 /**
@@ -545,23 +631,27 @@ static void do_output(rt_uint32_t level, const char *tag, rt_bool_t is_raw, cons
  * @param level level
  * @param tag tag
  * @param newline has_newline
+ * @param hex_buf != RT_NULL: enable hex log mode, data buffer
+ * @param hex_size hex data buffer size
+ * @param hex_width hex log width
+ * @param hex_addr hex data address
  * @param format output format
  * @param args variable argument list
  */
-void ulog_voutput(rt_uint32_t level, const char *tag, rt_bool_t newline, const char *format, va_list args)
+void ulog_voutput(rt_uint32_t level, const char *tag, rt_bool_t newline, const rt_uint8_t *hex_buf, rt_size_t hex_size,
+        rt_size_t hex_width, rt_base_t hex_addr, const char *format, va_list args)
 {
     static rt_bool_t ulog_voutput_recursion = RT_FALSE;
     char *log_buf = RT_NULL;
-    rt_size_t log_len = 0;
+    static rt_size_t log_len = 0;
 
     RT_ASSERT(tag);
-    RT_ASSERT(format);
+    RT_ASSERT((format && !hex_buf) || (!format && hex_buf));
 #ifndef ULOG_USING_SYSLOG
     RT_ASSERT(level <= LOG_LVL_DBG);
 #else
     RT_ASSERT(LOG_PRI(level) <= LOG_DEBUG);
 #endif /* ULOG_USING_SYSLOG */
-
 
     if (!ulog.init_ok)
     {
@@ -584,6 +674,7 @@ void ulog_voutput(rt_uint32_t level, const char *tag, rt_bool_t newline, const c
 #endif /* ULOG_USING_SYSLOG */
     else if (!rt_strstr(tag, ulog.filter.tag))
     {
+        /* tag filter */
         return;
     }
 #endif /* ULOG_USING_FILTER */
@@ -595,10 +686,10 @@ void ulog_voutput(rt_uint32_t level, const char *tag, rt_bool_t newline, const c
     output_lock();
 
     /* If there is a recursion, we use a simple way */
-    if (ulog_voutput_recursion == RT_TRUE)
+    if ((ulog_voutput_recursion == RT_TRUE) && (hex_buf == RT_NULL))
     {
         rt_kprintf(format, args);
-        if(newline == RT_TRUE)
+        if (newline == RT_TRUE)
         {
             rt_kprintf(ULOG_NEWLINE_SIGN);
         }
@@ -608,12 +699,20 @@ void ulog_voutput(rt_uint32_t level, const char *tag, rt_bool_t newline, const c
 
     ulog_voutput_recursion = RT_TRUE;
 
+    if (hex_buf == RT_NULL)
+    {
 #ifndef ULOG_USING_SYSLOG
-    log_len = ulog_formater(log_buf, level, tag, newline, format, args);
+        log_len = ulog_formater(log_buf, level, tag, newline, format, args);
 #else
-    extern rt_size_t syslog_formater(char *log_buf, rt_uint8_t level, const char *tag, rt_bool_t newline, const char *format, va_list args);
-    log_len = syslog_formater(log_buf, level, tag, newline, format, args);
+        extern rt_size_t syslog_formater(char *log_buf, rt_uint8_t level, const char *tag, rt_bool_t newline, const char *format, va_list args);
+        log_len = syslog_formater(log_buf, level, tag, newline, format, args);
 #endif /* ULOG_USING_SYSLOG */
+    }
+    else
+    {
+        /* hex mode */
+        log_len = ulog_hex_formater(log_buf, tag, hex_buf, hex_size, hex_width, hex_addr);
+    }
 
 #ifdef ULOG_USING_FILTER
     /* keyword filter */
@@ -656,7 +755,7 @@ void ulog_output(rt_uint32_t level, const char *tag, rt_bool_t newline, const ch
     /* args point to the first variable parameter */
     va_start(args, format);
 
-    ulog_voutput(level, tag, newline, format, args);
+    ulog_voutput(level, tag, newline, RT_NULL, 0, 0, 0, format, args);
 
     va_end(args);
 }
@@ -705,7 +804,7 @@ void ulog_raw(const char *format, ...)
     }
 
     /* do log output */
-    do_output(LOG_LVL_DBG, RT_NULL, RT_TRUE, log_buf, log_len);
+    do_output(LOG_LVL_DBG, "", RT_TRUE, log_buf, log_len);
 
     /* unlock output */
     output_unlock();
@@ -719,150 +818,23 @@ void ulog_raw(const char *format, ...)
  * @param buf hex buffer
  * @param size buffer size
  */
-void ulog_hexdump(const char *tag, rt_size_t width, rt_uint8_t *buf, rt_size_t size)
+void ulog_hexdump(const char *tag, rt_size_t width, const rt_uint8_t *buf, rt_size_t size, ...)
 {
-#define __is_print(ch)       ((unsigned int)((ch) - ' ') < 127u - ' ')
+    rt_size_t i, len;
+    va_list args;
 
-    rt_size_t i, j;
-    rt_size_t log_len = 0, name_len = rt_strlen(tag);
-#ifdef ULOG_OUTPUT_TIME
-    rt_size_t time_head_len = 0;
-#endif
-    char *log_buf = RT_NULL, dump_string[8];
-    int fmt_result;
+    va_start(args, size);
 
-    RT_ASSERT(ulog.init_ok);
-
-#ifdef ULOG_USING_FILTER
-    /* level filter */
-#ifndef ULOG_USING_SYSLOG
-    if (LOG_LVL_DBG > ulog.filter.level || LOG_LVL_DBG > ulog_tag_lvl_filter_get(tag))
+    for (i = 0; i < size; i += width, buf += width)
     {
-        return;
-    }
-#else
-    if ((LOG_MASK(LOG_DEBUG) & ulog.filter.level) == 0)
-    {
-        return;
-    }
-#endif /* ULOG_USING_SYSLOG */
-    else if (!rt_strstr(tag, ulog.filter.tag))
-    {
-        /* tag filter */
-        return;
-    }
-#endif /* ULOG_USING_FILTER */
-
-#ifdef ULOG_USING_ASYNC_OUTPUT
-    if (ulog.async_rb == RT_NULL)
-    {
-        ulog.async_rb = rt_ringbuffer_create(ULOG_ASYNC_OUTPUT_BUF_SIZE);
-    }
-#endif
-
-    /* get log buffer */
-    log_buf = get_log_buf();
-
-    /* lock output */
-    output_lock();
-
-    for (i = 0, log_len = 0; i < size; i += width)
-    {
-        /* package header */
-        if (i == 0)
-        {
-#ifdef ULOG_OUTPUT_TIME
-            /* add time info */
-#ifdef ULOG_TIME_USING_TIMESTAMP
-            static time_t now;
-            static struct tm *tm, tm_tmp;
-
-            now = time(RT_NULL);
-            tm = gmtime_r(&now, &tm_tmp);
-
-#ifdef RT_USING_SOFT_RTC
-            rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, "%02d-%02d %02d:%02d:%02d.%03d ", tm->tm_mon + 1,
-                tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec, rt_tick_get() % 1000);
-#else
-            rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE - log_len, "%02d-%02d %02d:%02d:%02d ", tm->tm_mon + 1,
-                tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec);
-#endif /* RT_USING_SOFT_RTC */
-
-#else
-            static rt_size_t tick_len = 0;
-
-            log_buf[log_len] = '[';
-            tick_len = ulog_ultoa(log_buf + log_len + 1, rt_tick_get());
-            log_buf[log_len + 1 + tick_len] = ']';
-            log_buf[log_len + 2 + tick_len] = ' ';
-            log_buf[log_len + 3 + tick_len] = '\0';
-#endif /* ULOG_TIME_USING_TIMESTAMP */
-            time_head_len = rt_strlen(log_buf + log_len);
-            log_len += time_head_len;
-#endif /* ULOG_OUTPUT_TIME */
-            log_len += ulog_strcpy(log_len, log_buf + log_len, "D/HEX ");
-            log_len += ulog_strcpy(log_len, log_buf + log_len, tag);
-            log_len += ulog_strcpy(log_len, log_buf + log_len, ": ");
-        }
+        if (i + width > size)
+            len = size - i;
         else
-        {
-            log_len = 6 + name_len + 2;
-#ifdef ULOG_OUTPUT_TIME
-            log_len += time_head_len;
-#endif
-            rt_memset(log_buf, ' ', log_len);
-        }
-        fmt_result = rt_snprintf(log_buf + log_len, ULOG_LINE_BUF_SIZE, "%04X-%04X: ", i, i + width - 1);
-        /* calculate log length */
-        if ((fmt_result > -1) && (fmt_result <= ULOG_LINE_BUF_SIZE))
-        {
-            log_len += fmt_result;
-        }
-        else
-        {
-            log_len = ULOG_LINE_BUF_SIZE;
-        }
-        /* dump hex */
-        for (j = 0; j < width; j++)
-        {
-            if (i + j < size)
-            {
-                rt_snprintf(dump_string, sizeof(dump_string), "%02X ", buf[i + j]);
-            }
-            else
-            {
-                rt_strncpy(dump_string, "   ", sizeof(dump_string));
-            }
-            log_len += ulog_strcpy(log_len, log_buf + log_len, dump_string);
-            if ((j + 1) % 8 == 0)
-            {
-                log_len += ulog_strcpy(log_len, log_buf + log_len, " ");
-            }
-        }
-        log_len += ulog_strcpy(log_len, log_buf + log_len, "  ");
-        /* dump char for hex */
-        for (j = 0; j < width; j++)
-        {
-            if (i + j < size)
-            {
-                rt_snprintf(dump_string, sizeof(dump_string), "%c", __is_print(buf[i + j]) ? buf[i + j] : '.');
-                log_len += ulog_strcpy(log_len, log_buf + log_len, dump_string);
-            }
-        }
-        /* overflow check and reserve some space for newline sign */
-        if (log_len + rt_strlen(ULOG_NEWLINE_SIGN) > ULOG_LINE_BUF_SIZE)
-        {
-            log_len = ULOG_LINE_BUF_SIZE - rt_strlen(ULOG_NEWLINE_SIGN);
-        }
-        /* package newline sign */
-        log_len += ulog_strcpy(log_len, log_buf + log_len, ULOG_NEWLINE_SIGN);
-        /*add string end sign*/
-        log_buf[log_len] = '\0';
-        /* do log output */
-        do_output(LOG_LVL_DBG, RT_NULL, RT_TRUE, log_buf, log_len);
+            len = width;
+        ulog_voutput(LOG_LVL_DBG, tag, RT_TRUE, buf, len, width, i, RT_NULL, args);
     }
-    /* unlock output */
-    output_unlock();
+
+    va_end(args);
 }
 
 #ifdef ULOG_USING_FILTER
@@ -1267,7 +1239,7 @@ static void ulog_filter(uint8_t argc, char **argv)
         for (node = rt_slist_first(ulog_tag_lvl_list_get()); node; node = rt_slist_next(node))
         {
             tag_lvl = rt_slist_entry(node, struct ulog_tag_lvl_filter, list);
-            rt_kprintf("%-*.s: ", ULOG_FILTER_TAG_MAX_LEN, tag_lvl->tag);
+            rt_kprintf("%-*.*s: ", ULOG_FILTER_TAG_MAX_LEN, ULOG_FILTER_TAG_MAX_LEN, tag_lvl->tag);
 
 #ifndef ULOG_USING_SYSLOG
             rt_kprintf("%s\n", lvl_name[tag_lvl->level]);
@@ -1300,11 +1272,11 @@ rt_err_t ulog_backend_register(ulog_backend_t backend, const char *name, rt_bool
 
     backend->support_color = support_color;
     backend->out_level = LOG_FILTER_LVL_ALL;
-    rt_strncpy(backend->name, name, RT_NAME_MAX);
+    rt_strncpy(backend->name, name, RT_NAME_MAX - 1);
 
-    level = rt_hw_interrupt_disable();
+    level = rt_spin_lock_irqsave(&_spinlock);
     rt_slist_append(&ulog.backend_list, &backend->list);
-    rt_hw_interrupt_enable(level);
+    rt_spin_unlock_irqrestore(&_spinlock, level);
 
     return RT_EOK;
 }
@@ -1321,9 +1293,9 @@ rt_err_t ulog_backend_unregister(ulog_backend_t backend)
         backend->deinit(backend);
     }
 
-    level = rt_hw_interrupt_disable();
+    level = rt_spin_lock_irqsave(&_spinlock);
     rt_slist_remove(&ulog.backend_list, &backend->list);
-    rt_hw_interrupt_enable(level);
+    rt_spin_unlock_irqrestore(&_spinlock, level);
 
     return RT_EOK;
 }
@@ -1333,9 +1305,9 @@ rt_err_t ulog_backend_set_filter(ulog_backend_t backend, ulog_backend_filter_t f
     rt_base_t level;
     RT_ASSERT(backend);
 
-    level = rt_hw_interrupt_disable();
+    level = rt_spin_lock_irqsave(&_spinlock);
     backend->filter = filter;
-    rt_hw_interrupt_enable(level);
+    rt_spin_unlock_irqrestore(&_spinlock, level);
 
     return RT_EOK;
 }
@@ -1348,18 +1320,18 @@ ulog_backend_t ulog_backend_find(const char *name)
 
     RT_ASSERT(ulog.init_ok);
 
-    level = rt_hw_interrupt_disable();
+    level = rt_spin_lock_irqsave(&_spinlock);
     for (node = rt_slist_first(&ulog.backend_list); node; node = rt_slist_next(node))
     {
         backend = rt_slist_entry(node, struct ulog_backend, list);
         if (rt_strncmp(backend->name, name, RT_NAME_MAX) == 0)
         {
-            rt_hw_interrupt_enable(level);
+            rt_spin_unlock_irqrestore(&_spinlock, level);
             return backend;
         }
     }
 
-    rt_hw_interrupt_enable(level);
+    rt_spin_unlock_irqrestore(&_spinlock, level);
     return RT_NULL;
 }
 
@@ -1394,11 +1366,12 @@ void ulog_async_output(void)
     if (ulog.async_rb)
     {
         rt_size_t log_len = rt_ringbuffer_data_len(ulog.async_rb);
-        char *log = rt_malloc(log_len);
+        char *log = rt_malloc(log_len + 1);
         if (log)
         {
-            rt_size_t len = rt_ringbuffer_get(ulog.async_rb, (rt_uint8_t *)log, log_len);
-            ulog_output_to_all_backend(LOG_LVL_DBG, RT_NULL, RT_TRUE, log, len);
+            rt_size_t len = rt_ringbuffer_get(ulog.async_rb, (rt_uint8_t *)log, (rt_uint16_t)log_len);
+            log[log_len] = '\0';
+            ulog_output_to_all_backend(LOG_LVL_DBG, "", RT_TRUE, log, len);
             rt_free(log);
         }
     }
@@ -1419,11 +1392,13 @@ void ulog_async_output_enabled(rt_bool_t enabled)
  * waiting for get asynchronous output log
  *
  * @param time the waiting time
+ *
+ * @return the operation status, RT_EOK on successful
  */
-void ulog_async_waiting_log(rt_int32_t time)
+rt_err_t ulog_async_waiting_log(rt_int32_t time)
 {
     rt_sem_control(&ulog.async_notice, RT_IPC_CMD_RESET, RT_NULL);
-    rt_sem_take(&ulog.async_notice, time);
+    return rt_sem_take(&ulog.async_notice, time);
 }
 
 static void async_output_thread_entry(void *param)
@@ -1433,7 +1408,22 @@ static void async_output_thread_entry(void *param)
     while (1)
     {
         ulog_async_waiting_log(RT_WAITING_FOREVER);
-        ulog_async_output();
+        while (1)
+        {
+            ulog_async_output();
+            /* If there is no log output for a certain period of time,
+             * refresh the log buffer
+             */
+            if (ulog_async_waiting_log(RT_TICK_PER_SECOND * 2) == RT_EOK)
+            {
+                continue;
+            }
+            else
+            {
+                ulog_flush();
+                break;
+            }
+        }
     }
 }
 #endif /* ULOG_USING_ASYNC_OUTPUT */

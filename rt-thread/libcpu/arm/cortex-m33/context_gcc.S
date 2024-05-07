@@ -17,6 +17,8 @@
  */
 /*@{*/
 
+#include <rtconfig.h>
+
 .cpu cortex-m4
 .syntax unified
 .thumb
@@ -192,6 +194,14 @@ contex_ns_load:
     VLDMIAEQ  r1!, {d8 - d15}                       /* pop FPU register s16~s31 */
 #endif
 
+#if defined (RT_USING_MEM_PROTECTION)
+    PUSH    {r0-r3, r12, lr}
+    LDR     r1, =rt_current_thread
+    LDR     r0, [r1]
+    BL      rt_hw_mpu_table_switch
+    POP     {r0-r3, r12, lr}
+#endif
+
 pendsv_exit:
     MSR     psp, r1                                 /* update stack pointer */
     /* restore interrupt */
@@ -248,6 +258,10 @@ rt_hw_context_switch_to:
     /* enable interrupts at processor level */
     CPSIE   F
     CPSIE   I
+
+    /* ensure PendSV exception taken place before subsequent operation */
+    DSB
+    ISB
 
     /* never reach here! */
 

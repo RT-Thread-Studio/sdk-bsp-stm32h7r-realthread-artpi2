@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <sys/errno.h>
 #include "termios.h"
+#include <rtthread.h>
 
 int tcgetattr(int fd, struct termios *tio)
 {
@@ -95,12 +96,12 @@ int tcsendbreak(int fd, int dur)
 
 int tcflush(int fd, int queue)
 {
-    return ioctl(fd, TCFLSH, (void*)queue);
+    return ioctl(fd, TCFLSH, (void*)(rt_ubase_t)queue);
 }
 
 int tcflow(int fd, int action)
 {
-    return ioctl(fd, TCXONC, (void*)action);
+    return ioctl(fd, TCXONC, (void*)(rt_ubase_t)action);
 }
 
 /**
@@ -111,7 +112,6 @@ int tcdrain(int fd)
     return 0;
 }
 
-#if defined(_GNU_SOURCE) || defined(_BSD_SOURCE)
 void cfmakeraw(struct termios *t)
 {
     t->c_iflag &= ~(IGNBRK|BRKINT|PARMRK|ISTRIP|INLCR|IGNCR|ICRNL|IXON);
@@ -127,4 +127,3 @@ int cfsetspeed(struct termios *tio, speed_t speed)
 {
     return cfsetospeed(tio, speed);
 }
-#endif

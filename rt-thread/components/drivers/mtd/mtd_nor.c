@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT (C) 2011-2021, Real-Thread Information Technology Ltd
+ * COPYRIGHT (C) 2011-2023, Real-Thread Information Technology Ltd
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -8,7 +8,7 @@
  * 2012-5-30     Bernard      the first version
  */
 
-#include <drivers/mtd_nor.h>
+#include <rtdevice.h>
 
 #ifdef RT_USING_MTD_NOR
 
@@ -30,7 +30,7 @@ static rt_err_t _mtd_close(rt_device_t dev)
     return RT_EOK;
 }
 
-static rt_size_t _mtd_read(rt_device_t dev,
+static rt_ssize_t _mtd_read(rt_device_t dev,
                            rt_off_t    pos,
                            void       *buffer,
                            rt_size_t   size)
@@ -38,7 +38,7 @@ static rt_size_t _mtd_read(rt_device_t dev,
     return size;
 }
 
-static rt_size_t _mtd_write(rt_device_t dev,
+static rt_ssize_t _mtd_write(rt_device_t dev,
                             rt_off_t    pos,
                             const void *buffer,
                             rt_size_t   size)
@@ -89,6 +89,29 @@ rt_err_t rt_mtd_nor_register_device(const char               *name,
 
     /* register to RT-Thread device system */
     return rt_device_register(dev, name, RT_DEVICE_FLAG_RDWR | RT_DEVICE_FLAG_STANDALONE);
+}
+
+rt_uint32_t rt_mtd_nor_read_id(struct rt_mtd_nor_device* device)
+{
+    return device->ops->read_id(device);
+}
+
+rt_ssize_t rt_mtd_nor_read(struct rt_mtd_nor_device* device,
+        rt_off_t offset, rt_uint8_t* data, rt_size_t length)
+{
+    return device->ops->read(device, offset, data, length);
+}
+
+rt_ssize_t rt_mtd_nor_write(struct rt_mtd_nor_device* device,
+        rt_off_t offset, const rt_uint8_t* data, rt_size_t length)
+{
+    return device->ops->write(device, offset, data, length);
+}
+
+rt_err_t rt_mtd_nor_erase_block(struct rt_mtd_nor_device* device,
+        rt_off_t offset, rt_size_t length)
+{
+    return device->ops->erase_block(device, offset, length);
 }
 
 #endif

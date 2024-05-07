@@ -79,15 +79,14 @@ static void ulog_file_backend_flush_with_buf(struct ulog_backend *backend)
     struct ulog_file_be *be = (struct ulog_file_be *) backend;
     rt_size_t file_size = 0, write_size = 0;
 
-    if (be->enable == RT_FALSE)
+    if (be->enable == RT_FALSE || be->buf_ptr_now == be->file_buf)
     {
         return;
     }
-
     if (be->cur_log_file_fd < 0)
     {
         /* check log file directory  */
-        if (access(be->cur_log_dir_path, 0) < 0)
+        if (access(be->cur_log_dir_path, F_OK) < 0)
         {
             mkdir(be->cur_log_dir_path, 0);
         }

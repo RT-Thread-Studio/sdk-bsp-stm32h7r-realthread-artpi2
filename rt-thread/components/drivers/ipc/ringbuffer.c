@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2021, RT-Thread Development Team
+ * Copyright (c) 2006-2023, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -12,7 +12,6 @@
  * 2021-08-14     Jackistang   add comments for function interface.
  */
 
-#include <rtthread.h>
 #include <rtdevice.h>
 #include <string.h>
 
@@ -37,7 +36,7 @@ rt_inline enum rt_ringbuffer_state rt_ringbuffer_status(struct rt_ringbuffer *rb
  */
 void rt_ringbuffer_init(struct rt_ringbuffer *rb,
                         rt_uint8_t           *pool,
-                        rt_int16_t            size)
+                        rt_int32_t            size)
 {
     RT_ASSERT(rb != RT_NULL);
     RT_ASSERT(size > 0);
@@ -63,9 +62,9 @@ RTM_EXPORT(rt_ringbuffer_init);
  */
 rt_size_t rt_ringbuffer_put(struct rt_ringbuffer *rb,
                             const rt_uint8_t     *ptr,
-                            rt_uint16_t           length)
+                            rt_uint32_t           length)
 {
-    rt_uint16_t size;
+    rt_uint32_t size;
 
     RT_ASSERT(rb != RT_NULL);
 
@@ -91,11 +90,11 @@ rt_size_t rt_ringbuffer_put(struct rt_ringbuffer *rb,
     }
 
     rt_memcpy(&rb->buffer_ptr[rb->write_index],
-           &ptr[0],
-           rb->buffer_size - rb->write_index);
+              &ptr[0],
+              rb->buffer_size - rb->write_index);
     rt_memcpy(&rb->buffer_ptr[0],
-           &ptr[rb->buffer_size - rb->write_index],
-           length - (rb->buffer_size - rb->write_index));
+              &ptr[rb->buffer_size - rb->write_index],
+              length - (rb->buffer_size - rb->write_index));
 
     /* we are going into the other side of the mirror */
     rb->write_mirror = ~rb->write_mirror;
@@ -115,10 +114,10 @@ RTM_EXPORT(rt_ringbuffer_put);
  * @return Return the data size we put into the ring buffer.
  */
 rt_size_t rt_ringbuffer_put_force(struct rt_ringbuffer *rb,
-                            const rt_uint8_t     *ptr,
-                            rt_uint16_t           length)
+                                  const rt_uint8_t     *ptr,
+                                  rt_uint32_t           length)
 {
-    rt_uint16_t space_length;
+    rt_uint32_t space_length;
 
     RT_ASSERT(rb != RT_NULL);
 
@@ -145,11 +144,11 @@ rt_size_t rt_ringbuffer_put_force(struct rt_ringbuffer *rb,
     }
 
     rt_memcpy(&rb->buffer_ptr[rb->write_index],
-           &ptr[0],
-           rb->buffer_size - rb->write_index);
+              &ptr[0],
+              rb->buffer_size - rb->write_index);
     rt_memcpy(&rb->buffer_ptr[0],
-           &ptr[rb->buffer_size - rb->write_index],
-           length - (rb->buffer_size - rb->write_index));
+              &ptr[rb->buffer_size - rb->write_index],
+              length - (rb->buffer_size - rb->write_index));
 
     /* we are going into the other side of the mirror */
     rb->write_mirror = ~rb->write_mirror;
@@ -177,7 +176,7 @@ RTM_EXPORT(rt_ringbuffer_put_force);
  */
 rt_size_t rt_ringbuffer_get(struct rt_ringbuffer *rb,
                             rt_uint8_t           *ptr,
-                            rt_uint16_t           length)
+                            rt_uint32_t           length)
 {
     rt_size_t size;
 
@@ -205,11 +204,11 @@ rt_size_t rt_ringbuffer_get(struct rt_ringbuffer *rb,
     }
 
     rt_memcpy(&ptr[0],
-           &rb->buffer_ptr[rb->read_index],
-           rb->buffer_size - rb->read_index);
+              &rb->buffer_ptr[rb->read_index],
+              rb->buffer_size - rb->read_index);
     rt_memcpy(&ptr[rb->buffer_size - rb->read_index],
-           &rb->buffer_ptr[0],
-           length - (rb->buffer_size - rb->read_index));
+              &rb->buffer_ptr[0],
+              length - (rb->buffer_size - rb->read_index));
 
     /* we are going into the other side of the mirror */
     rb->read_mirror = ~rb->read_mirror;
@@ -229,7 +228,7 @@ RTM_EXPORT(rt_ringbuffer_get);
  *
  * @return Return the size of the ring buffer.
  */
-rt_size_t rt_ringbuffer_peak(struct rt_ringbuffer *rb, rt_uint8_t **ptr)
+rt_size_t rt_ringbuffer_peek(struct rt_ringbuffer *rb, rt_uint8_t **ptr)
 {
     rt_size_t size;
 
@@ -246,7 +245,7 @@ rt_size_t rt_ringbuffer_peak(struct rt_ringbuffer *rb, rt_uint8_t **ptr)
 
     *ptr = &rb->buffer_ptr[rb->read_index];
 
-    if((rt_size_t)(rb->buffer_size - rb->read_index) > size)
+    if ((rt_size_t)(rb->buffer_size - rb->read_index) > size)
     {
         rb->read_index += size;
         return size;
@@ -260,7 +259,7 @@ rt_size_t rt_ringbuffer_peak(struct rt_ringbuffer *rb, rt_uint8_t **ptr)
 
     return size;
 }
-RTM_EXPORT(rt_ringbuffer_peak);
+RTM_EXPORT(rt_ringbuffer_peek);
 
 /**
  * @brief Put a byte into the ring buffer. If ring buffer is full, this operation will fail.
@@ -281,7 +280,7 @@ rt_size_t rt_ringbuffer_putchar(struct rt_ringbuffer *rb, const rt_uint8_t ch)
     rb->buffer_ptr[rb->write_index] = ch;
 
     /* flip mirror */
-    if (rb->write_index == rb->buffer_size-1)
+    if (rb->write_index == rb->buffer_size - 1)
     {
         rb->write_mirror = ~rb->write_mirror;
         rb->write_index = 0;
@@ -314,7 +313,7 @@ rt_size_t rt_ringbuffer_putchar_force(struct rt_ringbuffer *rb, const rt_uint8_t
     rb->buffer_ptr[rb->write_index] = ch;
 
     /* flip mirror */
-    if (rb->write_index == rb->buffer_size-1)
+    if (rb->write_index == rb->buffer_size - 1)
     {
         rb->write_mirror = ~rb->write_mirror;
         rb->write_index = 0;
@@ -355,7 +354,7 @@ rt_size_t rt_ringbuffer_getchar(struct rt_ringbuffer *rb, rt_uint8_t *ch)
     /* put byte */
     *ch = rb->buffer_ptr[rb->read_index];
 
-    if (rb->read_index == rb->buffer_size-1)
+    if (rb->read_index == rb->buffer_size - 1)
     {
         rb->read_mirror = ~rb->read_mirror;
         rb->read_index = 0;
@@ -423,7 +422,7 @@ RTM_EXPORT(rt_ringbuffer_reset);
  *
  * @return Return a pointer to ring buffer object. When the return value is RT_NULL, it means this creation failed.
  */
-struct rt_ringbuffer *rt_ringbuffer_create(rt_uint16_t size)
+struct rt_ringbuffer *rt_ringbuffer_create(rt_uint32_t size)
 {
     struct rt_ringbuffer *rb;
     rt_uint8_t *pool;

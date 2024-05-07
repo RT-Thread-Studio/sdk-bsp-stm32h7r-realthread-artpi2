@@ -86,17 +86,17 @@ void rt_prio_queue_detach(struct rt_prio_queue *que)
         rt_thread_t thread;
 
         /* disable interrupt */
-        rt_ubase_t temp = rt_hw_interrupt_disable();
+        rt_base_t level = rt_hw_interrupt_disable();
 
         /* get next suspend thread */
-        thread = rt_list_entry(que->suspended_pop_list.next, struct rt_thread, tlist);
-        /* set error code to RT_ERROR */
+        thread = RT_THREAD_LIST_NODE_ENTRY(que->suspended_pop_list.next);
+        /* set error code to -RT_ERROR */
         thread->error = -RT_ERROR;
 
         rt_thread_resume(thread);
 
         /* enable interrupt */
-        rt_hw_interrupt_enable(temp);
+        rt_hw_interrupt_enable(level);
     }
     rt_mp_detach(&que->pool);
 }
@@ -136,7 +136,7 @@ rt_err_t rt_prio_queue_push(struct rt_prio_queue *que,
                             void *data,
                             rt_int32_t timeout)
 {
-    rt_ubase_t level;
+    rt_base_t level;
     struct rt_prio_queue_item *item;
 
     RT_ASSERT(que);
@@ -160,9 +160,7 @@ rt_err_t rt_prio_queue_push(struct rt_prio_queue *que,
         rt_thread_t thread;
 
         /* get thread entry */
-        thread = rt_list_entry(que->suspended_pop_list.next,
-                               struct rt_thread,
-                               tlist);
+        thread = RT_THREAD_LIST_NODE_ENTRY(que->suspended_pop_list.next);
         /* resume it */
         rt_thread_resume(thread);
         rt_hw_interrupt_enable(level);
@@ -182,7 +180,7 @@ rt_err_t rt_prio_queue_pop(struct rt_prio_queue *que,
                            void *data,
                            rt_int32_t timeout)
 {
-    rt_ubase_t level;
+    rt_base_t level;
     struct rt_prio_queue_item *item;
 
     RT_ASSERT(que);
@@ -207,7 +205,7 @@ rt_err_t rt_prio_queue_pop(struct rt_prio_queue *que,
         thread->error = RT_EOK;
         rt_thread_suspend(thread);
 
-        rt_list_insert_before(&(que->suspended_pop_list), &(thread->tlist));
+        rt_list_insert_before(&(que->suspended_pop_list), &RT_THREAD_LIST_NODE(thread));
 
         if (timeout > 0)
         {

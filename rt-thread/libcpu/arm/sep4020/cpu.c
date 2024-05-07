@@ -11,7 +11,7 @@
 #include <rtthread.h>
 #include <sep4020.h>
 
-extern rt_uint32_t rt_hw_interrupt_disable(void);
+extern rt_base_t rt_hw_interrupt_disable(void);
 
 //TODO
 #warning I DON'T KNOW IF THE MMU OPERATION WORKS ON SEP4020
@@ -152,7 +152,7 @@ rt_base_t rt_hw_cpu_dcache_status()
  * reset cpu by dog's time-out
  *
  */
-RT_WEAK void rt_hw_cpu_reset()
+void rt_hw_cpu_reset()
 {
 
     /* enable watchdog */
@@ -167,20 +167,6 @@ RT_WEAK void rt_hw_cpu_reset()
     while(1);   /* loop forever and wait for reset to happen */
 
     /* NEVER REACHED */
-}
-
-/**
- *  shutdown CPU
- *
- */
-RT_WEAK void rt_hw_cpu_shutdown()
-{
-    rt_uint32_t UNUSED level;
-    rt_kprintf("shutdown...\n");
-
-    level = rt_hw_interrupt_disable();
-
-    RT_ASSERT(RT_NULL);
 }
 
 /*@}*/

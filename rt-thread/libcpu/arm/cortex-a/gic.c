@@ -179,7 +179,7 @@ void arm_gic_clear_pending_irq(rt_uint32_t index, int irq)
     }
 }
 
-void arm_gic_set_configuration(rt_uint32_t index, int irq, uint32_t config)
+void arm_gic_set_configuration(rt_uint32_t index, int irq, rt_uint32_t config)
 {
     rt_uint32_t icfgr;
     rt_uint32_t shift;
@@ -193,7 +193,7 @@ void arm_gic_set_configuration(rt_uint32_t index, int irq, uint32_t config)
     shift = (irq % 16U) << 1U;
 
     icfgr &= (~(3U << shift));
-    icfgr |= (config << shift);
+    icfgr |= (config << (shift + 1));
 
     GIC_DIST_CONFIG(_gic_table[index].dist_hw_base, irq) = icfgr;
 }
@@ -340,8 +340,8 @@ rt_uint32_t arm_gic_get_interface_id(rt_uint32_t index)
 
 void arm_gic_set_group(rt_uint32_t index, int irq, rt_uint32_t group)
 {
-    uint32_t igroupr;
-    uint32_t shift;
+    rt_uint32_t igroupr;
+    rt_uint32_t shift;
 
     RT_ASSERT(index < ARM_GIC_MAX_NR);
     RT_ASSERT(group <= 1U);
@@ -431,7 +431,11 @@ int arm_gic_cpu_init(rt_uint32_t index, rt_uint32_t cpu_base)
 {
     RT_ASSERT(index < ARM_GIC_MAX_NR);
 
-    _gic_table[index].cpu_hw_base = cpu_base;
+    if (!_gic_table[index].cpu_hw_base)
+    {
+        _gic_table[index].cpu_hw_base = cpu_base;
+    }
+    cpu_base = _gic_table[index].cpu_hw_base;
 
     GIC_CPU_PRIMASK(cpu_base) = 0xf0U;
     GIC_CPU_BINPOINT(cpu_base) = 0x7U;

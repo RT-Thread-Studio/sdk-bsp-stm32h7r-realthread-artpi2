@@ -21,22 +21,22 @@ static rt_size_t ve_exporter_num = 0;
 
 /* for ARM C and IAR Compiler */
 #if defined(__ARMCC_VERSION) || defined (__ICCARM__) || defined(__ICCRX__)
-static RT_USED const struct ve_exporter __ve_table_start
-RT_SECTION("0.""VarExpTab") = {"ve_start", "ve_start", 0};
+static rt_used const struct ve_exporter __ve_table_start
+rt_section("0.""VarExpTab") = {"ve_start", "ve_start", 0};
 
-static RT_USED const struct ve_exporter __ve_table_end
-RT_SECTION("2.""VarExpTab") = {"ve_end", "ve_end", 2};
+static rt_used const struct ve_exporter __ve_table_end
+rt_section("2.""VarExpTab") = {"ve_end", "ve_end", 2};
 #endif
 
 /* for MS VC++ compiler */
 #if defined(_MSC_VER)
 #pragma section("VarExpTab$a", read)
 __declspec(allocate("VarExpTab$a"))
-RT_USED const struct ve_exporter __ve_table_start = { "ve_start", "ve_start", 0};
+rt_used const struct ve_exporter __ve_table_start = { "ve_start", "ve_start", 0};
 
 #pragma section("VarExpTab$z", read)
 __declspec(allocate("VarExpTab$z"))
-RT_USED const struct ve_exporter __ve_table_end = { "ve_end", "ve_end", 2};
+rt_used const struct ve_exporter __ve_table_end = { "ve_end", "ve_end", 2};
 
 /* Find var objects in VarExpTab segments */
 static int ve_init_find_obj(unsigned int *begin, unsigned int *end, ve_exporter_t *table)
@@ -83,7 +83,7 @@ int var_export_init(void)
     static char __vexp_strbuf1[1024];
     static char __vexp_strbuf2[1024];
     ve_exporter_t ve_exporter_temp;
-    int index_i, index_j;
+    rt_size_t index_i, index_j;
 
     /* past the three members in first ptr_begin */
     ptr_begin += (sizeof(struct ve_exporter) / sizeof(unsigned int));
@@ -126,7 +126,7 @@ int var_export_init(void)
 
     return ve_exporter_num;
 }
-INIT_PREV_EXPORT(var_export_init);
+INIT_BOARD_EXPORT(var_export_init);
 
 /* initialize module */
 int ve_module_init(ve_module_t *mod, const char *module)
@@ -181,7 +181,7 @@ const ve_exporter_t *ve_iter_next(ve_iterator_t *iter)
 }
 
 /* binary search based on identifier */
-static const ve_exporter_t *ve_binary_search(ve_module_t *mod, const char *identifier)
+const ve_exporter_t *ve_binary_search(ve_module_t *mod, const char *identifier)
 {
     int ve_low_num = 0;
     int ve_high_num = mod->end - mod->begin;
@@ -236,4 +236,9 @@ rt_bool_t ve_value_exist(ve_module_t *mod, const char *identifier)
     {
         return RT_FALSE;
     }
+}
+
+rt_size_t ve_value_count(ve_module_t *mod)
+{
+    return mod->end - mod->begin + 1;
 }
