@@ -1,0 +1,32 @@
+[
+ {
+  "path": "/packages/iot/webnet", 
+  "ver": "v2.0.3", 
+  "name": "WEBNET"
+ }, 
+ {
+  "path": "/packages/iot/agile_telnet", 
+  "ver": "v2.0.3", 
+  "name": "AGILE_TELNET"
+ }, 
+ {
+  "path": "/packages/language/JSON/cJSON", 
+  "ver": "v1.0.2", 
+  "name": "CJSON"
+ }, 
+ {
+  "path": "/packages/tools/EasyFlash", 
+  "ver": "v4.1.0", 
+  "name": "EASYFLASH"
+ }, 
+ {
+  "path": "/packages/system/littlefs", 
+  "ver": "v2.2.1", 
+  "name": "LITTLEFS"
+ }, 
+ {
+  "path": "/packages/peripherals/agile_console", 
+  "ver": "v1.1.0", 
+  "name": "AGILE_CONSOLE"
+ }
+]
