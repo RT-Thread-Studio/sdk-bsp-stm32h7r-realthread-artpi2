@@ -139,8 +139,8 @@ extern "C" {
         .name = "uart4",                                            \
         .Instance = UART4,                                          \
         .irq_type = UART4_IRQn,                                     \
-        .tx_pin_name = BSP_UART4_TX_PIN,                            \
-        .rx_pin_name = BSP_UART4_RX_PIN,                            \
+        .dma_rx = RT_NULL,                            \
+        .dma_tx = RT_NULL,                            \
     }
 #endif /* UART4_CONFIG */
 

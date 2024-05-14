@@ -113,6 +113,8 @@ extern "C" {
 #include "config/sdio_config.h"
 #include "config/pwm_config.h"
 #include "config/usbd_config.h"
+#elif  defined(SOC_SERIES_STM32H7RS)
+#include "config/uart_config.h"
 #endif
 
 #ifdef __cplusplus

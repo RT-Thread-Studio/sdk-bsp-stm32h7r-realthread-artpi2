@@ -40,6 +40,14 @@ void _Error_Handler(char *s, int num);
 #define STM32_SRAM1_START              RAM_START
 #define STM32_SRAM1_END                RAM_END
 
+#define STM32_PSRAM_SIZE               ((uint32_t)32*1024*1024)
+#define STM32_PSRAM_START              ((uint32_t)0x90000000)
+#define STM32_PSRAM_END                ((uint32_t)(STM32_PSRAM_START + STM32_PSRAM_SIZE))
+
+#define PSRAM_HEAP_BEGIN               STM32_PSRAM_START
+#define PSRAM_HEAP_SIZE                STM32_PSRAM_SIZE
+#define PSRAM_HEAP_END                 STM32_PSRAM_END
+
 #if defined(__CC_ARM) || defined(__CLANG_ARM) || defined(__ARMCC_VERSION)
 extern int Image$$RW_IRAM1$$ZI$$Limit;
 #define HEAP_BEGIN      ((void *)&Image$$RW_IRAM1$$ZI$$Limit)

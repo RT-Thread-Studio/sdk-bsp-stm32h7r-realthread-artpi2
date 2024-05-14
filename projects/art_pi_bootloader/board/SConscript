@@ -8,12 +8,15 @@ src = Glob('*.c')
 
 # add cubemx drivers
 src += Split('''
-CubeMX_Config/Core/Src/stm32h7xx_hal_msp.c
+CubeMX_Config/Boot/Core/Src/stm32h7rsxx_hal_msp.c
+
 ''')
 
 path = [cwd]
-path += [cwd + '/CubeMX_Config/Core/Inc']
+path += [cwd + '/CubeMX_Config/Boot/Core/Inc']
 
-group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path)
+
+CPPDEFINES = ['STM32H7S7xx']
+group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)
 
 Return('group')

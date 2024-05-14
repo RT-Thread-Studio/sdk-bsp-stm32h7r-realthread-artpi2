@@ -12,7 +12,7 @@
 #define __BOARD_H__
 
 #include <rtthread.h>
-#include <stm32h7xx.h>
+#include <stm32h7rsxx.h>
 #include <drv_common.h>
 
 #ifdef __cplusplus

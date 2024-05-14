@@ -149,7 +149,7 @@ static rt_err_t stm32_spi_init(struct stm32_spi *spi_drv, struct rt_spi_configur
 
 #if defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0)
     SPI_APB_CLOCK = HAL_RCC_GetPCLK1Freq();
-#elif defined(SOC_SERIES_STM32H7)
+#elif defined(SOC_SERIES_STM32H7RS)
     SPI_APB_CLOCK = HAL_RCC_GetSysClockFreq();
 #else
     SPI_APB_CLOCK = HAL_RCC_GetPCLK2Freq();
@@ -209,7 +209,7 @@ static rt_err_t stm32_spi_init(struct stm32_spi *spi_drv, struct rt_spi_configur
     spi_handle->State = HAL_SPI_STATE_RESET;
 #if defined(SOC_SERIES_STM32L4) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32F0)
     spi_handle->Init.NSSPMode          = SPI_NSS_PULSE_DISABLE;
-#elif defined(SOC_SERIES_STM32H7)
+#elif defined(SOC_SERIES_STM32H7RS)
     spi_handle->Init.Mode                       = SPI_MODE_MASTER;
     spi_handle->Init.NSS                        = SPI_NSS_SOFT;
     spi_handle->Init.NSSPMode                   = SPI_NSS_PULSE_DISABLE;

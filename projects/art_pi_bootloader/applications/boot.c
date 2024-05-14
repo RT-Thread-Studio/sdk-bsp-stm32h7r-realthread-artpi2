@@ -143,10 +143,10 @@ int rtthread_startup(void)
 #endif /*RT_USING_SMP*/
 
 #ifndef FIRMWARE_EXEC_USING_QEMU
-    MX_QUADSPI_Init();
+//    MX_QUADSPI_Init();
 
-    W25QXX_ExitQPIMode();
-    W25QXX_Reset();
+//    MX66UW_ExitQPIMode();
+//    MX66UW_Reset();
 #endif
     
     /* start scheduler */

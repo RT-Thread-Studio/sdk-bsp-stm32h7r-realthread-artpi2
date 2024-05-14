@@ -7,7 +7,7 @@
 
 #define HAVE_CCONFIG_H
 #define RT_USING_NEWLIB
-#define STM32H750xx
+#define STM32H7S7xx
 #define USE_HAL_DRIVER
 
 #endif /*RTCONFIG_PREINC_H__*/

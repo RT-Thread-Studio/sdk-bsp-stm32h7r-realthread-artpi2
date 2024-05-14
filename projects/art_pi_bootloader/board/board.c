@@ -13,7 +13,7 @@
 #include <drv_common.h>
 
 #define DBG_TAG "board"
-#define DBG_LVL DBG_INFO
+#define DBG_LVL DBG_LOG
 #include <rtdbg.h>
 
 void system_clock_config(int target_freq_mhz)
@@ -21,60 +21,62 @@ void system_clock_config(int target_freq_mhz)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
 
-  /* Configure the system Power Supply */
-  if (HAL_PWREx_ConfigSupply(PWR_DIRECT_SMPS_SUPPLY) != HAL_OK)
+  /* Enable voltage range 0 for high performance */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE0) != HAL_OK)
   {
     /* Initialization error */
-    while(1);
+    Error_Handler();
   }
 
-  /* Enable voltage range 1 for VOS High level */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
-    /* Initialization error */
-    while(1);
-  }
-
-  /* Activate PLL1 with HSI as source (HSI is ON at reset) */
+  /* Activate PLL1 and PLL2 with HSI as source (HSI is ON at reset) */
+  /* PLL2S selected as external memory clock source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL1.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL1.PLLM = 4;
-  RCC_OscInitStruct.PLL1.PLLN = 25; /* PLL1 VCO = 64/4 * 25 = 400MHz */
-  RCC_OscInitStruct.PLL1.PLLP = 1;  /* PLL1 P =400MHz */
-  RCC_OscInitStruct.PLL1.PLLQ = 1;  /* PLL1 Q =400MHz */
-  RCC_OscInitStruct.PLL1.PLLR = 1;  /* PLL1 R =400MHz */
-  RCC_OscInitStruct.PLL1.PLLS = 1;  /* PLL1 S =400MHz */
-  RCC_OscInitStruct.PLL1.PLLT = 1;  /* PLL1 T =400MHz */
+  RCC_OscInitStruct.PLL1.PLLM = 32;
+  RCC_OscInitStruct.PLL1.PLLN = 300; /* PLL1 VCO = 64/16 * 275 = 1100MHz */
+  RCC_OscInitStruct.PLL1.PLLP = 1;  /* PLL1 P = 550MHz */
+  RCC_OscInitStruct.PLL1.PLLQ = 2;  /* PLL1 Q = 137.5MHz */
+  RCC_OscInitStruct.PLL1.PLLR = 2;  /* PLL1 R = 137.5MHz */
+  RCC_OscInitStruct.PLL1.PLLS = 2;  /* PLL1 S = 137.5MHz */
+  RCC_OscInitStruct.PLL1.PLLT = 2;  /* PLL1 T = 137.5MHz */
   RCC_OscInitStruct.PLL1.PLLFractional = 0;
-  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL2.PLLM = 4;
+  RCC_OscInitStruct.PLL2.PLLN = 25; /* PLL2 VCO = 64/4 * 25 = 400MHz */
+  RCC_OscInitStruct.PLL2.PLLP = 2;  /* PLL2 P = 200MHz */
+  RCC_OscInitStruct.PLL2.PLLQ = 2;  /* PLL2 Q = 200MHz */
+  RCC_OscInitStruct.PLL2.PLLR = 2;  /* PLL2 R = 200MHz */
+  RCC_OscInitStruct.PLL2.PLLS = 2;  /* PLL2 S = 200MHz */
+  RCC_OscInitStruct.PLL2.PLLT = 2;  /* PLL2 T = 200MHz */
+  RCC_OscInitStruct.PLL2.PLLFractional = 0;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     /* Initialization error */
-    while(1);
+    Error_Handler();
   }
 
-  /* Select PLL as system clock source and configure the HCLK, PCLK1, PCLK2,
-     PCLK4 and PCLK5 clocks dividers */
+  /* Select PLL1 as system clock source and configure the SYSCLK, HCLK,
+     PCLK1, PCLK2, PCLK4 and PCLK5 clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK  | \
                                  RCC_CLOCKTYPE_PCLK1  | RCC_CLOCKTYPE_PCLK2 | \
                                  RCC_CLOCKTYPE_PCLK4  | RCC_CLOCKTYPE_PCLK5);
   RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.SYSCLKDivider  = RCC_SYSCLK_DIV1;   /* System CPU clock=pll1p_ck */
-  RCC_ClkInitStruct.AHBCLKDivider  = RCC_HCLK_DIV2;     /* AXI/AHB System bus clock=System CPU clock/2 */
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;     /* APB1 bus clock=System bus clock/4 */
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;     /* APB2 bus clock=System bus clock/4 */
-  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;     /* APB4 bus clock=System bus clock/4 */
-  RCC_ClkInitStruct.APB5CLKDivider = RCC_APB5_DIV2;     /* APB5 bus clock=System bus clock/4 */
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  RCC_ClkInitStruct.SYSCLKDivider  = RCC_SYSCLK_DIV1;   /* System CPU clock=pll1p_ck (550MHz) */
+  RCC_ClkInitStruct.AHBCLKDivider  = RCC_HCLK_DIV2;     /* AXI/AHB System bus clock=System CPU clock/2 (275MHz) */
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;     /* APB1 bus clock=System bus clock/2 (137.5MHz) */
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;     /* APB2 bus clock=System bus clock/2 (137.5MHz) */
+  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;     /* APB4 bus clock=System bus clock/2 (137.5MHz) */
+  RCC_ClkInitStruct.APB5CLKDivider = RCC_APB5_DIV2;     /* APB5 bus clock=System bus clock/2 (137.5MHz) */
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_6) != HAL_OK)
   {
     /* Initialization error */
-    while(1);
+    Error_Handler();
   }
 //  HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_LSE, RCC_MCODIV_1);
 }
@@ -131,7 +133,7 @@ static void MPU_Config(void)
 
 }
 
-RT_WEAK void rt_hw_board_init()
+void rt_hw_board_init()
 {
     extern void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq);
 

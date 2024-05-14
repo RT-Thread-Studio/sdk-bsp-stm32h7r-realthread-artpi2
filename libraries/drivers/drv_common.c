@@ -126,6 +126,12 @@ void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target
     /* HAL_Init() function is called at the beginning of the program */
     HAL_Init();
 
+    /* Configure the system Power Supply */
+    if (HAL_PWREx_ConfigSupply(PWR_DIRECT_SMPS_SUPPLY) != HAL_OK)
+    {
+    /* Initialization error */
+    Error_Handler();
+    }
     /* enable interrupt */
     __set_PRIMASK(0);
     /* System clock initialization */

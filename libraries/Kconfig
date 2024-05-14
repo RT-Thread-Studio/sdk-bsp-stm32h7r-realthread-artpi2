@@ -9,65 +9,9 @@ config SOC_SERIES_STM32H7RS
     bool
     select ARCH_ARM_CORTEX_M7
     select SOC_FAMILY_STM32
+    default y
 
-menu "Board extended module"
-
-    menuconfig ART_PI_USING_MEDIA_IO
-        bool "Media-IO"
-        default n
-        if ART_PI_USING_MEDIA_IO
-            config BSP_USING_SPI_LCD_ILI9488
-                bool
-            config PKG_USING_PERSIMMON_SRC
-                bool
-
-            config MEDIA_IO_USING_SCREEN
-                select BSP_USING_SPI
-                select BSP_USING_SPI2
-                select BSP_USING_SDRAM
-                select BSP_USING_SPI_LCD_ILI9488
-                select PKG_USING_PERSIMMON_SRC
-                bool "Enable Screen"
-                default y
-            config MEDIA_IO_USING_TOUCH
-                select RT_USING_I2C
-                select RT_USING_I2C_BITOPS
-                select BSP_USING_I2C
-                select BSP_USING_I2C2
-                select PKG_USING_TOUCH_DRIVERS
-                select PKG_USING_FT6236
-                bool "Enable Touch"
-                default y
-            config MEDIA_IO_USING_AUDIO
-                select RT_USING_AUDIO
-                select RT_USING_I2C
-                select RT_USING_I2C_BITOPS
-                select BSP_USING_I2C
-                select BSP_USING_I2C3
-                bool "Enable Audio"
-                default y
-                if MEDIA_IO_USING_AUDIO
-                    config AUDIO_MP3
-                    bool "Support MP3"
-                    select PKG_USING_HELIX
-                    default y
-                endif
-        endif
-
-    menuconfig ART_PI_USING_INDUSTRY_IO
-        bool "Industry-IO"
-        default n
-        if ART_PI_USING_INDUSTRY_IO
-            config INDUSTRY_IO_USING_ETH
-                select BSP_USING_ETH
-                select PHY_USING_LAN8720A
-                bool "Enable Ethernet"
-                default y
-        endif
-        
-endmenu
-
-menu "Onboard Peripheral"
+menu "Onboard Peripheral Drivers"
 
     config BSP_USING_USB_TO_USART
         bool "Enable Debuger USART (uart4)"
@@ -174,7 +118,6 @@ menu "On-chip Peripheral"
         bool "Enable UART"
         default n
         select RT_USING_SERIAL
-        select RT_SERIAL_USING_DMA
         if BSP_USING_UART
             config BSP_USING_UART1
                 bool "Enable UART1"
