@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Release Notes for STM32H7RSxx CMSIS</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="_htmresc/mini-st_2020.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/x-icon" href="_htmresc/favicon.png" />
+</head>
+<body>
+<div class="row">
+<div class="col-sm-12 col-lg-4">
+<center>
+<h1 id="release-notes-for">Release Notes for</h1>
+<h1 id="stm32h7rsxx-cmsis"><mark>STM32H7RSxx CMSIS</mark></h1>
+<p>Copyright © 2022 STMicroelectronics<br />
+</p>
+<a href="https://www.st.com" class="logo"><img src="_htmresc/st_logo_2020.png" alt="ST logo" /></a>
+</center>
+<h1 id="purpose">Purpose</h1>
+<p>This driver provides the CMSIS device for the stm32H7RSxx products. This covers</p>
+<ul>
+<li>STM32H7S7xx devices</li>
+<li>STM32H7S3xx devices</li>
+<li>STM32H7R7xx devices</li>
+<li>STM32H7R3xx devices</li>
+</ul>
+<p>This driver is composed of the description of the registers under “Include” directory.</p>
+<p>Various template files are provided to easily build an application. They can be adapted to fit applications requirements.</p>
+<ul>
+<li>Templates/system_stm32h7rsxx.c contains the initialization code referred as SystemInit.</li>
+<li>Startup files are provided as example for EWARM©.</li>
+<li>Linker files are provided as example for EWARM©.</li>
+</ul>
+</div>
+<div class="col-sm-12 col-lg-8">
+<h1 id="update-history">Update History</h1>
+<div class="collapse">
+<input type="checkbox" id="collapse-section5" checked aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.0.0RC1 / 30-June-2023</strong></label>
+<div>
+<h2 id="main-changes">Main Changes</h2>
+<h3 id="release-candidate-of-stm32h7rsxx-firmware-package-supporting-stm32h7rsxx-devices">Release Candidate of <strong>STM32H7RSxx</strong> Firmware package supporting <strong>STM32H7RSxx</strong> devices</h3>
+<h2 id="contents">Contents</h2>
+<p>New features</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Headline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Define specific non-cacheable region for buffer in icf files</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Add draft version of linker files for CubeIDE(not tested), MDK-ARM</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Add RSSLIB service for Set Secure OB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Add RSSLIB services for firmware transition to higher HDP level</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Add define to get the number of MPU region</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Fixed bugs list</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Headline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Update DCMIPP_CMSR2 bits definition: fix P0LINEF value &amp; define Pipes Number</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Default HSE crystal changed to 24MHz (will be same on DK &amp; Nucleo)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Remove unused vector LOOKUP, CACHE_ECC</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Remove FLASH_FIXEDSR register</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Correct comment for PWR_CR1_SVOS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[cut1.2] Correct TAMP_ATCKSEL bitfield size</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Notes: ICF mapping vs HW boards</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th>Internal Flash (boot)</th>
+<th style="text-align: left;">External memories (Appli)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32H7S78-DK</td>
+<td>stm32h7s7xx_flash.icf</td>
+<td style="text-align: left;">stm32h7rsxx_RAMxspi1_ROMxspi2.icf</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NUCLEO-H7S3L8</td>
+<td>stm32h7s3xx_flash.icf</td>
+<td style="text-align: left;">stm32h7rsxx_ROMxspi2.icf</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="known-limitations">Known Limitations</h2>
+<ul>
+<li>Only IAR &amp; ARM startup/linker files tested</li>
+</ul>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers">Development Toolchains and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.1</li>
+<li>RealView Microcontroller Development Kit (MDK-ARM) toolchain V5.37</li>
+</ul>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards">Supported Devices and boards</h2>
+<ul>
+<li>STM32H7R3xx/STM32H7R7xx/STM32H7S3xx/STM32H7S7xx devices</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V0.3.0 / 24-March-2023</strong></label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
+<h3 id="beta-release-of-stm32h7rsxx-firmware-package-supporting-stm32h7rsxx-devices">Beta release of <strong>STM32H7RSxx</strong> Firmware package supporting <strong>STM32H7RSxx</strong> devices</h3>
+<h2 id="contents-1">Contents</h2>
+<p>New features</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Headline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alpha version of gcc &amp; arm startup files (not tested)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Add/Rename template icf file according to ExtMem configuration</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Fixed bugs list</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Headline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fix &amp; Reorder PWR &amp; RAMECC bitfields</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Remove GPIO HSLV definitions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RM0477 Rev0.20c naming alignment: PWR, RAMECC, FLASH, SBS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">[HASH] bits definition update</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">[USB] adding definition for GCCFG pulldoxn control</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<h2 id="known-limitations-1">Known Limitations</h2>
+<ul>
+<li>CMSIS devices files are delivered “as is” and have not been fully validated</li>
+<li>GCC &amp; ARM startup file delivered but not tested</li>
+</ul>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-1">Development Toolchains and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.1</li>
+<li>RealView Microcontroller Development Kit (MDK-ARM) toolchain V5.37</li>
+</ul>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards-1">Supported Devices and boards</h2>
+<ul>
+<li>STM32H7RSxx devices</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V0.2.0 / 16-December-2022</strong></label>
+<div>
+<h2 id="main-changes-2">Main Changes</h2>
+<h3 id="beta-release-of-stm32h7rsxx-firmware-package-supporting-stm32h7rsxx-devices-1">Beta release of <strong>STM32H7RSxx</strong> Firmware package supporting <strong>STM32H7RSxx</strong> devices</h3>
+<h2 id="contents-2">Contents</h2>
+<ul>
+<li>Update CMSIS devices to include latest RM corrections: RCC, DBGMCU</li>
+<li>[PKA] PKA peripheral must be available on non-crypto parts for PKA verification operation</li>
+<li>Add AXIM register &amp; bits description</li>
+<li>Rename RTC_WKUP_IRQHandler, TAMP_STAMP_IRQHandler and I3C1_WKUP_IRQHandler</li>
+<li>[RCC] Remove description of post-divider DIVT for PLL1 &amp; PLL3 since not connected to any peripheral</li>
+<li>Update IP availability on devices according to CPN / IP List</li>
+</ul>
+<h2 id="known-limitations-2">Known Limitations</h2>
+<ul>
+<li>CMSIS devices files are delivered “as is” and have not been fully validated</li>
+<li>only IAR is supported</li>
+</ul>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-2">Development Toolchains and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.1</li>
+</ul>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards-2">Supported Devices and boards</h2>
+<ul>
+<li>STM32H7RSxx devices</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V0.1.0 / 07-October-2022</strong></label>
+<div>
+<h2 id="main-changes-3">Main Changes</h2>
+<h3 id="alpha-release-of-stm32h7rsxx-firmware-package-supporting-stm32h7rsxx-devices">Alpha release of <strong>STM32H7RSxx</strong> Firmware package supporting <strong>STM32H7RSxx</strong> devices</h3>
+<h2 id="contents-3">Contents</h2>
+<ul>
+<li>Update CMSIS devices to include latest corrections:
+<ul>
+<li>[RCC] Fix ETH1PHY register definition</li>
+<li>[RCC] Fix PLLCFGR, CCIPR1, PLLxSSCGR register definition</li>
+<li>[SAES HASH] Bit definition and register update</li>
+<li>Add I3C1 wakeup interrupt line</li>
+</ul></li>
+<li>IAR linker file templates for external memories over XSPI1 and XSPI2</li>
+</ul>
+<h2 id="known-limitations-3">Known Limitations</h2>
+<ul>
+<li>CMSIS devices files are delivered “as is” and have not been fully validated</li>
+<li>only IAR is supported</li>
+</ul>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-3">Development Toolchains and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.1</li>
+</ul>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards-3">Supported Devices and boards</h2>
+<ul>
+<li>STM32H7RSxx devices</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V0.1.0RC1 / 02-September-2022</strong></label>
+<div>
+<h2 id="main-changes-4">Main Changes</h2>
+<h3 id="first-release">First release</h3>
+<p>Pre-Alpha release for <strong>STM32H7RSxx</strong> devices</p>
+<p><br />
+</p>
+<h2 id="contents-4">Contents</h2>
+<ul>
+<li>CMSIS devices files for STM32H7RSxx for EWARM IDE</li>
+</ul>
+<p><br />
+</p>
+<h2 id="known-limitations-4">Known Limitations</h2>
+<ul>
+<li>CMSIS devices files are delivered “as is” and have not been fully validated</li>
+<li>only IAR is supported</li>
+</ul>
+<p><br />
+</p>
+<h2 id="development-toolchains-and-compilers-4">Development Toolchains and Compilers</h2>
+<ul>
+<li>IAR Embedded Workbench for ARM (EWARM) toolchain V9.20.1</li>
+</ul>
+<p><br />
+</p>
+<h2 id="supported-devices-and-boards-4">Supported Devices and boards</h2>
+<ul>
+<li>STM32H7RSxx devices</li>
+</ul>
+<p><br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="sticky">
+<div class="columns">
+<div class="column" style="width:95%;">
+<p>For complete documentation on STM32 Microcontrollers </mark>, visit: <span style="font-color: blue;"><a href="http://www.st.com/stm32">www.st.com/stm32</a></span></p>
+<p><em>This release note uses up to date web standards and, for this reason, should not be opened with Internet Explorer but preferably with popular browsers such as Google Chrome, Mozilla Firefox, Opera or Microsoft Edge.</em></p>
+</div><div class="column" style="width:5%;">
+<p><abbr title="Based on template cx566953 version 2.0">Info</abbr></p>
+</div>
+</div>
+</footer>
+</body>
+</html>

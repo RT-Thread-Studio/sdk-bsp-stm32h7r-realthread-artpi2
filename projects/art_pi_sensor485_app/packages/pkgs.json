@@ -1,0 +1,17 @@
+[
+ {
+  "path": "/packages/iot/pahomqtt", 
+  "ver": "v1.1.0", 
+  "name": "PAHOMQTT"
+ }, 
+ {
+  "path": "/packages/iot/at_device", 
+  "ver": "v2.0.3", 
+  "name": "AT_DEVICE"
+ }, 
+ {
+  "path": "/packages/language/JSON/cJSON", 
+  "ver": "v1.0.2", 
+  "name": "CJSON"
+ }
+]
