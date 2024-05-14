@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>STM32H7S7xx, RT_USING_ARMLIBC, USE_HAL_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __STDC_LIMIT_MACROS, __RTTHREAD__</Define>
               <Undefine></Undefine>
-              <IncludePath>rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\libc\posix\io\poll;rt-thread\components\libc\compilers\common\include;rt-thread\components\finsh;board\CubeMX_Config\Boot\Core\Inc;libraries\drivers\include\config;applications;rt-thread\components\drivers\include;rt-thread\libcpu\arm\common;libraries\samples;.;rt-thread\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\drivers\include;libraries\CMSIS\Include;libraries\drivers\include;libraries\drivers;board;rt-thread\components\libc\posix\io\eventfd;rt-thread\components\drivers\include;libraries\CMSIS\Device\ST\STM32H7RSxx\Include;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\libc\posix\ipc;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\components\libc\posix\io\epoll;libraries\STM32H7RSxx_HAL_Driver\Inc;rt-thread\components\drivers\include;D:\Develop\ART-Pi2\firmware\flashalgo\ART-Pi_2th_Gen\MDK_FlashAlgo_HAL\w35t51nwtbie</IncludePath>
+              <IncludePath>rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\libc\posix\io\poll;rt-thread\components\libc\compilers\common\include;rt-thread\components\finsh;board\CubeMX_Config\Boot\Core\Inc;libraries\drivers\include\config;applications;rt-thread\components\drivers\include;rt-thread\libcpu\arm\common;libraries\samples;.;rt-thread\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\drivers\include;libraries\CMSIS\Include;libraries\drivers\include;libraries\drivers;board;rt-thread\components\libc\posix\io\eventfd;rt-thread\components\drivers\include;libraries\CMSIS\Device\ST\STM32H7RSxx\Include;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\libc\posix\ipc;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\components\libc\posix\io\epoll;libraries\STM32H7RSxx_HAL_Driver\Inc;rt-thread\components\drivers\include;..\..\libraries\bsp_components\w35t51nwtbie</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -395,65 +395,9 @@
               <FilePath>applications\main.c</FilePath>
             </File>
             <File>
-              <FileName>w25qxx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\w25qxx.c</FilePath>
-              <FileOption>
-                <CommonProperty>
-                  <UseCPPCompiler>2</UseCPPCompiler>
-                  <RVCTCodeConst>0</RVCTCodeConst>
-                  <RVCTZI>0</RVCTZI>
-                  <RVCTOtherData>0</RVCTOtherData>
-                  <ModuleSelection>0</ModuleSelection>
-                  <IncludeInBuild>0</IncludeInBuild>
-                  <AlwaysBuild>2</AlwaysBuild>
-                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
-                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
-                  <PublicsOnly>2</PublicsOnly>
-                  <StopOnExitCode>11</StopOnExitCode>
-                  <CustomArgument></CustomArgument>
-                  <IncludeLibraryModules></IncludeLibraryModules>
-                  <ComprImg>1</ComprImg>
-                </CommonProperty>
-                <FileArmAds>
-                  <Cads>
-                    <interw>2</interw>
-                    <Optim>0</Optim>
-                    <oTime>2</oTime>
-                    <SplitLS>2</SplitLS>
-                    <OneElfS>2</OneElfS>
-                    <Strict>2</Strict>
-                    <EnumInt>2</EnumInt>
-                    <PlainCh>2</PlainCh>
-                    <Ropi>2</Ropi>
-                    <Rwpi>2</Rwpi>
-                    <wLevel>0</wLevel>
-                    <uThumb>2</uThumb>
-                    <uSurpInc>2</uSurpInc>
-                    <uC99>2</uC99>
-                    <uGnu>2</uGnu>
-                    <useXO>2</useXO>
-                    <v6Lang>0</v6Lang>
-                    <v6LangP>0</v6LangP>
-                    <vShortEn>2</vShortEn>
-                    <vShortWch>2</vShortWch>
-                    <v6Lto>2</v6Lto>
-                    <v6WtE>2</v6WtE>
-                    <v6Rtti>2</v6Rtti>
-                    <VariousControls>
-                      <MiscControls></MiscControls>
-                      <Define></Define>
-                      <Undefine></Undefine>
-                      <IncludePath></IncludePath>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-            </File>
-            <File>
               <FileName>w35t51nwtbie.c</FileName>
               <FileType>1</FileType>
-              <FilePath>D:\Develop\ART-Pi2\firmware\flashalgo\ART-Pi_2th_Gen\MDK_FlashAlgo_HAL\w35t51nwtbie\w35t51nwtbie.c</FilePath>
+              <FilePath>..\..\libraries\bsp_components\w35t51nwtbie\w35t51nwtbie.c</FilePath>
             </File>
           </Files>
         </Group>

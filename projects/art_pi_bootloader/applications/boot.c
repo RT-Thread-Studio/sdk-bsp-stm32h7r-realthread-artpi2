@@ -10,7 +10,7 @@
 
 #include <rthw.h>
 #include <rtthread.h>
-#include "w25qxx.h"
+//#include "w25qxx.h"
 
 void rt_application_init(void);
 void rt_hw_board_init(void);
