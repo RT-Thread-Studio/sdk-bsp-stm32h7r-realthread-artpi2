@@ -1,0 +1,26 @@
+import rtconfig
+from building import *
+
+# get current directory
+cwd = GetCurrentDir()
+
+# The set of source files associated with this SConscript file.
+
+src = []
+path = [cwd]
+
+if GetDepend(['BSP_USING_W35T51NW_OSPI_FLASH']):
+    src += ['w35t51nwtbie/w35t51nwtbie.c']
+    path += [cwd + '/w35t51nwtbie']
+
+if GetDepend(['BSP_USING_APS256XX_HSPI_PSRAM']):
+    src += ['stm32h7rsxx_hspi.c']
+    src += ['aps256xx/aps256xx.c']
+    path += [cwd + '/aps256xx']
+
+
+# CPPDEFINES = ['USE_HAL_DRIVER']
+group = DefineGroup('Memory_XIP', src, depend = [''], CPPPATH = path)
+
+Return('group')
+

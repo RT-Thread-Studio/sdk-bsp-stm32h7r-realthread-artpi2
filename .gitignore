@@ -1,0 +1,5 @@
+*.pyc
+*.o
+language.settings.xml
+.DS_Store
+.vscode
