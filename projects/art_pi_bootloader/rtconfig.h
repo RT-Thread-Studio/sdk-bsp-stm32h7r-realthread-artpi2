@@ -261,7 +261,6 @@
 
 /* External Libraries */
 
-#define FIRMWARE_EXEC_USING_QSPI_FLASH
 #define RT_STUDIO_BUILT_IN
 
 #endif

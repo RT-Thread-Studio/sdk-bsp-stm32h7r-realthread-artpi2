@@ -1,20 +1,40 @@
 import os
+import rtconfig
 from building import *
 
-cwd = GetCurrentDir()
+Import('SDK_LIB')
 
-# add general drivers
+objs = []
+cwd = GetCurrentDir()
+list = os.listdir(cwd)
+
+# add the general drivers.
 src = Glob('*.c')
 
 # add cubemx drivers
 src += Split('''
 CubeMX_Config/Boot/Core/Src/stm32h7rsxx_hal_msp.c
-
 ''')
+
+src += Glob('w35t51nwtbie/*.c')
+src += Glob('psram/*.c')
+src += Glob('psram/sal/*.c')
 
 path = [cwd]
 path += [cwd + '/CubeMX_Config/Boot/Core/Inc']
+path += [cwd + '/port']
+path += [cwd + '/psram']
+path += [cwd + '/psram/sal']
+path += [cwd + '/w35t51nwtbie']
 
+startup_path_prefix = SDK_LIB
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    src += [startup_path_prefix + '/STM32H7RSxx_HAL/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/gcc/startup_stm32h7s7xx.s']
+elif rtconfig.CROSS_TOOL == 'keil':
+    src += [startup_path_prefix + '/STM32H7RSxx_HAL/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/arm/startup_stm32h7s7xx.s']
+elif rtconfig.CROSS_TOOL == 'iar':
+    src += [startup_path_prefix + '/STM32H7RSxx_HAL/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/iar/startup_stm32h7s7xx.s']
 
 CPPDEFINES = ['STM32H7S7xx']
 group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)

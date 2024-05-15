@@ -43,6 +43,7 @@
 
 UART_HandleTypeDef huart4;
 
+XSPI_HandleTypeDef hxspi1;
 XSPI_HandleTypeDef hxspi2;
 
 /* USER CODE BEGIN PV */
@@ -52,9 +53,9 @@ XSPI_HandleTypeDef hxspi2;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_FLASH_Init(void);
 static void MX_UART4_Init(void);
 static void MX_XSPI2_Init(void);
+static void MX_XSPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -95,7 +96,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL1.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL1.PLLM = 32;
-  RCC_OscInitStruct.PLL1.PLLN = 275;
+  RCC_OscInitStruct.PLL1.PLLN = 300;
   RCC_OscInitStruct.PLL1.PLLP = 1;
   RCC_OscInitStruct.PLL1.PLLQ = 2;
   RCC_OscInitStruct.PLL1.PLLR = 2;
@@ -109,7 +110,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL2.PLLP = 2;
   RCC_OscInitStruct.PLL2.PLLQ = 2;
   RCC_OscInitStruct.PLL2.PLLR = 2;
-  RCC_OscInitStruct.PLL2.PLLS = 2;
+  RCC_OscInitStruct.PLL2.PLLS = 1;
   RCC_OscInitStruct.PLL2.PLLT = 2;
   RCC_OscInitStruct.PLL2.PLLFractional = 0;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
@@ -135,52 +136,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief FLASH Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_FLASH_Init(void)
-{
-
-  /* USER CODE BEGIN FLASH_Init 0 */
-
-  /* USER CODE END FLASH_Init 0 */
-
-  FLASH_OBProgramInitTypeDef pOBInit = {0};
-
-  /* USER CODE BEGIN FLASH_Init 1 */
-
-  /* USER CODE END FLASH_Init 1 */
-  if (HAL_FLASH_Unlock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_OB_Unlock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  pOBInit.OptionType = OPTIONBYTE_USER;
-  pOBInit.USERType = OB_USER_SRAM_ECC;
-  pOBInit.USERConfig2 = OB_AXISRAM_ECC_DISABLE;
-  if (HAL_FLASHEx_OBProgram(&pOBInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_OB_Lock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_Lock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN FLASH_Init 2 */
-
-  /* USER CODE END FLASH_Init 2 */
-
 }
 
 /**
@@ -232,6 +187,56 @@ static void MX_UART4_Init(void)
 }
 
 /**
+  * @brief XSPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_XSPI1_Init(void)
+{
+
+  /* USER CODE BEGIN XSPI1_Init 0 */
+
+  /* USER CODE END XSPI1_Init 0 */
+
+  XSPIM_CfgTypeDef sXspiManagerCfg = {0};
+
+  /* USER CODE BEGIN XSPI1_Init 1 */
+
+  /* USER CODE END XSPI1_Init 1 */
+  /* XSPI1 parameter configuration*/
+  hxspi1.Instance = XSPI1;
+  hxspi1.Init.FifoThresholdByte = 2;
+  hxspi1.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
+  hxspi1.Init.MemoryType = HAL_XSPI_MEMTYPE_APMEM_16BITS;
+  hxspi1.Init.MemorySize = HAL_XSPI_SIZE_32GB;
+  hxspi1.Init.ChipSelectHighTimeCycle = 1;
+  hxspi1.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
+  hxspi1.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
+  hxspi1.Init.WrapSize = HAL_XSPI_WRAP_NOT_SUPPORTED;
+  hxspi1.Init.ClockPrescaler = 0;
+  hxspi1.Init.SampleShifting = HAL_XSPI_SAMPLE_SHIFT_NONE;
+  hxspi1.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_ENABLE;
+  hxspi1.Init.ChipSelectBoundary = HAL_XSPI_BONDARYOF_8KB;
+  hxspi1.Init.MaxTran = 0;
+  hxspi1.Init.Refresh = 0;
+  hxspi1.Init.MemorySelect = HAL_XSPI_CSSEL_NCS1;
+  if (HAL_XSPI_Init(&hxspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sXspiManagerCfg.nCSOverride = HAL_XSPI_CSSEL_OVR_NCS1;
+  sXspiManagerCfg.IOPort = HAL_XSPIM_IOPORT_1;
+  if (HAL_XSPIM_Config(&hxspi1, &sXspiManagerCfg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN XSPI1_Init 2 */
+
+  /* USER CODE END XSPI1_Init 2 */
+
+}
+
+/**
   * @brief XSPI2 Initialization Function
   * @param None
   * @retval None
@@ -250,17 +255,17 @@ static void MX_XSPI2_Init(void)
   /* USER CODE END XSPI2_Init 1 */
   /* XSPI2 parameter configuration*/
   hxspi2.Instance = XSPI2;
-  hxspi2.Init.FifoThresholdByte = 1;
+  hxspi2.Init.FifoThresholdByte = 4;
   hxspi2.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
   hxspi2.Init.MemoryType = HAL_XSPI_MEMTYPE_MICRON;
-  hxspi2.Init.MemorySize = HAL_XSPI_SIZE_16B;
-  hxspi2.Init.ChipSelectHighTimeCycle = 1;
+  hxspi2.Init.MemorySize = HAL_XSPI_SIZE_32GB;
+  hxspi2.Init.ChipSelectHighTimeCycle = 2;
   hxspi2.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
   hxspi2.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
   hxspi2.Init.WrapSize = HAL_XSPI_WRAP_NOT_SUPPORTED;
   hxspi2.Init.ClockPrescaler = 0;
   hxspi2.Init.SampleShifting = HAL_XSPI_SAMPLE_SHIFT_NONE;
-  hxspi2.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_DISABLE;
+  hxspi2.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_ENABLE;
   hxspi2.Init.ChipSelectBoundary = HAL_XSPI_BONDARYOF_NONE;
   hxspi2.Init.MaxTran = 0;
   hxspi2.Init.Refresh = 0;
@@ -269,7 +274,7 @@ static void MX_XSPI2_Init(void)
   {
     Error_Handler();
   }
-  sXspiManagerCfg.nCSOverride = HAL_XSPI_CSSEL_OVR_DISABLED;
+  sXspiManagerCfg.nCSOverride = HAL_XSPI_CSSEL_OVR_NCS1;
   sXspiManagerCfg.IOPort = HAL_XSPIM_IOPORT_2;
   if (HAL_XSPIM_Config(&hxspi2, &sXspiManagerCfg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
   {
@@ -293,6 +298,9 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPION_CLK_ENABLE();
+  __HAL_RCC_GPIOO_CLK_ENABLE();
+  __HAL_RCC_GPIOP_CLK_ENABLE();
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

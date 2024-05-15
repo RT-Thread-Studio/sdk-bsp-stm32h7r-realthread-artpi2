@@ -48,7 +48,6 @@
 /* #define HAL_FDCAN_MODULE_ENABLED   */
 /* #define HAL_GFXMMU_MODULE_ENABLED   */
 /* #define HAL_GFXTIM_MODULE_ENABLED   */
-#define HAL_GPIO_MODULE_ENABLED
 /* #define HAL_GPU2D_MODULE_ENABLED   */
 /* #define HAL_HASH_MODULE_ENABLED   */
 /* #define HAL_HCD_MODULE_ENABLED   */
@@ -86,6 +85,7 @@
 /* #define HAL_USART_MODULE_ENABLED   */
 /* #define HAL_WWDG_MODULE_ENABLED   */
 #define HAL_XSPI_MODULE_ENABLED
+#define HAL_GPIO_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_DMA_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
@@ -100,7 +100,7 @@
   *        (when HSE is used as system clock source, directly or through the PLL).
   */
 #if !defined  (HSE_VALUE)
-#define HSE_VALUE    25000000UL /*!< Value of the External oscillator in Hz */
+#define HSE_VALUE    24000000UL /*!< Value of the External oscillator in Hz */
 #endif /* HSE_VALUE */
 
 #if !defined  (HSE_STARTUP_TIMEOUT)
