@@ -183,7 +183,8 @@ typedef int (*init_fn_t)(void);
 /* init platform, user code... */
 #define INIT_PLATFORM_EXPORT(fn)        INIT_EXPORT(fn, "1.2")
 /* init sys-timer, clk, pinctrl... */
-#define INIT_SUBSYS_EXPORT(fn)          INIT_EXPORT(fn, "1.3")
+#define INIT_SUBSYS_EARLY_EXPORT(fn)    INIT_EXPORT(fn, "1.3.0")
+#define INIT_SUBSYS_EXPORT(fn)          INIT_EXPORT(fn, "1.3.1")
 /* init early drivers */
 #define INIT_DRIVER_EARLY_EXPORT(fn)    INIT_EXPORT(fn, "1.4")
 
@@ -525,23 +526,23 @@ struct rt_object_information
  *     do_other_things();
  * }
  */
-#define _RT_OBJECT_HOOKLIST_CALL(nodetype, nested, list, lock, argv) \
-    do                                                               \
-    {                                                                \
-        nodetype iter;                                               \
-        rt_ubase_t level = rt_spin_lock_irqsave(&lock);              \
-        nested += 1;                                                 \
-        rt_spin_unlock_irqrestore(&lock, level);                     \
-        if (!rt_list_isempty(&list))                                 \
-        {                                                            \
-            rt_list_for_each_entry(iter, &list, list_node)           \
-            {                                                        \
-                iter->handler argv;                                  \
-            }                                                        \
-        }                                                            \
-        level = rt_spin_lock_irqsave(&lock);                         \
-        nested -= 1;                                                 \
-        rt_spin_unlock_irqrestore(&lock, level);                     \
+#define _RT_OBJECT_HOOKLIST_CALL(nodetype, nested, list, lock, argv)  \
+    do                                                                \
+    {                                                                 \
+        nodetype iter, next;                                          \
+        rt_ubase_t level = rt_spin_lock_irqsave(&lock);               \
+        nested += 1;                                                  \
+        rt_spin_unlock_irqrestore(&lock, level);                      \
+        if (!rt_list_isempty(&list))                                  \
+        {                                                             \
+            rt_list_for_each_entry_safe(iter, next, &list, list_node) \
+            {                                                         \
+                iter->handler argv;                                   \
+            }                                                         \
+        }                                                             \
+        level = rt_spin_lock_irqsave(&lock);                          \
+        nested -= 1;                                                  \
+        rt_spin_unlock_irqrestore(&lock, level);                      \
     } while (0)
 #define RT_OBJECT_HOOKLIST_CALL(name, argv)                        \
     _RT_OBJECT_HOOKLIST_CALL(name##_hooklistnode_t, name##_nested, \
@@ -568,13 +569,14 @@ struct rt_object_information
  */
 #define RT_TIMER_FLAG_DEACTIVATED       0x0             /**< timer is deactive */
 #define RT_TIMER_FLAG_ACTIVATED         0x1             /**< timer is active */
+#define RT_TIMER_FLAG_PROCESSING        0x2             /**< timer's timeout fuction is processing */
 #define RT_TIMER_FLAG_ONE_SHOT          0x0             /**< one shot timer */
-#define RT_TIMER_FLAG_PERIODIC          0x2             /**< periodic timer */
+#define RT_TIMER_FLAG_PERIODIC          0x4             /**< periodic timer */
 
 #define RT_TIMER_FLAG_HARD_TIMER        0x0             /**< hard timer,the timer's callback function will be called in tick isr. */
-#define RT_TIMER_FLAG_SOFT_TIMER        0x4             /**< soft timer,the timer's callback function will be called in timer thread. */
+#define RT_TIMER_FLAG_SOFT_TIMER        0x8             /**< soft timer,the timer's callback function will be called in timer thread. */
 #define RT_TIMER_FLAG_THREAD_TIMER \
-    (0x8 | RT_TIMER_FLAG_HARD_TIMER)                    /**< thread timer that cooperates with scheduler directly */
+    (0x10 | RT_TIMER_FLAG_HARD_TIMER)                    /**< thread timer that cooperates with scheduler directly */
 
 #define RT_TIMER_CTRL_SET_TIME          0x0             /**< set timer control command */
 #define RT_TIMER_CTRL_GET_TIME          0x1             /**< get timer control command */

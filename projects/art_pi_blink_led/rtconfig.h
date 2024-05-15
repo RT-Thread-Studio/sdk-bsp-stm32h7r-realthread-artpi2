@@ -80,29 +80,13 @@
 
 /* DFS: device virtual file system */
 
-#define RT_USING_DFS
-#define DFS_USING_POSIX
-#define DFS_USING_WORKDIR
-#define DFS_FD_MAX 16
-#define RT_USING_DFS_V1
-#define DFS_FILESYSTEMS_MAX 4
-#define DFS_FILESYSTEM_TYPES_MAX 4
-#define RT_USING_DFS_DEVFS
-#define RT_USING_DFS_ROMFS
 
 /* Device Drivers */
 
 #define RT_USING_DEVICE_IPC
 #define RT_UNAMED_PIPE_NUMBER 64
 #define RT_USING_SERIAL
-#define RT_USING_SERIAL_V1
-#define RT_SERIAL_RB_BUFSZ 64
-#define RT_USING_MTD_NOR
-#define RT_USING_SPI
-#define RT_USING_SFUD
-#define RT_SFUD_USING_SFDP
-#define RT_SFUD_USING_FLASH_INFO_TABLE
-#define RT_SFUD_SPI_MAX_HZ 50000000
+#define RT_USING_SERIAL_V2
 #define RT_USING_PIN
 
 /* Using USB */
@@ -281,10 +265,14 @@
 #define BSP_USING_GPIO
 #define BSP_USING_UART
 #define BSP_USING_UART4
+#define BSP_UART4_RX_BUFSIZE 256
+#define BSP_UART4_TX_BUFSIZE 0
+#define BSP_USING_PSRAM
+#define PSRAM_BANK_ADDR 0x90000000
+#define PSRAM_SIZE 0x2000000
 
 /* External Libraries */
 
-#define FIRMWARE_EXEC_USING_QSPI_FLASH
 #define RT_STUDIO_BUILT_IN
 
 #endif

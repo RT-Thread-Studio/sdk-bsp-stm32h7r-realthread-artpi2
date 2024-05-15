@@ -40,6 +40,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 UART_HandleTypeDef huart4;
 
 /* USER CODE BEGIN PV */

@@ -137,7 +137,7 @@ static int lwp_startup(void)
     char *argv[] = {0, "&"};
     char *envp[] = {LWP_CONSOLE_PATH, 0};
 
-#ifdef LWP_DEBUG
+#ifdef LWP_DEBUG_INIT
     int command;
     int countdown = LATENCY_TIMES;
     while (countdown)
@@ -152,7 +152,7 @@ static int lwp_startup(void)
         rt_thread_mdelay(LATENCY_IN_MSEC);
     }
     rt_kprintf("Starting init ...\n");
-#endif
+#endif /* LWP_DEBUG_INIT */
 
     for (size_t i = 0; i < sizeof(init_search_path)/sizeof(init_search_path[0]); i++)
     {
@@ -176,7 +176,7 @@ static int lwp_startup(void)
             else
             {
                 rt_lwp_t p = lwp_from_pid_locked(1);
-                p->sig_protected = 0;
+                p->sig_protected = 1;
 
                 error = 0;
             }
@@ -186,7 +186,7 @@ static int lwp_startup(void)
 
     if (error)
     {
-        LOG_E("%s: init program not found\n"
+        LOG_D("%s: init program not found\n"
             "Switching to legacy mode...", __func__);
     }
     return error;
