@@ -20,7 +20,7 @@
 #include <drivers/mmcsd_core.h>
 #include <drivers/sdio.h>
 
-#define SDIO_BUFF_SIZE       4096
+#define SDIO_BUFF_SIZE       16384
 #define SDIO_ALIGN_LEN       32
 
 #ifndef SDIO1_BASE_ADDRESS
