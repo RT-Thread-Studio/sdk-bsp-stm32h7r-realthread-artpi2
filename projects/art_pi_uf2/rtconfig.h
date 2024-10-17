@@ -269,7 +269,7 @@
 
 /* External Libraries */
 
-#define FIRMWARE_EXEC_USING_QSPI_FLASH
+#define FIRMWARE_EXEC_USING_OSPI_FLASH
 #define RT_STUDIO_BUILT_IN
 
 /* Memory XIP Configs */
