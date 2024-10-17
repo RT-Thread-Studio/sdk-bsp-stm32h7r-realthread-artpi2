@@ -57,17 +57,19 @@ extern "C" {
 /***** READ/WRITE MEMORY Operations with 3-Byte Address checked OK ****************************/
 #define W35T51NWTBIE_READ_CMD                             0x03U   /*!< Normal Read 3 Byte Address                            */
 #define W35T51NWTBIE_FAST_READ_CMD                        0x0BU   /*!< Fast Read 3(4) Byte Address                           */
-#define W35T51NWTBIE_PAGE_PROG_CMD                        0x02U   /*!< Page Program 3(4) Byte Address, 1-256bytes per time   */
-#define W35T51NWTBIE_SUBSECTOR_ERASE_4K_CMD               0x20U   /*!< SubSector Erase 4KB 3(4) Byte Address                 */
-#define W35T51NWTBIE_SECTOR_ERASE_64K_CMD                 0xD8U   /*!< Sector Erase 64KB 3(4) Byte Address                   */
+#define W35T51NWTBIE_PAGE_PROG_CMD                        0x02U   /*!< Page Program 3 Byte Address, max 256bytes per time    */
+#define W35T51NWTBIE_SUBSECTOR_ERASE_4K_CMD               0x20U   /*!< SubSector Erase 4KB 3 Byte Address, typical 45ms, max 200ms */
+#define W35T51NWTBIE_SECTOR_ERASE_32K_CMD                 0x52U   /*!< Sector Erase 32KB 3 Byte Address, typical 120ms, max 800ms  */
+#define W35T51NWTBIE_SECTOR_ERASE_64K_CMD                 0xD8U   /*!< Sector Erase 64KB 3 Byte Address, typical 150ms, max 2000ms */
 #define W35T51NWTBIE_BULK_ERASE_CMD                       0x60U   /*!< Bulk Erase                                            */
 
 /***** READ/WRITE MEMORY Operations with 4-Byte Address checked OK ****************************/
 #define W35T51NWTBIE_4_BYTE_ADDR_READ_CMD                 0x13U   /*!< Normal Read 4 Byte address                            */
 #define W35T51NWTBIE_4_BYTE_ADDR_FAST_READ_CMD            0x0CU   /*!< Fast Read 4 Byte address                              */
-#define W35T51NWTBIE_4_BYTE_PAGE_PROG_CMD                 0x12U   /*!< Page Program 4 Byte Address                           */
-#define W35T51NWTBIE_4_BYTE_SUBSECTOR_ERASE_4K_CMD        0x21U   /*!< SubSector Erase 4KB 4 Byte Address                    */
-#define W35T51NWTBIE_4_BYTE_SECTOR_ERASE_64K_CMD          0xDCU   /*!< Sector Erase 64KB 4 Byte Address                      */
+#define W35T51NWTBIE_4_BYTE_PAGE_PROG_CMD                 0x12U   /*!< Page Program 4 Byte Address, max 256bytes per time    */
+#define W35T51NWTBIE_4_BYTE_SUBSECTOR_ERASE_4K_CMD        0x21U   /*!< SubSector Erase 4KB 4 Byte Address, typical 45ms, max 200ms  */
+#define W35T51NWTBIE_4_BYTE_SECTOR_ERASE_32K_CMD          0x5CU   /*!< SubSector Erase 4KB 4 Byte Address, typical 120ms, max 800ms */
+#define W35T51NWTBIE_4_BYTE_SECTOR_ERASE_64K_CMD          0xDCU   /*!< Sector Erase 64KB 4 Byte Address, typical 150ms, max 2000ms  */
 
 /***** Setting commands checked OK ************************************************************/
 #define W35T51NWTBIE_WRITE_ENABLE_CMD                     0x06U   /*!< Write Enable                                          */
@@ -193,6 +195,7 @@ typedef enum
 typedef enum
 {
   W35T51NWTBIE_ERASE_4K = 0,                 /*!< 4K size Sector erase                          */
+  W35T51NWTBIE_ERASE_32K,                    /*!< 64K size Block erase                          */
   W35T51NWTBIE_ERASE_64K,                    /*!< 64K size Block erase                          */
   W35T51NWTBIE_ERASE_BULK                    /*!< Whole bulk erase                              */
 } W35T51NWTBIE_Erase_t;

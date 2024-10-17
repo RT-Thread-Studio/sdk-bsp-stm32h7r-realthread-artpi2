@@ -22,6 +22,9 @@
 #define FAL_USING_NOR_FLASH_DEV_NAME             "norflash0"
 #endif
 
+#define FLASH_4K_BLOCK_SIZE   4096
+#define FLASH_64K_BLOCK_SIZE  65536
+
 static int init(void);
 static int read(long offset, uint8_t *buf, size_t size);
 static int write(long offset, const uint8_t *buf, size_t size);
@@ -35,7 +38,7 @@ struct fal_flash_dev nor_flash0 =
     .name       = FAL_USING_NOR_FLASH_DEV_NAME,
     .addr       = 0,
     .len        = 64 * 1024 * 1024,
-    .blk_size   = 4096,
+    .blk_size   = FLASH_4K_BLOCK_SIZE,
     .ops        = {init, read, write, erase},
     .write_gran = 1
 };
@@ -58,7 +61,7 @@ static void MX_XSPI2_Init(void)
   hxspi2.Init.FifoThresholdByte = 4;
   hxspi2.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
   hxspi2.Init.MemoryType = HAL_XSPI_MEMTYPE_MICRON;
-  hxspi2.Init.MemorySize = HAL_XSPI_SIZE_1GB;
+  hxspi2.Init.MemorySize = HAL_XSPI_SIZE_64MB;
   hxspi2.Init.ChipSelectHighTimeCycle = 1;
   hxspi2.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
   hxspi2.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
@@ -139,7 +142,7 @@ static int write(long offset, const uint8_t *buf, size_t size)
 
     /* check the flash address boundary */
     if (addr + size > nor_flash0.len) {
-        LOG_E("Error: Flash address is out of boundary.");
+        LOG_E("Error: Write Flash address is out of boundary.");
         return -1;
     }
     /* @TODO lock to write */
@@ -147,8 +150,6 @@ static int write(long offset, const uint8_t *buf, size_t size)
     while (size) 
     {
         /* set the flash write enable */
-        // result = set_write_enabled(flash, true);
-
         if (W35T51NWTBIE_OK != W35T51NWTBIE_WriteEnable(&hxspi2, W35T51NWTBIE_SPI_MODE, W35T51NWTBIE_STR_TRANSFER))
         {
             retr = -2;
@@ -201,57 +202,86 @@ __exit:
 
 }
 
-//do a 4K aligned erase
+//do a 4K aligned erase, if offset (address) not 4K aligned, erase will align up.
 //@TODO grain control to 4K only
 static int erase(long offset, size_t size)
 {
-    uint32_t start_addr = offset;
-    uint32_t end_addr = offset + size;
-    uint32_t SectorSize = 4096;
+    uint32_t start_addr_4K = 0;
+    uint32_t end_addr = 0;
+    int32_t erase_sector_cnt = 0;
     int32_t  retr=0;
-//    assert(sfud_dev);
-//    assert(sfud_dev->init_ok);
-    do
-    {
-        if (W35T51NWTBIE_OK == W35T51NWTBIE_WriteEnable(&hxspi2,
-                                                        W35T51NWTBIE_SPI_MODE,
-                                                        W35T51NWTBIE_STR_TRANSFER))
-        {
-            if(W35T51NWTBIE_OK == W35T51NWTBIE_BlockErase(&hxspi2,
-                                                        W35T51NWTBIE_SPI_MODE,
-                                                        W35T51NWTBIE_STR_TRANSFER,
-                                                        W35T51NWTBIE_3BYTES_SIZE,
-                                                        nor_flash0.addr + start_addr,
-                                                        W35T51NWTBIE_ERASE_4K))
-            {
-                if (W35T51NWTBIE_OK != W35T51NWTBIE_AutoPollingMemReady(&hxspi2,
-                                                                        W35T51NWTBIE_SPI_MODE,
-                                                                        W35T51NWTBIE_STR_TRANSFER))
-                {
-                    retr = -3;
-                    break;
-                }
-            }
-            else
-            {
-                retr = -2;
-                break;
-            }
-        }
-        else
-        {
-            retr = -1;
-            break;
-        }
-        start_addr = start_addr + SectorSize;
-        LOG_D("Flash Erase adr:%.2x, size:%.2x", (nor_flash0.addr + start_addr), SectorSize);
-    }while ((end_addr > start_addr) && (retr == 0));
-    
-    if(retr !=0 )
-    {
-        LOG_E("Flash Erase Err, code: %d", retr);
+
+    W35T51NWTBIE_Erase_t erase_gran = W35T51NWTBIE_ERASE_4K;    //default 4K erase
+
+    assert(norflash_init_flag);
+
+    /* check the flash address boundary */
+    if ((size == 0) || ((uint32_t)offset + size - 1 > nor_flash0.len)) {
+        LOG_E("Error: Erase Flash size is 0 or address out of boundary.");
         return -1;
     }
-    return size;
+    /* make erase align and calculate erase region */
+    // align down to 4096 Bytes
+    start_addr_4K = (((uint32_t)offset) & ~((FLASH_4K_BLOCK_SIZE) - 1));
+    end_addr = (((uint32_t)offset + size - 1) & ~((FLASH_4K_BLOCK_SIZE) - 1)) + FLASH_4K_BLOCK_SIZE - 1;
+    erase_sector_cnt = (end_addr - start_addr_4K) / FLASH_4K_BLOCK_SIZE + 1;
+
+    LOG_D("erase 4k sector count:%d, start at: 0x%.2x, end at: 0x%.2x", erase_sector_cnt, start_addr_4K, end_addr);
+
+    do
+    {
+        /* set the flash write enable */
+        if (W35T51NWTBIE_OK != W35T51NWTBIE_WriteEnable(&hxspi2, W35T51NWTBIE_SPI_MODE, W35T51NWTBIE_STR_TRANSFER))
+        {
+            retr = -2;
+            goto __exit;
+        }
+       
+        // do mass erase calculate
+        if ((start_addr_4K % FLASH_64K_BLOCK_SIZE == 0) && ((erase_sector_cnt -16) >= 0))
+        {
+            erase_gran = W35T51NWTBIE_ERASE_64K;
+        } else {
+            erase_gran = W35T51NWTBIE_ERASE_4K;
+        }
+
+        if(W35T51NWTBIE_OK != W35T51NWTBIE_BlockErase(&hxspi2,
+                                                    W35T51NWTBIE_SPI_MODE,
+                                                    W35T51NWTBIE_STR_TRANSFER,
+                                                    W35T51NWTBIE_3BYTES_SIZE,
+                                                    start_addr_4K,
+                                                    erase_gran))
+        {
+            retr = -3;
+            goto __exit;
+        }
+
+        if (W35T51NWTBIE_OK != W35T51NWTBIE_AutoPollingMemReady(&hxspi2,
+                                                                W35T51NWTBIE_SPI_MODE,
+                                                                W35T51NWTBIE_STR_TRANSFER))
+        {
+            retr = -4;
+            goto __exit;
+        }
+
+        if (erase_gran == W35T51NWTBIE_ERASE_64K)
+        {
+            LOG_D("Flash erase adr:0x%.2x, size:0x%.2x", start_addr_4K, FLASH_64K_BLOCK_SIZE);
+            start_addr_4K += FLASH_64K_BLOCK_SIZE;
+            erase_sector_cnt -= 16;
+        }
+        else if (erase_gran == W35T51NWTBIE_ERASE_4K)
+        {
+            LOG_D("Flash erase adr:0x%.2x, size:0x%.2x", start_addr_4K, FLASH_4K_BLOCK_SIZE);
+            start_addr_4K += FLASH_4K_BLOCK_SIZE;
+            erase_sector_cnt --;
+        }
+
+    }while(erase_sector_cnt > 0);
+
+__exit:
+    /* @TODO set the flash write disable */
+    /* @TODO unlock erase */
+    return retr;
 }
 #endif /* BSP_USING_XSPI_NORFLASH */

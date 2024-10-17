@@ -452,6 +452,12 @@ int32_t W35T51NWTBIE_BlockErase(XSPI_HandleTypeDef *Ctx, W35T51NWTBIE_Interface_
                                 ? W35T51NWTBIE_SECTOR_ERASE_64K_CMD
                                 : W35T51NWTBIE_4_BYTE_SECTOR_ERASE_64K_CMD;
       }
+      else if(BlockSize == W35T51NWTBIE_ERASE_32K)
+      {
+        s_command.Instruction = (AddressSize == W35T51NWTBIE_3BYTES_SIZE)
+                                ? W35T51NWTBIE_SECTOR_ERASE_32K_CMD
+                                : W35T51NWTBIE_4_BYTE_SECTOR_ERASE_32K_CMD;
+      }
       else
       {
         s_command.Instruction = (AddressSize == W35T51NWTBIE_3BYTES_SIZE)

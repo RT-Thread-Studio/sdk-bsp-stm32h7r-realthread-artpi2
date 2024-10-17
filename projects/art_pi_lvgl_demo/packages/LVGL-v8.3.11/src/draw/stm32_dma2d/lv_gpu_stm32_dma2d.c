@@ -108,6 +108,12 @@ void lv_draw_stm32_dma2d_init(void)
     __asm volatile("DSB\n");
     volatile uint32_t temp = RCC->AHB3ENR;
     LV_UNUSED(temp);
+#elif defined(STM32H7RS)
+    RCC->AHB5ENR |= RCC_AHB5ENR_DMA2DEN;
+    // wait for hardware access to complete
+    __asm volatile("DSB\n");
+    volatile uint32_t temp = RCC->AHB3ENR;
+    LV_UNUSED(temp);
 #else
 # warning "LVGL can't enable the clock of DMA2D"
 #endif
