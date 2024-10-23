@@ -44,7 +44,7 @@
 #endif
 
 #ifndef SDIO_MAX_FREQ
-#define SDIO_MAX_FREQ        (25 * 1000 * 1000)
+#define SDIO_MAX_FREQ        (50 * 1000 * 1000)
 #endif
 
 #define DIV_ROUND_UP(n,d) (((n) + (d) - 1) / (d))
