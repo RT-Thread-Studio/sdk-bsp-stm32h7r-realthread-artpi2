@@ -149,6 +149,7 @@ static int touch_bg_init(const char *name, rt_uint16_t x, rt_uint16_t y)
 
 int touch_init(void)
 {
+    rt_thread_mdelay(500); // compensate the touch driver initial slow problem.
     touch_bg_init("gt", LV_HOR_RES_MAX, LV_VER_RES_MAX);
     return RT_EOK;
 }

@@ -97,12 +97,15 @@
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 #define RT_USING_MTD_NOR
 #define RT_USING_SPI
 #define RT_USING_SFUD
 #define RT_SFUD_USING_SFDP
 #define RT_SFUD_USING_FLASH_INFO_TABLE
 #define RT_SFUD_SPI_MAX_HZ 50000000
+#define RT_USING_TOUCH
 #define RT_TOUCH_PIN_IRQ
 #define RT_USING_PIN
 
@@ -229,6 +232,20 @@
 
 /* touch drivers */
 
+#define PKG_USING_GT9147
+#define PKG_USING_GT9147_V110
+#define PKG_USING_GT1151
+#define PKG_USING_GT1151_V100
+
+/* gt1151 options */
+
+#define GT1151_BUS_NAME "i2c1"
+#define GT1151_RST_PIN 51
+#define GT1151_IRQ_PIN 108
+#define GT1151_TOUCH_WIDTH 800
+#define GT1151_TOUCH_HEIGHT 480
+#define GT1151_SUPPORT_POINTS 10
+#define GT1151_USING_EXAMPLE
 
 /* AI packages */
 
@@ -290,12 +307,32 @@
 #define BSP_USING_USB_TO_USART
 #define BSP_USING_LVGL
 #define BSP_USING_LCD_RGB
+#define BSP_USING_GT9147
 
 /* On-chip Peripheral */
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
 #define BSP_USING_UART4
+#define BSP_USING_I2C
+#define BSP_USING_I2C1
+
+/* Notice: PB8 --> 24; PB9 --> 25 */
+
+#define BSP_I2C1_SCL_PIN 24
+#define BSP_I2C1_SDA_PIN 25
+#define BSP_USING_I2C2
+
+/* Notice: PF0 --> 80; PF1 --> 81 */
+
+#define BSP_I2C2_SCL_PIN 81
+#define BSP_I2C2_SDA_PIN 80
+#define BSP_USING_I2C3
+
+/* Notice: PA4 --> 4; PA7 --> 7 */
+
+#define BSP_I2C3_SCL_PIN 7
+#define BSP_I2C3_SDA_PIN 4
 #define BSP_USING_PSRAM
 #define BSP_USING_LCD
 

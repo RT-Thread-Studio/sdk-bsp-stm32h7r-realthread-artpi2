@@ -561,8 +561,8 @@ config RT_USING_TOUCH
     default n
     if RT_USING_TOUCH
         config RT_TOUCH_PIN_IRQ
-        bool "touch irq use pin irq"
-        default n
+            bool "touch irq use pin irq"
+            default n
     endif
 
 config RT_USING_LCD

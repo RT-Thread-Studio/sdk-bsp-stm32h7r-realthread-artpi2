@@ -62,18 +62,20 @@ menu "Onboard Peripheral Drivers"
                 select BSP_USING_LCD
                 select RT_TOUCH_PIN_IRQ
                 default n
-                if BSP_USING_LCD_RGB
-                    config BSP_USING_TOUCH
-                    select BSP_USING_I2C
-                    select BSP_USING_I2C1
-                    select RT_USING_TOUCH               
+            if BSP_USING_LCD_RGB
+                config BSP_USING_TOUCH
+                select BSP_USING_I2C
+                select BSP_USING_I2C1
+                select RT_USING_TOUCH
+                config BSP_USING_GT9147            
                     bool "enable Touch GT9147"
                     select PKG_USING_GT9147                    
                     default n
-		    bool "enable Touch GT1151 GT1158"
+                config BSP_USING_GT1151   
+                    bool "enable Touch GT1151 GT1158"
                     select PKG_USING_GT1151                    
                     default n
-                endif
+            endif
         endif
 
     menuconfig BSP_USING_FS
