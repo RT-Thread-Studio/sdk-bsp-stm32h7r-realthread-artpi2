@@ -64,18 +64,27 @@ menu "Onboard Peripheral Drivers"
                 default n
             if BSP_USING_LCD_RGB
                 config BSP_USING_TOUCH
-                select BSP_USING_I2C
-                select BSP_USING_I2C1
-                select RT_USING_TOUCH
-                config BSP_USING_GT9147            
-                    bool "enable Touch GT9147"
-                    select PKG_USING_GT9147                    
+                    bool "Enable Touch control"
+                    select BSP_USING_I2C
+                    select BSP_USING_I2C2
+                    select RT_USING_TOUCH
                     default n
-                config BSP_USING_GT1151   
-                    bool "enable Touch GT1151 GT1158"
-                    select PKG_USING_GT1151                    
-                    default n
+
+                if BSP_USING_TOUCH
+                    choice
+                        prompt "Choose Touch Driver"
+                        default BSP_USING_GT9147
+                                config BSP_USING_GT9147
+                                bool "USING Touch IC GT9147"
+
+                                config BSP_USING_GT1151
+                                bool "USING Touch IC GT1151 GT1158"
+
+                            default n
+                    endchoice
+                endif
             endif
+
         endif
 
     menuconfig BSP_USING_FS
