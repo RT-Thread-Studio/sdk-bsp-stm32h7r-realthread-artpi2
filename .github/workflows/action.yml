@@ -52,6 +52,10 @@ jobs:
        legs:
          - {RTT_BSP: "art_pi_blink_led"}
          - {RTT_BSP: "art_pi_bootloader"}
+         - {RTT_BSP: "art_pi_lvgl_demo"}
+         - {RTT_BSP: "art_pi_sdcard"}
+         - {RTT_BSP: "art_pi_uf2"}
+         - {RTT_BSP: "art_pi_wifi"}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
