@@ -76,13 +76,6 @@ path += [cwd + '/include/config']
 
 startup_path_prefix = SDK_LIB
 
-#if rtconfig.CROSS_TOOL == 'gcc':
-#    src += [startup_path_prefix + '/STM32H7xx_HAL/CMSIS/Device/ST/STM32H7xx/Source/Templates/gcc/startup_stm32h743xx.s']
-#elif rtconfig.CROSS_TOOL == 'keil':
-#    src += [startup_path_prefix + '/STM32H7xx_HAL/CMSIS/Device/ST/STM32H7xx/Source/Templates/arm/startup_stm32h743xx.s']
-#elif rtconfig.CROSS_TOOL == 'iar':
-#    src += [startup_path_prefix + '/STM32H7xx_HAL/CMSIS/Device/ST/STM32H7xx/Source/Templates/iar/startup_stm32h743xx.s']
-
 # STM32H7S7xx
 # You can select chips from the list above
 CPPDEFINES = ['STM32H7S7xx']

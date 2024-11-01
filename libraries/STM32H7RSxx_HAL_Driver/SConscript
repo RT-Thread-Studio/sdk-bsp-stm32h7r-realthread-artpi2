@@ -32,11 +32,11 @@ Src/stm32h7rsxx_hal_flash_ex.c
 ''')
 
 if rtconfig.CROSS_TOOL == 'gcc':
-    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/gcc/startup_stm32h7s7xx.s']
+    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/gcc/startup_stm32h7r7xx.s']
 elif rtconfig.CROSS_TOOL == 'keil':
-    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/arm/startup_stm32h7s7xx.s']
+    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/arm/startup_stm32h7r7xx.s']
 elif rtconfig.CROSS_TOOL == 'iar':
-    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/iar/startup_stm32h7s7xx.s']
+    src += [cwd + '/../../libraries/CMSIS/Device/ST/STM32H7RSxx/Source/Templates/iar/startup_stm32h7r7xx.s']
 
 if GetDepend(['RT_USING_SERIAL']):
     src += ['Src/stm32h7rsxx_hal_uart.c']
