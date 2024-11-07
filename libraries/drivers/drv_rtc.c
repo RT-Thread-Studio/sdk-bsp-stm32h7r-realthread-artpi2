@@ -29,12 +29,12 @@
 
 static RTC_HandleTypeDef RTC_Handler;
 
-RT_WEAK uint32_t HAL_RTCEx_BKUPRead(RTC_HandleTypeDef *hrtc, uint32_t BackupRegister)
+rt_weak uint32_t HAL_RTCEx_BKUPRead(const RTC_HandleTypeDef *hrtc, uint32_t BackupRegister)
 {
     return (~BKUP_REG_DATA);
 }
 
-RT_WEAK void HAL_RTCEx_BKUPWrite(RTC_HandleTypeDef *hrtc, uint32_t BackupRegister, uint32_t Data)
+rt_weak void HAL_RTCEx_BKUPWrite(const RTC_HandleTypeDef *hrtc, uint32_t BackupRegister, uint32_t Data)
 {
     return;
 }
@@ -57,7 +57,7 @@ static rt_err_t stm32_rtc_get_timeval(struct timeval *tv)
 
     tv->tv_sec = timegm(&tm_new);
 
-#if defined(SOC_SERIES_STM32H7)
+#if defined(SOC_SERIES_STM32H7) || defined(SOC_SERIES_STM32H7RS)
     tv->tv_usec = (255.0 - RTC_TimeStruct.SubSeconds * 1.0) / 256.0 * 1000.0 * 1000.0;
 #endif
 
@@ -180,7 +180,8 @@ static rt_err_t rt_rtc_config(void)
         RTC_Handler.Init.OutPut = RTC_OUTPUT_DISABLE;
         RTC_Handler.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
         RTC_Handler.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-#elif defined(SOC_SERIES_STM32F2) || defined(SOC_SERIES_STM32F4) || defined(SOC_SERIES_STM32F7) || defined(SOC_SERIES_STM32L4) || defined(SOC_SERIES_STM32WL) || defined(SOC_SERIES_STM32H7) || defined (SOC_SERIES_STM32WB)
+#elif defined(SOC_SERIES_STM32F2) || defined(SOC_SERIES_STM32F4) || defined(SOC_SERIES_STM32F7) || defined(SOC_SERIES_STM32L4) \
+      || defined(SOC_SERIES_STM32WL) || defined(SOC_SERIES_STM32H7) || defined(SOC_SERIES_STM32H7RS) || defined (SOC_SERIES_STM32WB)
 
         /* set the frequency division */
 #ifdef BSP_RTC_USING_LSI
@@ -213,7 +214,7 @@ static rt_err_t rt_rtc_config(void)
 
 static rt_err_t stm32_rtc_init(void)
 {
-#if !defined(SOC_SERIES_STM32H7) && !defined(SOC_SERIES_STM32WL) && !defined(SOC_SERIES_STM32WB)
+#if !defined(SOC_SERIES_STM32H7) && !defined(SOC_SERIES_STM32H7RS) && !defined(SOC_SERIES_STM32WL) && !defined(SOC_SERIES_STM32WB)
     __HAL_RCC_PWR_CLK_ENABLE();
 #endif
 
@@ -226,13 +227,25 @@ RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI1;
     RCC_OscInitStruct.LSIState = RCC_LSI_ON;
 #else
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+#if !defined(SOC_SERIES_STM32H7RS)
+	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+#else // H7RS profiles
+    RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
+#endif
     RCC_OscInitStruct.LSEState = RCC_LSE_OFF;
     RCC_OscInitStruct.LSIState = RCC_LSI_ON;
 #endif
 #else
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+#if !defined(SOC_SERIES_STM32H7RS)
+	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+#else // H7RS profiles
+    RCC_OscInitStruct.PLL1.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
+#endif
     RCC_OscInitStruct.LSEState = RCC_LSE_ON;
     RCC_OscInitStruct.LSIState = RCC_LSI_OFF;
 #endif

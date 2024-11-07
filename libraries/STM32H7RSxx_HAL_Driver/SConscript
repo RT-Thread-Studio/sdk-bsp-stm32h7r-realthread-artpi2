@@ -78,9 +78,9 @@ if GetDepend(['RT_USING_SDIO']):
 #    src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c']
 #    src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c']
 
-# if GetDepend(['RT_USING_RTC']):
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c']
+if GetDepend(['RT_USING_RTC']):
+    src += ['Src/stm32h7rsxx_hal_rtc.c']
+    src += ['Src/stm32h7rsxx_hal_rtc_ex.c']
 
 # if GetDepend(['RT_USING_WDT']):
 #     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c']
