@@ -5,6 +5,8 @@
 #ifndef __BTSTACK_CONFIG
 #define __BTSTACK_CONFIG
 
+#include <rtconfig.h>
+
 // Port related features
 #define HAVE_MALLOC
 #define HAVE_POSIX_FILE_IO

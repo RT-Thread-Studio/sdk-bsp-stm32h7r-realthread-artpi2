@@ -242,7 +242,7 @@ static int btstack_uart_posix_set_baudrate(uint32_t baudrate){
 #ifdef B3500000
         case 3500000: brate=B3500000; break;
 #endif
-#ifdef B400000
+#ifdef B4000000
         case 4000000: brate=B4000000; break;
 #endif
         default:
@@ -369,7 +369,7 @@ static int btstack_uart_posix_open(void){
     btstack_run_loop_add_data_source(&transport_data_source);
 
     // wait a bit - at least cheap FTDI232 clones might send the first byte out incorrectly
-    rt_thread_mdelay(100);
+    usleep(100 * 1000);
 
     return 0;
 } 

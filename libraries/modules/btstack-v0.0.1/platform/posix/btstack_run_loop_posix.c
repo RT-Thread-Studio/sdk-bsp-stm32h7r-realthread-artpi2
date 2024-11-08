@@ -44,7 +44,9 @@
  */
 
 // enable POSIX functions (needed for -std=c99)
+#ifndef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200809
+#endif
 
 #include "btstack_run_loop_posix.h"
 
@@ -58,7 +60,11 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
+#if RT_VER_NUM <= 0x40003
+#include <dfs_select.h>
+#else
 #include <sys/select.h>
+#endif
 #include <unistd.h>
 
 static void btstack_run_loop_posix_dump_timer(void);

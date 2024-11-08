@@ -11,7 +11,13 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <board.h>
+#if RT_VER_NUM <= 0x40003
 #include <dfs_posix.h>
+#else
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#endif
 
 
 /* defined the LED2 pin: PB7 */

@@ -66,13 +66,14 @@ typedef struct tlv_entry {
 
 static int btstack_tlv_posix_append_tag(btstack_tlv_posix_t * self, uint32_t tag, const uint8_t * data, uint32_t data_size){
 
-	if (!self->file) return 1;
+	if ((self->file = fopen(self->db_path,"a+")) == 0) return 1;
 
 	log_info("append tag %04x, len %u", tag, data_size);
 
 	uint8_t header[8];
 	big_endian_store_32(header, 0, tag);
 	big_endian_store_32(header, 4, data_size);
+
 	size_t written_header = fwrite(header, 1, sizeof(header), self->file);
 	if (written_header != sizeof(header)) return 1;
 	if (data_size > 0) {
@@ -80,6 +81,7 @@ static int btstack_tlv_posix_append_tag(btstack_tlv_posix_t * self, uint32_t tag
 		if (written_value != data_size) return 1;
 	}
 	fflush(self->file);
+	fclose(self->file);
 	return 1;
 }
 
@@ -225,16 +227,17 @@ static int btstack_tlv_posix_read_db(btstack_tlv_posix_t * self){
 	    }
 	    if (!file_valid) {
 	    	log_info("file invalid, re-create");
-    		fclose(self->file);
     		self->file = NULL;
 	    }
+        fclose(self->file);
     }
     if (!self->file){
     	// create truncate file
 	    self->file = fopen(self->db_path,"w+");
 	    memset(header, 0, sizeof(header));
-	    strcpy((char *)header, btstack_tlv_header_magic);
+	    strncpy((char *)header, btstack_tlv_header_magic, sizeof(header));
 	    fwrite(header, 1, sizeof(header), self->file);
+        fclose(self->file);
 	    // write out all valid entries (if any)
 		btstack_linked_list_iterator_t it;
 		btstack_linked_list_iterator_init(&it, &self->entry_list);
