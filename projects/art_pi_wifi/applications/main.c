@@ -11,6 +11,7 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include "drv_common.h"
+#include "bt_module.h"
 
 #define LED_PIN GET_PIN(O, 5)
 
@@ -19,7 +20,7 @@ int main(void)
     rt_uint32_t count = 1;
 
     rt_pin_mode(LED_PIN, PIN_MODE_OUTPUT);
-
+    bluetooth_init();
     while(count++)
     {
         rt_thread_mdelay(500);

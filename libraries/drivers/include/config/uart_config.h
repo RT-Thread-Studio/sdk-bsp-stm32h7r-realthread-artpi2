@@ -242,8 +242,6 @@ extern "C" {
         .name = "uart7",                                            \
         .Instance = UART7,                                          \
         .irq_type = UART7_IRQn,                                     \
-        .tx_pin_name = BSP_UART7_TX_PIN,                            \
-        .rx_pin_name = BSP_UART7_RX_PIN,                            \
     }
 #endif /* UART7_CONFIG */
 

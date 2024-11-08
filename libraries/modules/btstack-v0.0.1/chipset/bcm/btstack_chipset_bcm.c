@@ -48,8 +48,8 @@
 #include <stddef.h>   /* NULL */
 #include <stdio.h> 
 #include <string.h>   /* memcpy */
-#include <rt_ota.h>
-#include <fal.h>
+//#include <rt_ota.h>
+//#include <fal.h>
 
 #include "btstack_control.h"
 #include "btstack_debug.h"
@@ -58,10 +58,13 @@
 
 #ifdef HAVE_POSIX_FILE_IO
 #include <ctype.h>
+#if RT_VER_NUM <= 0x40003
 #include <dfs_posix.h>
-#include <dirent.h>
+#else
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <unistd.h>
+#endif
 #endif
 
 #ifdef _WIN32
@@ -129,14 +132,15 @@ static const uint8_t download_command[] = {0x2e, 0xfc, 0x00};
 static btstack_chipset_result_t chipset_next_command(uint8_t * hci_cmd_buffer){
     static int hcd_file_length;
     if (hcd_fd < 0){
-        const struct fal_partition *hcd_part = fal_partition_find("bt_image");
+//        const struct fal_partition *hcd_part = fal_partition_find("bt_image");
         log_info("chipset-bcm: hcd_file_path open file %s", hcd_file_path);
         hcd_fd = open(hcd_file_path, O_RDONLY);
         if (hcd_fd < 0){
             log_error("chipset-bcm: can't open file %s", hcd_file_path);
             return BTSTACK_CHIPSET_NO_INIT_SCRIPT;
         }
-        hcd_file_length = rt_ota_get_raw_fw_size(hcd_part);
+//        hcd_file_length = rt_ota_get_raw_fw_size(hcd_part);
+       hcd_file_length = 33376;
         if(hcd_file_path <= 0){
              return BTSTACK_CHIPSET_NO_INIT_SCRIPT;
         }

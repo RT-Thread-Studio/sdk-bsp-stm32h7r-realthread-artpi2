@@ -172,14 +172,14 @@ void bt_stack_main(void *param)
     btstack_run_loop_init(btstack_run_loop_posix_get_instance());
 
     // pick serial port and configure uart block driver
-    transport_config.device_name = "/dev/uart3"; // RedBear IoT pHAT breakout board
+    transport_config.device_name = "/dev/uart7"; // RedBear IoT pHAT breakout board
 
     // get BCM chipset driver
     const btstack_chipset_t *chipset = btstack_chipset_bcm_instance();
     chipset->init(&transport_config);
 
     // set chipset name
-    btstack_chipset_bcm_set_device_name("/dev/bt_image");
+    btstack_chipset_bcm_set_device_name("/sdcard/BCM43430A1.hcd");
 
     // setup UART driver
     const btstack_uart_block_t *uart_driver = btstack_uart_block_posix_instance();
@@ -190,13 +190,13 @@ void bt_stack_main(void *param)
     uart_config.device_name = transport_config.device_name;
     uart_driver->init(&uart_config);
 
-#define BT_AP6212_PIN GET_PIN(I, 11)
+#define BT_AP6212_PIN GET_PIN(M, 3)
     rt_pin_mode(BT_AP6212_PIN, PIN_MODE_OUTPUT);
 
     rt_pin_write(BT_AP6212_PIN, PIN_LOW);
-    HAL_Delay(1000);
+    rt_thread_mdelay(1000);
     rt_pin_write(BT_AP6212_PIN, PIN_HIGH);
-    HAL_Delay(1000);
+    rt_thread_mdelay(1000);
 
     // setup HCI (to be able to use bcm chipset driver)
     // init HCI
