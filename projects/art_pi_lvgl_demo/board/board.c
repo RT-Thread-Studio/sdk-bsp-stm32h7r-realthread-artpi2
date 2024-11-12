@@ -61,6 +61,19 @@ void rt_hw_board_init()
     extern void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq);
     extern int mpu_init(void);
     mpu_init();
+    SCB_EnableICache();
+    SCB_EnableDCache();
+#ifdef SCB_EnableICache
+    /* Enable I-Cache---------------------------------------------------------*/
+    SCB_EnableICache();
+#endif
+
+#ifdef SCB_EnableDCache
+    /* Enable D-Cache---------------------------------------------------------*/
+    SCB_EnableDCache();
+#endif
+
+    hw_board_init(BSP_CLOCK_SOURCE, BSP_CLOCK_SOURCE_FREQ_MHZ, BSP_CLOCK_SYSTEM_FREQ_MHZ);
     /* Heap initialization */
 #if defined(RT_USING_HEAP)
     rt_system_heap_init((void *) HEAP_BEGIN, (void *) HEAP_END);
@@ -69,7 +82,6 @@ void rt_hw_board_init()
        /* If RT_USING_MEMHEAP_AS_HEAP is enabled, PSRAM is initialized to the heap */
        rt_memheap_init(&system_heap, "psram", (void *)PSRAM_BANK_ADDR, PSRAM_SIZE);
 #endif
-    hw_board_init(BSP_CLOCK_SOURCE, BSP_CLOCK_SOURCE_FREQ_MHZ, BSP_CLOCK_SYSTEM_FREQ_MHZ);
 
     /* Set the shell console output device */
 #if defined(RT_USING_DEVICE) && defined(RT_USING_CONSOLE)

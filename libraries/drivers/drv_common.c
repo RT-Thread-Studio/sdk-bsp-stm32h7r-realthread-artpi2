@@ -105,9 +105,6 @@ void rt_hw_us_delay(rt_uint32_t us)
     } while(delta < us_tick * us);
 }
 
-//#define SCB_EnableICache
-//#define SCB_EnableDCache
-
 /**
  * This function will initial STM32 board.
  */
@@ -116,16 +113,8 @@ void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target
     extern void rt_hw_systick_init(void);
     extern void clk_init(char *clk_source, int source_freq, int target_freq);
 
-#ifdef SCB_EnableICache
-    /* Enable I-Cache---------------------------------------------------------*/
-    SCB_EnableICache();
-#endif
-
-#ifdef SCB_EnableDCache
-    /* Enable D-Cache---------------------------------------------------------*/
-    SCB_EnableDCache();
-#endif
-
+    /* Update SystemCoreClock variable according to RCC registers values. */
+    SystemCoreClockUpdate();
     /* HAL_Init() function is called at the beginning of the program */
     HAL_Init();
 

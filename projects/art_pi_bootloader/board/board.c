@@ -48,9 +48,9 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL1.PLLT = 2;
   RCC_OscInitStruct.PLL1.PLLFractional = 0;
   RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSE; //146Mhz: 4,73,2,2,2,3,2
   RCC_OscInitStruct.PLL2.PLLM = 3;
-  RCC_OscInitStruct.PLL2.PLLN = 50; //166:83 //133: 67
+  RCC_OscInitStruct.PLL2.PLLN = 50;
   RCC_OscInitStruct.PLL2.PLLP = 2;
   RCC_OscInitStruct.PLL2.PLLQ = 2;
   RCC_OscInitStruct.PLL2.PLLR = 2;
@@ -58,9 +58,9 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL2.PLLT = 2;
   RCC_OscInitStruct.PLL2.PLLFractional = 0;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLLSOURCE_HSE; //454*454: 62-60hz
   RCC_OscInitStruct.PLL3.PLLM = 4;
-  RCC_OscInitStruct.PLL3.PLLN = 132; //33.000Mhz
+  RCC_OscInitStruct.PLL3.PLLN = 62; //33.000Mhz;(62:60hz)
   RCC_OscInitStruct.PLL3.PLLP = 2;
   RCC_OscInitStruct.PLL3.PLLQ = 24;
   RCC_OscInitStruct.PLL3.PLLR = 24;
@@ -120,39 +120,52 @@ void clk_init(char *clk_source, int source_freq, int target_freq)
     HAL_MspInit();
     SystemClock_Config();
 }
-
-/**
-  * @brief  This function sets up the default MPU configuration with a background region
-  *         preventing any accesses to sub-regions 0x60000000-0x7FFFFFFF, 0x80000000-0x9FFFFFFF
-  *         and 0xC0000000-0xDFFFFFFF
-  * @note : This action is strongly recommended to avoid any issue with speculative read access
-  *         on the external memory area
-  * @retval None
-  */
 static void MPU_Config(void)
 {
-  /* Configure the MMU to avoid any issue relative to speculative access */
-  MPU_Region_InitTypeDef default_config = {
-    .Enable = MPU_REGION_ENABLE,
-    .Number = MPU_REGION_NUMBER0,
-    .BaseAddress = 0,
-    .Size = MPU_REGION_SIZE_4GB,
-    .SubRegionDisable = 0xA7,
-    .TypeExtField = MPU_TEX_LEVEL0,
-    .AccessPermission = MPU_REGION_NO_ACCESS,
-    .DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE,
-    .IsShareable = MPU_ACCESS_SHAREABLE,
-    .IsCacheable = MPU_ACCESS_NOT_CACHEABLE,
-    .IsBufferable = MPU_ACCESS_NOT_BUFFERABLE
-  };
+  MPU_Region_InitTypeDef MPU_InitStruct = {0};
 
-  /* Disable the MPU */
+  /* Disables the MPU */
   HAL_MPU_Disable();
 
-  /* Set a global region to avoid any speculative access issue */
-  HAL_MPU_ConfigRegion(&default_config);
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+  MPU_InitStruct.BaseAddress = 0x0;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
+  MPU_InitStruct.SubRegionDisable = 0x87;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+  MPU_InitStruct.AccessPermission = MPU_REGION_NO_ACCESS;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
+  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
 
-  /* Enable the MPU */
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.BaseAddress = 0x90000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_32MB;
+  MPU_InitStruct.SubRegionDisable = 0x0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+  MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER2;
+  MPU_InitStruct.BaseAddress = 0x70000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_128MB;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+  /* Enables the MPU */
   HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 }
@@ -160,8 +173,13 @@ static void MPU_Config(void)
 void rt_hw_board_init()
 {
     extern void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq);
-
     MPU_Config();
+    /* Enable I-Cache---------------------------------------------------------*/
+    SCB_EnableICache();
+
+    /* Enable D-Cache---------------------------------------------------------*/
+    SCB_EnableDCache();
+
     /* Heap initialization */
 #if defined(RT_USING_HEAP)
     rt_system_heap_init((void *) HEAP_BEGIN, (void *) HEAP_END);
