@@ -1,4 +1,4 @@
-name: STM32H750-ART-Pi
+name: STM32H7R-ART-Pi2
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
