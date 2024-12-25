@@ -1,17 +1,12 @@
 [
  {
-  "path": "/packages/multimedia/LVGL/LVGL", 
-  "ver": "v8.3.11", 
-  "name": "LVGL"
- }, 
+  "name": "LVGL",
+  "path": "/packages/multimedia/LVGL/LVGL",
+  "ver": "latest"
+ },
  {
-  "path": "/packages/multimedia/LVGL/lv_music_demo", 
-  "ver": "v0.3.4", 
-  "name": "LV_MUSIC_DEMO"
- }, 
- {
-  "path": "/packages/peripherals/touch/gt9147", 
-  "ver": "v1.1.0", 
-  "name": "GT9147"
+  "name": "GT9147",
+  "path": "/packages/peripherals/touch/gt9147",
+  "ver": "v1.1.0"
  }
 ]

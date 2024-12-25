@@ -18,7 +18,7 @@
 #include <rtdbg.h>
 
 #if defined (RT_USING_MEMHEAP_AS_HEAP)
-    static struct rt_memheap system_heap;
+    struct rt_memheap system_heap;
     #define PSRAM_BANK_ADDR                 ((uint32_t)0X90000000)
     #define PSRAM_SIZE                      ((uint32_t)0x2000000)   // 32MB
 #endif /* RT_USING_MEMHEAP_AS_HEAP */

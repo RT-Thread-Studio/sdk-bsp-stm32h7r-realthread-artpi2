@@ -72,7 +72,7 @@ void lv_port_indev_input(rt_int16_t x, rt_int16_t y, lv_indev_state_t state)
     last_y = y;
 }
 
-static void touchpad_read(lv_indev_drv_t *indev, lv_indev_data_t *data)
+static void touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
 {
 #ifdef BSP_USING_ILI9488
     /*`touchpad_is_pressed` and `touchpad_get_xy` needs to be implemented by you*/
@@ -154,14 +154,8 @@ rt_err_t rt_hw_gt9147_register(void)
 lv_indev_t * touch_indev;
 
 void lv_port_indev_init(void)
-{
-    static lv_indev_drv_t indev_drv; /* Descriptor of a input device driver */
-    lv_indev_drv_init(&indev_drv); /* Basic initialization */
-    indev_drv.type = LV_INDEV_TYPE_POINTER; /* Touch pad is a pointer-like device */
-    indev_drv.read_cb = touchpad_read; /* Set your driver function */
-
-    /* Register the driver in LVGL and save the created input device object */
-    touch_indev = lv_indev_drv_register(&indev_drv);
+{   
+    lv_indev_t *indev_touchpad;
 #ifdef BSP_USING_ILI9488
     /* Register touch device */
     rt_hw_ft6236_register();
@@ -169,4 +163,8 @@ void lv_port_indev_init(void)
     /* Register touch device */
     rt_hw_gt9147_register();
 #endif
+    /*Register a touchpad input device*/
+    indev_touchpad = lv_indev_create();
+    lv_indev_set_type(indev_touchpad, LV_INDEV_TYPE_POINTER);
+    lv_indev_set_read_cb(indev_touchpad, touchpad_read);
 }
