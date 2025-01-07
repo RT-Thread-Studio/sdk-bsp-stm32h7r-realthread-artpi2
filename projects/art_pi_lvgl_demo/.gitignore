@@ -35,3 +35,4 @@ DebugConfig/
 RTE/
 settings/
 *.uvguix*
+/makefile.targets
