@@ -74,7 +74,7 @@ template_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_blink_led
+  - source_path_offset: projects/art_pi2_blink_led
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -100,7 +100,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_blink_led
+  - source_path_offset: projects/art_pi2_blink_led
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -125,7 +125,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_bootloader
+  - source_path_offset: projects/art_pi2_bootloader
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -150,7 +150,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_lvgl_demo
+  - source_path_offset: projects/art_pi2_lvgl_demo
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -175,7 +175,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_sdcard
+  - source_path_offset: projects/art_pi2_sdcard
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -196,7 +196,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_uf2
+  - source_path_offset: projects/art_pi2_uf2
     target_path_offset: ''
     files_and_folders:
     - "*"
@@ -221,7 +221,7 @@ example_projects:
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/art_pi_wifi
+  - source_path_offset: projects/art_pi2_wifi
     target_path_offset: ''
     files_and_folders:
     - "*"
