@@ -7,7 +7,7 @@
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doHalt" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doReset" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.erase" value=""/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoader" value="${workspace_loc:/${ProjName}/board/stldr/ART-Pi_W25Q64.stldr}"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoader" value="${workspace_loc:/${ProjName}/board/stldr/ART-Pi2_ST_winbond_64MB.stldr}"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoaderButton" value="true"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.flashVerify" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageFileName" value=""/>
