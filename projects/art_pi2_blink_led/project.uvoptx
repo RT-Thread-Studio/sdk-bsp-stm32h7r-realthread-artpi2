@@ -73,7 +73,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
@@ -103,7 +103,7 @@
         <bEvRecOn>1</bEvRecOn>
         <bSchkAxf>0</bSchkAxf>
         <bTchkAxf>0</bTchkAxf>
-        <nTsel>4</nTsel>
+        <nTsel>6</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -114,9 +114,14 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>Segger\JL2CM3.dll</pMon>
+        <pMon>STLink\ST-LINKIII-KEIL_SWO.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ST-LINKIII-KEIL_SWO</Key>
+          <Name>-U0672FF363658393143205347 -O206 -SF5000 -C0 -A1 -I0 -HNlocalhost -HP7184 -P1 -N00("") -D00(00000000) -L00(0) -TO131090 -TC10000000 -TT10000000 -TP21 -TDS8000 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FCFFFC -FN2 -FF0STM32H7Rx_64k.FLM -FS08000000 -FL010000 -FP0($$Device:STM32H7S7L8Hx$CMSIS\Flash\STM32H7Rx_64k.FLM) -FF1ART-Pi2_winbond_64MB -FS170000000 -FL14000000 -WA0 -WE0 -WVCE4 -WS2710 -WM0 -WP2</Name>
+        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
@@ -173,7 +178,7 @@
       <pMultCmdsp></pMultCmdsp>
       <DebugDescription>
         <Enable>1</Enable>
-        <EnableFlashSeq>1</EnableFlashSeq>
+        <EnableFlashSeq>0</EnableFlashSeq>
         <EnableLog>0</EnableLog>
         <Protocol>2</Protocol>
         <DbgClock>5000000</DbgClock>
@@ -738,8 +743,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rt-thread\components\finsh\msh.c</PathWithFileName>
-      <FilenameWithoutPath>msh.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh_parse.c</PathWithFileName>
+      <FilenameWithoutPath>msh_parse.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -750,8 +755,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rt-thread\components\finsh\msh_parse.c</PathWithFileName>
-      <FilenameWithoutPath>msh_parse.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\rt-thread\components\finsh\cmd.c</PathWithFileName>
+      <FilenameWithoutPath>cmd.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -762,8 +767,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rt-thread\components\finsh\msh_file.c</PathWithFileName>
-      <FilenameWithoutPath>msh_file.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh.c</PathWithFileName>
+      <FilenameWithoutPath>msh.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -786,8 +791,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rt-thread\components\finsh\cmd.c</PathWithFileName>
-      <FilenameWithoutPath>cmd.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh_file.c</PathWithFileName>
+      <FilenameWithoutPath>msh_file.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1062,20 +1067,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_flash.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_rng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
       <FileNumber>69</FileNumber>
-      <FileType>2</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</PathWithFileName>
-      <FilenameWithoutPath>startup_stm32h7r7xx.s</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_pwr_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1086,8 +1091,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_dma.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_pwr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1098,8 +1103,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_adc.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1110,8 +1115,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_cec.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1122,8 +1127,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_flash_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</PathWithFileName>
+      <FilenameWithoutPath>system_stm32h7rsxx.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1146,8 +1151,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_gpio.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_sram.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1158,14 +1163,26 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_crc.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_cortex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
       <FileNumber>77</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_adc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>78</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1177,67 +1194,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>78</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_pwr.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
       <FileNumber>79</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_pwr_ex.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>80</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_xspi.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>81</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_rcc_ex.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>82</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_usart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>83</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1249,31 +1206,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>84</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_uart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>85</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_cryp.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>86</FileNumber>
+      <FileNumber>80</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1285,19 +1218,31 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>87</FileNumber>
+      <FileNumber>81</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_spi.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_cryp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>88</FileNumber>
+      <FileNumber>82</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_gpio.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>83</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1309,55 +1254,43 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>89</FileNumber>
+      <FileNumber>84</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</PathWithFileName>
-      <FilenameWithoutPath>system_stm32h7rsxx.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_cec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>90</FileNumber>
+      <FileNumber>85</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_rng.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>91</FileNumber>
+      <FileNumber>86</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_sram.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_rcc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>92</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>9</GroupNumber>
-      <FileNumber>93</FileNumber>
+      <FileNumber>87</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -1369,13 +1302,85 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
+      <FileNumber>88</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_flash.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>89</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_flash_ex.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>90</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_crc.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>91</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_dma.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>92</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</PathWithFileName>
+      <FilenameWithoutPath>startup_stm32h7r7xx.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>93</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_uart.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
       <FileNumber>94</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32h7rsxx_hal_cortex.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</PathWithFileName>
+      <FilenameWithoutPath>stm32h7rsxx_hal_xspi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

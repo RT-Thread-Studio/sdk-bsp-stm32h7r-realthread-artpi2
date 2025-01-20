@@ -338,9 +338,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>__RTTHREAD__, RT_USING_ARMLIBC, __STDC_LIMIT_MACROS, __CLK_TCK=RT_TICK_PER_SECOND, RT_USING_LIBC, STM32H7S7xx, USE_HAL_DRIVER</Define>
+              <Define>RT_USING_LIBC, RT_USING_ARMLIBC, __RTTHREAD__, __CLK_TCK=RT_TICK_PER_SECOND, __STDC_LIMIT_MACROS, USE_HAL_DRIVER, STM32H7S7xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\posix\ipc;..\..\libraries\bsp_components\w35t51nwtbie;..\..\libraries\CMSIS\Include;..\..\rt-thread\components\libc\compilers\common\extension;..\..\rt-thread\components\libc\posix\io\poll;..\..\rt-thread\components\drivers\include;.;..\..\rt-thread\libcpu\arm\cortex-m7;..\..\libraries\drivers\include\config;..\..\rt-thread\components\drivers\include;..\..\libraries\bsp_components;..\..\libraries\drivers;..\..\rt-thread\components\libc\compilers\common\include;..\..\rt-thread\include;..\..\rt-thread\components\finsh;..\..\rt-thread\components\libc\posix\io\eventfd;..\..\rt-thread\components\libc\posix\io\epoll;applications;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\spi;board\CubeMX_Config\Boot\Inc;..\..\rt-thread\libcpu\arm\common;..\..\libraries\drivers\include;board;..\..\libraries\bsp_components\aps256xx;..\..\libraries\STM32H7RSxx_HAL_Driver\Inc;..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Include;..\..\libraries\samples;..\..\rt-thread\components\libc\compilers\common\extension\fcntl\octal</IncludePath>
+              <IncludePath>..\..\libraries\bsp_components\aps256xx;.;..\..\libraries\drivers\include\config;..\..\libraries\bsp_components;..\..\rt-thread\components\libc\compilers\common\extension;..\..\rt-thread\components\drivers\spi;..\..\libraries\drivers;..\..\rt-thread\components\drivers\include;applications;..\..\rt-thread\include;..\..\rt-thread\components\libc\posix\io\poll;..\..\libraries\STM32H7RSxx_HAL_Driver\Inc;..\..\rt-thread\libcpu\arm\common;..\..\rt-thread\components\libc\posix\io\epoll;..\..\rt-thread\components\finsh;..\..\rt-thread\components\libc\compilers\common\extension\fcntl\octal;..\..\rt-thread\components\drivers\include;..\..\rt-thread\libcpu\arm\cortex-m7;..\..\libraries\samples;..\..\rt-thread\components\libc\posix\ipc;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;board;..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Include;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\compilers\common\include;..\..\libraries\drivers\include;..\..\rt-thread\components\libc\posix\io\eventfd;..\..\libraries\bsp_components\w35t51nwtbie;board\CubeMX_Config\Boot\Inc;..\..\libraries\CMSIS\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -385,14 +385,14 @@
           <GroupName>Applications</GroupName>
           <Files>
             <File>
-              <FileName>boot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\boot.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>boot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\boot.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1233,11 +1233,6 @@
               <FilePath>..\..\rt-thread\components\finsh\msh_parse.c</FilePath>
             </File>
             <File>
-              <FileName>cmd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\rt-thread\components\finsh\cmd.c</FilePath>
-            </File>
-            <File>
               <FileName>msh.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\rt-thread\components\finsh\msh.c</FilePath>
@@ -1246,6 +1241,11 @@
               <FileName>shell.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\rt-thread\components\finsh\shell.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\rt-thread\components\finsh\cmd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2128,14 +2128,14 @@
           <GroupName>Memory_XIP</GroupName>
           <Files>
             <File>
-              <FileName>aps256xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\bsp_components\aps256xx\aps256xx.c</FilePath>
-            </File>
-            <File>
               <FileName>w35t51nwtbie.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libraries\bsp_components\w35t51nwtbie\w35t51nwtbie.c</FilePath>
+            </File>
+            <File>
+              <FileName>aps256xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\bsp_components\aps256xx\aps256xx.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2148,44 +2148,9 @@
               <FilePath>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_pwr_ex.c</FileName>
+              <FileName>stm32h7rsxx_hal_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_sram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_uart_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_rng.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_cortex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_dma.c</FileName>
@@ -2193,19 +2158,9 @@
               <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_cryp_ex.c</FileName>
+              <FileName>stm32h7rsxx_hal_cryp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>startup_stm32h7r7xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_flash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_usart.c</FileName>
@@ -2213,24 +2168,14 @@
               <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_rcc.c</FileName>
+              <FileName>stm32h7rsxx_hal_pwr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_spi.c</FileName>
+              <FileName>stm32h7rsxx_hal_cryp_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_cec.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_crc.c</FileName>
@@ -2238,24 +2183,64 @@
               <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_cryp.c</FileName>
+              <FileName>stm32h7rsxx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_dma_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</FilePath>
+              <FileName>startup_stm32h7r7xx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_adc.c</FileName>
+              <FileName>stm32h7rsxx_hal_cortex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_rng.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_crc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_xspi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_flash_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal.c</FileName>
@@ -2268,14 +2253,29 @@
               <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_xspi.c</FileName>
+              <FileName>stm32h7rsxx_hal_pwr_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_pwr.c</FileName>
+              <FileName>stm32h7rsxx_hal_sram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_dma_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
             </File>
           </Files>
         </Group>
