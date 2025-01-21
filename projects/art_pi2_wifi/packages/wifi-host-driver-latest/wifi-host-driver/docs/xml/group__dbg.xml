@@ -1,0 +1,579 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.15">
+  <compounddef id="group__dbg" kind="group">
+    <compoundname>dbg</compoundname>
+    <title>WHD Wi-Fi Debug API</title>
+    <innerclass refid="structdeepsleep__cb__info" prot="public">deepsleep_cb_info</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group__dbg_1gaa23e41f2a17585bcfbefb603eda678dd" prot="public" static="no">
+        <type>void *(*</type>
+        <definition>typedef void*(* whd_ds_callback_t) (void *, char *, uint32_t)</definition>
+        <argsstring>)(void *, char *, uint32_t)</argsstring>
+        <name>whd_ds_callback_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1530" column="1" bodyfile="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" bodystart="1530" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__dbg_1ga368ff04c3bc3c82139e0a5028e29f358" prot="public" static="no">
+        <type>struct <ref refid="structdeepsleep__cb__info" kindref="compound">deepsleep_cb_info</ref></type>
+        <definition>typedef struct deepsleep_cb_info  deepsleep_cb_info_t</definition>
+        <argsstring></argsstring>
+        <name>deepsleep_cb_info_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1538" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__dbg_1ga11041df00c4388b377fa896c7d123463" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_get_wifi_version</definition>
+        <argsstring>(whd_interface_t ifp, char *version, uint8_t length)</argsstring>
+        <name>whd_wifi_get_wifi_version</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the WLAN firmware version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a buffer that version information will be written to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the buffer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1447" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga49dbde3a0df183dc760ff738bdaef24a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_get_clm_version</definition>
+        <argsstring>(whd_interface_t ifp, char *version, uint8_t length)</argsstring>
+        <name>whd_wifi_get_clm_version</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the WLAN CLM version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a buffer that version information will be written to </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>length</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Length of the buffer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1457" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga78c9ec3412e5473820e9730bfcf3bd98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_read_wlan_log</definition>
+        <argsstring>(whd_driver_t whd_drv, char *buffer, uint32_t buffer_size)</argsstring>
+        <name>whd_wifi_read_wlan_log</name>
+        <param>
+          <type><ref refid="whd_8h_1ac45015d82e65db891b463066873eca4f" kindref="member">whd_driver_t</ref></type>
+          <declname>whd_drv</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+<para>To print whd log information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>whd_drv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of the driver </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer to store read log results </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buffer_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Variable to store size of the buffer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1467" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga9cbe00c5f8ce33344ff24ee9ffa45b81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_print_whd_log</definition>
+        <argsstring>(whd_driver_t whd_drv)</argsstring>
+        <name>whd_wifi_print_whd_log</name>
+        <param>
+          <type><ref refid="whd_8h_1ac45015d82e65db891b463066873eca4f" kindref="member">whd_driver_t</ref></type>
+          <declname>whd_drv</declname>
+        </param>
+        <briefdescription>
+<para>To print whd log information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>whd_drv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of the driver</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1475" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1gac60179254bafbbe4a4685e41bb1f5141" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_network_get_ifidx_from_ifp</definition>
+        <argsstring>(whd_interface_t ifp, uint8_t *ifidx)</argsstring>
+        <name>whd_network_get_ifidx_from_ifp</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>ifidx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the ifidx from interface pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>ifidx is a unique value and be used to identify a instance of tcp/ip stack</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the whd_interface_t </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ifidx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to ifidx</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1485" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga4df626e2c65cf42ed1c0a6c9eeb2779e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_network_get_bsscfgidx_from_ifp</definition>
+        <argsstring>(whd_interface_t ifp, uint8_t *bsscfgidx)</argsstring>
+        <name>whd_network_get_bsscfgidx_from_ifp</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>bsscfgidx</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the bsscfgidx from interface pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Can be used to send IOCTL with requires bsscfgidx</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bsscfgidx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to bsscfgidx</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1496" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga956afe6388d2d06a1df75146ca6b2e54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_get_bss_info</definition>
+        <argsstring>(whd_interface_t ifp, wl_bss_info_t *bi)</argsstring>
+        <name>whd_wifi_get_bss_info</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type><ref refid="whd__types_8h_1a92c6377f96c792ee4d94bb36b7777ea6" kindref="member">wl_bss_info_t</ref> *</type>
+          <declname>bi</declname>
+        </param>
+        <briefdescription>
+<para>Retrives the bss info. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to the structure wl_bss_info_t</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1506" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga2dd26b0bfe26599da638e002d2002324" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_print_stats</definition>
+        <argsstring>(whd_driver_t whd_drv, whd_bool_t reset_after_print)</argsstring>
+        <name>whd_print_stats</name>
+        <param>
+          <type><ref refid="whd_8h_1ac45015d82e65db891b463066873eca4f" kindref="member">whd_driver_t</ref></type>
+          <declname>whd_drv</declname>
+        </param>
+        <param>
+          <type><ref refid="whd__types_8h_1a7cd94a03f2e7e6aab7217ed559c7a0ac" kindref="member">whd_bool_t</ref></type>
+          <declname>reset_after_print</declname>
+        </param>
+        <briefdescription>
+<para>Prints WHD stats. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>whd_drv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of the driver </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reset_after_print</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bool variable to decide if whd_stats to be reset</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1515" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga2b2d67fef2fa24fba58a00793a8ea2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_get_deepsleep_stats</definition>
+        <argsstring>(whd_driver_t whd_driver, char *buf, uint32_t buflen)</argsstring>
+        <name>whd_wifi_get_deepsleep_stats</name>
+        <param>
+          <type><ref refid="whd_8h_1ac45015d82e65db891b463066873eca4f" kindref="member">whd_driver_t</ref></type>
+          <declname>whd_driver</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>buflen</declname>
+        </param>
+        <briefdescription>
+<para>Fetches ulp statistics and fills the buffer with that data and executes deepsleep indication callback if application registers for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>whd_driver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Instance of whd driver </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to buffer to be filled with ulpstats data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buflen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer length of the above buffer should be between 2048 and 4096</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or Error code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1527" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga1bb177b65938fdcfe3ee543addd5e306" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_register_ds_callback</definition>
+        <argsstring>(whd_interface_t ifp, whd_ds_callback_t callback, void *ctx, char *buf, uint32_t buflen)</argsstring>
+        <name>whd_wifi_register_ds_callback</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>whd_ds_callback_t</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>buflen</declname>
+        </param>
+        <briefdescription>
+<para>Function to register callbacks to be executed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Callback api to be registered </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to context </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer to be filled with data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>buflen</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer length of the above buffer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or WHD_UNKNOWN_INTERFACE </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1550" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="group__dbg_1ga9d7550b21cacd2ab114227af0da1f65f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="whd__types_8h_1add62f4b5040a2451e23869d2f9e1ae05" kindref="member">whd_result_t</ref></type>
+        <definition>whd_result_t whd_wifi_deregister_ds_callback</definition>
+        <argsstring>(whd_interface_t ifp, whd_ds_callback_t callback)</argsstring>
+        <name>whd_wifi_deregister_ds_callback</name>
+        <param>
+          <type><ref refid="whd_8h_1a2e544c482ddbb690bbb95ce7174e79a0" kindref="member">whd_interface_t</ref></type>
+          <declname>ifp</declname>
+        </param>
+        <param>
+          <type>whd_ds_callback_t</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Function to unregister callbacks that are note needed to be executed anymore. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ifp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to handle instance of whd interface </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Callback api to be registered</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>WHD_SUCCESS or WHD_UNKNOWN_INTERFACE </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/ChuangJiaShy/Documents/01.SRC/repo/whd_mclass/whd/inc/whd_wifi_api.h" line="1559" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>WHD APIs which allows debugging like, printing whd log information, getting whd stats, etc. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
