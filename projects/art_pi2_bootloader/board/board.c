@@ -60,7 +60,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL3.PLLSource = RCC_PLLSOURCE_HSE; //454*454: 62--60hz, 800*480: 132--60hz
   RCC_OscInitStruct.PLL3.PLLM = 4;
-  RCC_OscInitStruct.PLL3.PLLN = 62;
+  RCC_OscInitStruct.PLL3.PLLN = 132;
   RCC_OscInitStruct.PLL3.PLLP = 4;  //4:44100 7:48000
   RCC_OscInitStruct.PLL3.PLLQ = 24;
   RCC_OscInitStruct.PLL3.PLLR = 24;

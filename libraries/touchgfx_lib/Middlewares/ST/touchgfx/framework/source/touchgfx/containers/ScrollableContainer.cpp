@@ -1,21 +1,21 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
-#include <touchgfx/containers/ScrollableContainer.hpp>
-#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/Application.hpp>
 #include <touchgfx/Color.hpp>
+#include <touchgfx/Drawable.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/Utils.hpp>
+#include <touchgfx/containers/ScrollableContainer.hpp>
 
 namespace touchgfx
 {
@@ -24,7 +24,8 @@ ScrollableContainer::ScrollableContainer()
       scrollbarPadding(0),
       scrollbarWidth(2),
       scrollbarAlpha(120),
-      scrollbarColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF)),
+      scrollbarColor(Color::getColorFromRGB(0xFF, 0xFF, 0xFF)),
+      maxVelocity(SCROLLBAR_MAX_VELOCITY),
       accelDirection(GestureEvent::SWIPE_HORIZONTAL),
       xSlider(0, 0, scrollbarColor, scrollbarAlpha),
       ySlider(0, 0, scrollbarColor, scrollbarAlpha),
@@ -54,13 +55,12 @@ ScrollableContainer::ScrollableContainer()
 {
     xSlider.setVisible(false);
     ySlider.setVisible(false);
-    maxVelocity = SCROLLBAR_MAX_VELOCITY;
     setTouchable(true);
 }
 
-void ScrollableContainer::handleClickEvent(const ClickEvent& evt)
+void ScrollableContainer::handleClickEvent(const ClickEvent& event)
 {
-    if (evt.getType() == ClickEvent::PRESSED)
+    if (event.getType() == ClickEvent::PRESSED)
     {
         isPressed = true;
 
@@ -72,60 +72,7 @@ void ScrollableContainer::handleClickEvent(const ClickEvent& evt)
             Application::getInstance()->unregisterTimerWidget(this);
         }
 
-        const int fingerSize = HAL::getInstance()->getFingerSize();
-        fingerAdjustmentX = 0;
-        fingerAdjustmentY = 0;
-
-        const int minimumDistance = 3;
-        if ((fingerSize - 1) >= minimumDistance)
-        {
-            pressedDrawable = 0;
-
-            const int maximumSquares = 3;
-            const int numberOfSquares = MIN(maximumSquares, (fingerSize - 1) / minimumDistance);
-            uint32_t bestDistance = 0xFFFFFFFF;
-            Drawable* last = 0;
-
-            Rect me(0, 0, getWidth(), getHeight());
-            Rect meAbs = me;
-            translateRectToAbsolute(meAbs);
-
-            for (int squareNumber = 1; squareNumber <= numberOfSquares; squareNumber++)
-            {
-                int distance = ((squareNumber * fingerSize) / numberOfSquares);
-                const int samplePoints[10][2] = { { 0, 0 }, { -1, -1 }, { 0, -1 }, { 1, -1 }, { -1, 0 }, { 0, 0 }, { 1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } };
-
-                for (int sampleIndex = squareNumber - 1; sampleIndex < 10; sampleIndex += 2)
-                {
-                    Drawable* d = 0;
-                    int16_t deltaX = samplePoints[sampleIndex][0] * distance;
-                    int16_t deltaY = samplePoints[sampleIndex][1] * distance;
-                    if (me.intersect(evt.getX() + deltaX, evt.getY() + deltaY))
-                    {
-                        Container::getLastChild(evt.getX() + deltaX, evt.getY() + deltaY, &d);
-                        if (d && d != last && d != this)
-                        {
-                            Rect absRect = d->getAbsoluteRect();
-                            int x = meAbs.x + evt.getX() - (absRect.x + (absRect.width / 2));
-                            int y = meAbs.y + evt.getY() - (absRect.y + (absRect.height / 2));
-                            uint32_t dist = x * x + y * y;
-                            if (dist < bestDistance)
-                            {
-                                last = d;
-                                bestDistance = dist;
-                                pressedDrawable = d;
-                                fingerAdjustmentX = deltaX;
-                                fingerAdjustmentY = deltaY;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            Container::getLastChild(evt.getX(), evt.getY(), &pressedDrawable);
-        }
+        getLastChildNear(event.getX(), event.getY(), &pressedDrawable, &fingerAdjustmentX, &fingerAdjustmentY);
 
         if (pressedDrawable == this)
         {
@@ -135,24 +82,26 @@ void ScrollableContainer::handleClickEvent(const ClickEvent& evt)
         if (pressedDrawable)
         {
             hasIssuedCancelEvent = false;
-            pressedX = evt.getX();
-            pressedY = evt.getY();
-            Rect r = pressedDrawable->getAbsoluteRect();
-            ClickEvent relative(evt.getType(), evt.getX() + rect.x + fingerAdjustmentX - r.x, evt.getY() + rect.y + fingerAdjustmentY - r.y);
+            pressedX = event.getX();
+            pressedY = event.getY();
+            const Rect r = pressedDrawable->getAbsoluteRect();
+            const Rect me = getAbsoluteRect();
+            const ClickEvent relative(event.getType(), event.getX() + fingerAdjustmentX - (r.x - me.x), event.getY() + fingerAdjustmentY - (r.y - me.y));
             pressedDrawable->handleClickEvent(relative);
             lastDraggableChild = pressedDrawable;
         }
     }
-    else if (evt.getType() == ClickEvent::CANCEL)
+    else if (event.getType() == ClickEvent::CANCEL)
     {
         return;
     }
-    else // if (evt.getType() == ClickEvent::RELEASED)
+    else // if (event.getType() == ClickEvent::RELEASED)
     {
         if (pressedDrawable)
         {
-            Rect r = pressedDrawable->getAbsoluteRect();
-            ClickEvent relative(evt.getType(), evt.getX() + rect.x + fingerAdjustmentX - r.x, evt.getY() + rect.y + fingerAdjustmentY - r.y);
+            const Rect r = pressedDrawable->getAbsoluteRect();
+            const Rect me = getAbsoluteRect();
+            const ClickEvent relative(event.getType(), event.getX() + fingerAdjustmentX - (r.x - me.x), event.getY() + fingerAdjustmentY - (r.y - me.y));
             pressedDrawable->handleClickEvent(relative);
         }
 
@@ -169,9 +118,9 @@ void ScrollableContainer::handleClickEvent(const ClickEvent& evt)
     invalidateScrollbars();
 }
 
-void ScrollableContainer::handleDragEvent(const DragEvent& evt)
+void ScrollableContainer::handleDragEvent(const DragEvent& event)
 {
-    DragEvent actualDrag = evt;
+    DragEvent actualDrag = event;
     bool acceptInitialScroll = false;
 
     bool canScrollX = false;
@@ -181,17 +130,18 @@ void ScrollableContainer::handleDragEvent(const DragEvent& evt)
     if ((pressedDrawable != 0) && (pressedDrawable != this))
     {
         // Also send this drag event to the appropriate child widget
-        Rect r = pressedDrawable->getAbsoluteRect();
-        int16_t oldX = evt.getOldX() + rect.x + fingerAdjustmentX - r.x;
-        int16_t oldY = evt.getOldY() + rect.y + fingerAdjustmentY - r.y;
-        int16_t newX = canScrollX ? oldX : evt.getNewX() + rect.x + fingerAdjustmentX - r.x;
-        int16_t newY = canScrollY ? oldY : evt.getNewY() + rect.y + fingerAdjustmentY - r.y;
+        const Rect r = pressedDrawable->getAbsoluteRect();
+        const Rect me = getAbsoluteRect();
+        const int16_t oldX = event.getOldX() + fingerAdjustmentX - (r.x - me.x);
+        const int16_t oldY = event.getOldY() + fingerAdjustmentY - (r.y - me.y);
+        const int16_t newX = canScrollX ? oldX : event.getNewX() + fingerAdjustmentX - (r.x - me.x);
+        const int16_t newY = canScrollY ? oldY : event.getNewY() + fingerAdjustmentY - (r.y - me.y);
 
         // but only in the direction(s) where the scrollable container itself
         // cannot scroll.
         if ((!canScrollX && newX != oldX) || (!canScrollY && newY != oldY))
         {
-            DragEvent relative(DragEvent::DRAGGED, oldX, oldY, newX, newY);
+            const DragEvent relative(DragEvent::DRAGGED, oldX, oldY, newX, newY);
             pressedDrawable->handleDragEvent(relative);
         }
     }
@@ -201,10 +151,10 @@ void ScrollableContainer::handleDragEvent(const DragEvent& evt)
     if (!isScrolling)
     {
         // Only consider the delta in directions that are actually scrollable.
-        // Note: Do not use the delta from received evt since that only reflects
+        // Note: Do not use the delta from received event since that only reflects
         // change since last drag. What we want to check here is if the total
         // delta from the point of click has now exceeded the threshold.
-        actualDrag = DragEvent(DragEvent::DRAGGED, pressedX + fingerAdjustmentX, pressedY + fingerAdjustmentY, evt.getNewX() + fingerAdjustmentX, evt.getNewY() + fingerAdjustmentY);
+        actualDrag = DragEvent(DragEvent::DRAGGED, pressedX + fingerAdjustmentX, pressedY + fingerAdjustmentY, event.getNewX() + fingerAdjustmentX, event.getNewY() + fingerAdjustmentY);
         if (canScrollX)
         {
             // Can scroll in X.
@@ -234,10 +184,10 @@ void ScrollableContainer::handleDragEvent(const DragEvent& evt)
             if (pressedDrawable && !hasIssuedCancelEvent)
             {
                 Drawable* child = 0;
-                Container::getLastChild(evt.getNewX() + fingerAdjustmentX, evt.getNewY() + fingerAdjustmentY, &child);
+                Container::getLastChild(event.getNewX() + fingerAdjustmentX, event.getNewY() + fingerAdjustmentY, &child);
                 if (pressedDrawable != child)
                 {
-                    ClickEvent ce(ClickEvent::CANCEL, 0, 0);
+                    const ClickEvent ce(ClickEvent::CANCEL, 0, 0);
                     pressedDrawable->handleClickEvent(ce);
                     hasIssuedCancelEvent = true;
                 }
@@ -249,7 +199,7 @@ void ScrollableContainer::handleDragEvent(const DragEvent& evt)
     // Send cancel events to child in focus
     if (pressedDrawable && !hasIssuedCancelEvent)
     {
-        ClickEvent ce(ClickEvent::CANCEL, 0, 0);
+        const ClickEvent ce(ClickEvent::CANCEL, 0, 0);
         pressedDrawable->handleClickEvent(ce);
         hasIssuedCancelEvent = true;
     }
@@ -312,16 +262,16 @@ void ScrollableContainer::handleDragEvent(const DragEvent& evt)
     doScroll(deltaX, deltaY);
 }
 
-void ScrollableContainer::handleGestureEvent(const GestureEvent& evt)
+void ScrollableContainer::handleGestureEvent(const GestureEvent& event)
 {
     bool canScrollX = false;
     bool canScrollY = false;
     isScrollableXY(canScrollX, canScrollY);
 
-    if ((canScrollX && (evt.getType() == GestureEvent::SWIPE_HORIZONTAL)) ||
-            (canScrollY && (evt.getType() == GestureEvent::SWIPE_VERTICAL)))
+    if ((canScrollX && (event.getType() == GestureEvent::SWIPE_HORIZONTAL)) ||
+        (canScrollY && (event.getType() == GestureEvent::SWIPE_VERTICAL)))
     {
-        int16_t velocityAbsolute = abs(evt.getVelocity());
+        int16_t velocityAbsolute = abs(event.getVelocity());
 
         // Ignore gestures with velocity lower than threshold
         if (velocityAbsolute < scrollThreshold)
@@ -330,22 +280,24 @@ void ScrollableContainer::handleGestureEvent(const GestureEvent& evt)
         }
 
         // Force velocity within limits
-        velocityAbsolute = MAX(MIN(velocityAbsolute, maxVelocity), SCROLLBAR_MIN_VELOCITY);
+        velocityAbsolute = MIN(velocityAbsolute, maxVelocity);
+        velocityAbsolute = MAX(velocityAbsolute, SCROLLBAR_MIN_VELOCITY);
 
         // Try to set some reasonable values for how long the resulting scroll should be, and how many ticks is should take
         scrollDuration = velocityAbsolute * scrollDurationSpeedup / scrollDurationSlowdown;
-        targetValue = ((evt.getVelocity() > 0) ? 1 : -1) * (velocityAbsolute - 4) * 72;
-        scrollDuration = MIN(scrollDuration, abs(targetValue));
+        targetValue = ((event.getVelocity() > 0) ? 1 : -1) * (velocityAbsolute - 4) * 72;
+        const int16_t distance = abs(targetValue);
+        scrollDuration = MIN(scrollDuration, distance);
 
         // Get ready to animate scroll: Initialize values
-        beginningValue = (evt.getType() == GestureEvent::SWIPE_VERTICAL) ? getContainedArea().y : getContainedArea().x;
+        beginningValue = (event.getType() == GestureEvent::SWIPE_VERTICAL) ? getContainedArea().y : getContainedArea().x;
         animate = true;
         Application::getInstance()->registerTimerWidget(this);
-        accelDirection = evt.getType();
+        accelDirection = event.getType();
 
         if (pressedDrawable && !hasIssuedCancelEvent)
         {
-            ClickEvent ce(ClickEvent::CANCEL, 0, 0);
+            const ClickEvent ce(ClickEvent::CANCEL, 0, 0);
             pressedDrawable->handleClickEvent(ce);
             hasIssuedCancelEvent = true;
         }
@@ -354,28 +306,28 @@ void ScrollableContainer::handleGestureEvent(const GestureEvent& evt)
 
 Rect ScrollableContainer::getXScrollbar() const
 {
-    Rect res(0, 0, 0, 0);
+    Rect res;
     if (scrollableX)
     {
-        Rect contained = getContainedArea();
+        const Rect contained = getContainedArea();
         const int scrollSpace = (scrollableY && (contained.height > rect.height)) ? (2 * scrollbarPadding + scrollbarWidth + SCROLLBAR_LINE) : 0;
 
         if (contained.width > rect.width)
         {
             int leftPadding = (-1 * contained.x * rect.width) / contained.width;
-            int rightPadding = ((contained.right() - rect.width) * rect.width) / contained.width;
-            const int startWidth = rect.width - 2 * scrollbarPadding - 2 * SCROLLBAR_LINE - scrollSpace;
+            const int rightPadding = ((contained.right() - rect.width) * rect.width) / contained.width;
+            const int startWidth = rect.width - (2 * scrollbarPadding + 2 * SCROLLBAR_LINE + scrollSpace);
             int width = startWidth;
             width -= (leftPadding + rightPadding);
             if (width < scrollbarWidth * 2)
             {
                 // If the contained area is very large, the scrollbar width may become zero or even negative.
-                int diff = scrollbarWidth * 2 - width;
+                const int diff = scrollbarWidth * 2 - width;
                 width = scrollbarWidth * 2; // Force scrollbar width to a minimum
                 // Distribute the deviation error based on current scrollbar X position (the amount subtracted from scrollbar xpos increases gradually).
                 leftPadding -= (diff * leftPadding) / startWidth;
             }
-            res = Rect(leftPadding + scrollbarPadding + SCROLLBAR_LINE, rect.height - scrollbarWidth - scrollbarPadding - SCROLLBAR_LINE, width, scrollbarWidth);
+            res = Rect(leftPadding + scrollbarPadding + SCROLLBAR_LINE, rect.height - (scrollbarWidth + scrollbarPadding + SCROLLBAR_LINE), width, scrollbarWidth);
         }
     }
     return res;
@@ -383,28 +335,28 @@ Rect ScrollableContainer::getXScrollbar() const
 
 Rect ScrollableContainer::getYScrollbar() const
 {
-    Rect res(0, 0, 0, 0);
+    Rect res;
     if (scrollableY)
     {
-        Rect contained = getContainedArea();
+        const Rect contained = getContainedArea();
         const int scrollSpace = (scrollableX && (contained.width > rect.width)) ? (2 * scrollbarPadding + scrollbarWidth + SCROLLBAR_LINE) : 0;
 
         if (contained.height > rect.height)
         {
             int topPadding = (-1 * contained.y * rect.height) / contained.height;
-            int bottomPadding = ((contained.bottom() - rect.height) * rect.height) / contained.height;
-            const int startHeight = rect.height - 2 * scrollbarPadding - 2 * SCROLLBAR_LINE - scrollSpace;
+            const int bottomPadding = ((contained.bottom() - rect.height) * rect.height) / contained.height;
+            const int startHeight = rect.height - (2 * scrollbarPadding + 2 * SCROLLBAR_LINE + scrollSpace);
             int height = startHeight;
             height -= (topPadding + bottomPadding);
             if (height < scrollbarWidth * 2)
             {
                 // If the contained area is very large, the scrollbar height may become zero or even negative.
-                int diff = scrollbarWidth * 2 - height;
+                const int diff = scrollbarWidth * 2 - height;
                 height = scrollbarWidth * 2; // Force scrollbar height to a minimum
                 // Distribute the deviation error based on current scrollbar Y position (the amount subtracted from scrollbar ypos increases gradually).
                 topPadding -= (diff * topPadding) / startHeight;
             }
-            res = Rect(rect.width - scrollbarWidth - scrollbarPadding - 2 * SCROLLBAR_LINE, topPadding + scrollbarPadding + SCROLLBAR_LINE, scrollbarWidth, height);
+            res = Rect(rect.width - (scrollbarWidth + scrollbarPadding + 2 * SCROLLBAR_LINE), topPadding + scrollbarPadding + SCROLLBAR_LINE, scrollbarWidth, height);
         }
     }
     return res;
@@ -412,35 +364,35 @@ Rect ScrollableContainer::getYScrollbar() const
 
 Rect ScrollableContainer::getXBorder(const Rect& xBar, const Rect& yBar) const
 {
-    Rect border(0, 0, 0, 0);
+    Rect border;
     if (!xBar.isEmpty())
     {
         const int scrollSpace = (!yBar.isEmpty()) ? (2 * scrollbarPadding + scrollbarWidth + SCROLLBAR_LINE) : 0;
-        border = Rect(scrollbarPadding, xBar.y - SCROLLBAR_LINE, rect.width - 2 * scrollbarPadding - scrollSpace, scrollbarWidth + 2 * SCROLLBAR_LINE);
+        border = Rect(scrollbarPadding, xBar.y - SCROLLBAR_LINE, rect.width - (2 * scrollbarPadding + scrollSpace), scrollbarWidth + 2 * SCROLLBAR_LINE);
     }
     return border;
 }
 
 Rect ScrollableContainer::getYBorder(const Rect& xBar, const Rect& yBar) const
 {
-    Rect border(0, 0, 0, 0);
+    Rect border;
     if (!yBar.isEmpty())
     {
         const int scrollSpace = (!xBar.isEmpty()) ? (2 * scrollbarPadding + scrollbarWidth + SCROLLBAR_LINE) : 0;
-        border = Rect(yBar.x - SCROLLBAR_LINE, scrollbarPadding, scrollbarWidth + 2 * SCROLLBAR_LINE, rect.height - 2 * scrollbarPadding - scrollSpace);
+        border = Rect(yBar.x - SCROLLBAR_LINE, scrollbarPadding, scrollbarWidth + 2 * SCROLLBAR_LINE, rect.height - (2 * scrollbarPadding + scrollSpace));
     }
     return border;
 }
 
 void ScrollableContainer::invalidateScrollbars()
 {
-    Rect xBar = getXScrollbar();
-    Rect yBar = getYScrollbar();
+    const Rect xBar = getXScrollbar();
+    const Rect yBar = getYScrollbar();
 
     Rect xBorder = getXBorder(xBar, yBar);
     Rect yBorder = getYBorder(xBar, yBar);
 
-    // The two if statements ensure that the two sliders is invalidates thereby hides them, before they are set to size zero.
+    // The two if statements ensure that the two sliders are invalidated thereby hides them, before they are set to size zero.
     if (xSlider.getY() > xBorder.y)
     {
         xSlider.invalidate();
@@ -478,7 +430,7 @@ bool ScrollableContainer::doScroll(int16_t deltaX, int16_t deltaY)
         return false;
     }
     bool couldScroll = false;
-    Rect contained = getContainedArea();
+    const Rect contained = getContainedArea();
     if (contained.width > rect.width)
     {
         if (deltaX > 0)
@@ -525,8 +477,6 @@ bool ScrollableContainer::doScroll(int16_t deltaX, int16_t deltaY)
 
     if (deltaX || deltaY)
     {
-        scrolledXDistance += deltaX;
-        scrolledYDistance += deltaY;
         moveChildrenRelative(deltaX, deltaY);
 
         invalidateScrollbars();
@@ -537,39 +487,44 @@ bool ScrollableContainer::doScroll(int16_t deltaX, int16_t deltaY)
 
 void ScrollableContainer::childGeometryChanged()
 {
-    Rect contained = getContainedArea();
-    // If children are not aligned top left, make sure they are
+    int deltaX = 0;
+    int deltaY = 0;
+    const Rect contained = getChildrenContainedArea();
     if (contained.y > 0)
     {
-        moveChildrenRelative(0, -contained.y);
+        // Make sure we haven't scrolled above the top
+        deltaY = contained.y;
     }
-    if (contained.x > 0)
+    else if (contained.bottom() < rect.height)
     {
-        moveChildrenRelative(-contained.x, 0);
-    }
-    // Make sure we haven't scrolled below the bottom
-    if (contained.bottom() < rect.height)
-    {
-        int16_t deltaY = contained.bottom() - rect.height;
+        // Make sure we haven't scrolled below the bottom
+        deltaY = contained.bottom() - rect.height;
         if (contained.y > deltaY)
         {
             deltaY = contained.y;
         }
-        scrolledYDistance -= deltaY;
-        moveChildrenRelative(0, -deltaY);
     }
-    // Make sure we haven't scrolled too far to the right
-    if (contained.right() < rect.width)
+
+    if (contained.x > 0)
     {
-        int deltaX = contained.right() - rect.width;
+        // Make sure we haven't scrolled too far to the left
+        deltaX = contained.x;
+    }
+    else if (contained.right() < rect.width)
+    {
+        // Make sure we haven't scrolled too far to the right
+        deltaX = contained.right() - rect.width;
         if (contained.x > deltaX)
         {
             deltaX = contained.x;
         }
-        scrolledXDistance -= deltaX;
-        moveChildrenRelative(-deltaX, 0);
     }
-    invalidateScrollbars();
+
+    if (deltaX != 0 || deltaY != 0)
+    {
+        moveChildrenRelative(-deltaX, -deltaY);
+        invalidateScrollbars();
+    }
 }
 
 void ScrollableContainer::add(Drawable& d)
@@ -580,21 +535,29 @@ void ScrollableContainer::add(Drawable& d)
     Container::add(d);
     Container::add(xSlider);
     Container::add(ySlider);
+
+    if (scrollbarsPermanentlyVisible)
+    {
+        invalidateScrollbars();
+    }
 }
 
 Rect ScrollableContainer::getContainedArea() const
 {
-    Drawable* d = firstChild;
-    Rect contained(0, 0, 0, 0);
-    Rect r(0, 0, rect.width, rect.height);
-    contained.expandToFit(r);
-    while (d)
+    Rect contained(0, 0, rect.width, rect.height);
+    contained.expandToFit(getChildrenContainedArea());
+    return contained;
+}
+
+Rect ScrollableContainer::getChildrenContainedArea() const
+{
+    Rect contained;
+    for (Drawable* d = firstChild; d; d = d->getNextSibling())
     {
         if ((d != &xSlider) && (d != &ySlider) && (d->isVisible()))
         {
             contained.expandToFit(d->getRect());
         }
-        d = d->getNextSibling();
     }
     return contained;
 }
@@ -602,60 +565,59 @@ Rect ScrollableContainer::getContainedArea() const
 void ScrollableContainer::reset()
 {
     moveChildrenRelative(-scrolledXDistance, -scrolledYDistance);
-    scrolledXDistance = 0;
-    scrolledYDistance = 0;
     invalidateScrollbars();
 }
 
 void ScrollableContainer::moveChildrenRelative(int16_t deltaX, int16_t deltaY)
 {
-    Drawable* d = firstChild;
-    while (d)
+    for (Drawable* d = firstChild; d; d = d->getNextSibling())
     {
         if ((d != &xSlider) && (d != &ySlider))
         {
             d->moveRelative(deltaX, deltaY);
         }
-        d = d->getNextSibling();
     }
+    scrolledXDistance += deltaX;
+    scrolledYDistance += deltaY;
 }
 
 void ScrollableContainer::handleTickEvent()
 {
-    if (animate)
+    if (!animate)
     {
-        // Calculate new position or stop animation
-        animationCounter++;
-        if (animationCounter <= scrollDuration)
+        return;
+    }
+    // Calculate new position or stop animation
+    animationCounter++;
+    if (animationCounter <= scrollDuration)
+    {
+        // Calculate value in [beginningValue ; (beginningValue+targetValue)]
+        int16_t calculatedValue = EasingEquations::cubicEaseOut(animationCounter, beginningValue, targetValue, scrollDuration);
+
+        // Note: Result of "calculatedValue & 1" is compiler dependent for negative values of calculatedValue
+        if (calculatedValue % 2)
         {
-            // Calculate value in [beginningValue ; (beginningValue+targetValue)]
-            int16_t calculatedValue = EasingEquations::cubicEaseOut(animationCounter, beginningValue, targetValue, scrollDuration);
-
-            // Note: Result of "calculatedValue & 1" is compiler dependent for negative values of calculatedValue
-            if (calculatedValue % 2)
-            {
-                // Optimization: calculatedValue is odd, add 1/-1 to move drawables modulo 32 bits in framebuffer
-                calculatedValue += (calculatedValue > 0) ? 1 : -1;
-            }
-
-            // Convert to delta value relative to current X or Y
-            int16_t scrollX = (accelDirection == GestureEvent::SWIPE_VERTICAL) ? 0 : (calculatedValue - getContainedArea().x);
-            int16_t scrollY = (accelDirection == GestureEvent::SWIPE_HORIZONTAL) ? 0 : (calculatedValue - getContainedArea().y);
-
-            // Perform the actual animation step, stop animation if
-            // scrolling was not possible (doScroll invalidates children)
-            animate = doScroll(scrollX, scrollY);
-        }
-        else
-        {
-            animate = false;
+            // Optimization: calculatedValue is odd, add 1/-1 to move drawables modulo 32 bits in framebuffer
+            calculatedValue += (calculatedValue > 0) ? 1 : -1;
         }
 
-        if (!animate)
-        {
-            Application::getInstance()->unregisterTimerWidget(this);
-            animationCounter = 0;
-        }
+        // Convert to delta value relative to current X or Y
+        const int16_t scrollX = (accelDirection == GestureEvent::SWIPE_VERTICAL) ? 0 : (calculatedValue - getContainedArea().x);
+        const int16_t scrollY = (accelDirection == GestureEvent::SWIPE_HORIZONTAL) ? 0 : (calculatedValue - getContainedArea().y);
+
+        // Perform the actual animation step, stop animation if
+        // scrolling was not possible (doScroll invalidates children)
+        animate = doScroll(scrollX, scrollY);
+    }
+    else
+    {
+        animate = false;
+    }
+
+    if (!animate)
+    {
+        Application::getInstance()->unregisterTimerWidget(this);
+        animationCounter = 0;
     }
 }
 
@@ -688,12 +650,22 @@ void ScrollableContainer::setScrollbarsVisible(bool newVisible)
     scrollbarsVisible = newVisible;
 }
 
-void ScrollableContainer::setScrollbarsPermanentlyVisible()
+void ScrollableContainer::setScrollbarsPermanentlyVisible(bool permanentlyVisible /*= true*/)
 {
-    scrollbarsPermanentlyVisible = true;
+    scrollbarsPermanentlyVisible = permanentlyVisible;
     xSlider.setVisible(true);
     ySlider.setVisible(true);
     invalidateScrollbars();
+}
+
+bool ScrollableContainer::getIsScrolling() const
+{
+    return isScrolling;
+}
+
+bool ScrollableContainer::getIsPressed() const
+{
+    return isPressed;
 }
 
 int16_t ScrollableContainer::getScrolledX() const

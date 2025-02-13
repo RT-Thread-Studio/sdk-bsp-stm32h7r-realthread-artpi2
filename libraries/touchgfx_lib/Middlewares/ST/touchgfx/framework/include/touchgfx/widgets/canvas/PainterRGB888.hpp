@@ -1,82 +1,67 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/canvas/PainterRGB888.hpp
  *
  * Declares the touchgfx::PainterRGB888 class.
  */
-#ifndef PAINTERRGB888_HPP
-#define PAINTERRGB888_HPP
+#ifndef TOUCHGFX_PAINTERRGB888_HPP
+#define TOUCHGFX_PAINTERRGB888_HPP
 
-#include <stdint.h>
 #include <touchgfx/Color.hpp>
 #include <touchgfx/hal/Types.hpp>
+#include <touchgfx/widgets/canvas/AbstractPainterColor.hpp>
 #include <touchgfx/widgets/canvas/AbstractPainterRGB888.hpp>
 
 namespace touchgfx
 {
 /**
- * The PainterRGB888 class allows a shape to be filled with a given color and alpha
- * value. This allows transparent, anti-aliased elements to be drawn.
+ * The PainterRGB888 class allows a shape to be filled with a given color
+ * value. This allows anti-aliased elements to be drawn.
  *
  * @see AbstractPainter
  */
-class PainterRGB888 : public AbstractPainterRGB888
+class PainterRGB888 : public AbstractPainterRGB888, public AbstractPainterColor
 {
 public:
     /**
      * Initializes a new instance of the PainterRGB888 class.
      *
      * @param  color (Optional) the color, default is black.
-     * @param  alpha (Optional) the alpha, default is 255 i.e. solid.
      */
-    PainterRGB888(colortype color = 0, uint8_t alpha = 255)
-        : AbstractPainterRGB888()
+    PainterRGB888(colortype color = 0)
+        : AbstractPainterRGB888(), AbstractPainterColor(color)
     {
-        setColor(color);
-        setAlpha(alpha);
     }
 
-    /**
-     * Sets color and alpha to use when drawing the CanvasWidget.
-     *
-     * @param  color The color.
-     */
-    void setColor(colortype color)
+    virtual void setColor(colortype color)
     {
-        painterRed = Color::getRedColor(color);
-        painterGreen = Color::getGreenColor(color);
-        painterBlue = Color::getBlueColor(color);
+        AbstractPainterColor::setColor(color);
+        painterRed = Color::getRed(color);
+        painterGreen = Color::getGreen(color);
+        painterBlue = Color::getBlue(color);
     }
 
-    /**
-     * Gets the current color.
-     *
-     * @return The color.
-     */
-    colortype getColor() const
-    {
-        return Color::getColorFrom24BitRGB(painterRed, painterGreen, painterBlue);
-    }
+    virtual void paint(uint8_t* destination, int16_t offset, int16_t widgetX, int16_t widgetY, int16_t count, uint8_t alpha) const;
 
-    virtual void render(uint8_t* ptr, int x, int xAdjust, int y, unsigned count, const uint8_t* covers);
+    virtual void tearDown() const;
+
+    virtual HAL::RenderingMethod getRenderingMethod() const
+    {
+        return HAL::getInstance()->getDMAType() == DMA_TYPE_CHROMART ? HAL::HARDWARE : HAL::SOFTWARE;
+    }
 
 protected:
-    virtual bool renderNext(uint8_t& red, uint8_t& green, uint8_t& blue, uint8_t& alpha);
-
     uint8_t painterRed;   ///< The red part of the color
     uint8_t painterGreen; ///< The green part of the color
     uint8_t painterBlue;  ///< The blue part of the color
@@ -84,4 +69,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // PAINTERRGB888_HPP
+#endif // TOUCHGFX_PAINTERRGB888_HPP

@@ -12,8 +12,8 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
-#include <gui/main_screen/MainView.hpp>
-#include <gui/main_screen/MainPresenter.hpp>
+#include <gui/dice_screen/DiceView.hpp>
+#include <gui/dice_screen/DicePresenter.hpp>
 
 
 /**
@@ -36,7 +36,7 @@ public:
      * A list of all view types. Must end with meta::Nil.
      * @note All view types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< MainView,
+    typedef touchgfx::meta::TypeList< DiceView,
             touchgfx::meta::Nil
             > GeneratedViewTypes;
 
@@ -49,7 +49,7 @@ public:
      * A list of all presenter types. Must end with meta::Nil.
      * @note All presenter types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< MainPresenter,
+    typedef touchgfx::meta::TypeList< DicePresenter,
             touchgfx::meta::Nil
             > GeneratedPresenterTypes;
 
@@ -73,7 +73,7 @@ public:
 
     virtual void gotoStartScreen(FrontendApplication& app)
     {
-        app.gotoMainScreenNoTransition();
+        app.gotoDiceScreenNoTransition();
     }
 protected:
     FrontendHeapBase(touchgfx::AbstractPartition& presenters, touchgfx::AbstractPartition& views, touchgfx::AbstractPartition& transitions, FrontendApplication& app)

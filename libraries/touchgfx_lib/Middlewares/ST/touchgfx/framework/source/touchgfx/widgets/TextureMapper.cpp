@@ -1,30 +1,30 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
+#include <math.h>
+#include <touchgfx/Drawable.hpp>
 #include <touchgfx/Math3D.hpp>
 #include <touchgfx/TextureMapTypes.hpp>
+#include <touchgfx/Utils.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/lcd/LCD.hpp>
 #include <touchgfx/transforms/DisplayTransformation.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
 
 namespace touchgfx
 {
-TextureMapper::TextureMapper()
-    : Widget(),
+TextureMapper::TextureMapper(const Bitmap& bmp /*= Bitmap()*/)
+    : Image(bmp),
       currentRenderingAlgorithm(NEAREST_NEIGHBOR),
-      alpha(255),
       xBitmapPosition(0.0f),
       yBitmapPosition(0.0f),
       xAngle(0.0f),
@@ -55,9 +55,7 @@ TextureMapper::TextureMapper()
 
 void TextureMapper::setBitmap(const Bitmap& bmp)
 {
-    bitmap = bmp;
-    setWidth(bitmap.getWidth());
-    setHeight(bitmap.getHeight());
+    Image::setBitmap(bmp);
     applyTransformation();
 }
 
@@ -65,22 +63,21 @@ void TextureMapper::applyTransformation()
 {
     const uint8_t n = 4;
 
-    int imgWidth = Bitmap(bitmap).getWidth() + 1;
-    int imgHeight = Bitmap(bitmap).getHeight() + 1;
+    const int imgWidth = Bitmap(bitmap).getWidth() + 1;
+    const int imgHeight = Bitmap(bitmap).getHeight() + 1;
 
-    touchgfx::Point4 vertices[n] =
-    {
-        touchgfx::Point4(xBitmapPosition - 1, yBitmapPosition - 1, cameraDistance),
-        touchgfx::Point4(xBitmapPosition - 1 + imgWidth, yBitmapPosition - 1, cameraDistance),
-        touchgfx::Point4(xBitmapPosition - 1 + imgWidth, yBitmapPosition - 1 + imgHeight, cameraDistance),
-        touchgfx::Point4(xBitmapPosition - 1, yBitmapPosition - 1 + imgHeight, cameraDistance),
+    const Point4 vertices[n] = {
+        Point4(xBitmapPosition - 1, yBitmapPosition - 1, cameraDistance),
+        Point4((xBitmapPosition - 1) + imgWidth, yBitmapPosition - 1, cameraDistance),
+        Point4((xBitmapPosition - 1) + imgWidth, (yBitmapPosition - 1) + imgHeight, cameraDistance),
+        Point4(xBitmapPosition - 1, (yBitmapPosition - 1) + imgHeight, cameraDistance),
     };
-    touchgfx::Point4 transformed[n];
+    Point4 transformed[n];
 
-    Vector4 center(xOrigo, yOrigo, zOrigo);
+    const Vector4 tm_center(xOrigo, yOrigo, zOrigo);
 
     Matrix4x4 translateToCenter;
-    translateToCenter.concatenateXTranslation(-center.getX()).concatenateYTranslation(-center.getY()).concatenateZTranslation(-center.getZ());
+    translateToCenter.concatenateXTranslation(-tm_center.getX()).concatenateYTranslation(-tm_center.getY()).concatenateZTranslation(-tm_center.getZ());
 
     Matrix4x4 rotateAroundCenter;
     rotateAroundCenter.concatenateXRotation(xAngle).concatenateYRotation(yAngle).concatenateZRotation(zAngle);
@@ -89,7 +86,7 @@ void TextureMapper::applyTransformation()
     scaleAroundCenter.concatenateXScale(scale).concatenateYScale(scale).concatenateZScale(scale);
 
     Matrix4x4 translateFromCenter;
-    translateFromCenter.concatenateXTranslation(center.getX()).concatenateYTranslation(center.getY()).concatenateZTranslation(center.getZ());
+    translateFromCenter.concatenateXTranslation(tm_center.getX()).concatenateYTranslation(tm_center.getY()).concatenateZTranslation(tm_center.getZ());
 
     Matrix4x4 transform = translateFromCenter * scaleAroundCenter * rotateAroundCenter * translateToCenter;
 
@@ -133,7 +130,7 @@ Rect TextureMapper::getBoundingRect() const
     float minXf = MIN(imageX0, imageX1);
     minXf = MIN(minXf, imageX2);
     minXf = floorf(MIN(minXf, imageX3));
-    int16_t minX = (int16_t)(MAX(0, minXf));
+    const int16_t minX = (int16_t)(MAX(0, minXf));
 
     float maxXf = MAX(imageX0, imageX1);
     maxXf = MAX(maxXf, imageX2);
@@ -144,7 +141,7 @@ Rect TextureMapper::getBoundingRect() const
     float minYf = MIN(imageY0, imageY1);
     minYf = MIN(minYf, imageY2);
     minYf = floorf(MIN(minYf, imageY3));
-    int16_t minY = (int16_t)(MAX(0, minYf));
+    const int16_t minY = (int16_t)(MAX(0, minYf));
 
     float maxYf = MAX(imageY0, imageY1);
     maxYf = MAX(maxYf, imageY2);
@@ -155,26 +152,40 @@ Rect TextureMapper::getBoundingRect() const
     return Rect(minX, minY, maxX - minX, maxY - minY);
 }
 
-void TextureMapper::updateAngles(float newXAngle, float newYAngle, float newZAngle)
+void TextureMapper::setAngles(float newXAngle, float newYAngle, float newZAngle)
 {
-    Rect rBefore = getBoundingRect();
-
-    this->xAngle = newXAngle;
-    this->yAngle = newYAngle;
-    this->zAngle = newZAngle;
+    xAngle = newXAngle;
+    yAngle = newYAngle;
+    zAngle = newZAngle;
 
     applyTransformation();
-
-    Rect rAfter = getBoundingRect();
-    rAfter.expandToFit(rBefore);
-    invalidateRect(rAfter);
 }
 
-void TextureMapper::setScale(float _scale)
+void TextureMapper::updateAngles(float newXAngle, float newYAngle, float newZAngle)
 {
-    this->scale = _scale;
+    invalidateContent();
+    setAngles(newXAngle, newYAngle, newZAngle);
+    invalidateContent();
+}
+
+void TextureMapper::setScale(float newScale)
+{
+    scale = newScale;
 
     applyTransformation();
+}
+
+void TextureMapper::updateScale(float newScale)
+{
+    invalidateContent();
+    setScale(newScale);
+    invalidateContent();
+}
+
+void TextureMapper::invalidateBoundingRect() const
+{
+    Rect r = getBoundingRect();
+    invalidateRect(r);
 }
 
 void TextureMapper::draw(const Rect& invalidatedArea) const
@@ -183,11 +194,11 @@ void TextureMapper::draw(const Rect& invalidatedArea) const
     {
         return;
     }
-    uint16_t* fb = HAL::getInstance()->lockFrameBuffer();
+    uint16_t* fb = 0;
 
     // Setup texture coordinates
-    float right = (float)(bitmap.getWidth());
-    float bottom = (float)(bitmap.getHeight());
+    const float right = (float)(bitmap.getWidth());
+    const float bottom = (float)(bitmap.getHeight());
     float textureU0 = -1.0f;
     float textureV0 = -1.0f;
     float textureU1 = right;
@@ -208,104 +219,71 @@ void TextureMapper::draw(const Rect& invalidatedArea) const
         textureV3 = right;
     }
 
-    float triangleXs[3];
-    float triangleYs[3];
-    float triangleZs[3];
-    float triangleUs[3];
-    float triangleVs[3];
+    float triangleXs[4];
+    float triangleYs[4];
+    float triangleZs[4];
+    float triangleUs[4];
+    float triangleVs[4];
 
     // Determine winding order
     Vector4 zeroToOne(imageX1 - imageX0, imageY1 - imageY0, imageZ1 - imageZ0);
-    Vector4 zeroToTwo(imageX2 - imageX0, imageY2 - imageY0, imageZ2 - imageZ0);
-    Vector4 normal = zeroToOne.crossProduct(zeroToTwo);
+    const Vector4 zeroToTwo(imageX2 - imageX0, imageY2 - imageY0, imageZ2 - imageZ0);
+    const Vector4 normal = zeroToOne.crossProduct(zeroToTwo);
 
     if (normal.getZ() > 0)
     {
         triangleXs[0] = imageX0;
         triangleXs[1] = imageX1;
         triangleXs[2] = imageX2;
+        triangleXs[3] = imageX3;
         triangleYs[0] = imageY0;
         triangleYs[1] = imageY1;
         triangleYs[2] = imageY2;
+        triangleYs[3] = imageY3;
         triangleZs[0] = imageZ0;
         triangleZs[1] = imageZ1;
         triangleZs[2] = imageZ2;
+        triangleZs[3] = imageZ3;
 
         triangleUs[0] = textureU0;
         triangleUs[1] = textureU1;
         triangleUs[2] = textureU2;
+        triangleUs[3] = textureU3;
         triangleVs[0] = textureV0;
         triangleVs[1] = textureV1;
         triangleVs[2] = textureV2;
+        triangleVs[3] = textureV3;
     }
     else
     {
         // invert due to the triangles winding order (showing backface of the triangle)
         triangleXs[1] = imageX0;
         triangleXs[0] = imageX1;
-        triangleXs[2] = imageX2;
+        triangleXs[2] = imageX3;
+        triangleXs[3] = imageX2;
         triangleYs[1] = imageY0;
         triangleYs[0] = imageY1;
-        triangleYs[2] = imageY2;
+        triangleYs[2] = imageY3;
+        triangleYs[3] = imageY2;
         triangleZs[1] = imageZ0;
         triangleZs[0] = imageZ1;
-        triangleZs[2] = imageZ2;
+        triangleZs[2] = imageZ3;
+        triangleZs[3] = imageZ2;
 
         triangleUs[1] = textureU0;
         triangleUs[0] = textureU1;
-        triangleUs[2] = textureU2;
+        triangleUs[2] = textureU3;
+        triangleUs[3] = textureU2;
         triangleVs[1] = textureV0;
         triangleVs[0] = textureV1;
-        triangleVs[2] = textureV2;
-    }
-
-    drawTriangle(invalidatedArea, fb, triangleXs, triangleYs, triangleZs, triangleUs, triangleVs);
-
-    if (normal.getZ() > 0)
-    {
-        triangleXs[0] = imageX0;
-        triangleXs[1] = imageX2;
-        triangleXs[2] = imageX3;
-        triangleYs[0] = imageY0;
-        triangleYs[1] = imageY2;
-        triangleYs[2] = imageY3;
-        triangleZs[0] = imageZ0;
-        triangleZs[1] = imageZ2;
-        triangleZs[2] = imageZ3;
-
-        triangleUs[0] = textureU0;
-        triangleUs[1] = textureU2;
-        triangleUs[2] = textureU3;
-        triangleVs[0] = textureV0;
-        triangleVs[1] = textureV2;
         triangleVs[2] = textureV3;
-    }
-    else
-    {
-        triangleXs[1] = imageX0;
-        triangleXs[0] = imageX2;
-        triangleXs[2] = imageX3;
-        triangleYs[1] = imageY0;
-        triangleYs[0] = imageY2;
-        triangleYs[2] = imageY3;
-        triangleZs[1] = imageZ0;
-        triangleZs[0] = imageZ2;
-        triangleZs[2] = imageZ3;
-
-        triangleUs[1] = textureU0;
-        triangleUs[0] = textureU2;
-        triangleUs[2] = textureU3;
-        triangleVs[1] = textureV0;
-        triangleVs[0] = textureV2;
-        triangleVs[2] = textureV3;
+        triangleVs[3] = textureV2;
     }
 
-    drawTriangle(invalidatedArea, fb, triangleXs, triangleYs, triangleZs, triangleUs, triangleVs);
-
-    HAL::getInstance()->unlockFrameBuffer();
+    drawQuad(invalidatedArea, fb, triangleXs, triangleYs, triangleZs, triangleUs, triangleVs);
 }
 
-void TextureMapper::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, const float* triangleXs, const float* triangleYs, const float* triangleZs, const float* triangleUs, const float* triangleVs) const
+void TextureMapper::drawQuad(const Rect& invalidatedArea, uint16_t* fb, const float* triangleXs, const float* triangleYs, const float* triangleZs, const float* triangleUs, const float* triangleVs) const
 {
     // Area to redraw. Relative to the TextureMapper.
     Rect dirtyArea = Rect(0, 0, getWidth(), getHeight()) & invalidatedArea;
@@ -332,32 +310,33 @@ void TextureMapper::drawTriangle(const Rect& invalidatedArea, uint16_t* fb, cons
     float x0 = triangleXs[0];
     float x1 = triangleXs[1];
     float x2 = triangleXs[2];
-    float y0 = triangleYs[0]; //lint !e578
-    float y1 = triangleYs[1]; //lint !e578
+    float x3 = triangleXs[3];
+    float y0 = triangleYs[0];
+    float y1 = triangleYs[1];
     float y2 = triangleYs[2];
+    float y3 = triangleYs[3];
 
     DisplayTransformation::transformDisplayToFrameBuffer(x0, y0, this->getRect());
     DisplayTransformation::transformDisplayToFrameBuffer(x1, y1, this->getRect());
     DisplayTransformation::transformDisplayToFrameBuffer(x2, y2, this->getRect());
+    DisplayTransformation::transformDisplayToFrameBuffer(x3, y3, this->getRect());
 
-    Point3D vertices[3];
-    Point3D point0 = { floatToFixed28_4(x0), floatToFixed28_4(y0), (float)(triangleZs[0]), (float)(triangleUs[0]), (float)(triangleVs[0]) };
-    Point3D point1 = { floatToFixed28_4(x1), floatToFixed28_4(y1), (float)(triangleZs[1]), (float)(triangleUs[1]), (float)(triangleVs[1]) };
-    Point3D point2 = { floatToFixed28_4(x2), floatToFixed28_4(y2), (float)(triangleZs[2]), (float)(triangleUs[2]), (float)(triangleVs[2]) };
+    const Point3D point0 = { floatToFixed28_4(x0), floatToFixed28_4(y0), triangleZs[0], triangleUs[0], triangleVs[0] };
+    const Point3D point1 = { floatToFixed28_4(x1), floatToFixed28_4(y1), triangleZs[1], triangleUs[1], triangleVs[1] };
+    const Point3D point2 = { floatToFixed28_4(x2), floatToFixed28_4(y2), triangleZs[2], triangleUs[2], triangleVs[2] };
+    const Point3D point3 = { floatToFixed28_4(x3), floatToFixed28_4(y3), triangleZs[3], triangleUs[3], triangleVs[3] };
 
-    vertices[0] = point0;
-    vertices[1] = point1;
-    vertices[2] = point2;
+    const Point3D vertices[4] = { point0, point1, point2, point3 };
 
-    DrawingSurface dest = { fb, HAL::FRAME_BUFFER_WIDTH };
-    TextureSurface src = { textmap, bitmap.getExtraData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth() };
+    const DrawingSurface dest = { fb, HAL::FRAME_BUFFER_WIDTH };
+    const TextureSurface src = { textmap, bitmap.getExtraData(), bitmap.getWidth(), bitmap.getHeight(), bitmap.getWidth() };
 
     uint16_t subDivs = subDivisionSize;
-    if (point0.Z == point1.Z && point1.Z == point2.Z)
+    if (point0.Z == point1.Z && point1.Z == point2.Z) //lint !e777
     {
         subDivs = 0xFFFF; // Max: One sweep
     }
-    HAL::lcd().drawTextureMapTriangle(dest, vertices, src, absoluteRect, dirtyAreaAbsolute, lookupRenderVariant(), alpha, subDivs);
+    HAL::lcd().drawTextureMapQuad(dest, vertices, src, absoluteRect, dirtyAreaAbsolute, lookupRenderVariant(), alpha, subDivs);
 }
 
 RenderingVariant TextureMapper::lookupRenderVariant() const
@@ -376,6 +355,6 @@ RenderingVariant TextureMapper::lookupRenderVariant() const
 
 Rect TextureMapper::getSolidRect() const
 {
-    return Rect(0, 0, 0, 0);
+    return Rect();
 }
 } // namespace touchgfx

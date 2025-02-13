@@ -1,6 +1,9 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+#include <stdint.h>
+
+
 class ModelListener;
 
 class Model

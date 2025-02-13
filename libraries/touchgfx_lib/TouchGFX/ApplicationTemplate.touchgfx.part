@@ -1,20 +1,34 @@
 
 {
   "Application": {
-    "Name": "art_pi",
+    "Name": "STM32H7S78-DK_24bpp",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
-    "AvailableColorDepths": [ 24 ],
+    "AvailableColorDepths": [ 32 ],
     "AvailableLCDs":
     {
-      "24": "LCD24bpp"
+      "32": "LCDGPU2D"
     },
-    "AvailableResolutions" : [
+    "AvailableResolutions": [
       {
         "Width": 800,
         "Height": 480
       }
     ],
-    "Family" : "STM32H7"
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "Family": "STM32H7",
+    "SubFamily": "STM32H7R7/7S7",
+    "Platform": "m7",
+    "Toolchain": "STM32CubeIDE",
+    "ProjectFile": "../../STM32H7S78-DK_24bpp.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+      "GPU2D"
+    ],
+    "AdditionalFeatures": [
+      "GPU2DVector",
+      "VectorFonts",
+      "Video"
+    ]
   },
-  "Version": "4.15.0"
+  "Version": "4.24.1"
 }

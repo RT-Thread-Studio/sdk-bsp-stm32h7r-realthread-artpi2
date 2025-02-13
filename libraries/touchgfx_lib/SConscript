@@ -9,10 +9,13 @@ libs = []
 src = Split('''
 TouchGFX/target/generated/OSWrappers_RTT.cpp
 TouchGFX/target/generated/STM32DMA.cpp
-TouchGFX/target/STM32TouchController.cpp
-TouchGFX/target/TouchGFXGPIO.cpp
 TouchGFX/target/generated/TouchGFXConfiguration.cpp
 TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp
+TouchGFX/target/generated/HardwareMJPEGDecoder.cpp
+TouchGFX/target/generated/nema_hal.c
+TouchGFX/target/CortexMMCUInstrumentation.cpp
+TouchGFX/target/STM32TouchController.cpp
+TouchGFX/target/TouchGFXGPIO.cpp
 TouchGFX/target/TouchGFXHAL.cpp
 TouchGFX/App/app_touchgfx.c
 TouchGFX/App/sample_touchgfx.c
@@ -21,19 +24,19 @@ path  = [cwd + '/TouchGFX']
 path += [cwd + '/TouchGFX/target']
 path += [cwd + '/TouchGFX/target/generated']
 path += [cwd + '/Middlewares/ST/touchgfx/framework/include']
+path += [cwd + '/Middlewares/ST/touchgfx/framework/include/touchgfx']
 
 if rtconfig.CROSS_TOOL == 'gcc':
     libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc']
     libs += ['touchgfx-float-abi-hard']
     src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc/libtouchgfx-float-abi-hard.a']
 elif rtconfig.CROSS_TOOL == 'keil':
-    libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/Keil']
-    libs += ['touchgfx_core.lib']
-    src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/Keil/touchgfx_core.lib']
-elif rtconfig.CROSS_TOOL == 'iar':
-    libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/IAR8.x']
-    libs += ['touchgfx_core.a']
-    src += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/IAR8.x/touchgfx_core.a']
+    libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/Keil6.x']
+    path += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/include']
+    path += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/include']
+    libs += ['touchgfx_core_wchar16']
+    src += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/Keil6.x/nemagfx_core_release-wchar16.lib']
+    src += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/lib/cortex_m7/Keil6.x/touchgfxnema_release-wchar16.lib']
 
 group = DefineGroup('TouchGFX_app', src, depend = ['ART_PI_TouchGFX_LIB'], CPPPATH = path, LIBS = libs, LIBPATH = libpath)
 
@@ -47,6 +50,7 @@ genPath = [cwd + '/TouchGFX/generated/fonts/include']
 genPath += [cwd + '/TouchGFX/generated/gui_generated/include']
 genPath += [cwd + '/TouchGFX/generated/images/include']
 genPath += [cwd + '/TouchGFX/generated/texts/include']
+genPath += [cwd + '/TouchGFX/generated/videos/include']
 
 group = group + DefineGroup('TouchGFX_generated', genSrc, depend = ['ART_PI_TouchGFX_LIB'], CPPPATH = genPath)
 

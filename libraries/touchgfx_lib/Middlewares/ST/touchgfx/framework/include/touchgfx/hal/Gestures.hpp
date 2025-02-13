@@ -1,30 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/hal/Gestures.hpp
  *
  * Declares the touchgfx::Gestures class.
  */
-#ifndef GESTURES_HPP
-#define GESTURES_HPP
+#ifndef TOUCHGFX_GESTURES_HPP
+#define TOUCHGFX_GESTURES_HPP
 
 #include <touchgfx/UIEventListener.hpp>
 #include <touchgfx/events/ClickEvent.hpp>
-#include <touchgfx/events/DragEvent.hpp>
-#include <touchgfx/events/GestureEvent.hpp>
 #include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
@@ -63,7 +58,7 @@ class Gestures
 public:
     /** Default constructor. Does nothing. */
     Gestures()
-        : listener(0), dragThresholdValue(0)
+        : drag(), listener(0), dragThresholdValue(0)
     {
     }
 
@@ -94,11 +89,11 @@ public:
     /**
      * Register a click event and figure out if this is a drag event, too.
      *
-     * @param  evt The type of the click event.
-     * @param  x   The x coordinate of the click event.
-     * @param  y   The y coordinate of the click event.
+     * @param  event The type of the click event.
+     * @param  x     The x coordinate of the click event.
+     * @param  y     The y coordinate of the click event.
      */
-    void registerClickEvent(ClickEvent::ClickEventType evt, uint16_t x, uint16_t y);
+    void registerClickEvent(ClickEvent::ClickEventType event, uint16_t x, uint16_t y);
 
     /**
      * Configure the threshold for reporting drag events. A touch input movement must exceed
@@ -119,4 +114,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // GESTURES_HPP
+#endif // TOUCHGFX_GESTURES_HPP

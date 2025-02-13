@@ -22,10 +22,10 @@ extern "C"
 {
 #endif
 
-void _Error_Handler(char *s, int num);
+void _Error_Handler(void);
 
 #ifndef Error_Handler
-#define Error_Handler() _Error_Handler(__FILE__, __LINE__)
+#define Error_Handler(msg) _Error_Handler(msg)
 #endif
 
 #define DMA_NOT_AVAILABLE ((DMA_INSTANCE_TYPE *)0xFFFFFFFFU)

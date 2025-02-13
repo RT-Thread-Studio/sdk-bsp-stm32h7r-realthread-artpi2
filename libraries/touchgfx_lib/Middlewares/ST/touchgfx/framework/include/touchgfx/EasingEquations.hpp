@@ -1,25 +1,22 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/EasingEquations.hpp
  *
  * Declares the touchgfx::EasingEquations class
  */
-#ifndef EASINGEQUATIONS_HPP
-#define EASINGEQUATIONS_HPP
+#ifndef TOUCHGFX_EASINGEQUATIONS_HPP
+#define TOUCHGFX_EASINGEQUATIONS_HPP
 
 #include <touchgfx/hal/Types.hpp>
 
@@ -27,7 +24,7 @@ namespace touchgfx
 {
 /**
  * This function pointer typedef matches the signature for all easing equations. Thereby
- * EasingEquation is a convenient shorthand for a pointer to any easing equation.
+ * #EasingEquation is a convenient shorthand for a pointer to any easing equation.
  */
 typedef int16_t (*EasingEquation)(uint16_t, int16_t, int16_t, uint16_t);
 
@@ -467,4 +464,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // EASINGEQUATIONS_HPP
+#endif // TOUCHGFX_EASINGEQUATIONS_HPP

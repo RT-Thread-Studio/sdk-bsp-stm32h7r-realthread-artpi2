@@ -1,28 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/canvas/PainterRGB565.hpp
  *
  * Declares the touchgfx::PainterRGB565 class.
  */
-#ifndef PAINTERRGB565_HPP
-#define PAINTERRGB565_HPP
+#ifndef TOUCHGFX_PAINTERRGB565_HPP
+#define TOUCHGFX_PAINTERRGB565_HPP
 
-#include <stdint.h>
+#include <platform/driver/lcd/LCD16bpp.hpp>
 #include <touchgfx/hal/Types.hpp>
+#include <touchgfx/widgets/canvas/AbstractPainterColor.hpp>
 #include <touchgfx/widgets/canvas/AbstractPainterRGB565.hpp>
 
 namespace touchgfx
@@ -33,56 +31,38 @@ namespace touchgfx
  *
  * @see AbstractPainter
  */
-class PainterRGB565 : public AbstractPainterRGB565
+class PainterRGB565 : public AbstractPainterRGB565, public AbstractPainterColor
 {
 public:
     /**
      * Initializes a new instance of the PainterRGB565 class.
      *
      * @param  color (Optional) the color, default is black.
-     * @param  alpha (Optional) the alpha, default is 255 i.e. solid.
      */
-    PainterRGB565(colortype color = 0, uint8_t alpha = 255)
-        : AbstractPainterRGB565()
+    PainterRGB565(colortype color = 0)
+        : AbstractPainterRGB565(), AbstractPainterColor(color)
     {
-        setColor(color);
-        setAlpha(alpha);
     }
 
-    /**
-     * Sets color and alpha to use when drawing the CanvasWidget.
-     *
-     * @param  color The color.
-     */
-    void setColor(colortype color)
+    virtual void setColor(colortype color)
     {
-        painterColor = color;
-        painterRed = painterColor & RMASK;
-        painterGreen = painterColor & GMASK;
-        painterBlue = painterColor & BMASK;
+        AbstractPainterColor::setColor(color);
+        color565 = LCD16bpp::getNativeColor(painterColor);
     }
 
-    /**
-     * Gets the current color.
-     *
-     * @return The color.
-     */
-    colortype getColor() const
-    {
-        return painterColor;
-    }
+    virtual void paint(uint8_t* destination, int16_t offset, int16_t widgetX, int16_t widgetY, int16_t count, uint8_t alpha) const;
 
-    virtual void render(uint8_t* ptr, int x, int xAdjust, int y, unsigned count, const uint8_t* covers);
+    virtual void tearDown() const;
+
+    virtual HAL::RenderingMethod getRenderingMethod() const
+    {
+        return HAL::getInstance()->getDMAType() == DMA_TYPE_CHROMART ? HAL::HARDWARE : HAL::SOFTWARE;
+    }
 
 protected:
-    virtual bool renderNext(uint8_t& red, uint8_t& green, uint8_t& blue, uint8_t& alpha);
-
-    uint16_t painterColor; ///< The color
-    uint16_t painterRed;   ///< The red part of the color
-    uint16_t painterGreen; ///< The green part of the color
-    uint16_t painterBlue;  ///< The blue part of the color
+    uint16_t color565; ///< The native color in 565 format (for speed reasons)
 };
 
 } // namespace touchgfx
 
-#endif // PAINTERRGB565_HPP
+#endif // TOUCHGFX_PAINTERRGB565_HPP

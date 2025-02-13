@@ -1,28 +1,27 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/clock/AnalogClock.hpp
  *
  * Declares the touchgfx::AnalogClock class.
  */
-#ifndef ANALOGCLOCK_HPP
-#define ANALOGCLOCK_HPP
+#ifndef TOUCHGFX_ANALOGCLOCK_HPP
+#define TOUCHGFX_ANALOGCLOCK_HPP
 
+#include <touchgfx/Bitmap.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/containers/clock/AbstractClock.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/AnimationTextureMapper.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
@@ -60,6 +59,8 @@ public:
      * @param  backgroundBitmapId Identifier for the background bitmap.
      * @param  rotationCenterX    The rotation center x coordinate.
      * @param  rotationCenterY    The rotation center y coordinate.
+     *
+     * @see setBackground(BitmapId), setRotationCenter
      */
     virtual void setBackground(const BitmapId backgroundBitmapId, int16_t rotationCenterX, int16_t rotationCenterY);
 
@@ -206,6 +207,23 @@ public:
      */
     virtual void initializeTime12Hour(uint8_t hour, uint8_t minute, uint8_t second, bool am);
 
+    /**
+     * @copydoc Image::setAlpha
+     * @note The alpha value is reflected in the background image
+     */
+    virtual void setAlpha(uint8_t newAlpha);
+
+    /** @copydoc Image::getAlpha() */
+    virtual uint8_t getAlpha() const;
+
+    virtual void invalidateContent() const
+    {
+        if (getAlpha() > 0)
+        {
+            AbstractClock::invalidateContent();
+        }
+    }
+
 protected:
     Image background; ///< The background image of the AnalogClock
 
@@ -264,4 +282,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // ANALOGCLOCK_HPP
+#endif // TOUCHGFX_ANALOGCLOCK_HPP

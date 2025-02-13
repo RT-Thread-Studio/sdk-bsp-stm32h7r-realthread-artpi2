@@ -86,11 +86,11 @@ void OSWrappers::taskDelay(uint16_t ms)
 //FreeRTOS hook function being called when idle task is switched in or out.
 static portBASE_TYPE IdleTaskHook(void* p)
 {
-    if ((int)p) //idle task sched out
+    if ((int)p) // Idle task sched out
     {
         touchgfx::HAL::getInstance()->setMCUActive(true);
     }
-    else //idle task sched in
+    else // Idle task sched in
     {
         touchgfx::HAL::getInstance()->setMCUActive(false);
     }

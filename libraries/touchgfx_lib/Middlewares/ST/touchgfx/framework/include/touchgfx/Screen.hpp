@@ -1,33 +1,29 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/Screen.hpp
  *
  * Declares the touchgfx::Screen class.
  */
-#ifndef SCREEN_HPP
-#define SCREEN_HPP
+#ifndef TOUCHGFX_SCREEN_HPP
+#define TOUCHGFX_SCREEN_HPP
 
-#include <touchgfx/Application.hpp>
-#include <touchgfx/JSMOCHelper.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/events/ClickEvent.hpp>
 #include <touchgfx/events/DragEvent.hpp>
 #include <touchgfx/events/GestureEvent.hpp>
-#include <touchgfx/lcd/LCD.hpp>
+#include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -114,7 +110,7 @@ public:
      * Base version does nothing, but place any screen specific cleanup code in an
      * overridden version.
      *
-     * @see touchgfx::Application::switchScreen
+     * @see Application::switchScreen
      */
     virtual void tearDownScreen()
     {
@@ -123,23 +119,23 @@ public:
     /**
      * Traverse the drawables in reverse z-order and notify them of a click event.
      *
-     * @param  evt The event to handle.
+     * @param  event The event to handle.
      */
-    virtual void handleClickEvent(const ClickEvent& evt);
+    virtual void handleClickEvent(const ClickEvent& event);
 
     /**
      * Traverse the drawables in reverse z-order and notify them of a drag event.
      *
-     * @param  evt The event to handle.
+     * @param  event The event to handle.
      */
-    virtual void handleDragEvent(const DragEvent& evt);
+    virtual void handleDragEvent(const DragEvent& event);
 
     /**
      * Handle gestures. Traverses drawables in reverse-z and notifies them of the gesture.
      *
-     * @param  evt The event to handle.
+     * @param  event The event to handle.
      */
-    virtual void handleGestureEvent(const GestureEvent& evt);
+    virtual void handleGestureEvent(const GestureEvent& event);
 
     /**
      * Called by the Application on the current screen with a frequency of
@@ -157,6 +153,7 @@ public:
      */
     virtual void handleKeyEvent(uint8_t key)
     {
+        (void)key; // Unused variable
     }
 
     /**
@@ -186,6 +183,26 @@ public:
         return container;
     }
 
+    /**
+     * Gets width of the current screen. In most cases, this is the same as HAL::DISPLAY_WIDTH.
+     *
+     * @return  The screen width.
+     */
+    int16_t getScreenWidth() const
+    {
+        return HAL::DISPLAY_WIDTH;
+    }
+
+    /**
+     * Gets height of the current screen. In most cases, this is the same as HAL::DISPLAY_HEIGHT.
+     *
+     * @return  The screen height.
+     */
+    int16_t getScreenHeight() const
+    {
+        return HAL::DISPLAY_HEIGHT;
+    }
+
 protected:
     /**
      * Determines whether to use JSMOC or painter's algorithm for drawing.
@@ -209,6 +226,50 @@ protected:
     }
 
     /**
+     * Inserts a Drawable after a specific child node. See Container::insert.
+     *
+     * @param [in] previous The Drawable to insert after. If null, insert as header.
+     * @param [in] d        The Drawable to insert.
+     *
+     * @see Container::insert
+     *
+     * @note As with add, do not add the same drawable twice.
+     */
+    void insert(Drawable* previous, Drawable& d)
+    {
+        container.insert(previous, d);
+    }
+
+    /**
+     * Request that a region of this root container on the screen is redrawn. See
+     * Container::invalidateRect.
+     *
+     * To invalidate the entire Screen, use invalidate()
+     *
+     * @param [in]  invalidatedArea The area of this drawable to redraw expressed in coordinates
+     *                              relative to the root container.
+     *
+     * @see Container::invalidateRect
+     *
+     * @note    The invalidatedArea position is relative to the root container, which is usually the
+     *          same as the Screen coordinates.
+     */
+    void invalidateRect(Rect& invalidatedArea) const
+    {
+        container.invalidateRect(invalidatedArea);
+    }
+
+    /**
+     * Tell the framework that this entire Screen needs to be redrawn.
+     *
+     * @see Container::invalidate
+     */
+    void invalidate() const
+    {
+        container.invalidate();
+    }
+
+    /**
      * Removes a drawable from the content container. Safe to call even if the drawable was
      * never added (in which case nothing happens).
      *
@@ -221,7 +282,6 @@ protected:
 
     Container container; ///< The container contains the contents of the screen.
 
-protected:
     Drawable* focus; ///< The drawable currently in focus (set when DOWN_PRESSED is received).
 
 private:
@@ -232,4 +292,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // SCREEN_HPP
+#endif // TOUCHGFX_SCREEN_HPP

@@ -1,29 +1,27 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/mixins/MoveAnimator.hpp
  *
  * Declares the touchgfx::MoveAnimator class.
  */
-#ifndef MOVEANIMATOR_HPP
-#define MOVEANIMATOR_HPP
+#ifndef TOUCHGFX_MOVEANIMATOR_HPP
+#define TOUCHGFX_MOVEANIMATOR_HPP
 
 #include <touchgfx/Application.hpp>
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -44,6 +42,13 @@ public:
           moveAnimationRunning(false),
           moveAnimationCounter(0),
           moveAnimationDelay(0),
+          moveAnimationDuration(0),
+          moveAnimationStartX(0),
+          moveAnimationStartY(0),
+          moveAnimationEndX(0),
+          moveAnimationEndY(0),
+          moveAnimationXEquation(),
+          moveAnimationYEquation(),
           moveAnimationEndedCallback(0)
     {
     }
@@ -96,22 +101,6 @@ public:
     {
         return moveAnimationDelay;
     }
-
-    ///@cond
-    /**
-     * Gets whether or not the move animation is running.
-     *
-     * @return true if the move animation is running.
-     *
-     * @deprecated Use MoveAnimator::isMoveAnimationRunning().
-     */
-    TOUCHGFX_DEPRECATED(
-        "Use MoveAnimator::isMoveAnimationRunning().",
-        bool isRunning())
-    {
-        return isMoveAnimationRunning();
-    }
-    ///@endcond
 
     /**
      * Gets whether or not the move animation is running.
@@ -176,39 +165,31 @@ public:
         }
     }
 
-protected:
     /** The tick handler that handles the actual animation steps. */
     virtual void handleTickEvent()
     {
         T::handleTickEvent();
-
         nextMoveAnimationStep();
     }
 
+protected:
     /** Execute next step in move animation and stop the timer if the animation has finished. */
     void nextMoveAnimationStep()
     {
         if (moveAnimationRunning)
         {
-            if (moveAnimationCounter < moveAnimationDelay)
+            moveAnimationCounter++;
+            if (moveAnimationCounter >= moveAnimationDelay)
             {
-                // Just wait for the delay time to pass
-                moveAnimationCounter++;
-            }
-            else
-            {
-                if (moveAnimationCounter <= (uint32_t)(moveAnimationDelay + moveAnimationDuration))
-                {
-                    // Adjust the used animationCounter for the startup delay
-                    uint32_t actualAnimationCounter = moveAnimationCounter - moveAnimationDelay;
+                // Adjust the used animationCounter for the startup delay
+                uint32_t actualAnimationCounter = moveAnimationCounter - moveAnimationDelay;
 
-                    int16_t deltaX = moveAnimationXEquation(actualAnimationCounter, 0, moveAnimationEndX - moveAnimationStartX, moveAnimationDuration);
-                    int16_t deltaY = moveAnimationYEquation(actualAnimationCounter, 0, moveAnimationEndY - moveAnimationStartY, moveAnimationDuration);
+                int16_t deltaX = moveAnimationXEquation(actualAnimationCounter, 0, moveAnimationEndX - moveAnimationStartX, moveAnimationDuration);
+                int16_t deltaY = moveAnimationYEquation(actualAnimationCounter, 0, moveAnimationEndY - moveAnimationStartY, moveAnimationDuration);
 
-                    T::moveTo(moveAnimationStartX + deltaX, moveAnimationStartY + deltaY);
-                    moveAnimationCounter++;
-                }
-                if (moveAnimationCounter > (uint32_t)(moveAnimationDelay + moveAnimationDuration))
+                T::moveTo(moveAnimationStartX + deltaX, moveAnimationStartY + deltaY);
+
+                if (moveAnimationCounter >= (uint32_t)(moveAnimationDelay + moveAnimationDuration))
                 {
                     // End of animation
                     moveAnimationRunning = false;
@@ -224,7 +205,6 @@ protected:
         }
     }
 
-protected:
     bool moveAnimationRunning;             ///< True if the animation is running
     uint16_t moveAnimationCounter;         ///< Counter that is equal to the current step in the animation
     uint16_t moveAnimationDelay;           ///< The delay applied before animation start. Expressed in ticks.
@@ -238,6 +218,7 @@ protected:
 
     GenericCallback<const MoveAnimator<T>&>* moveAnimationEndedCallback; ///< Animation ended Callback.
 };
-} //namespace touchgfx
 
-#endif // MOVEANIMATOR_HPP
+} // namespace touchgfx
+
+#endif // TOUCHGFX_MOVEANIMATOR_HPP

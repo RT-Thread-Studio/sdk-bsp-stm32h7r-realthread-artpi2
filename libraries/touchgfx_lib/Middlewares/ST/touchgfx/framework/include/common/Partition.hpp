@@ -1,28 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file common/Partition.hpp
  *
  * Declares the touchgfx::Partition class.
  */
-#ifndef PARTITION_HPP
-#define PARTITION_HPP
+#ifndef TOUCHGFX_PARTITION_HPP
+#define TOUCHGFX_PARTITION_HPP
 
 #include <common/AbstractPartition.hpp>
 #include <common/Meta.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -57,54 +55,22 @@ public:
         SIZE_OF_ELEMENT = INTS_PR_ELEMENT * sizeof(int)
     };
 
-    /**
-     * Specialization of AbstractPartition::capacity().
-     *
-     * @return An uint16_t.
-     *
-     * @see touchgfx::AbstractPartition::capacity
-     */
     virtual uint16_t capacity() const
     {
         return NUMBER_OF_ELEMENTS;
     }
 
-    /**
-     * Specialization of AbstractPartition::element_size().
-     *
-     * @return An uint32_t.
-     *
-     * @see touchgfx::AbstractPartition::element_size
-     */
     virtual uint32_t element_size()
     {
         return sizeof(stBlocks[0]);
     }
 
 protected:
-    /**
-     * Specialization of AbstractPartition::element()
-     *
-     * @param  index Zero-based index of the.
-     *
-     * @return null if it fails, else a void*.
-     *
-     * @see touchgfx::AbstractPartition::element
-     */
     virtual void* element(uint16_t index)
     {
         return &stBlocks[index];
     }
 
-    /**
-     * Specialization of AbstractPartition::element() const.
-     *
-     * @param  index Zero-based index of the.
-     *
-     * @return null if it fails, else a void*.
-     *
-     * @see touchgfx::AbstractPartition::element
-     */
     virtual const void* element(uint16_t index) const
     {
         return &stBlocks[index];
@@ -122,4 +88,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // PARTITION_HPP
+#endif // TOUCHGFX_PARTITION_HPP

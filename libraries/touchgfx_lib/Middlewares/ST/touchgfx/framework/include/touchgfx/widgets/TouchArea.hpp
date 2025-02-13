@@ -1,27 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/TouchArea.hpp
  *
  * Declares the touchgfx::TouchArea class.
  */
-#ifndef TOUCHAREA_HPP
-#define TOUCHAREA_HPP
+#ifndef TOUCHGFX_TOUCHAREA_HPP
+#define TOUCHGFX_TOUCHAREA_HPP
 
-#include <touchgfx/lcd/LCD.hpp>
+#include <touchgfx/events/ClickEvent.hpp>
+#include <touchgfx/events/DragEvent.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/AbstractButton.hpp>
 
 namespace touchgfx
@@ -38,11 +37,11 @@ public:
     {
     }
 
-    virtual void draw(const Rect& invalidatedArea) const
+    virtual void draw(const Rect& /*invalidatedArea*/) const
     {
     }
 
-    virtual void handleDragEvent(const DragEvent& evt)
+    virtual void handleDragEvent(const DragEvent& /*event*/)
     {
     }
 
@@ -50,7 +49,7 @@ public:
 
     virtual Rect getSolidRect() const
     {
-        return Rect(0, 0, 0, 0);
+        return Rect();
     }
 
     /**
@@ -63,10 +62,15 @@ public:
         pressedAction = &callback;
     }
 
+    virtual void invalidateContent() const
+    {
+        // A TouchArea is invisible, do nothing
+    }
+
 protected:
     GenericCallback<const AbstractButton&>* pressedAction; ///< The action to perform when the TouchArea is clicked
 };
 
 } // namespace touchgfx
 
-#endif // TOUCHAREA_HPP
+#endif // TOUCHGFX_TOUCHAREA_HPP

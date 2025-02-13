@@ -1,27 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/canvas/CWRUtil.hpp
  *
  * Declares the touchgfx:: class.
  */
-#ifndef CWRUTIL_HPP
-#define CWRUTIL_HPP
+#ifndef TOUCHGFX_CWRUTIL_HPP
+#define TOUCHGFX_CWRUTIL_HPP
 
+#include <touchgfx/Utils.hpp>
 #include <touchgfx/canvas_widget_renderer/Rasterizer.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -82,7 +81,7 @@ struct CWRUtil
          * @see Q10
          */
         Q5(const Q10 q10)
-            : v(int(q10) / Rasterizer::POLY_BASE_SIZE)
+            : v((int)q10 / Rasterizer::POLY_BASE_SIZE)
         {
         }
 
@@ -119,6 +118,19 @@ struct CWRUtil
         }
 
         /**
+         * Addition operator.
+         *
+         * @param  q5 The Q5 to add to this.
+         *
+         * @return The result of the operation.
+         */
+        Q5& operator+=(const Q5& q5)
+        {
+            v += q5.v;
+            return *this;
+        }
+
+        /**
          * Subtraction operator.
          *
          * @param  q5 The Q5 to subtract from this.
@@ -128,6 +140,19 @@ struct CWRUtil
         Q5 operator-(const Q5& q5) const
         {
             return Q5(v - q5.v);
+        }
+
+        /**
+         * Subtraction operator.
+         *
+         * @param  q5 The Q5 to subtract from this.
+         *
+         * @return The result of the operation.
+         */
+        Q5& operator-=(const Q5& q5)
+        {
+            v -= q5.v;
+            return *this;
         }
 
         /**
@@ -158,7 +183,7 @@ struct CWRUtil
         Q5 operator*(const Q15& q15) const
         {
             int32_t remainder;
-            return Q5(muldiv(v, int(q15), Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE, remainder));
+            return Q5(muldiv(v, (int)q15, Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE, remainder));
         }
 
         /**
@@ -201,6 +226,31 @@ struct CWRUtil
         }
 
         /**
+         * Modulus operator.
+         *
+         * @param  q5 The Q5 to modulus this by.
+         *
+         * @return The result of the operation.
+         */
+        Q5 operator%(const Q5 q5) const
+        {
+            return Q5(v % q5.v);
+        }
+
+        /**
+         * Modulus operator.
+         *
+         * @param  q5 The Q5 to modulus this by.
+         *
+         * @return The result of the operation.
+         */
+        Q5& operator%=(const Q5 q5)
+        {
+            v %= q5.v;
+            return *this;
+        }
+
+        /**
          * Convert the Q5 value to an integer by removing the 5 bits used for the fraction, or
          * to a floating point value by dividing by 32, depending on the type specified as T.
          *
@@ -217,10 +267,25 @@ struct CWRUtil
         }
 
         /**
-         * Convert the Q5 value to an integer by removing the 5 bits used for the fraction. The
-         * number is rounded up to the nearest integer.
+         * Convert the Q5 value to an integer by removing the 5 bits used for the fraction. The number
+         * is rounded down to the nearest integer.
          *
-         * @return The first integer value higher than (or equal to) the Q5 value.
+         * @return  The first integer value higher than (or equal to) the Q5 value.
+         *
+         * @see ceil
+         */
+        int floor() const
+        {
+            return to<int>();
+        }
+
+        /**
+         * Convert the Q5 value to an integer by removing the 5 bits used for the fraction. The number
+         * is rounded up to the nearest integer.
+         *
+         * @return  The first integer value higher than (or equal to) the Q5 value.
+         *
+         * @see floor
          */
         int ceil() const
         {
@@ -311,7 +376,7 @@ struct CWRUtil
          */
         Q15 operator*(const Q5& q5) const
         {
-            return Q15(v * int(q5));
+            return Q15(v * (int)q5);
         }
 
         /**
@@ -323,7 +388,7 @@ struct CWRUtil
          */
         Q5 operator/(const Q5& q5) const
         {
-            return Q5(v / int(q5));
+            return Q5(v / (int)q5);
         }
 
         /**
@@ -411,7 +476,7 @@ struct CWRUtil
          */
         Q10 operator/(const Q5& q5) const
         {
-            return Q10(v / int(q5));
+            return Q10(v / (int)q5);
         }
 
     private:
@@ -448,7 +513,7 @@ struct CWRUtil
 #endif
     static Q5 toQ5(T value)
     {
-        return Q5(int(value * Rasterizer::POLY_BASE_SIZE));
+        return Q5((int)(value * Rasterizer::POLY_BASE_SIZE));
     }
 
     /**
@@ -469,7 +534,7 @@ struct CWRUtil
 #endif
     static Q10 toQ10(T value)
     {
-        return Q10(int(value * Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE));
+        return Q10((int)(value * Rasterizer::POLY_BASE_SIZE * Rasterizer::POLY_BASE_SIZE));
     }
 
     /**
@@ -485,8 +550,7 @@ struct CWRUtil
      */
     static Q15 sine(int i)
     {
-        const static uint16_t sineTable[91] =
-        {
+        const static uint16_t sineTable[91] = {
             0x0000, 0x023C, 0x0478, 0x06B3, 0x08EE, 0x0B28, 0x0D61, 0x0F99, 0x11D0, 0x1406,
             0x163A, 0x186C, 0x1A9D, 0x1CCB, 0x1EF7, 0x2121, 0x2348, 0x256C, 0x278E, 0x29AC,
             0x2BC7, 0x2DDF, 0x2FF3, 0x3203, 0x3410, 0x3618, 0x381D, 0x3A1C, 0x3C18, 0x3E0E,
@@ -497,7 +561,11 @@ struct CWRUtil
             0x7848, 0x7907, 0x79BC, 0x7A68, 0x7B0B, 0x7BA3, 0x7C33, 0x7CB8, 0x7D34, 0x7DA6,
             0x7E0E, 0x7E6D, 0x7EC1, 0x7F0C, 0x7F4C, 0x7F83, 0x7FB0, 0x7FD3, 0x7FEC, 0x7FFB, 0x8000
         };
-        i = ((i % 360) + 360) % 360;
+        i %= 360;
+        if (i < 0)
+        {
+            i += 360;
+        }
         if (i <= 90)
         {
             return Q15(sineTable[i]);
@@ -530,7 +598,11 @@ struct CWRUtil
     static Q15 sine(Q5 i)
     {
         Q5 _360 = toQ5<int>(360);
-        i = Q5(((i % _360) + _360) % _360);
+        i %= _360;
+        if (i < 0)
+        {
+            i += _360;
+        }
         int16_t fraction = i % Rasterizer::POLY_BASE_SIZE;
         Q15 sineLow = sine(i.to<int>());
         if (fraction == 0)
@@ -539,7 +611,7 @@ struct CWRUtil
         }
         Q15 sineHigh = sine(i.to<int>() + 1);
         int32_t remainder;
-        return Q15(muldiv(int(sineHigh - sineLow), fraction, Rasterizer::POLY_BASE_SIZE, remainder)) + sineLow;
+        return Q15(muldiv((int)(sineHigh - sineLow), fraction, Rasterizer::POLY_BASE_SIZE, remainder)) + sineLow;
     }
 
     /**
@@ -569,7 +641,7 @@ struct CWRUtil
      */
     static Q15 cosine(Q5 i)
     {
-        return sine(CWRUtil::toQ5<int>(90) - i);
+        return sine(toQ5<int>(90) - i);
     }
 
     /**
@@ -583,8 +655,7 @@ struct CWRUtil
      */
     static int8_t arcsine(Q10 q10)
     {
-        const static uint8_t arcsineTable[91] =
-        {
+        const static uint8_t arcsineTable[91] = {
             0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 6, 6,
             7, 7, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13,
             14, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20,
@@ -601,11 +672,11 @@ struct CWRUtil
             return 0; // error
         }
         // sqrt(1/2) as Q10 is "724" so if q10>724 calculate 90-arcsine(sqrt(1-q10^2))
-        if (int(q10) > 724)
+        if ((int)q10 > 724)
         {
-            return 90 - arcsine(Q10(isqrt((1 << (Rasterizer::POLY_BASE_SHIFT * 4)) - int(q10) * int(q10))));
+            return 90 - arcsine(Q10(isqrt((1 << (Rasterizer::POLY_BASE_SHIFT * 4)) - (int)q10 * (int)q10)));
         }
-        int q7 = (int(q10) + 3) >> 3; // Round Q10 to nearest Q7
+        int q7 = ((int)q10 + 3) >> 3; // Round Q10 to nearest Q7
         return arcsineTable[q7];
     }
 
@@ -676,10 +747,8 @@ struct CWRUtil
             {
                 return 90 + _angle(x, y, d);
             }
-            else // y < 0
-            {
-                return 90 - _angle(x, -y, d);
-            }
+            // y < 0
+            return 90 - _angle(x, -y, d);
         }
         // x < 0
         if (y >= 0)
@@ -691,15 +760,44 @@ struct CWRUtil
     }
 
     /**
-     * Find the square root of the given value.
+     * Find the square root of the given value. Consider using length to avoid possible overflow
+     * when calculating a length.
      *
      * @param  value The value to find the square root of.
      *
      * @return The square root of the given value.
+     *
+     * @see length
      */
     static Q5 sqrtQ10(Q10 value)
     {
-        return Q5(isqrt(uint32_t(int(value))));
+        return Q5(isqrt(uint32_t((int)value)));
+    }
+
+    /**
+     * Find the length of a given distance x,y as sqrt(x*x+y*y) while avoiding overflow. The
+     * function uses sqrtQ10(Q10) as a helper function.
+     *
+     * @param  x The x distance.
+     * @param  y The y distance.
+     *
+     * @return The length of the vector (x,y).
+     *
+     * @see sqrtQ10
+     */
+    static Q5 length(Q5 x, Q5 y)
+    {
+        // Check if x*x or y*y is likely to overflow
+        const int absx = abs((int)x);
+        const int absy = abs((int)y);
+        // Find a scaling factor to make the calulation overflow-safe
+        const int factor = MAX(absx >> 14, absy >> 14);
+        if (factor > 1)
+        {
+            // Recursive call on a smaller number
+            return length(x / factor, y / factor) * factor;
+        }
+        return sqrtQ10(x * x + y * y);
     }
 
     /**
@@ -714,7 +812,7 @@ struct CWRUtil
      */
     static Q5 muldivQ5(Q5 factor1, Q5 factor2, Q5 divisor)
     {
-        return Q5(muldiv(int(factor1), int(factor2), int(divisor)));
+        return Q5(muldiv((int)factor1, (int)factor2, (int)divisor));
     }
 
     /**
@@ -751,7 +849,7 @@ struct CWRUtil
     static Q5 muldivQ10(Q10 factor1, Q10 factor2, Q10 divisor)
     {
         int32_t remainder;
-        return Q5(muldiv(int(factor1), int(factor2), int(divisor), remainder) / Rasterizer::POLY_BASE_SIZE);
+        return Q5(muldiv((int)factor1, (int)factor2, (int)divisor, remainder) / Rasterizer::POLY_BASE_SIZE);
     }
 
     /**
@@ -764,7 +862,7 @@ struct CWRUtil
      */
     static Q5 mulQ5(Q5 factor1, Q5 factor2)
     {
-        return muldivQ5(factor1, factor2, CWRUtil::toQ5<int>(1));
+        return muldivQ5(factor1, factor2, toQ5<int>(1));
     }
 
     /**
@@ -777,7 +875,7 @@ struct CWRUtil
      */
     static Q5 mulQ5(Q5 factor1, Q10 factor2)
     {
-        return muldivQ10(Q10(int(factor1) * Rasterizer::POLY_BASE_SIZE), factor2, CWRUtil::toQ10<int>(1));
+        return muldivQ10(Q10((int)factor1 * Rasterizer::POLY_BASE_SIZE), factor2, toQ10<int>(1));
     }
 
 private:
@@ -791,13 +889,13 @@ private:
         }
 
         Q5 _1 = toQ5<int>(1); // Used to convert Q5->Q10->Q15
-        d = sqrtQ10(x * x + y * y);
+        d = length(x, y);
         if (d == 0)
         {
             return 0; // Error
         }
         int32_t remainder;
-        Q10 dy = Q10(muldiv(int(y), int(_1 * _1), int(d), remainder));
+        Q10 dy = Q10(muldiv((int)y, (int)(_1 * _1), (int)d, remainder));
         return arcsine(dy);
     }
 
@@ -822,4 +920,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // CWRUTIL_HPP
+#endif // TOUCHGFX_CWRUTIL_HPP

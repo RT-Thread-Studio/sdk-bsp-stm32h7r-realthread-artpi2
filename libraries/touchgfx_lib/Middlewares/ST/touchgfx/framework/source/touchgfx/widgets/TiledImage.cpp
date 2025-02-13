@@ -1,27 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
-#include <touchgfx/widgets/TiledImage.hpp>
+#include <touchgfx/Drawable.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/lcd/LCD.hpp>
+#include <touchgfx/widgets/TiledImage.hpp>
 
 namespace touchgfx
 {
 void TiledImage::setBitmap(const Bitmap& bmp)
 {
     Image::setBitmap(bmp);
-    // Make sure the xOffset and yOffset are correct
+    // Make sure the xOffset and yOffset are correct (in range)
     setOffset(xOffset, yOffset);
 }
 
@@ -36,7 +35,11 @@ void TiledImage::setXOffset(int16_t x)
     xOffset = x;
     if (bitmap.getWidth() != 0)
     {
-        xOffset = ((xOffset % bitmap.getWidth()) + bitmap.getWidth()) % bitmap.getWidth();
+        xOffset %= bitmap.getWidth();
+        if (xOffset < 0)
+        {
+            xOffset += bitmap.getWidth();
+        }
     }
 }
 
@@ -45,7 +48,11 @@ void TiledImage::setYOffset(int16_t y)
     yOffset = y;
     if (bitmap.getHeight() != 0)
     {
-        yOffset = ((yOffset % bitmap.getHeight()) + bitmap.getHeight()) % bitmap.getHeight();
+        yOffset %= bitmap.getHeight();
+        if (yOffset < 0)
+        {
+            yOffset += bitmap.getHeight();
+        }
     }
 }
 
@@ -67,8 +74,8 @@ int16_t TiledImage::getYOffset()
 
 void TiledImage::draw(const Rect& invalidatedArea) const
 {
-    uint16_t bitmapWidth = bitmap.getWidth();
-    uint16_t bitmapHeight = bitmap.getHeight();
+    const int16_t bitmapWidth = bitmap.getWidth();
+    const int16_t bitmapHeight = bitmap.getHeight();
 
     if (bitmapWidth == 0 || bitmapHeight == 0)
     {
@@ -98,7 +105,7 @@ Rect TiledImage::getSolidRect() const
 {
     if (alpha < 255)
     {
-        return Rect(0, 0, 0, 0);
+        return Rect();
     }
 
     Rect solidRect = bitmap.getSolidRect();
@@ -113,7 +120,7 @@ Rect TiledImage::getSolidRect() const
         solidRect2.x += bitmap.getWidth();
         if (solidRect.x < 0)
         {
-            int16_t right = solidRect.right();
+            const int16_t right = solidRect.right();
             solidRect.width = MAX(right, 0);
             solidRect.x = 0;
         }
@@ -137,7 +144,7 @@ Rect TiledImage::getSolidRect() const
         solidRect2.y += bitmap.getHeight();
         if (solidRect.y < 0)
         {
-            int16_t bottom = solidRect.bottom();
+            const int16_t bottom = solidRect.bottom();
             solidRect.height = MAX(bottom, 0);
             solidRect.y = 0;
         }

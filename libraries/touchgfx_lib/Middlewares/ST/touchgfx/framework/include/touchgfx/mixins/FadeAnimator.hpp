@@ -1,29 +1,27 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/mixins/FadeAnimator.hpp
  *
  * Declares the touchgfx::FadeAnimator class.
  */
-#ifndef FADEANIMATOR_HPP
-#define FADEANIMATOR_HPP
+#ifndef TOUCHGFX_FADEANIMATOR_HPP
+#define TOUCHGFX_FADEANIMATOR_HPP
 
 #include <touchgfx/Application.hpp>
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -100,22 +98,6 @@ public:
         return fadeAnimationDelay;
     }
 
-    ///@cond
-    /**
-     * Gets whether or not the fade animation is running.
-     *
-     * @return true if the fade animation is running.
-     *
-     * @deprecated Use FadeAnimator::isFadeAnimationRunning().
-     */
-    TOUCHGFX_DEPRECATED(
-        "Use FadeAnimator::isFadeAnimationRunning().",
-        bool isRunning())
-    {
-        return isFadeAnimationRunning();
-    }
-    ///@endcond
-
     /**
      * Gets whether or not the fade animation is running.
      *
@@ -171,7 +153,6 @@ public:
         }
     }
 
-protected:
     /** @copydoc Drawable::handleTickEvent */
     virtual void handleTickEvent()
     {
@@ -179,31 +160,37 @@ protected:
         nextFadeAnimationStep();
     }
 
+protected:
     /** Execute next step in fade animation and stop the timer if necessary. */
     void nextFadeAnimationStep()
     {
         if (fadeAnimationRunning)
         {
-            if (fadeAnimationCounter < fadeAnimationDelay)
+            fadeAnimationCounter++;
+            if (fadeAnimationCounter >= fadeAnimationDelay)
             {
-                // Just wait for the delay time to pass
-                fadeAnimationCounter++;
-            }
-            else
-            {
-                if (fadeAnimationCounter <= (uint32_t)(fadeAnimationDelay + fadeAnimationDuration))
+                // Adjust the used animationCounter for the startup delay
+                uint32_t actualAnimationCounter = fadeAnimationCounter - fadeAnimationDelay;
+
+                int16_t newAlpha = fadeAnimationStartAlpha + (int16_t)fadeAnimationAlphaEquation(actualAnimationCounter, 0, fadeAnimationEndAlpha - fadeAnimationStartAlpha, fadeAnimationDuration);
+
+                if (T::getAlpha() != newAlpha)
                 {
-                    // Adjust the used animationCounter for the startup delay
-                    uint32_t actualAnimationCounter = fadeAnimationCounter - fadeAnimationDelay;
-
-                    int16_t deltaAlpha = (int16_t)fadeAnimationAlphaEquation(actualAnimationCounter, 0, fadeAnimationEndAlpha - fadeAnimationStartAlpha, fadeAnimationDuration);
-
-                    T::setAlpha(fadeAnimationStartAlpha + deltaAlpha);
-                    T::invalidate();
-
-                    fadeAnimationCounter++;
+                    if (newAlpha == 0)
+                    {
+                        // InvalidateContent before it becomes invisible
+                        T::invalidateContent();
+                        T::setAlpha((uint8_t)newAlpha);
+                    }
+                    else
+                    {
+                        // InvalidateContent after we are sure that it is visible
+                        T::setAlpha((uint8_t)newAlpha);
+                        T::invalidateContent();
+                    }
                 }
-                if (fadeAnimationCounter > (uint32_t)(fadeAnimationDelay + fadeAnimationDuration))
+
+                if (fadeAnimationCounter >= (uint32_t)(fadeAnimationDelay + fadeAnimationDuration))
                 {
                     // End of animation
                     fadeAnimationRunning = false;
@@ -219,7 +206,6 @@ protected:
         }
     }
 
-protected:
     bool fadeAnimationRunning;                 ///< True if the animation is running.
     uint16_t fadeAnimationCounter;             ///< To the current step in the animation
     uint16_t fadeAnimationDelay;               ///< A delay that is applied before animation start. Expressed in ticks.
@@ -230,6 +216,7 @@ protected:
 
     GenericCallback<const FadeAnimator<T>&>* fadeAnimationEndedCallback; ///< Animation ended Callback.
 };
-} //namespace touchgfx
 
-#endif // FADEANIMATOR_HPP
+} // namespace touchgfx
+
+#endif // TOUCHGFX_FADEANIMATOR_HPP

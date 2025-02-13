@@ -1,27 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/ModalWindow.hpp
  *
  * Declares the touchgfx::ModalWindow class.
  */
-#ifndef MODALWINDOW_HPP
-#define MODALWINDOW_HPP
+#ifndef TOUCHGFX_MODALWINDOW_HPP
+#define TOUCHGFX_MODALWINDOW_HPP
 
 #include <touchgfx/containers/Container.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
@@ -124,19 +122,6 @@ public:
     /** Make the ModalWindow invisible. */
     virtual void hide();
 
-    ///@cond
-    /**
-     * Query if this ModalWindow is showing.
-     *
-     * @return true if showing, false if not.
-     *
-     * @deprecated Use ModalWindow::isVisible().
-     */
-    TOUCHGFX_DEPRECATED(
-        "Use ModalWindow::isVisible().",
-        virtual bool isShowing() const);
-    ///@endcond
-
 protected:
     Box backgroundShade;       ///< The background shade
     Container windowContainer; ///< The window container that defines the active container area where both the windowBackground and added drawables are placed.
@@ -145,4 +130,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // MODALWINDOW_HPP
+#endif // TOUCHGFX_MODALWINDOW_HPP

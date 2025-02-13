@@ -1,78 +1,77 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
+#include <touchgfx/Application.hpp>
 #include <touchgfx/widgets/AnimatedImage.hpp>
 
 namespace touchgfx
 {
 void AnimatedImage::handleTickEvent()
 {
-    if (running)
+    if (!running)
     {
-        ++ticksSinceUpdate;
-        if (ticksSinceUpdate != updateTicksInterval)
+        return;
+    }
+    ++ticksSinceUpdate;
+    if (ticksSinceUpdate != updateTicksInterval)
+    {
+        return;
+    }
+
+    ticksSinceUpdate = 0;
+    BitmapId currentId = getBitmap();
+
+    if (((currentId == endId) && !reverse) || ((currentId == startId) && reverse))
+    {
+        if (!loopAnimation)
         {
-            return;
+            Application::getInstance()->unregisterTimerWidget(this);
+            running = false;
         }
 
-        ticksSinceUpdate = 0;
-        BitmapId currentId = getBitmap();
-
-        if (((currentId == endId) && !reverse) || ((currentId == startId) && reverse))
+        if (animationDoneAction && animationDoneAction->isValid())
         {
-            if (!loopAnimation)
-            {
-                Application::getInstance()->unregisterTimerWidget(this);
-                running = false;
-            }
-
-            if (animationDoneAction && animationDoneAction->isValid())
-            {
-                animationDoneAction->execute(*this);
-            }
-
-            if (running && loopAnimation)
-            {
-                if (reverse)
-                {
-                    Image::setBitmap(Bitmap(endId));
-                }
-                else
-                {
-                    Image::setBitmap(Bitmap(startId));
-                }
-                invalidate();
-            }
+            animationDoneAction->execute(*this);
         }
-        else
+
+        if (running && loopAnimation)
         {
             if (reverse)
             {
-                --currentId;
+                Image::setBitmap(Bitmap(endId));
             }
             else
             {
-                ++currentId;
+                Image::setBitmap(Bitmap(startId));
             }
-            Image::setBitmap(Bitmap(currentId));
             invalidate();
         }
     }
+    else
+    {
+        if (reverse)
+        {
+            --currentId;
+        }
+        else
+        {
+            ++currentId;
+        }
+        Image::setBitmap(Bitmap(currentId));
+        invalidate();
+    }
 }
 
-void AnimatedImage::startAnimation(const bool& rev, const bool& reset, const bool& loop)
+void AnimatedImage::startAnimation(const bool rev, const bool reset /*= false*/, const bool loop /*= false*/)
 {
     if ((startId != BITMAP_INVALID) && (endId != BITMAP_INVALID))
     {
@@ -125,11 +124,21 @@ void AnimatedImage::pauseAnimation()
     }
 }
 
+void AnimatedImage::setBitmap(const Bitmap& bmp)
+{
+    startId = bmp.getId();
+    Image::setBitmap(bmp);
+}
+
+void AnimatedImage::setBitmapEnd(const Bitmap& bmp)
+{
+    endId = bmp.getId();
+}
+
 void AnimatedImage::setBitmaps(BitmapId start, BitmapId end)
 {
-    startId = start;
-    endId = end;
-    Image::setBitmap(Bitmap(startId));
+    setBitmap(start);
+    setBitmapEnd(end);
 }
 
 void AnimatedImage::setUpdateTicksInterval(uint8_t updateInterval)

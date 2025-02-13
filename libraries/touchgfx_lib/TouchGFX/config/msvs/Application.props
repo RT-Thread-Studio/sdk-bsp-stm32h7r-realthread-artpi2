@@ -2,9 +2,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ImportGroup Label="PropertySheets"/>
   <PropertyGroup Label="UserMacros">
-    <UseBPP>24</UseBPP>
+    <UseBPP>32</UseBPP>
     <TouchGFXReleasePath>..\..\..\Middlewares\ST\touchgfx</TouchGFXReleasePath>
-    <TouchGFXEnvPath>E:\TouchGFX\4.15.0\env</TouchGFXEnvPath>
+    <TouchGFXEnvPath>D:\software\TouchGFX\4.24.2\env</TouchGFXEnvPath>
     <ApplicationRoot>..\..</ApplicationRoot>
   </PropertyGroup>
   <PropertyGroup/>

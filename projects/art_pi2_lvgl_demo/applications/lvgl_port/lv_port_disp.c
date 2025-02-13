@@ -107,24 +107,13 @@ void lv_port_disp_init(void)
         rt_kprintf("malloc failed\n");
 
 #ifdef BSP_USING_LCD_RGB
-    rt_err_t result;
-
     lvgl_dma2d_config();
 
     rt_device_t lcd_device = rt_device_find("lcd");
-    result = rt_device_open(lcd_device, 0);
+    rt_err_t result = rt_device_open(lcd_device, RT_DEVICE_FLAG_RDWR);
     if (result != RT_EOK)
     {
-        LOG_E("error!");
-        return;
-    }
-
-    static struct rt_device_graphic_info info;
-    /* get framebuffer address */
-    result = rt_device_control(lcd_device, RTGRAPHIC_CTRL_GET_INFO, &info);
-    if (result != RT_EOK)
-    {
-        LOG_E("error!");
+        LOG_E("lcd device open error!");
         return;
     }
 

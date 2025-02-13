@@ -5,5 +5,7 @@
 #include <touchgfx/lcd/LCD.hpp>
 
 void setupSimulator(int argc, char** argv, touchgfx::HAL& hal);
+void setupVideoDecoder(touchgfx::HAL& hal);
+void setupVideo(const char* videoFilename, const uint8_t** videoBuffer, uint32_t videoLength);
 
 touchgfx::LCD& setupLCD();

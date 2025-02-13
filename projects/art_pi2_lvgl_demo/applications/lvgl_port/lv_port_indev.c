@@ -13,30 +13,25 @@
 #include <stdbool.h>
 #include <rtdevice.h>
 #include <drv_gpio.h>
+#include <lcd_port.h>
 
-#ifdef BSP_USING_ILI9488
-#include "ft6236.h"
-#   define TOUCH_DEVICE_NAME    "touch_ft"    /* Touch device name */
-#   define TOUCH_DEVICE_I2C_BUS "i2c2"        /* SCL -> PH15(127), SDA -> PH13(125) */
-#   define REST_PIN             GET_PIN(A, 3) /* reset pin */
-#   define USER_BUTTON_PIN      GET_PIN(H, 4) /* Reserve for LV_INDEV_TYPE_BUTTON */
-
-static rt_device_t ts; /* Touch device handle, Touchscreen */
+static rt_device_t ts_dev; /* Touch device handle, Touchscreen */
 static struct rt_touch_data *read_data;
-#else
+static struct rt_touch_info info;
+
 #include "gt9147.h"
-#   define GT9147_RST_PIN   220     //PN12
-#   define GT9147_IRQ_PIN   79      //PE15
-#endif
+#define GT9147_RST_PIN   GET_PIN(N, 12) //PN12
+#define GT9147_IRQ_PIN   GET_PIN(E, 15) //PE15
 
 static rt_int16_t last_x = 0;
 static rt_int16_t last_y = 0;
 static lv_indev_state_t last_state = LV_INDEV_STATE_REL;
 
-#ifdef BSP_USING_ILI9488
 static bool touchpad_is_pressed(void)
 {
-    if (RT_EOK == rt_device_read(ts, 0, read_data, 1)) /* return RT_EOK is a bug (ft6236) */
+    rt_device_control(ts_dev, RT_TOUCH_CTRL_GET_INFO, &info);
+
+    if (1 == rt_device_read(ts_dev, 0, read_data, 1))
     {
         if (read_data->event == RT_TOUCH_EVENT_DOWN)
         {
@@ -45,7 +40,7 @@ static bool touchpad_is_pressed(void)
             rt_int16_t tmp_y = read_data->x_coordinate;
 
             /* invert y */
-            tmp_y = 320 - tmp_y;
+//            tmp_y = 320 - tmp_y;
 
             /* restore data */
             last_x = tmp_x;
@@ -58,14 +53,13 @@ static bool touchpad_is_pressed(void)
     return false;
 }
 
-static void touchpad_get_xy(rt_int16_t *x, rt_int16_t *y)
+static void touchpad_get_xy(rt_int32_t *x, rt_int32_t *y)
 {
     *x = last_x;
     *y = last_y;
 }
-#endif
 
-void lv_port_indev_input(rt_int16_t x, rt_int16_t y, lv_indev_state_t state)
+void lv_port_indev_input(rt_int32_t x, rt_int32_t y, lv_indev_state_t state)
 {
     last_state = state;
     last_x = x;
@@ -74,7 +68,6 @@ void lv_port_indev_input(rt_int16_t x, rt_int16_t y, lv_indev_state_t state)
 
 static void touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
 {
-#ifdef BSP_USING_ILI9488
     /*`touchpad_is_pressed` and `touchpad_get_xy` needs to be implemented by you*/
     if (touchpad_is_pressed())
     {
@@ -85,52 +78,11 @@ static void touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
     {
         data->state = LV_INDEV_STATE_RELEASED;
     }
-#else
-    data->point.x = last_x;
-    data->point.y = last_y;
-    data->state = last_state;
-#endif
 }
 
-#ifdef BSP_USING_ILI9488
-rt_err_t rt_hw_ft6236_register(void)
-{
-    struct rt_touch_config config;
-    config.dev_name = TOUCH_DEVICE_I2C_BUS;
-    rt_hw_ft6236_init(TOUCH_DEVICE_NAME, &config, REST_PIN);
-
-    ts = rt_device_find(TOUCH_DEVICE_NAME);
-    if (!ts)
-    {
-        return -RT_ERROR;
-    }
-
-    read_data = (struct rt_touch_data *) rt_calloc(1, sizeof(struct rt_touch_data));
-    if (!read_data)
-    {
-        return -RT_ENOMEM;
-    }
-
-    if (!rt_device_open(ts, RT_DEVICE_FLAG_RDONLY))
-    {
-        struct rt_touch_info info;
-        rt_device_control(ts, RT_TOUCH_CTRL_GET_INFO, &info);
-        rt_kprintf("type       :%d\n", info.type);
-        rt_kprintf("vendor     :%s\n", info.vendor);
-        rt_kprintf("point_num  :%d\n", info.point_num);
-        rt_kprintf("range_x    :%d\n", info.range_x);
-        rt_kprintf("range_y    :%d\n", info.range_y);
-        return RT_EOK;
-    }
-    else
-    {
-        rt_kprintf("open touch device failed.\n");
-        return -RT_ERROR;
-    }
-}
-#else
 rt_err_t rt_hw_gt9147_register(void)
 {
+    void *id;
     struct rt_touch_config config;
     rt_uint8_t rst;
     rst = GT9147_RST_PIN;
@@ -144,25 +96,45 @@ rt_err_t rt_hw_gt9147_register(void)
         rt_kprintf("touch device gt9147 init failed.\n");
         return -RT_ERROR;
     }
-    else
+    
+    ts_dev = rt_device_find("gt");
+    if (ts_dev == RT_NULL)
     {
-        return RT_EOK;
+        rt_kprintf("can't find device:%s\n", "gt");
+        return -RT_ERROR;
     }
+
+    if (rt_device_open(ts_dev, RT_DEVICE_FLAG_INT_RX) != RT_EOK)
+    {
+        rt_kprintf("open device failed!");
+        return -RT_ERROR;
+    }
+
+    id = rt_malloc(sizeof(rt_uint8_t) * 8);
+    rt_device_control(ts_dev, RT_TOUCH_CTRL_GET_ID, id);
+    rt_uint8_t * read_id = (rt_uint8_t *) id;
+    rt_kprintf("id = %d %d %d %d \n", read_id[0] - '0', read_id[1] - '0', read_id[2] - '0', read_id[3] - '0');
+
+    int x = LCD_WIDTH;
+    int y = LCD_HEIGHT;
+    rt_device_control(ts_dev, RT_TOUCH_CTRL_SET_X_RANGE, &x); /* if possible you can set your x y coordinate*/
+    rt_device_control(ts_dev, RT_TOUCH_CTRL_SET_Y_RANGE, &y);
+    rt_device_control(ts_dev, RT_TOUCH_CTRL_GET_INFO, id);
+    rt_kprintf("range_x = %d \n", (*(struct rt_touch_info*) id).range_x);
+    rt_kprintf("range_y = %d \n", (*(struct rt_touch_info*) id).range_y);
+    rt_kprintf("point_num = %d \n", (*(struct rt_touch_info*) id).point_num);
+    rt_free(id);
+    
+    return RT_EOK;
 }
-#endif
 
 lv_indev_t * touch_indev;
 
 void lv_port_indev_init(void)
 {   
     lv_indev_t *indev_touchpad;
-#ifdef BSP_USING_ILI9488
-    /* Register touch device */
-    rt_hw_ft6236_register();
-#else
     /* Register touch device */
     rt_hw_gt9147_register();
-#endif
     /*Register a touchpad input device*/
     indev_touchpad = lv_indev_create();
     lv_indev_set_type(indev_touchpad, LV_INDEV_TYPE_POINTER);

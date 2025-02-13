@@ -1,27 +1,28 @@
 /**
-  ******************************************************************************
-  * File Name          : OSWrappers.cpp
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * File Name          : OSWrappers.cpp
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+ * All rights reserved.</center></h2>
+ *
+ * This software component is licensed by ST under Ultimate Liberty license
+ * SLA0044, the "License"; You may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at:
+ *                             www.st.com/SLA0044
+ *
+ ******************************************************************************
+ */
 #include <touchgfx/hal/OSWrappers.hpp>
-#include <stm32h7xx_hal.h>
+#include <stm32h7rsxx_hal.h>
 #include <touchgfx/hal/GPIO.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <board.h>
 #include <rthw.h>
+
 static rt_sem_t frame_buffer_sem;
 static rt_mq_t vsync_q = 0;
 using namespace touchgfx;
@@ -34,11 +35,9 @@ static uint8_t dummy = 0x5a;
  */
 void OSWrappers::initialize()
 {
-
-	frame_buffer_sem = rt_sem_create("gfx_sem", 1, RT_IPC_FLAG_PRIO);
+    frame_buffer_sem = rt_sem_create("gfx_sem", 1, RT_IPC_FLAG_PRIO);
     // Create a queue of length 1
     vsync_q = rt_mq_create("gfx_mq", 1, 1, RT_IPC_FLAG_PRIO);
-
 }
 
 /*
@@ -46,7 +45,7 @@ void OSWrappers::initialize()
  */
 void OSWrappers::takeFrameBufferSemaphore()
 {
-     rt_sem_take(frame_buffer_sem, RT_WAITING_FOREVER);
+    rt_sem_take(frame_buffer_sem, RT_WAITING_FOREVER);
 }
 
 /*
@@ -80,7 +79,7 @@ void OSWrappers::giveFrameBufferSemaphoreFromISR()
 {
     // Since this is called from an interrupt, FreeRTOS requires special handling to trigger a
     // re-scheduling. May be applicable for other OSes as well.
-		rt_sem_release(frame_buffer_sem);
+    rt_sem_release(frame_buffer_sem);
 }
 
 /*
@@ -127,7 +126,22 @@ void OSWrappers::waitForVSync()
  */
 void OSWrappers::taskDelay(uint16_t ms)
 {
-     rt_thread_mdelay(ms);
+    rt_thread_mdelay(ms);
+}
+
+/**
+ * A function that causes the executing task to yield control to
+ * another thread. This function is used by the framework when it
+ * is necessary to wait a little before continuing (e.g. drawing).
+ *
+ * The implementation should typically request the operating
+ * system to change to another task of similar priority. When
+ * running without an operating system, the implementation can run
+ * a very short task and return.
+ */
+void OSWrappers::taskYield()
+{
+    rt_thread_yield();
 }
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

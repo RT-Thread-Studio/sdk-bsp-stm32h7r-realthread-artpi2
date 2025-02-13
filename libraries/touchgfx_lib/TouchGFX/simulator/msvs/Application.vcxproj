@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="15.0">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="12.0">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -17,15 +17,32 @@
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl2\OSWrappers.cpp"/>
     <ClCompile Include="$(ApplicationRoot)\simulator\main.cpp"/>
     <ClCompile Include="$(ApplicationRoot)\generated\simulator\src\mainBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\AdvanceDiceContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\AdvanceDiceContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\animationsDepthButton.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\animationsDepthButtonBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\cubeLeftRightButtonsContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\cubeLeftRightButtonsContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\cubeUpDownButtonsContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\cubeUpDownButtonsContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\dice_screen\DicePresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\dice_screen\DiceView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\dice_screen\DiceViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
-    <ClCompile Include="..\..\gui\src\main_screen\MainPresenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\main_screen\MainView.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\main_screen\MainViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\scaleSliderContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\scaleSliderContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\selectedIconsContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\selectedIconsContainerBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\SimpleDiceContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\SimpleDiceContainerBase.cpp"/>
+    <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\TopBarContainer.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\TopBarContainerBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(ApplicationRoot)\assets\texts\texts.xlsx"/>
+    <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
     <None Include="$(ApplicationRoot)\config\msvs\Application.props"/>
   </ItemGroup>
   <ItemGroup>
@@ -163,16 +180,35 @@
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\TouchArea.hpp"/>
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\Widget.hpp"/>
     <ClInclude Include="$(ApplicationRoot)\generated\simulator\include\simulator\mainBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\AdvanceDiceContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\AdvanceDiceContainerBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\animationsDepthButton.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\animationsDepthButtonBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\cubeLeftRightButtonsContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\cubeLeftRightButtonsContainerBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\cubeUpDownButtonsContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\cubeUpDownButtonsContainerBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\dice_screen\DicePresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\dice_screen\DiceView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\dice_screen\DiceViewBase.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendApplication.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendApplicationBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendHeap.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendHeapBase.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\scaleSliderContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\scaleSliderContainerBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\selectedIconsContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\selectedIconsContainerBase.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\main_screen\MainPresenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\main_screen\MainView.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\main_screen\MainViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\SimpleDiceContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\SimpleDiceContainerBase.hpp"/>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\TopBarContainer.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\TopBarContainerBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
@@ -181,21 +217,19 @@
     <ProjectGuid>{3C47683C-0505-487F-A1FD-75B8490BF72C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Application</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
   <ImportGroup Label="ExtensionSettings">

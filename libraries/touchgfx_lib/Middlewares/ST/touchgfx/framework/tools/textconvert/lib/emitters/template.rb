@@ -1,33 +1,32 @@
-##############################################################################
-# This file is part of the TouchGFX 4.15.0 distribution.
+# Copyright (c) 2018(-2024) STMicroelectronics.
+# All rights reserved.
 #
-# <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-# All rights reserved.</center></h2>
+# This file is part of the TouchGFX 4.24.2 distribution.
 #
-# This software component is licensed by ST under Ultimate Liberty license
-# SLA0044, the "License"; You may not use this file except in compliance with
-# the License. You may obtain a copy of the License at:
-#                             www.st.com/SLA0044
+# This software is licensed under terms that can be found in the LICENSE file in
+# the root directory of this software component.
+# If no LICENSE file comes with this software, it is provided AS-IS.
 #
-##############################################################################
-
+###############################################################################/
 require 'erb'
 require 'lib/file_io'
 
 class Template
   attr_accessor :text_entries
   attr_accessor :typographies
+  attr_accessor :languages
 
-  def initialize(text_entries, typographies, output_directory)
+  def initialize(text_entries, typographies, languages, output_directory)
     @text_entries = text_entries
     @typographies = typographies
+    @languages = languages
     @output_directory = output_directory
   end
   def run
-    result = ERB.new(File.read(input_path).
-        gsub(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS),0,"<>").result( binding ).
-        gsub(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS).
-        gsub(UNIX_LINE_ENDINGS, LINE_ENDINGS)
+    result = ERB.new(File.read(input_path).gsub(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS),0,"<>").
+               result(binding).
+               gsub(WINDOWS_LINE_ENDINGS, UNIX_LINE_ENDINGS).
+               gsub(UNIX_LINE_ENDINGS, LINE_ENDINGS)
     FileIO.write_file(File.join(@output_directory, output_path), result)
   end
 end

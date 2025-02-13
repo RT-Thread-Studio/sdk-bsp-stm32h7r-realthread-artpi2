@@ -1,28 +1,29 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/scrollers/ScrollWheelBase.hpp
  *
  * Declares the touchgfx::ScrollWheelBase class.
  */
-#ifndef SCROLLWHEELBASE_HPP
-#define SCROLLWHEELBASE_HPP
+#ifndef TOUCHGFX_SCROLLWHEELBASE_HPP
+#define TOUCHGFX_SCROLLWHEELBASE_HPP
 
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/containers/scrollers/ScrollBase.hpp>
+#include <touchgfx/events/ClickEvent.hpp>
+#include <touchgfx/events/DragEvent.hpp>
+#include <touchgfx/events/GestureEvent.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -73,14 +74,15 @@ public:
 
     virtual int32_t keepOffsetInsideLimits(int32_t newOffset, int16_t overShoot) const;
 
-    virtual void handleClickEvent(const ClickEvent& evt);
+    virtual void handleClickEvent(const ClickEvent& event);
 
-    virtual void handleDragEvent(const DragEvent& evt);
+    virtual void handleDragEvent(const DragEvent& event);
 
-    virtual void handleGestureEvent(const GestureEvent& evt);
+    virtual void handleGestureEvent(const GestureEvent& event);
 
     /**
-     * Sets Callback which will be called when the ScrollWheel animates to a new item.
+     * Sets Callback which will be called when the ScrollWheel animates to a new item or the
+     * current item.
      *
      * @param [in] callback The callback.
      */
@@ -96,4 +98,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // SCROLLWHEELBASE_HPP
+#endif // TOUCHGFX_SCROLLWHEELBASE_HPP

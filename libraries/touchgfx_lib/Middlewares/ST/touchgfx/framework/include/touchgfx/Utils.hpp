@@ -1,33 +1,23 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/Utils.hpp
  *
  * Declares various helper functions.
  */
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef TOUCHGFX_UTILS_HPP
+#define TOUCHGFX_UTILS_HPP
 
-#ifdef SIMULATOR
-#include <stdarg.h>
-#ifndef __linux__
-#include <windows.h>
-#endif
-#include <stdio.h>
-#endif
 #include <touchgfx/Bitmap.hpp>
 #include <touchgfx/hal/Types.hpp>
 
@@ -114,11 +104,21 @@ RenderingVariant lookupBilinearRenderVariant(const Bitmap& bitmap);
 template <typename T>
 T abs(T d)
 {
-    if (d < 0)
-    {
-        return -d;
-    }
-    return d;
+    return (d < 0) ? -d : d;
+}
+
+/**
+ * Simple implementation of the standard sign function.
+ *
+ * @tparam T The type on which to perform the sign.
+ * @param  d The entity on which to perform the sign.
+ *
+ * @return -1, +1 or 0 depending on the sign of the given value of d.
+ */
+template <typename T>
+T sign(T d)
+{
+    return (d < 0) ? -1 : ((d > 0) ? 1 : 0);
 }
 
 /**
@@ -154,15 +154,28 @@ T gcd(T a, T b)
  * @param  x The value to count the number of leading zeros in.
  *
  * @return The number of leading zeros (from 0 to 31).
+ *
+ * @see clzu
  */
 int32_t clz(int32_t x);
 
 /**
+ * Count leading zeros in the binary representation of absolute value of the given uint32_t.
+ *
+ * @param  x The value to count the number of leading zeros in.
+ *
+ * @return The number of leading zeros (from 0 to 32).
+ *
+ * @see clz
+ */
+int32_t clzu(uint32_t x);
+
+/**
  * Multiply and divide without causing overflow. Multiplying two large values and subsequently
- * dividing the result with another large value might cause an overflow in the
- * intermediate result. The function muldiv() will multiply factor1 and factor2 and
- * divide the result by divisor without causing overflow (unless the final result would
- * overflow). The remainder from the division is returned.
+ * dividing the result with another large value might cause an overflow in the intermediate
+ * result. The function muldiv() will multiply factor1 and factor2 and divide the result by
+ * divisor without causing overflow (unless the final result would overflow). The remainder from
+ * the division is returned.
  *
  * @param       factor1   The first factor.
  * @param       factor2   The second factor.
@@ -170,8 +183,32 @@ int32_t clz(int32_t x);
  * @param [out] remainder The remainder.
  *
  * @return (factor1 * factor2) / divisor.
+ *
+ * @see muldivu
+ *
+ * @note For large numbers close to the limit of int32_t, the calculation may not be correct.
  */
 int32_t muldiv(int32_t factor1, int32_t factor2, int32_t divisor, int32_t& remainder);
+
+/**
+ * Multiply and divide without causing overflow. Multiplying two large values and subsequently
+ * dividing the result with another large value might cause an overflow in the intermediate
+ * result. The function muldiv() will multiply factor1 and factor2 and divide the result by
+ * divisor without causing overflow (unless the final result would overflow). The remainder from
+ * the division is returned.
+ *
+ * @param       factor1   The first factor.
+ * @param       factor2   The second factor.
+ * @param       divisor   The divisor.
+ * @param [out] remainder The remainder.
+ *
+ * @return (factor1 * factor2) / divisor.
+ *
+ * @see muldiv
+ *
+ * @note For large numbers close to the limit of uint32_t, the calculation may not be correct.
+ */
+uint32_t muldivu(uint32_t factor1, uint32_t factor2, uint32_t divisor, uint32_t& remainder);
 
 /**
  * Multiply and divide without causing overflow. Multiplying two large values and subsequently
@@ -192,4 +229,4 @@ int32_t muldiv(int32_t factor1, int32_t factor2, int32_t divisor);
 
 } // namespace touchgfx
 
-#endif // UTILS_HPP
+#endif // TOUCHGFX_UTILS_HPP

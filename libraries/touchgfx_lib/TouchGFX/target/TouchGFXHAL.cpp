@@ -1,26 +1,42 @@
+/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * File Name          : TouchGFXHAL.cpp
   ******************************************************************************
+  * This file was created by TouchGFX Generator 4.22.1. This file is only
+  * generated once! Delete this file from your project and re-generate code
+  * using STM32CubeMX or change this file manually to update it.
+  ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
+/* USER CODE END Header */
+
 #include <TouchGFXHAL.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
-
-#include "stm32h7xx.h"
+#include "FreeRTOS.h"
+#include <platform/driver/lcd/LCD16bpp.hpp>
+#include "stm32h7rsxx_hal.h"
 
 using namespace touchgfx;
+
+extern GFXMMU_HandleTypeDef hgfxmmu;
+
+void activateNeoChrom(bool active)
+{
+    ((TouchGFXHAL*)touchgfx::HAL::getInstance())->activateNeoChrom(active);
+}
+
+LCD16bpp lcd16;
 
 void TouchGFXHAL::initialize()
 {
@@ -31,8 +47,18 @@ void TouchGFXHAL::initialize()
     // Please note, HAL::initialize() must be called to initialize the framework.
 
     TouchGFXGeneratedHAL::initialize();
+    instrumentation.init();
+    setMCUInstrumentation(&instrumentation);
+    enableMCULoadCalculation(true);
+
+    /* The LCD instance is set as auxiliary LCD */
+    setAuxiliaryLCD(&lcd16);
+    lcd16.enableTextureMapperAll();
+    activateNeoChrom(true);
+    enableDMAAcceleration(false);
 }
 
+static uint16_t* tft = 0;
 /**
  * Gets the frame buffer address used by the TFT controller.
  *
@@ -40,12 +66,7 @@ void TouchGFXHAL::initialize()
  */
 uint16_t* TouchGFXHAL::getTFTFrameBuffer() const
 {
-    // Calling parent implementation of getTFTFrameBuffer().
-    //
-    // To overwrite the generated implementation, omit call to parent function
-    // and implemented needed functionality here.
-
-    return TouchGFXGeneratedHAL::getTFTFrameBuffer();
+    return tft;
 }
 
 /**
@@ -55,12 +76,15 @@ uint16_t* TouchGFXHAL::getTFTFrameBuffer() const
  */
 void TouchGFXHAL::setTFTFrameBuffer(uint16_t* address)
 {
-    // Calling parent implementation of setTFTFrameBuffer(uint16_t* address).
-    //
-    // To overwrite the generated implementation, omit call to parent function
-    // and implemented needed functionality here.
-
-    TouchGFXGeneratedHAL::setTFTFrameBuffer(address);
+    tft = address;
+    if (tft == (uint16_t*)GFXMMU_VIRTUAL_BUFFER0_BASE)
+    {
+        TouchGFXGeneratedHAL::setTFTFrameBuffer((uint16_t*)hgfxmmu.Init.Buffers.Buf0Address);
+    }
+    else
+    {
+        TouchGFXGeneratedHAL::setTFTFrameBuffer((uint16_t*)hgfxmmu.Init.Buffers.Buf1Address);
+    }
 }
 
 /**
@@ -78,14 +102,11 @@ void TouchGFXHAL::flushFrameBuffer(const touchgfx::Rect& rect)
     // and implemented needed functionality here.
     // Please note, HAL::flushFrameBuffer(const touchgfx::Rect& rect) must
     // be called to notify the touchgfx framework that flush has been performed.
+    // To calculate he start adress of rect,
+    // use advanceFrameBufferToRect(uint8_t* fbPtr, const touchgfx::Rect& rect)
+    // defined in TouchGFXGeneratedHAL.cpp
 
     TouchGFXGeneratedHAL::flushFrameBuffer(rect);
-
-    // If the framebuffer is placed in Write Through cached memory (e.g. SRAM) then we need
-    // to flush the Dcache to make sure framebuffer is correct in RAM. That's done
-    // using SCB_CleanInvalidateDCache().
-
-    // SCB_CleanInvalidateDCache();
 }
 
 bool TouchGFXHAL::blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes)
@@ -147,6 +168,36 @@ void TouchGFXHAL::enableLCDControllerInterrupt()
     TouchGFXGeneratedHAL::enableLCDControllerInterrupt();
 }
 
+bool TouchGFXHAL::beginFrame()
+{
+    return TouchGFXGeneratedHAL::beginFrame();
+}
+
+void TouchGFXHAL::endFrame()
+{
+    TouchGFXGeneratedHAL::endFrame();
+}
+
+extern "C"
+{
+    portBASE_TYPE IdleTaskHook(void* p)
+    {
+        if ((int)p) //idle task sched out
+        {
+            touchgfx::HAL::getInstance()->setMCUActive(true);
+        }
+        else //idle task sched in
+        {
+            touchgfx::HAL::getInstance()->setMCUActive(false);
+        }
+        return pdTRUE;
+    }
+}
+
+void TouchGFXHAL::activateNeoChrom(bool active)
+{
+    useAuxiliaryLCD = !active;
+}
 /* USER CODE END TouchGFXHAL.cpp */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

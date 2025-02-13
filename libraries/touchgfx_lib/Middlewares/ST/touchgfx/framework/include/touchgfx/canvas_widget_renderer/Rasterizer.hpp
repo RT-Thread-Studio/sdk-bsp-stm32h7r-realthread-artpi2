@@ -1,30 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/canvas_widget_renderer/Rasterizer.hpp
  *
  * Declares the touchgfx::Rasterizer class. Used internally by CanvasWidgetRenderer.
  */
-#ifndef RASTERIZER_HPP
-#define RASTERIZER_HPP
+#ifndef TOUCHGFX_RASTERIZER_HPP
+#define TOUCHGFX_RASTERIZER_HPP
 
 #include <touchgfx/canvas_widget_renderer/Outline.hpp>
-#include <touchgfx/canvas_widget_renderer/Rasterizer.hpp>
-#include <touchgfx/canvas_widget_renderer/Renderer.hpp>
-#include <touchgfx/canvas_widget_renderer/Scanline.hpp>
+#include <touchgfx/widgets/canvas/AbstractPainter.hpp>
 
 /// @cond
 namespace touchgfx
@@ -74,7 +69,7 @@ public:
 
     /**
      * Determine the area accuracy, to be more precise, the number of bits of the fractional
-     * part of the areas when calculating scanlines.
+     * part of the areas when calculating scan lines.
      */
     enum
     {
@@ -88,30 +83,46 @@ public:
     /** Values that represent filling rules. */
     enum FillingRule
     {
-        FILL_NON_ZERO, ///< Filling rule to fill anything inside the outmost border of the outline.
+        FILL_NON_ZERO, ///< Filling rule to fill anything inside the outermost border of the outline.
         FILL_EVEN_ODD  ///< Filling rule to fill using xor rule inside the outline.
     };
 
     /** Initializes a new instance of the Rasterizer class. */
     Rasterizer()
-        : fillingRule(FILL_NON_ZERO)
+        : outline(), fillingRule(FILL_NON_ZERO), offsetX(0), offsetY(0), width(0)
     {
     }
 
     /** Resets this object. Basically this is done by resetting the the Outline. */
-    void reset()
+    void reset(int16_t offset_x, int16_t offset_y)
     {
+        offsetX = offset_x;
+        offsetY = offset_y;
         outline.reset();
     }
 
     /**
      * Sets the filling rule to be used when rendering the outline.
      *
-     * @param  fillingRule The filling rule.
+     * @param  rule The filling rule.
+     *
+     * @see getFillingRule
      */
-    void setFillingRule(FillingRule fillingRule)
+    void setFillingRule(FillingRule rule)
     {
-        this->fillingRule = fillingRule;
+        fillingRule = rule;
+    }
+
+    /**
+     * Gets the filling rule being used when rendering the outline.
+     *
+     * @return The filling rule.
+     *
+     * @see setFillingRule
+     */
+    FillingRule getFillingRule() const
+    {
+        return fillingRule;
     }
 
     /**
@@ -155,7 +166,7 @@ public:
      */
     unsigned calculateAlpha(int area) const
     {
-        int cover = area >> (Rasterizer::POLY_BASE_SHIFT * 2 + 1 - AA_SHIFT);
+        int cover = area >> (POLY_BASE_SHIFT * 2 + 1 - AA_SHIFT);
 
         if (cover < 0)
         {
@@ -179,16 +190,12 @@ public:
     /**
      * Renders this object.
      *
-     * @tparam Renderer Type of the renderer.
-     * @param [in] r The Renderer to process.
-     *
      * @return true there was enough memory available to draw the outline and render the
      *         graphics, false if there was insufficient memory and nothing was drawn.
      */
-    template <class Renderer>
-    bool render(Renderer& r)
+    bool render(const AbstractPainter* const painter, uint8_t* buf, int16_t stride, uint8_t xAdjust, uint8_t global_alpha)
     {
-        const Cell* cells = outline.getCells();
+        const Cell* curCell = outline.closeOutlineAndSortCells(); // has side effects, so it must be first in this function
         unsigned numCells = outline.getNumCells();
         if (numCells == 0)
         {
@@ -201,32 +208,33 @@ public:
             return false;
         }
 
-        int x, y;
-        int cover;
-        int alpha;
-        int area;
-
-        scanline.reset();
-
-        cover = 0;
-        const Cell* curCell = cells++;
+        int cover = 0;
+        int old_y = curCell->y;
+        int widget_y = old_y + offsetY;
+        uint8_t* buf_ptr = buf + old_y * stride;
         numCells--;
         for (;;)
         {
             const Cell* startCell = curCell;
 
-            int coord = curCell->packedCoord();
-            x = curCell->x;
-            y = curCell->y;
+            const int start_x = curCell->x;
+            int x = start_x;
+            const int y = curCell->y;
+            if (y != old_y)
+            {
+                old_y = y;
+                widget_y = old_y + offsetY;
+                buf_ptr = buf + old_y * stride;
+            }
 
-            area = startCell->area;
+            int area = startCell->area;
             cover += startCell->cover;
 
-            //accumulate all start cells
+            // Accumulate all start cells
             while (numCells-- > 0)
             {
-                curCell = cells++;
-                if (curCell->packedCoord() != coord)
+                curCell++;
+                if (curCell->x != start_x || curCell->y != y)
                 {
                     break;
                 }
@@ -236,15 +244,13 @@ public:
 
             if (area)
             {
-                alpha = calculateAlpha((cover << (Rasterizer::POLY_BASE_SHIFT + 1)) - area);
-                if (alpha)
+                if (x >= 0 && x < width)
                 {
-                    if (scanline.isReady(y))
+                    const int8_t alpha = LCD::div255(calculateAlpha((cover << (POLY_BASE_SHIFT + 1)) - area) * global_alpha);
+                    if (alpha)
                     {
-                        r.render(scanline);
-                        scanline.resetSpans();
+                        painter->paint(buf_ptr, x + xAdjust, x + offsetX, widget_y, 1, alpha);
                     }
-                    scanline.addCell(x, y, alpha);
                 }
                 x++;
             }
@@ -254,24 +260,30 @@ public:
                 break;
             }
 
-            if (curCell->x > x)
+            int count = curCell->x - x;
+            if (count > 0)
             {
-                alpha = calculateAlpha(cover << (Rasterizer::POLY_BASE_SHIFT + 1));
-                if (alpha)
+                if (x < 0)
                 {
-                    if (scanline.isReady(y))
+                    count += x;
+                    x = 0;
+                }
+                if (count > 0)
+                {
+                    if (x + count >= width)
                     {
-                        r.render(scanline);
-                        scanline.resetSpans();
+                        count = width - x;
                     }
-                    scanline.addSpan(x, y, curCell->x - x, alpha);
+                    if (count > 0)
+                    {
+                        const int8_t alpha = LCD::div255(calculateAlpha(cover << (POLY_BASE_SHIFT + 1)) * global_alpha);
+                        if (alpha)
+                        {
+                            painter->paint(buf_ptr, x + xAdjust, x + offsetX, widget_y, count, alpha);
+                        }
+                    }
                 }
             }
-        }
-
-        if (scanline.getNumSpans())
-        {
-            r.render(scanline);
         }
         return true;
     }
@@ -282,9 +294,10 @@ public:
      *
      * @param  y The max y coordinate to render for the Outline.
      */
-    void setMaxRenderY(int y)
+    void setMaxRender(int16_t w, int16_t h)
     {
-        outline.setMaxRenderY(y);
+        width = w;
+        outline.setMaxRender(w, h);
     }
 
     /**
@@ -292,7 +305,7 @@ public:
      *
      * @return True if it was too complex, false if not.
      */
-    bool wasOutlineTooComplex()
+    FORCE_INLINE_FUNCTION bool wasOutlineTooComplex()
     {
         return outline.wasOutlineTooComplex();
     }
@@ -315,11 +328,15 @@ private:
     const Rasterizer& operator=(const Rasterizer&);
 
     Outline outline;         ///< The outline
-    Scanline scanline;       ///< The scanline
     FillingRule fillingRule; ///< The filling rule
+
+    int16_t offsetX;
+    int16_t offsetY;
+    int16_t width;
 };
 
 } // namespace touchgfx
+
 /// @endcond
 
-#endif // RASTERIZER_HPP
+#endif // TOUCHGFX_RASTERIZER_HPP

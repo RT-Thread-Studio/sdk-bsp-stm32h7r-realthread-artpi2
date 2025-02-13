@@ -1,32 +1,33 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
+#include <math.h>
+#include <string.h>
+#include <time.h>
 #include <platform/hal/simulator/sdl2/HALSDL2.hpp>
-
+#include <touchgfx/Application.hpp>
+#include <touchgfx/Color.hpp>
+#include <touchgfx/Utils.hpp>
+#include <touchgfx/Version.hpp>
+#include <touchgfx/hal/FrameBufferAllocator.hpp>
+#include <touchgfx/hal/PaintARGB8888Impl.hpp>
+#include <touchgfx/hal/PaintImpl.hpp>
+#include <touchgfx/hal/PaintRGB565Impl.hpp>
+#include <touchgfx/hal/PaintRGB888Impl.hpp>
+#include <touchgfx/transforms/DisplayTransformation.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_shape.h>
 #include <SDL2/SDL_syswm.h>
-#include <cmath>
-#include <stdio.h>
-#include <string.h>
-#include <string>
-#include <time.h>
-#include <vector>
-#include <touchgfx/Utils.hpp>
-#include <touchgfx/Version.hpp>
 
 #if defined(WIN32) || defined(_WIN32)
 #include <windows.h>
@@ -37,6 +38,7 @@
 
 #ifdef __GNUC__
 #define sprintf_s snprintf
+#define fopen_s(pFile, filename, mode) (((*(pFile)) = fopen((filename), (mode))) == NULL)
 #define freopen_s(pFile, filename, mode, pStream) (((*(pFile)) = freopen((filename), (mode), (pStream))) == NULL)
 #define localtime_s(timeinfo, rawtime) memcpy(timeinfo, localtime(rawtime), sizeof(tm))
 #define strncpy_s(dst, dstsize, src, srcsize) strncpy(dst, src, dstsize < srcsize ? dstsize : srcsize)
@@ -49,14 +51,20 @@ namespace touchgfx
 static bool isAlive = true;
 bool sdl_initialized = false;
 static int screenshotcount = 0;
-static uint8_t* rotated = NULL;
-static uint8_t* tft24bpp = NULL;
+static uint8_t* tft_display24 = NULL;
+static bool tft_display24_allocated = false;
+static uint8_t* tft_framebuffer24 = NULL;
+static bool tft_framebuffer24_allocated = false;
 static SDL_Window* simulatorWindow = 0;
 static SDL_Renderer* simulatorRenderer = 0;
+#ifndef __linux__
+static bool isConsoleAllocated = false;
+#endif
 
-static uint16_t tft_width = 0;
-static uint16_t tft_height = 0;
 static uint16_t* tft = NULL;
+static uint16_t HALSDL2__FRAME_BUFFER_WIDTH = 0;
+static uint16_t HALSDL2__FRAME_BUFFER_HEIGHT = 0;
+static uint16_t* single_buf = NULL;
 static uint16_t* double_buf = NULL;
 static uint16_t* anim_store = NULL;
 
@@ -87,12 +95,6 @@ void HALSDL2::renderLCD_FrameBufferToMemory(const Rect& _rectToUpdate, uint8_t* 
         rectToUpdate.height = DISPLAY_HEIGHT;
         SDL_DestroyTexture(currentSkinTexture);
     }
-
-    // This is a hack because SDL2 does not redraw its framebuffer on screen after screensaver
-    rectToUpdate.x = 0;
-    rectToUpdate.y = 0;
-    rectToUpdate.width = DISPLAY_WIDTH;
-    rectToUpdate.height = DISPLAY_HEIGHT;
 
     if (flashInvalidatedRect)
     {
@@ -136,6 +138,44 @@ static void sdlCleanup2()
     {
         if (sdl_initialized)
         {
+            if (tft_display24_allocated)
+            {
+                delete tft_display24;
+                tft_display24 = NULL;
+                tft_display24_allocated = false;
+            }
+            if (tft_framebuffer24_allocated)
+            {
+                delete[] tft_framebuffer24;
+                tft_framebuffer24 = NULL;
+                tft_framebuffer24_allocated = false;
+            }
+            if (single_buf)
+            {
+                delete[] single_buf;
+                single_buf = NULL;
+            }
+            if (double_buf)
+            {
+                delete[] double_buf;
+                double_buf = NULL;
+            }
+            if (anim_store)
+            {
+                delete[] anim_store;
+                anim_store = NULL;
+            }
+            if (sem_transfer_ready)
+            {
+                SDL_DestroySemaphore(sem_transfer_ready);
+                sem_transfer_ready = 0;
+            }
+            if (sem_transfer_done)
+            {
+                SDL_DestroySemaphore(sem_transfer_done);
+                sem_transfer_done = 0;
+            }
+
             sdl_initialized = false; // Make sure we don't get in here again
             SDL_DestroyRenderer(simulatorRenderer);
             SDL_DestroyWindow(simulatorWindow);
@@ -169,6 +209,39 @@ Uint32 myTimerCallback2(Uint32 interval, void* /*param*/)
     return interval;
 }
 
+void HALSDL2::setFrameBufferSize(uint16_t width, uint16_t height)
+{
+    HAL::setFrameBufferSize(width, height);
+
+    // Get a copy of the dimension of the complete framebuffer as the dimensions get overwritten when using Partial Framebuffer
+    HALSDL2__FRAME_BUFFER_WIDTH = FRAME_BUFFER_WIDTH;
+    HALSDL2__FRAME_BUFFER_HEIGHT = FRAME_BUFFER_HEIGHT;
+
+    if (single_buf)
+    {
+        delete[] single_buf;
+    }
+    if (double_buf)
+    {
+        delete[] double_buf;
+    }
+    if (anim_store)
+    {
+        delete[] anim_store;
+    }
+    // Allocate framebuffers
+    const uint32_t bufferSizeInWords = (lcd().framebufferStride() * FRAME_BUFFER_HEIGHT + 1) / 2;
+    single_buf = new uint16_t[bufferSizeInWords];
+    double_buf = new uint16_t[bufferSizeInWords];
+    anim_store = new uint16_t[bufferSizeInWords];
+    const bool use_animation_storage = USE_ANIMATION_STORAGE;
+    const bool use_double_buffering = USE_DOUBLE_BUFFERING;
+    setFrameBufferStartAddresses(single_buf, double_buf, anim_store);
+    USE_ANIMATION_STORAGE = use_animation_storage;
+    USE_DOUBLE_BUFFERING = use_double_buffering;
+    tft = single_buf; // Start off using single buffer for tft
+}
+
 bool HALSDL2::sdl_init(int /*argcount*/, char** args)
 {
     if (sdl_initialized)
@@ -190,21 +263,12 @@ bool HALSDL2::sdl_init(int /*argcount*/, char** args)
     }
 #endif
 
-#if defined(WIN32) || defined(_WIN32)
-    strncpy_s(programPath, sizeof(programPath), args[0], strlen(args[0]));
-    char* filenamePos = strrchr(programPath, '\\');
-    if (filenamePos)
-    {
-        filenamePos++; // Skip path separator
-    }
-    else
-    {
-        filenamePos = programPath;
-    }
-    *filenamePos = '\0';
-#else
     strncpy_s(programPath, sizeof(programPath), args[0], strlen(args[0]));
     char* filenamePos = strrchr(programPath, '/');
+    if (!filenamePos)
+    {
+        filenamePos = strrchr(programPath, '\\');
+    }
     if (filenamePos)
     {
         filenamePos++; // Skip path separator
@@ -214,7 +278,6 @@ bool HALSDL2::sdl_init(int /*argcount*/, char** args)
         filenamePos = programPath;
     }
     *filenamePos = '\0';
-#endif
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
     {
@@ -222,25 +285,10 @@ bool HALSDL2::sdl_init(int /*argcount*/, char** args)
         return false;
     }
 
-    // Allocate framebuffers
-    uint32_t bufferSizeInWords = (lcd().framebufferStride() * FRAME_BUFFER_HEIGHT + 1) / 2;
-    tft = new uint16_t[bufferSizeInWords];
-    tft_width = FRAME_BUFFER_WIDTH;
-    tft_height = FRAME_BUFFER_HEIGHT;
-
-    double_buf = new uint16_t[bufferSizeInWords];
-    anim_store = new uint16_t[bufferSizeInWords];
-    if (lcd().framebufferFormat() == Bitmap::RGB888)
-    {
-        // RGB888 is already 24bpp, do not allocate a new buffer
-        tft24bpp = NULL;
-    }
-    else
-    {
-        tft24bpp = new uint8_t[FRAME_BUFFER_WIDTH * FRAME_BUFFER_HEIGHT * 3];
-    }
-    setFrameBufferStartAddresses(tft, double_buf, anim_store);
-    rotated = new uint8_t[FRAME_BUFFER_WIDTH * FRAME_BUFFER_HEIGHT * 3]; // rotated id 24bpp, hence *3
+    // setFrameBufferSize will respect these, not set them. These can be overwritten in main()
+    USE_ANIMATION_STORAGE = true;
+    USE_DOUBLE_BUFFERING = true;
+    setFrameBufferSize(FRAME_BUFFER_WIDTH, FRAME_BUFFER_HEIGHT);
 
     recreateWindow(false);
     if (simulatorWindow == NULL)
@@ -248,33 +296,18 @@ bool HALSDL2::sdl_init(int /*argcount*/, char** args)
         touchgfx_printf("Unable to set video mode: %s\n", SDL_GetError());
         return false;
     }
+    sdl_initialized = true;
+    atexit(sdlCleanup2);
 
-    SDL_SetWindowTitle(simulatorWindow, getWindowTitle());
-
-    SDL_Surface* iconSurface = SDL_CreateRGBSurfaceFrom(icon, 32, 32, 16, 32 * 2, 0xf000, 0x0f00, 0x00f0, 0x000f);
+    SDL_Surface* iconSurface = SDL_CreateRGBSurfaceFrom(icon, 32, 32, 16, 32 * 2, 0xf800, 0x07e0, 0x001f, 0x0000);
     SDL_SetWindowIcon(simulatorWindow, iconSurface);
     SDL_FreeSurface(iconSurface);
 
-#if defined(WIN32) || defined(_WIN32)
-    FILE* stream;
-    //sdl has hijacked output and error on windows
-    const char* confile = "CONOUT$";
-    // ignore error codes from calling freopen_s
-    if (!freopen_s(&stream, confile, "w", stdout))
-    {
-    }
-    if (!freopen_s(&stream, confile, "w", stderr))
-    {
-    }
-#endif
-
     lockDMAToFrontPorch(false);
-    atexit(sdlCleanup2);
-    sdl_initialized = true;
 
-    if (HAL::getInstance()->getFrameRefreshStrategy() == HAL::REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
+    if (getFrameRefreshStrategy() == REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
     {
-        assert(HAL::getInstance()->getFrameBufferAllocator() && "Framebuffer allocator must be provided when using REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER");
+        assert(getFrameBufferAllocator() && "Framebuffer allocator must be provided when using REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER");
 
         sem_transfer_ready = SDL_CreateSemaphore(0);
         sem_transfer_done = SDL_CreateSemaphore(0);
@@ -303,32 +336,31 @@ const char* HALSDL2::getWindowTitle()
     return title;
 }
 
-void HALSDL2::loadSkin(touchgfx::DisplayOrientation orientation, int x, int y)
+void HALSDL2::loadSkin(DisplayOrientation orientation, int x, int y)
 {
-    char path[300];
+    char path[320];
 
     assert(sdl_initialized && "Please call sdl_init() before loading a skin");
 
     SkinInfo* skin;
-    const char* name;
+    const char* skinname;
 
     if (orientation == ORIENTATION_PORTRAIT)
     {
         skin = &portraitSkin;
-        name = "portrait";
+        skinname = "portrait.png";
     }
     else
     {
         skin = &landscapeSkin;
-        name = "landscape";
+        skinname = "landscape.png";
     }
     skin->offsetX = 0;
     skin->offsetY = 0;
-    sprintf_s(path, 300, "%s%s%s", programPath, name, ".png");
-    skin->surface = IMG_Load(path);
+    skin->surface = IMG_Load(localFileName(path, 320, skinname));
     if (skin->surface == 0)
     {
-        touchgfx_printf("Unable to load skin image from %s\n", programPath);
+        touchgfx_printf("Unable to load skin image from %s\n", path);
     }
     else
     {
@@ -348,6 +380,12 @@ void HALSDL2::performDisplayOrientationChange()
     HAL::performDisplayOrientationChange();
     updateCurrentSkin();
     recreateWindow(false);
+}
+
+char* HALSDL2::localFileName(char* buffer, size_t buffer_size, const char* filename)
+{
+    sprintf_s(buffer, buffer_size, "%s%s", programPath, filename);
+    return buffer;
 }
 
 void HALSDL2::updateCurrentSkin()
@@ -399,7 +437,7 @@ void HALSDL2::pushTouch(bool down) const
         // Save touch
         _touches[_numTouches++] = down;
     }
-    else if ((_numTouches < 4) && (_touches[_numTouches - 1] ^ down)) //lint !e514
+    else if ((_numTouches < 4) && (_touches[_numTouches - 1] ^ down))
     {
         // Only save touch if is different from the last one recorded
         _touches[_numTouches++] = down;
@@ -426,13 +464,22 @@ bool HALSDL2::popTouch() const
 
 bool HALSDL2::debugInfoEnabled = false;
 
-void HALSDL2::updateTitle(int32_t x, int32_t y)
+void HALSDL2::updateTitle()
 {
     char title[500];
     int length = sprintf_s(title, 500, "%s", getWindowTitle());
     if (debugInfoEnabled)
     {
-        length += sprintf_s(title + length, 500 - length, " @ %d,%d", x, y);
+        length += sprintf_s(title + length, 500 - length, " @%d,%d", _xMouse, _yMouse);
+        if (tft_framebuffer24 != 0)
+        {
+            // Convert display coordinates to framebuffer coordinates
+            int16_t fb_x = _xMouse;
+            int16_t fb_y = _yMouse;
+            DisplayTransformation::transformDisplayToFrameBuffer(fb_x, fb_y);
+            const uint8_t* const pixel_ptr = tft_framebuffer24 + 3 * (fb_x + fb_y * FRAME_BUFFER_WIDTH);
+            length += sprintf_s(title + length, 500 - length, "=%02X.%02X.%02X", pixel_ptr[2], pixel_ptr[1], pixel_ptr[0]);
+        }
     }
     if (flashInvalidatedRect)
     {
@@ -486,7 +533,7 @@ bool HALSDL2::doSampleTouch(int32_t& x, int32_t& y) const
     x = _x - getCurrentSkinX();
     y = _y - getCurrentSkinY();
 
-    if (HAL::DISPLAY_ROTATION == rotate90)
+    if (DISPLAY_ROTATION == rotate90)
     {
         int32_t tmp = x;
         x = y;
@@ -514,62 +561,21 @@ uint16_t HALSDL2::singleSteppingSteps = 0;
 void HALSDL2::taskEntry()
 {
     uint32_t lastTick = SDL_GetTicks();
-    SDL_AddTimer(1, myTimerCallback2, 0); // Start timer
-
-    SDL_Event event;
-    while (SDL_WaitEvent(&event) && isAlive)
+    while (isAlive)
     {
-        switch (event.type)
+        SDL_Event event;
+        if (SDL_PollEvent(&event) == 1)
         {
-        case SDL_USEREVENT:
+            switch (event.type)
             {
-                uint32_t thisTick = SDL_GetTicks();
-                int msSinceLastTick = thisTick - lastTick;
-                lastTick = thisTick;
-
-                msPassed += msSinceLastTick;
-                if (msPassed >= msBetweenTicks)
-                {
-                    if (singleSteppingEnabled && singleSteppingSteps == 0)
-                    {
-                        // Eat up extra ms when waiting for next step
-                        while (msPassed >= msBetweenTicks)
-                        {
-                            msPassed -= msBetweenTicks;
-                        }
-                    }
-                    else
-                    {
-                        while (msPassed >= msBetweenTicks)
-                        {
-                            msPassed -= msBetweenTicks;
-                            vSync();
-                        }
-                        backPorchExited();
-                        frontPorchEntered();
-                        if (screenshotcount > 0)
-                        {
-                            screenshotcount--;
-                            saveScreenshot();
-                        }
-                    }
-                    if (singleSteppingEnabled && singleSteppingSteps > 0)
-                    {
-                        singleSteppingSteps--;
-                    }
-                }
-                break;
-            }
-
-        case SDL_MOUSEMOTION:
-            {
+            case SDL_MOUSEMOTION:
                 _xMouse = event.motion.x;
                 _yMouse = event.motion.y;
                 if (debugInfoEnabled)
                 {
-                    updateTitle(_xMouse, _yMouse);
+                    updateTitle();
                 }
-                if ((event.motion.state & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0) //lint !e778 !e845
+                if ((event.motion.state & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0)
                 {
                     _x = _xMouse;
                     _y = _yMouse;
@@ -583,10 +589,8 @@ void HALSDL2::taskEntry()
                     SDL_SetWindowPosition(simulatorWindow, initialWindowX + (newMouseX - initialMouseX), initialWindowY + (newMouseY - initialMouseY));
                 }
                 break;
-            }
 
-        case SDL_MOUSEBUTTONDOWN:
-            {
+            case SDL_MOUSEBUTTONDOWN:
                 SDL_CaptureMouse(SDL_TRUE);
                 if (event.button.button == SDL_BUTTON_LEFT)
                 {
@@ -601,10 +605,8 @@ void HALSDL2::taskEntry()
                     SDL_GetGlobalMouseState(&initialMouseX, &initialMouseY);
                 }
                 break;
-            }
 
-        case SDL_MOUSEBUTTONUP:
-            {
+            case SDL_MOUSEBUTTONUP:
                 SDL_CaptureMouse(SDL_FALSE);
                 if (event.button.button == SDL_BUTTON_LEFT)
                 {
@@ -619,26 +621,23 @@ void HALSDL2::taskEntry()
                     isWindowBeingDragged = false;
                 }
                 break;
-            }
 
-        case SDL_TEXTINPUT:
-            if (strlen(event.text.text) == 1)
-            {
-                keyPressed = (uint8_t)(event.text.text[0]);
-            }
-            break;
+            case SDL_TEXTINPUT:
+                if (strlen(event.text.text) == 1)
+                {
+                    keyPressed = (uint8_t)(event.text.text[0]);
+                }
+                break;
 
-        case SDL_KEYUP:
-            {
+            case SDL_KEYUP:
                 if (event.key.keysym.sym == SDLK_F1)
                 {
                     debugInfoEnabled = !debugInfoEnabled;
-                    updateTitle(_xMouse, _yMouse);
+                    updateTitle();
                 }
                 else if (event.key.keysym.sym == SDLK_F2)
                 {
-                    flashInvalidatedRect = !flashInvalidatedRect;
-                    updateTitle(_xMouse, _yMouse);
+                    setFlashInvalidatedAreas(!flashInvalidatedRect);
                 }
                 else if (event.key.keysym.sym == SDLK_F3)
                 {
@@ -682,6 +681,15 @@ void HALSDL2::taskEntry()
                 {
                     isAlive = false;
                 }
+                else if (event.key.keysym.sym == SDLK_F5)
+                {
+                    Application::getInstance()->changeToStartScreen();
+                    // If stopped in single stepping, perform one step
+                    if (singleSteppingEnabled && singleSteppingSteps == 0)
+                    {
+                        singleSteppingSteps++;
+                    }
+                }
                 else if (event.key.keysym.sym == SDLK_F9)
                 {
                     setSingleStepping(!singleSteppingEnabled);
@@ -694,16 +702,76 @@ void HALSDL2::taskEntry()
                     }
                 }
                 break;
-            }
 
-        case SDL_QUIT:
-            {
+            case SDL_QUIT:
                 isAlive = false;
                 break;
-            }
 
-        default:
-            break;
+            case SDL_WINDOWEVENT:
+                switch (event.window.event)
+                {
+                case SDL_WINDOWEVENT_EXPOSED:
+                    // Window has been exposed and should be redrawn
+                    if (simulatorWindow != NULL)
+                    {
+                        Rect display(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+                        renderLCD_FrameBufferToMemory(display, doRotate(scaleTo24bpp(getTFTFrameBuffer(), lcd().framebufferFormat())));
+                    }
+                    break;
+                case SDL_WINDOWEVENT_CLOSE:
+                    // The window manager requests that the window be closed
+                    isAlive = false;
+                    break;
+                }
+                break;
+            default:
+                break;
+            }
+        }
+        else // No SDL event waiting
+        {
+            uint32_t thisTick = SDL_GetTicks();
+            int msSinceLastTick = thisTick - lastTick;
+            lastTick = thisTick;
+
+            msPassed += msSinceLastTick;
+            if (msPassed >= msBetweenTicks)
+            {
+                if (singleSteppingEnabled && singleSteppingSteps == 0)
+                {
+                    // Eat up extra ms when waiting for next step
+                    while (msPassed >= msBetweenTicks)
+                    {
+                        msPassed -= msBetweenTicks;
+                    }
+                }
+                else
+                {
+                    while (msPassed >= msBetweenTicks)
+                    {
+                        msPassed -= msBetweenTicks;
+                        vSync();
+                    }
+                    backPorchExited();
+                    frontPorchEntered();
+                    if (screenshotcount > 0)
+                    {
+                        screenshotcount--;
+                        saveScreenshot();
+                    }
+                }
+                if (singleSteppingEnabled && singleSteppingSteps > 0)
+                {
+                    singleSteppingSteps--;
+                }
+            }
+            else
+            {
+                // Sleep until we have the next tick
+                uint32_t delay = (uint32_t)(msBetweenTicks - msPassed);
+                // Due to rounding, delay might be zero.
+                SDL_Delay(delay == 0 ? 1 : delay);
+            }
         }
     }
 }
@@ -716,15 +784,15 @@ void HALSDL2::recreateWindow(bool updateContent /*= true*/)
 
     int windowX = SDL_WINDOWPOS_UNDEFINED;
     int windowY = SDL_WINDOWPOS_UNDEFINED;
-    if (simulatorWindow != 0)
+    if (simulatorWindow != NULL)
     {
         // Save previous coordinates
         SDL_GetWindowPosition(simulatorWindow, &windowX, &windowY);
         SDL_DestroyRenderer(simulatorRenderer);
         SDL_DestroyWindow(simulatorWindow);
     }
-    int width = HAL::DISPLAY_WIDTH;
-    int height = HAL::DISPLAY_HEIGHT;
+    int width = DISPLAY_WIDTH;
+    int height = DISPLAY_HEIGHT;
     if (isSkinActive && currentSkin != 0)
     {
         width = currentSkin->surface->w;
@@ -749,11 +817,11 @@ void HALSDL2::recreateWindow(bool updateContent /*= true*/)
     if (updateContent)
     {
         Rect display(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-        renderLCD_FrameBufferToMemory(display, doRotate(rotated, scaleTo24bpp(tft24bpp, getTFTFrameBuffer(), lcd().framebufferFormat())));
+        renderLCD_FrameBufferToMemory(display, doRotate(scaleTo24bpp(getTFTFrameBuffer(), lcd().framebufferFormat())));
     }
-    updateTitle(_xMouse, _yMouse);
+    updateTitle();
     // Re-add window icon in case
-    SDL_Surface* iconSurface = SDL_CreateRGBSurfaceFrom(icon, 32, 32, 16, 32 * 2, 0xf000, 0x0f00, 0x00f0, 0x000f);
+    SDL_Surface* iconSurface = SDL_CreateRGBSurfaceFrom(icon, 32, 32, 16, 32 * 2, 0xf800, 0x07e0, 0x001f, 0x0000);
     SDL_SetWindowIcon(simulatorWindow, iconSurface);
     SDL_FreeSurface(iconSurface);
 }
@@ -763,27 +831,34 @@ uint16_t* HALSDL2::getTFTFrameBuffer() const
     return tft;
 }
 
-static Rect dirty(0, 0, 0, 0);
+static Rect dirty;
 
-uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat format)
+uint8_t* HALSDL2::scaleTo24bpp(uint16_t* src, Bitmap::BitmapFormat format)
 {
     if (format == Bitmap::RGB888)
     {
-        return reinterpret_cast<uint8_t*>(src);
+        if (tft_framebuffer24_allocated)
+        {
+            delete[] tft_framebuffer24;
+            tft_framebuffer24_allocated = false;
+        }
+        tft_framebuffer24 = reinterpret_cast<uint8_t*>(src);
+        return tft_framebuffer24;
     }
 
-    const int width = tft_width;
-    const int height = tft_height;
-
-    assert(dst != NULL && "Output buffer for TFT not allocated");
+    if (!tft_framebuffer24_allocated)
+    {
+        tft_framebuffer24 = new uint8_t[HALSDL2__FRAME_BUFFER_WIDTH * HALSDL2__FRAME_BUFFER_HEIGHT * 3];
+        tft_framebuffer24_allocated = true;
+    }
     uint8_t* buffer = reinterpret_cast<uint8_t*>(src);
-    uint8_t* orig_dst = dst;
+    uint8_t* dst = tft_framebuffer24;
     switch (format)
     {
     case Bitmap::BW:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcXbyte = 0; srcXbyte < width / 8; srcXbyte++)
+            for (int srcXbyte = 0; srcXbyte < HALSDL2__FRAME_BUFFER_WIDTH / 8; srcXbyte++)
             {
                 uint8_t bufbyte = *buffer++;
                 for (int srcXpixel = 0; srcXpixel < 8; srcXpixel++)
@@ -796,10 +871,10 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
                 }
             }
             // Check if there is a partial byte left
-            if (width % 8 != 0)
+            if (HALSDL2__FRAME_BUFFER_WIDTH % 8 != 0)
             {
                 uint8_t bufbyte = *buffer++;
-                for (int srcXpixel = 0; srcXpixel < width % 8; srcXpixel++)
+                for (int srcXpixel = 0; srcXpixel < HALSDL2__FRAME_BUFFER_WIDTH % 8; srcXpixel++)
                 {
                     uint8_t pixel = ((bufbyte << srcXpixel) & 0xFF) >> 7;
                     uint8_t pixelByte = pixel * 0xFF;
@@ -812,9 +887,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::GRAY2:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcXbyte = 0; srcXbyte < (width * 2) / 8; srcXbyte++)
+            for (int srcXbyte = 0; srcXbyte < (HALSDL2__FRAME_BUFFER_WIDTH * 2) / 8; srcXbyte++)
             {
                 uint8_t bufbyte = *buffer++;
                 for (int srcXpixel = 0; srcXpixel < 4; srcXpixel++)
@@ -828,10 +903,10 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
                 }
             }
             // Check if there is a partial byte left
-            if ((width * 2) % 8 != 0)
+            if ((HALSDL2__FRAME_BUFFER_WIDTH * 2) % 8 != 0)
             {
                 uint8_t bufbyte = *buffer++;
-                for (int srcXpixel = 0; srcXpixel < ((width * 2) % 8) / 2; srcXpixel++)
+                for (int srcXpixel = 0; srcXpixel < ((HALSDL2__FRAME_BUFFER_WIDTH * 2) % 8) / 2; srcXpixel++)
                 {
                     uint8_t pixel = bufbyte & 3;
                     bufbyte >>= 2;
@@ -845,9 +920,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::GRAY4:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcXbyte = 0; srcXbyte < (width * 4) / 8; srcXbyte++)
+            for (int srcXbyte = 0; srcXbyte < (HALSDL2__FRAME_BUFFER_WIDTH * 4) / 8; srcXbyte++)
             {
                 uint8_t bufbyte = *buffer++;
                 for (int srcXpixel = 0; srcXpixel < 2; srcXpixel++)
@@ -861,10 +936,10 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
                 }
             }
             // Check if there is a partial byte left
-            if ((width * 4) % 8 != 0)
+            if ((HALSDL2__FRAME_BUFFER_WIDTH * 4) % 8 != 0)
             {
                 uint8_t bufbyte = *buffer++;
-                for (int srcXpixel = 0; srcXpixel < ((width * 4) % 8) / 4; srcXpixel++)
+                for (int srcXpixel = 0; srcXpixel < ((HALSDL2__FRAME_BUFFER_WIDTH * 4) % 8) / 4; srcXpixel++)
                 {
                     uint8_t pixel = bufbyte & 0xF;
                     bufbyte >>= 4;
@@ -878,9 +953,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::ARGB2222:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcX = 0; srcX < width; srcX++)
+            for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
             {
                 uint16_t bufword = *buffer++;
                 uint8_t r = (bufword >> 4) & 0x3;
@@ -894,9 +969,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::ABGR2222:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcX = 0; srcX < width; srcX++)
+            for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
             {
                 uint16_t bufword = *buffer++;
                 uint8_t r = bufword & 0x3;
@@ -910,9 +985,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::RGBA2222:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcX = 0; srcX < width; srcX++)
+            for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
             {
                 uint16_t bufword = *buffer++;
                 uint8_t r = (bufword >> 6) & 0x3;
@@ -926,9 +1001,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::BGRA2222:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcX = 0; srcX < width; srcX++)
+            for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
             {
                 uint16_t bufword = *buffer++;
                 uint8_t r = (bufword >> 2) & 0x3;
@@ -942,17 +1017,14 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
 
     case Bitmap::RGB565:
-        for (int srcY = 0; srcY < height; srcY++)
+        for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
         {
-            for (int srcX = 0; srcX < width; srcX++)
+            for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
             {
                 uint16_t bufword = *src++;
-                uint8_t r = (bufword >> 8) & 0xF8;
-                uint8_t g = (bufword >> 3) & 0xFC;
-                uint8_t b = (bufword << 3) & 0xF8;
-                *dst++ = b | (b >> 5);
-                *dst++ = g | (g >> 6);
-                *dst++ = r | (r >> 5);
+                *dst++ = Color::getBlueFromRGB565(bufword);
+                *dst++ = Color::getGreenFromRGB565(bufword);
+                *dst++ = Color::getRedFromRGB565(bufword);
             }
         }
         break;
@@ -960,9 +1032,9 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
     case Bitmap::ARGB8888:
         {
             uint32_t* src32 = reinterpret_cast<uint32_t*>(src);
-            for (int srcY = 0; srcY < height; srcY++)
+            for (int srcY = 0; srcY < HALSDL2__FRAME_BUFFER_HEIGHT; srcY++)
             {
-                for (int srcX = 0; srcX < width; srcX++)
+                for (int srcX = 0; srcX < HALSDL2__FRAME_BUFFER_WIDTH; srcX++)
                 {
                     uint32_t pixel = *src32++;
                     uint8_t b = pixel & 0xFF;
@@ -983,53 +1055,93 @@ uint8_t* HALSDL2::scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat
         break;
     }
 
-    return orig_dst;
+    return tft_framebuffer24;
 }
 
-uint8_t* HALSDL2::doRotate(uint8_t* dst, uint8_t* src)
+uint8_t* HALSDL2::doRotate(uint8_t* src)
 {
-    switch (HAL::DISPLAY_ROTATION)
+    if (DISPLAY_ROTATION == rotate0 && DISPLAY_WIDTH == HALSDL2__FRAME_BUFFER_WIDTH)
+    {
+        // Height does not need to be exactly the same
+        return src;
+    }
+    if (!tft_display24_allocated)
+    {
+        tft_display24 = new uint8_t[DISPLAY_WIDTH * DISPLAY_HEIGHT * 3]; // 24bpp, hence *3
+        tft_display24_allocated = true;
+    }
+    switch (DISPLAY_ROTATION)
     {
     case rotate0:
-        return src;
-    case rotate90:
-        for (int srcX = 0; srcX < HAL::DISPLAY_HEIGHT; srcX++)
+        for (int16_t y = 0; y < DISPLAY_HEIGHT; y++)
         {
-            for (int srcY = 0; srcY < HAL::DISPLAY_WIDTH; srcY++)
+            for (int16_t x = 0; x < DISPLAY_WIDTH; x++)
             {
-                int dstX = HAL::DISPLAY_WIDTH - (srcY + 1);
-                int dstY = srcX;
                 for (int i = 0; i < 3; i++)
                 {
-                    dst[(dstX + dstY * HAL::DISPLAY_WIDTH) * 3 + i] = src[(srcX + srcY * HAL::DISPLAY_HEIGHT) * 3 + i];
+                    tft_display24[(x + y * DISPLAY_WIDTH) * 3 + i] = src[(x + y * HALSDL2__FRAME_BUFFER_WIDTH) * 3 + i];
                 }
             }
         }
-        return dst;
+        return tft_display24;
+
+    case rotate90:
+        for (int16_t dstY = 0; dstY < DISPLAY_HEIGHT; dstY++)
+        {
+            const int16_t srcX = dstY;
+            for (int16_t dstX = 0; dstX < DISPLAY_WIDTH; dstX++)
+            {
+                const int16_t srcY = (DISPLAY_WIDTH - 1) - dstX;
+                for (int i = 0; i < 3; i++)
+                {
+                    tft_display24[(dstX + dstY * DISPLAY_WIDTH) * 3 + i] = src[(srcX + srcY * HALSDL2__FRAME_BUFFER_WIDTH) * 3 + i];
+                }
+            }
+        }
+        return tft_display24;
     }
     return 0;
 }
 
+bool HALSDL2::printToFile(const char* filename)
+{
+    if (printFile)
+    {
+        fclose(printFile);
+        printFile = 0;
+    }
+    if (filename)
+    {
+#ifdef __GNUC_
+        printFile = fopen(filename, "w");
+        return printFile != 0;
+#else
+        return fopen_s(&printFile, filename, "w") == 0;
+#endif
+    }
+    return true;
+}
+
 void HALSDL2::setTFTFrameBuffer(uint16_t* adr)
 {
-    if (HAL::getInstance()->getFrameRefreshStrategy() != HAL::REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
+    if (getFrameRefreshStrategy() != REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
     {
-        //save current framebuffer address
+        // Save current framebuffer address
         tft = adr;
-        renderLCD_FrameBufferToMemory(dirty, doRotate(rotated, scaleTo24bpp(tft24bpp, adr, lcd().framebufferFormat())));
+        renderLCD_FrameBufferToMemory(dirty, doRotate(scaleTo24bpp(adr, lcd().framebufferFormat())));
     }
     else
     {
-        //wait for transfers to complete
+        // Wait for transfers to complete
         while (frameBufferAllocator->hasBlockReadyForTransfer())
         {
             FrameBufferAllocatorWaitOnTransfer();
         }
 
-        //always use the original tft buffer as screen memory GRAM
-        renderLCD_FrameBufferToMemory(dirty, doRotate(rotated, scaleTo24bpp(tft24bpp, tft, lcd().framebufferFormat())));
+        // Always use the original tft buffer as screen memory GRAM
+        renderLCD_FrameBufferToMemory(dirty, doRotate(scaleTo24bpp(tft, lcd().framebufferFormat())));
     }
-    dirty = Rect(0, 0, 0, 0);
+    dirty = Rect();
 }
 
 void HALSDL2::flushFrameBuffer()
@@ -1044,7 +1156,7 @@ static int transferThreadFunc(void* ptr)
     Bitmap::BitmapFormat framebufferFormat = HAL::getInstance()->lcd().framebufferFormat();
     while (1)
     {
-        //wait for blocks to transfer
+        // Wait for blocks to transfer
         SDL_SemWait(sem_transfer_ready);
 
         while (fbAllocator->hasBlockReadyForTransfer())
@@ -1058,23 +1170,21 @@ static int transferThreadFunc(void* ptr)
             case Bitmap::RGB565:
                 {
                     const uint16_t* src16 = (const uint16_t*)src;
-                    uint16_t* dst16 = tft + transfer_rect.y * tft_width + transfer_rect.x;
+                    uint16_t* dst16 = tft + transfer_rect.y * HALSDL2__FRAME_BUFFER_WIDTH + transfer_rect.x;
                     for (int srcY = 0; srcY < transfer_rect.height; srcY++)
                     {
                         for (int srcX = 0; srcX < transfer_rect.width; srcX++)
                         {
-                            *dst16 = *src16;
-                            dst16++;
-                            src16++;
+                            *dst16++ = *src16++;
                         }
-                        dst16 += (tft_width /* HAL::DISPLAY_WIDTH*/ - transfer_rect.width);
+                        dst16 += HALSDL2__FRAME_BUFFER_WIDTH - transfer_rect.width;
                     }
 
                     break;
                 }
             case Bitmap::RGB888:
                 {
-                    uint8_t* dst = (uint8_t*)tft + (transfer_rect.y * tft_width + transfer_rect.x) * 3;
+                    uint8_t* dst = (uint8_t*)tft + (transfer_rect.y * HALSDL2__FRAME_BUFFER_WIDTH + transfer_rect.x) * 3;
                     for (int srcY = 0; srcY < transfer_rect.height; srcY++)
                     {
                         for (int srcX = 0; srcX < transfer_rect.width; srcX++)
@@ -1083,7 +1193,7 @@ static int transferThreadFunc(void* ptr)
                             *dst++ = *src++;
                             *dst++ = *src++;
                         }
-                        dst += (tft_width - transfer_rect.width) * 3;
+                        dst += (HALSDL2__FRAME_BUFFER_WIDTH - transfer_rect.width) * 3;
                     }
 
                     break;
@@ -1095,7 +1205,7 @@ static int transferThreadFunc(void* ptr)
             fbAllocator->freeBlockAfterTransfer();
         }
 
-        //signal drawing part
+        // Signal drawing part
         if (SDL_SemValue(sem_transfer_done) == 0)
         {
             SDL_SemPost(sem_transfer_done);
@@ -1110,7 +1220,7 @@ void FrameBufferAllocatorWaitOnTransfer()
 
 void FrameBufferAllocatorSignalBlockDrawn()
 {
-    //signal transfer part
+    // Signal transfer part
     if (SDL_SemValue(sem_transfer_ready) == 0)
     {
         SDL_SemPost(sem_transfer_ready);
@@ -1137,26 +1247,17 @@ void HALSDL2::flushFrameBuffer(const Rect& rect)
         SDL_RenderPresent(simulatorRenderer);
     }
 
-    if (HAL::getInstance()->getFrameRefreshStrategy() != HAL::REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
+    if (getFrameRefreshStrategy() != REFRESH_STRATEGY_PARTIAL_FRAMEBUFFER)
     {
         dirty.expandToFit(rect);
     }
     else
     {
         frameBufferAllocator->markBlockReadyForTransfer();
-        //for testing during transfers.
-        //renderLCD_FrameBufferToMemory(dirty, doRotate(rotated, scaleTo24bpp(tft24bpp, tft, lcd().framebufferFormat())));
+        // For testing during transfers.
+        // renderLCD_FrameBufferToMemory(dirty, doRotate(scaleTo24bpp(tft, lcd().framebufferFormat())));
     }
     HAL::flushFrameBuffer(rect);
-}
-
-bool HALSDL2::blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes)
-{
-    return HAL::blockCopy(dest, src, numBytes);
-}
-
-void HALSDL2::blitSetTransparencyKey(uint16_t /*key*/)
-{
 }
 
 void HALSDL2::setVsyncInterval(float ms)
@@ -1174,7 +1275,7 @@ void HALSDL2::saveScreenshot(char* folder, char* filename)
     mkdir(dir, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 #endif
 
-    char fullPathAndName[100];
+    char fullPathAndName[500];
     if (folder)
     {
         sprintf_s(fullPathAndName, sizeof(fullPathAndName), "%s/%s", dir, folder);
@@ -1212,7 +1313,7 @@ void HALSDL2::saveScreenshot(char* folder, char* filename)
 
 void HALSDL2::saveScreenshot()
 {
-    static char lastBaseName[100] = { 0 };
+    static char lastBaseName[20] = { 0 };
     static int counter = 0;
 
     // current date/time based on current system
@@ -1220,26 +1321,27 @@ void HALSDL2::saveScreenshot()
     tm localt;
     localtime_s(&localt, &t);
 
-    char baseName[100];
-    sprintf_s(baseName, sizeof(baseName), "img_%04d%02d%02d_%02d%02d%02d",
+    char baseName[20]; // "img_YYYYMMDD_HHMMSS" is 19 long
+    sprintf_s(baseName, 20, "img_%04d%02d%02d_%02d%02d%02d",
               1900 + localt.tm_year, localt.tm_mon + 1, localt.tm_mday,
               localt.tm_hour, localt.tm_min, localt.tm_sec);
 
+    char fileName[100];
     if (strncmp(baseName, lastBaseName, sizeof(baseName)) == 0)
     {
         // Same as previous time stamp. Add counter.
         counter++;
-        sprintf_s(baseName, sizeof(baseName), "%s_%d.bmp", lastBaseName, counter);
+        sprintf_s(fileName, sizeof(fileName), "%s_%d.bmp", baseName, counter);
     }
     else
     {
         // New time stamp. Save it and clear counter.
         strncpy_s(lastBaseName, sizeof(lastBaseName), baseName, sizeof(baseName));
         counter = 0;
-        sprintf_s(baseName, sizeof(baseName), "%s.bmp", lastBaseName);
+        sprintf_s(fileName, sizeof(fileName), "%s.bmp", baseName);
     }
 
-    saveScreenshot(0, baseName);
+    saveScreenshot(0, fileName);
 }
 
 void HALSDL2::saveNextScreenshots(int n)
@@ -1264,7 +1366,7 @@ void HALSDL2::copyScreenshotToClipboard()
         return;
     }
 
-    uint8_t* buffer24 = doRotate(rotated, scaleTo24bpp(tft24bpp, getTFTFrameBuffer(), lcd().framebufferFormat()));
+    uint8_t* buffer24 = doRotate(scaleTo24bpp(getTFTFrameBuffer(), lcd().framebufferFormat()));
     DWORD size_pixels = DISPLAY_WIDTH * DISPLAY_HEIGHT * 3;
 
     HGLOBAL hMem = GlobalAlloc(GHND, sizeof(BITMAPV5HEADER) + size_pixels);
@@ -1306,11 +1408,17 @@ void HALSDL2::copyScreenshotToClipboard()
 #endif
 }
 
+void HALSDL2::setFlashInvalidatedAreas(bool flash /*= true*/)
+{
+    flashInvalidatedRect = flash;
+    updateTitle();
+}
+
 void HALSDL2::setSingleStepping(bool singleStepping /*= true*/)
 {
     singleSteppingEnabled = singleStepping;
     singleSteppingSteps = 0;
-    updateTitle(_xMouse, _yMouse);
+    updateTitle();
 }
 
 bool HALSDL2::isSingleStepping()
@@ -1326,17 +1434,31 @@ void HALSDL2::singleStep(uint16_t steps /*= 1*/)
     }
 }
 
+void HALSDL2::stopApplication()
+{
+    isAlive = false;
+}
+
 #ifdef __linux__
+void simulator_enable_stdio()
+{
+}
+
 void simulator_printf(const char* format, va_list pArg)
 {
     vprintf(format, pArg);
+    HALSDL2* hal = static_cast<HALSDL2*>(HAL::getInstance());
+    if (hal->getPrintFile())
+    {
+        vfprintf(hal->getPrintFile(), format, pArg);
+    }
 }
 #else
 char** HALSDL2::getArgv(int* argc)
 {
     LPWSTR cmdline = GetCommandLineW();
     LPWSTR* argvw = CommandLineToArgvW(cmdline, argc);
-    char** argv = new char* [*argc];
+    char** argv = new char*[*argc];
     for (int i = 0; i < *argc; i++)
     {
         char buffer[1000];
@@ -1354,15 +1476,16 @@ void simulator_enable_stdio()
 #ifdef __GNUC__
 #define freopen_s(pFile, filename, mode, pStream) (((*(pFile)) = freopen((filename), (mode), (pStream))) == NULL)
 #endif
-    touchgfx::HAL* hal = touchgfx::HAL::getInstance();
-    if (static_cast<touchgfx::HALSDL2*>(hal)->getWindowVisible())
+    HALSDL2* hal = static_cast<HALSDL2*>(HAL::getInstance());
+    if (hal->getConsoleVisible())
     {
         HWND consoleHwnd = GetConsoleWindow(); // Get handle of console window
         if (!consoleHwnd)                      // No console window yet?
         {
             HWND activeHwnd = GetActiveWindow(); // Remember which window is active
 
-            AllocConsole();                   // Allocate a new console
+            AllocConsole(); // Allocate a new console
+            isConsoleAllocated = true;
             consoleHwnd = GetConsoleWindow(); // Get handle of console window
 
             FILE* dummy;
@@ -1380,7 +1503,7 @@ void simulator_enable_stdio()
     else
     {
         HWND consoleHwnd = GetConsoleWindow(); // Get handle of console window
-        if (consoleHwnd)
+        if (consoleHwnd && isConsoleAllocated)
         {
             ShowWindow(consoleHwnd, SW_HIDE);
         }
@@ -1391,9 +1514,14 @@ void simulator_printf(const char* format, va_list pArg)
 {
     // Create a console window, if window is visible.
     simulator_enable_stdio();
-    if (GetConsoleWindow()) // Only print if we have a console window
+    if (GetConsoleWindow())
     {
         vprintf(format, pArg);
+    }
+    HALSDL2* hal = static_cast<HALSDL2*>(HAL::getInstance());
+    if (hal && hal->getPrintFile())
+    {
+        vfprintf(hal->getPrintFile(), format, pArg);
     }
 }
 #endif

@@ -1,28 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/Container.hpp
  *
  * Declares the touchgfx::Container class.
  */
-#ifndef CONTAINER_HPP
-#define CONTAINER_HPP
+#ifndef TOUCHGFX_CONTAINER_HPP
+#define TOUCHGFX_CONTAINER_HPP
 
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/Drawable.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -124,9 +122,22 @@ public:
      * @param       y    The y coordinate of the intersection.
      * @param [out] last out parameter in which the result is placed.
      *
-     * @see isVisible, isTouchable
+     * @see isVisible, isTouchable, getLastChildNear
      */
     virtual void getLastChild(int16_t x, int16_t y, Drawable** last);
+
+    /**
+     * Works similar to getLastChild() but also considers the current set finger size in HAL.
+     *
+     * @param       x                   The x coordinate of the intersection.
+     * @param       y                   The y coordinate of the intersection.
+     * @param [out] last                out parameter in which the result is placed.
+     * @param [out] fingerAdjustmentX   out parameter in which the finger adjustment x is placed.
+     * @param [out] fingerAdjustmentY   out parameter in which the finger adjustment y is placed.
+     *
+     * @see getLastChild, HAL::setFingerSize
+     */
+    virtual void getLastChildNear(int16_t x, int16_t y, Drawable** last, int16_t* fingerAdjustmentX, int16_t* fingerAdjustmentY);
 
     virtual void draw(const Rect& invalidatedArea) const;
 
@@ -151,7 +162,7 @@ public:
      *
      * @see getNextSibling
      */
-    Drawable* getFirstChild()
+    virtual Drawable* getFirstChild()
     {
         return firstChild;
     }
@@ -182,4 +193,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // CONTAINER_HPP
+#endif // TOUCHGFX_CONTAINER_HPP

@@ -1,28 +1,28 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/ZoomAnimationImage.hpp
  *
  * Declares the touchgfx::ZoomAnimationImage class.
  */
-#ifndef ZOOMANIMATIONIMAGE_HPP
-#define ZOOMANIMATIONIMAGE_HPP
+#ifndef TOUCHGFX_ZOOMANIMATIONIMAGE_HPP
+#define TOUCHGFX_ZOOMANIMATIONIMAGE_HPP
 
+#include <touchgfx/Bitmap.hpp>
+#include <touchgfx/Callback.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/containers/Container.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/ScalableImage.hpp>
 
@@ -55,7 +55,7 @@ public:
      */
     enum ZoomMode
     {
-        FIXED_CENTER = 0,      ///< The small image will grow from the center of the large image
+        FIXED_CENTER,          ///< The small image will grow from the center of the large image
         FIXED_LEFT,            ///< The small image will grow from the middle of the left side of the large image
         FIXED_RIGHT,           ///< The small image will grow from the middle of the right side of the large image
         FIXED_TOP,             ///< The small image will grow from the middle of the top of the large image
@@ -174,17 +174,9 @@ public:
     }
 
     /**
-     * @copydoc Drawable::setPosition
-     *
-     * @note ZoomAnimationWidget diverts from the normal behavior by automatically invalidating
-     *       which causes a redraw.
-     */
-    virtual void setPosition(int16_t x, int16_t y, int16_t width, int16_t height);
-
-    /**
      * @copydoc Drawable::setWidth
      *
-     * @note ZoomAnimationWidget diverts from the normal behavior by automatically invalidating
+     * @note ZoomAnimationImage diverts from the normal behavior by automatically invalidating
      *       which causes a redraw.
      */
     virtual void setWidth(int16_t width);
@@ -192,21 +184,10 @@ public:
     /**
      * @copydoc Drawable::setHeight
      *
-     * @note ZoomAnimationWidget diverts from the normal behavior by automatically invalidating
+     * @note ZoomAnimationImage diverts from the normal behavior by automatically invalidating
      *       which causes a redraw.
      */
     virtual void setHeight(int16_t height);
-
-    /**
-     * Sets the width and height of the image.
-     *
-     * @param  width  The new width.
-     * @param  height The new height.
-     *
-     * @note ZoomAnimationWidget diverts from the normal behavior by automatically invalidating
-     *       which causes a redraw.
-     */
-    virtual void setDimension(int16_t width, int16_t height);
 
     /**
      * Sets the algorithm to be used. In short, there is currently a value for fast (nearest
@@ -272,25 +253,20 @@ public:
         animationEndedAction = &callback;
     }
 
-    ///@cond
-    /**
-     * Is there currently an animation running.
-     *
-     * @return true if there is an animation running.
-     *
-     * @deprecated Use ZoomAnimationImage::isZoomAnimationRunning().
-     */
-    TOUCHGFX_DEPRECATED(
-        "Use ZoomAnimationImage::isZoomAnimationRunning().",
-        bool isRunning());
-    ///@endcond
-
     /**
      * Is there currently an animation running.
      *
      * @return true if there is an animation running.
      */
     bool isZoomAnimationRunning() const;
+
+    virtual void invalidateContent() const
+    {
+        if (getAlpha() > 0)
+        {
+            Container::invalidateContent();
+        }
+    }
 
 protected:
     /** Animation states. */
@@ -302,7 +278,7 @@ protected:
     };
 
     States currentState;                        ///< The current animation state
-    uint32_t animationCounter;                  ///< The progress counter for the animation
+    uint16_t animationCounter;                  ///< The progress counter for the animation
     uint16_t zoomAnimationDelay;                ///< A delay that is applied before animation start. Expressed in ticks.
     Bitmap smallBmp;                            ///< The bitmap representing the small image
     Bitmap largeBmp;                            ///< The bitmap representing the large image
@@ -366,4 +342,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // ZOOMANIMATIONIMAGE_HPP
+#endif // TOUCHGFX_ZOOMANIMATIONIMAGE_HPP

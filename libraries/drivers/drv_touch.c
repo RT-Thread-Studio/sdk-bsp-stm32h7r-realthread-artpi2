@@ -13,8 +13,11 @@
 
 #ifdef BSP_USING_TOUCH
 #include "gt9147.h"
+#include <lcd_port.h>
+#ifdef BSP_USING_LVGL
 #include <lvgl.h>
 #include <lv_port_indev.h>
+#endif  /* BSP_USING_LVGL */
 
 #define DBG_ENABLE
 #define DBG_SECTION_NAME  "TOUCH"
@@ -65,8 +68,10 @@ static void touch_thread_entry(void *parameter)
 
         if (rt_device_read(dev, 0, read_data, info.point_num) == info.point_num)
         {
-            point_x = 800 - read_data[0].x_coordinate;
-            point_y = 480 - read_data[0].y_coordinate;
+            point_x = LCD_WIDTH - read_data[0].x_coordinate;
+            point_y = LCD_HEIGHT - read_data[0].y_coordinate;
+            rt_kprintf("%d %d %d %d %d\n", read_data[0].track_id, point_x,
+                        point_y, read_data[0].timestamp, read_data[0].width);
 #ifdef BSP_USING_LVGL
             switch (read_data[0].event)
             {
@@ -150,8 +155,8 @@ static int touch_bg_init(const char *name, rt_uint16_t x, rt_uint16_t y)
 int touch_init(void)
 {
     rt_thread_mdelay(500); // compensate the touch driver initial slow problem.
-    touch_bg_init("gt", LV_HOR_RES_MAX, LV_VER_RES_MAX);
+    touch_bg_init("gt", LCD_WIDTH, LCD_HEIGHT);
     return RT_EOK;
 }
-INIT_APP_EXPORT(touch_init);
+//INIT_APP_EXPORT(touch_init);
 #endif

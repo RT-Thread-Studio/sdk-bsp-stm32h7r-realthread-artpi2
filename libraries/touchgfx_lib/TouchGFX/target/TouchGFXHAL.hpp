@@ -1,25 +1,31 @@
+/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * File Name          : TouchGFXHAL.hpp
   ******************************************************************************
+  * This file was created by TouchGFX Generator 4.22.1. This file is only
+  * generated once! Delete this file from your project and re-generate code
+  * using STM32CubeMX or change this file manually to update it.
+  ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
+/* USER CODE END Header */
 #ifndef TouchGFXHAL_HPP
 #define TouchGFXHAL_HPP
 
 /* USER CODE BEGIN TouchGFXHAL.hpp */
 
 #include <TouchGFXGeneratedHAL.hpp>
+#include <CortexMMCUInstrumentation.hpp>
 
 /**
  * @class TouchGFXHAL
@@ -48,7 +54,7 @@ public:
     {
     }
 
-    void initialize();
+    virtual void initialize();
 
     /**
      * @fn virtual void TouchGFXHAL::disableInterrupts();
@@ -86,6 +92,10 @@ public:
      *        once TouchGFX initialization has completed.
      */
     virtual void enableLCDControllerInterrupt();
+
+    virtual bool beginFrame();
+
+    virtual void endFrame();
 
     /**
      * @fn virtual void TouchGFXHAL::flushFrameBuffer();
@@ -131,6 +141,8 @@ public:
      */
     virtual bool blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes);
 
+    void activateNeoChrom(bool active);
+
 protected:
     /**
      * @fn virtual uint16_t* TouchGFXHAL::getTFTFrameBuffer() const;
@@ -153,6 +165,8 @@ protected:
      * @param [in,out] adr New frame buffer address.
      */
     virtual void setTFTFrameBuffer(uint16_t* adr);
+private:
+    touchgfx::CortexMMCUInstrumentation instrumentation;
 };
 
 /* USER CODE END TouchGFXHAL.hpp */

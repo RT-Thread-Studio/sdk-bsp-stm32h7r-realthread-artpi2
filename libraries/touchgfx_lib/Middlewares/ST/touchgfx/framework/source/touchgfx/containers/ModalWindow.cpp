@@ -1,31 +1,33 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
-#include <touchgfx/containers/ModalWindow.hpp>
+#include <touchgfx/Bitmap.hpp>
 #include <touchgfx/Color.hpp>
+#include <touchgfx/Drawable.hpp>
+#include <touchgfx/containers/ModalWindow.hpp>
+#include <touchgfx/hal/HAL.hpp>
 
 namespace touchgfx
 {
-ModalWindow::ModalWindow() :
-    Container()
+ModalWindow::ModalWindow()
+    : Container(),
+      backgroundShade(),
+      windowContainer(),
+      windowBackground()
 {
-    Container::setWidth(HAL::DISPLAY_WIDTH);
-    Container::setHeight(HAL::DISPLAY_HEIGHT);
+    ModalWindow::setWidthHeight(HAL::DISPLAY_WIDTH, HAL::DISPLAY_HEIGHT);
 
-    int defaultShadeAlpha = 96;
-    colortype defaultShadeColor = Color::getColorFrom24BitRGB(0x0, 0x0, 0x0);
+    const int defaultShadeAlpha = 96;
+    const colortype defaultShadeColor = Color::getColorFromRGB(0x0, 0x0, 0x0);
 
     backgroundShade.setPosition(0, 0, getWidth(), getHeight());
     backgroundShade.setColor(defaultShadeColor);
@@ -89,7 +91,7 @@ void ModalWindow::setShadeColor(colortype color)
     backgroundShade.invalidate();
 }
 
-touchgfx::colortype ModalWindow::getShadeColor() const
+colortype ModalWindow::getShadeColor() const
 {
     return backgroundShade.getColor();
 }
@@ -102,12 +104,7 @@ void ModalWindow::show()
 
 void ModalWindow::hide()
 {
-    setVisible(false);
     invalidate();
-}
-
-bool ModalWindow::isShowing() const
-{
-    return isVisible();
+    setVisible(false);
 }
 } // namespace touchgfx

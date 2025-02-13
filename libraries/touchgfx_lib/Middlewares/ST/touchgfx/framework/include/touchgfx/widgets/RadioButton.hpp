@@ -1,27 +1,27 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/RadioButton.hpp
  *
  * Declares the touchgfx::RadioButton class.
  */
-#ifndef RADIOBUTTON_HPP
-#define RADIOBUTTON_HPP
+#ifndef TOUCHGFX_RADIOBUTTON_HPP
+#define TOUCHGFX_RADIOBUTTON_HPP
 
 #include <touchgfx/Bitmap.hpp>
+#include <touchgfx/Callback.hpp>
+#include <touchgfx/events/ClickEvent.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/AbstractButton.hpp>
 
 namespace touchgfx
@@ -78,16 +78,29 @@ public:
     virtual Rect getSolidRect() const;
 
     /**
-     * Sets the alpha channel for the RadioButton, i.e. all the images used. The default
-     * alpha value on a RadioButton is 255.
+     * Executes the previously set action.
      *
-     * @param  alpha The alpha value ranging from 255=solid to 0=invisible.
+     * @see setDeselectedAction
+     */
+    void executeDeselectedAction()
+    {
+        if (deselectedAction && deselectedAction->isValid())
+        {
+            deselectedAction->execute(*this);
+        }
+    }
+
+    /**
+     * Sets the alpha channel for the RadioButton, i.e. all the images used. The default alpha value
+     * on a RadioButton is 255.
+     *
+     * @param  newAlpha The alpha value ranging from 255=solid to 0=invisible.
      *
      * @see getAlpha
      */
-    void setAlpha(uint8_t alpha)
+    void setAlpha(uint8_t newAlpha)
     {
-        this->alpha = alpha;
+        alpha = newAlpha;
     }
 
     /**
@@ -168,6 +181,14 @@ public:
         return (selected ? (AbstractButton::pressed ? bitmapSelectedPressed : bitmapSelected) : (AbstractButton::pressed ? bitmapUnselectedPressed : bitmapUnselected));
     }
 
+    virtual void invalidateContent() const
+    {
+        if (alpha > 0)
+        {
+            AbstractButton::invalidateContent();
+        }
+    }
+
 protected:
     Bitmap bitmapUnselected;        ///< The image to display when radio button unselected and released.
     Bitmap bitmapUnselectedPressed; ///< The image to display when radio button unselected and pressed.
@@ -182,4 +203,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // RADIOBUTTON_HPP
+#endif // TOUCHGFX_RADIOBUTTON_HPP

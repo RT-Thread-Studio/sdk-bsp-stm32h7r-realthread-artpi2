@@ -1,34 +1,36 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/SwipeContainer.hpp
  *
  * Declares the touchgfx::SwipeContainer class.
  */
-#ifndef SWIPECONTAINER_HPP
-#define SWIPECONTAINER_HPP
+#ifndef TOUCHGFX_SWIPECONTAINER_HPP
+#define TOUCHGFX_SWIPECONTAINER_HPP
 
 #include <touchgfx/containers/ListLayout.hpp>
+#include <touchgfx/events/ClickEvent.hpp>
+#include <touchgfx/events/DragEvent.hpp>
+#include <touchgfx/events/GestureEvent.hpp>
+#include <touchgfx/hal/Types.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
 
 namespace touchgfx
 {
 /**
- * A SwipeContainer is a Container with a horizontally laid out list of identically sized Drawables. The bottom of
- * the SwipeContainer shows a page indicator to indicate the position in the horizontal
+ * A SwipeContainer is a Container with a horizontally laid out list of identically sized Drawables.
+ * The bottom of the SwipeContainer shows a page indicator to indicate the position in the horizontal
  * list of items in the SwipeContainer.
  *
  * @see ListLayout
@@ -40,9 +42,9 @@ public:
     virtual ~SwipeContainer();
 
     virtual void handleTickEvent();
-    virtual void handleClickEvent(const ClickEvent& evt);
-    virtual void handleDragEvent(const DragEvent& evt);
-    virtual void handleGestureEvent(const GestureEvent& evt);
+    virtual void handleClickEvent(const ClickEvent& event);
+    virtual void handleDragEvent(const DragEvent& event);
+    virtual void handleGestureEvent(const GestureEvent& event);
 
     /**
      * Adds a page to the container.
@@ -63,8 +65,8 @@ public:
     virtual void remove(Drawable& page);
 
     /**
-     * Set the swipe cutoff which indicates how far you should drag a page before it results
-     * in a page change.
+     * Set the swipe cutoff which indicates how far you should drag a page before it results in
+     * a page change.
      *
      * @param  cutoff The cutoff in pixels.
      */
@@ -75,7 +77,8 @@ public:
      *
      * @param  x The x coordinate.
      * @param  y The y coordinate.
-     * @see setPageIndicatorXYWithCenteredX
+     *
+     * @see setPageIndicatorXYWithCenteredX, setPageIndicatorCenteredX
      */
     void setPageIndicatorXY(int16_t x, int16_t y);
 
@@ -86,16 +89,43 @@ public:
      * @param  x The center x coordinate.
      * @param  y The y coordinate.
      *
+     * @see setPageIndicatorCenteredX, setPageIndicatorXY
+     *
      * @note This method should not be used until all pages have been added, the
-     *       setPageIndicatorBitmaps() has been called and the page indicator therefore
-     *       has the correct width.
+     *       setPageIndicatorBitmaps() has been called and the page indicator therefore has the
+     *       correct width.
      */
     void setPageIndicatorXYWithCenteredX(int16_t x, int16_t y);
 
     /**
-     * Sets the bitmaps that are used by the page indicator. The bitmap for the normal page
-     * is repeated side-by-side and the bitmap for a highlighted page is put in the proper
+     * Sets the page indicator centered inside the SwipeContainer without changing the y
      * position.
+     *
+     * @see setPageIndicatorXYWithCenteredX, setPageIndicatorXY
+     *
+     * @note This method should not be used until all pages have been added, the
+     *       setPageIndicatorBitmaps() has been called and the page indicator therefore has the
+     *       correct width.
+     */
+    void setPageIndicatorCenteredX();
+
+    /**
+     * Sets the x position of the page indicator without changing the y position. The value
+     * specified as x will be the center coordinate of the page indicators.
+     *
+     * @param  x The center x coordinate.
+     *
+     * @see setPageIndicatorXYWithCenteredX, setPageIndicatorXY
+     *
+     * @note This method should not be used until all pages have been added, the
+     *       setPageIndicatorBitmaps() has been called and the page indicator therefore has the
+     *       correct width.
+     */
+    void setPageIndicatorCenteredX(int16_t x);
+
+    /**
+     * Sets the bitmaps that are used by the page indicator. The bitmap for the normal page is
+     * repeated side-by-side and the bitmap for a highlighted page is put in the proper position.
      *
      * @param  normalPage      The normal page.
      * @param  highlightedPage The highlighted page.
@@ -103,9 +133,9 @@ public:
     void setPageIndicatorBitmaps(const Bitmap& normalPage, const Bitmap& highlightedPage);
 
     /**
-     * When dragging either one of the end pages a part of the background will become
-     * visible until the user stop dragging and the end page swipes back to its position.
-     * The width of this area is set by this method.
+     * When dragging either one of the end pages a part of the background will become visible
+     * until the user stop dragging and the end page swipes back to its position. The width of
+     * this area is set by this method.
      *
      * @param  width The width in pixels.
      */
@@ -118,15 +148,72 @@ public:
      */
     uint8_t getNumberOfPages()
     {
-        return numberOfPages;
+        return pageIndicator.getNumberOfPages();
     }
 
     /**
      * Sets the selected page.
      *
      * @param  pageIndex Zero-based index of the page. Range from 0 to numberOfPages-1.
+     *
+     * @see getSelectedPage
      */
     void setSelectedPage(uint8_t pageIndex);
+
+    /**
+     * Gets the currently selected page.
+     *
+     * @return Zero-based index of the current page. Rage from 0 to numberOfPages-1.
+     *
+     * @see setSelectedPage
+     */
+    uint8_t getSelectedPage() const;
+
+    /**
+     * Go to next page with animation
+     *
+     * @param duration duration of the swiping animation when using button.
+     *
+     * @note next page selected
+     */
+    void goNextPage(uint8_t duration = 20);
+
+    /**
+     * Go to previous page with animation
+     *
+     * @param duration duration of the swiping animation when using button.
+     *
+     * @note previous page selected
+     */
+    void goPreviousPage(uint8_t duration = 20);
+
+    /**
+     * Gets the animation duration for swiping with button.
+     *
+     * @return the animation's duration
+     *
+     * @see setAnimationDuration
+     */
+    uint8_t getAnimationDuration() const;
+
+    /**
+     * Sets the animation duration for swiping with button.
+     *
+     * @param newDuration duration of the swiping animation when using button.
+     *
+     * @see getAnimationDuration
+     */
+    void setAnimationDuration(uint8_t newDuration);
+
+    /**
+     * Go to the indicated page with animation
+     *
+     * @param page the page to go to.
+     * @param duration duration of the swiping animation when using button.
+     *
+     * @note previous page selected
+     */
+    void goToPage(uint8_t page, uint8_t duration = 20);
 
 private:
     static const int16_t DRAG_CANCEL_THRESHOLD = 3;
@@ -137,18 +224,20 @@ private:
         ANIMATE_SWIPE_CANCELLED_RIGHT,
         ANIMATE_LEFT,
         ANIMATE_RIGHT,
+        ANIMATE_LEFT_WITH_BUTTON,
+        ANIMATE_RIGHT_WITH_BUTTON,
+        ANIMATE_TO_PAGE,
         NO_ANIMATION
     } currentState;
 
-    uint8_t numberOfPages;
     uint8_t animationCounter;
     uint16_t swipeCutoff;
     int16_t dragX;
     int16_t animateDistance;
     int16_t startX;
-    uint8_t currentPage;
     uint16_t endElasticWidth;
-
+    uint8_t animationDuration;
+    int8_t pageDelta;
     ListLayout pages;
 
     void adjustPages();
@@ -157,6 +246,9 @@ private:
     void animateSwipeCancelledRight();
     void animateLeft();
     void animateRight();
+    void animateLeftWithButton();
+    void animateRightWithButton();
+    void animateToPage();
 
     class PageIndicator : public Container
     {
@@ -166,7 +258,9 @@ private:
         void setBitmaps(const Bitmap& normalPage, const Bitmap& highlightedPage);
         void goRight();
         void goLeft();
-        void setHighlightPosition(uint8_t index);
+        void setCurrentPage(uint8_t page);
+        uint8_t getNumberOfPages() const;
+        uint8_t getCurrentPage() const;
 
     private:
         TiledImage unselectedPages;
@@ -178,4 +272,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // SWIPECONTAINER_HPP
+#endif // TOUCHGFX_SWIPECONTAINER_HPP

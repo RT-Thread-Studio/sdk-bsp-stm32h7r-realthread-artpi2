@@ -1,28 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/Widget.hpp
  *
  * Declares the touchgfx::Widget class.
  */
-#ifndef WIDGET_HPP
-#define WIDGET_HPP
+#ifndef TOUCHGFX_WIDGET_HPP
+#define TOUCHGFX_WIDGET_HPP
 
-#include <assert.h>
 #include <touchgfx/Drawable.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -43,11 +40,9 @@ public:
      * Since a Widget is only one Drawable, Widget::getLastChild simply yields itself as
      * result, but only if the Widget isVisible and isTouchable.
      *
-     * @param       x    Not used since this Widget is the only "child".
-     * @param       y    Not used since this Widget is the only "child".
      * @param [out] last Result, the address of the actual instance of the Widget.
      */
-    virtual void getLastChild(int16_t x, int16_t y, Drawable** last)
+    virtual void getLastChild(int16_t /*x*/, int16_t /*y*/, Drawable** last)
     {
         if (isVisible() && isTouchable())
         {
@@ -58,4 +53,4 @@ public:
 
 } // namespace touchgfx
 
-#endif // WIDGET_HPP
+#endif // TOUCHGFX_WIDGET_HPP

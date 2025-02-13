@@ -1,0 +1,48 @@
+; *************************************************************
+; ***  Scatter-Loading Description File for STM32H7S78-DK_24bpp   ***
+; *************************************************************
+
+EXTERNAL_FLASH 0x70000000 0x04000000    ; start addr, size
+{
+  EROM_region 0x70000000 0x200000
+  {
+   *.o (RESET, +First)
+   *(InRoot$$Sections)
+   .ANY (+RO)
+   .ANY (+XO)
+  }
+
+  DTCMRAM_region 0x20000000 0x00010000
+  {
+   *(STACK)
+   *(HEAP)
+   heap_4.o (+ZI +RW)
+  }
+
+  RW_IRAM1 0x24000000 0x0006E000
+  {
+    .ANY (+RW +ZI)
+  }
+
+  RAM_CMD 0x2406E000 UNINIT 0x00004000
+  {
+    *.o(.bss.Nemagfx_Memory_Pool_Buffer)
+  }
+
+  EXTRAM 0x90400000 UNINIT 0x01C00000	; Framebuffers are placed in the first part of external RAM
+  {
+     *.o (.bss.TouchGFX_Framebuffer)
+     *.o (.bss.Nemagfx_Stencil_Buffer)
+  }
+}
+
+FLASH_GFX 0x70200000 0x07e00000
+{
+  FLASH_GFX_Section 0x70200000 0x07e00000
+  {
+   *.o (ExtFlashSection)
+   *.o (TextFlashSection)
+   *.o (FontFlashSection)
+  }
+}
+

@@ -1,26 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
-#include <touchgfx/widgets/ButtonWithLabel.hpp>
-#include <touchgfx/FontManager.hpp>
+#include <touchgfx/Drawable.hpp>
+#include <touchgfx/Font.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/lcd/LCD.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 namespace touchgfx
 {
 ButtonWithLabel::ButtonWithLabel()
-    : Button(), color(0), colorPressed(0), rotation(TEXT_ROTATE_0), textHeightIncludingSpacing(0)
+    : Button(), typedText(), color(0), colorPressed(0), rotation(TEXT_ROTATE_0), textHeightIncludingSpacing(0)
 {
 }
 
@@ -30,21 +29,26 @@ void ButtonWithLabel::draw(const Rect& area) const
 
     if (typedText.hasValidId())
     {
-        const Font* fontToDraw = typedText.getFont(); //never return 0
-        uint8_t height = textHeightIncludingSpacing;
+        const Font* fontToDraw = typedText.getFont(); // Never return 0
+        const int16_t height = textHeightIncludingSpacing;
         int16_t offset;
         Rect labelRect;
         switch (rotation)
         {
-        default:
         case TEXT_ROTATE_0:
+            offset = (this->getHeight() - height) / 2; // Prefer round down
+            labelRect = Rect(0, offset, this->getWidth(), height);
+            break;
         case TEXT_ROTATE_180:
-            offset = (this->getHeight() - height) / 2;
+            offset = ((this->getHeight() - height) + 1) / 2; // Prefer round up
             labelRect = Rect(0, offset, this->getWidth(), height);
             break;
         case TEXT_ROTATE_90:
+            offset = ((this->getWidth() - height) + 1) / 2; // Prefer round up
+            labelRect = Rect(offset, 0, height, this->getHeight());
+            break;
         case TEXT_ROTATE_270:
-            offset = (this->getWidth() - height) / 2;
+            offset = (this->getWidth() - height) / 2; // Prefer round down
             labelRect = Rect(offset, 0, height, this->getHeight());
             break;
         }
@@ -55,7 +59,7 @@ void ButtonWithLabel::draw(const Rect& area) const
             dirty.x -= labelRect.x;
             dirty.y -= labelRect.y;
             translateRectToAbsolute(labelRect);
-            LCD::StringVisuals visuals(fontToDraw, pressed ? colorPressed : color, alpha, typedText.getAlignment(), 0, rotation, typedText.getTextDirection(), 0, WIDE_TEXT_NONE);
+            const LCD::StringVisuals visuals(fontToDraw, pressed ? colorPressed : color, alpha, typedText.getAlignment(), 0, rotation, typedText.getTextDirection(), 0, WIDE_TEXT_NONE);
             HAL::lcd().drawString(labelRect, dirty, visuals, typedText.getText());
         }
     }

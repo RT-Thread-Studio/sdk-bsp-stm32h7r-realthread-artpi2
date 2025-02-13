@@ -1,29 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/clock/AbstractClock.hpp
  *
  * Declares the touchgfx::AbstractClock class.
  */
-#ifndef ABSTRACTCLOCK_HPP
-#define ABSTRACTCLOCK_HPP
+#ifndef TOUCHGFX_ABSTRACTCLOCK_HPP
+#define TOUCHGFX_ABSTRACTCLOCK_HPP
 
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Image.hpp>
-#include <touchgfx/widgets/TextureMapper.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -69,8 +65,33 @@ public:
      * Gets the current hour.
      *
      * @return The current hour in range 0-23.
+     *
+     * @see getCurrentHour24, getCurrentHour12
      */
     uint8_t getCurrentHour() const;
+
+    /**
+     * Gets current hour 24, i.e. between 0 and 23.
+     *
+     * @return The current hour in range 0-23.
+     */
+    uint8_t getCurrentHour24() const;
+
+    /**
+     * Gets current hour 12, i.e. between 1 and 12.
+     *
+     * @return The current hour in range 1-12.
+     *
+     * @see getCurrentHour24, getCurrentAM
+     */
+    uint8_t getCurrentHour12() const;
+
+    /**
+     * Is the current time a.m. or p.m.? True for a.m. and false for p.m.
+     *
+     * @return True if a.m., false if p.m.
+     */
+    bool getCurrentAM() const;
 
     /**
      * Gets the current minute.
@@ -97,4 +118,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // ABSTRACTCLOCK_HPP
+#endif // TOUCHGFX_ABSTRACTCLOCK_HPP

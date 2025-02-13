@@ -1,26 +1,23 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 #include <touchgfx/containers/progress_indicators/TextProgress.hpp>
 
 namespace touchgfx
 {
-TextProgress::TextProgress() :
-    AbstractProgressIndicator(),
-    textArea(),
-    decimals(0)
+TextProgress::TextProgress()
+    : AbstractProgressIndicator(),
+      textArea(),
+      decimals(0)
 {
     textBuffer[0] = 0;
     progressIndicatorContainer.add(textArea);
@@ -38,7 +35,7 @@ void TextProgress::setTypedText(const TypedText& t)
     textArea.setTypedText(t);
 }
 
-touchgfx::TypedText TextProgress::getTypedText() const
+const TypedText& TextProgress::getTypedText() const
 {
     return textArea.getTypedText();
 }
@@ -48,26 +45,23 @@ void TextProgress::setColor(colortype color)
     textArea.setColor(color);
 }
 
-touchgfx::colortype TextProgress::getColor() const
+colortype TextProgress::getColor() const
 {
     return textArea.getColor();
 }
 
-void TextProgress::setAlpha(uint8_t alpha)
+void TextProgress::setAlpha(uint8_t newAlpha)
 {
-    textArea.setAlpha(alpha);
-}
-
-uint8_t TextProgress::getAlpha() const
-{
-    return textArea.getAlpha();
+    AbstractProgressIndicator::setAlpha(newAlpha);
+    textArea.setAlpha(newAlpha);
 }
 
 void TextProgress::setValue(int value)
 {
+    textArea.invalidateContent();
     AbstractProgressIndicator::setValue(value);
-    int range[3] = { 1, 10, 100 };
-    uint16_t progress = AbstractProgressIndicator::getProgress(100 * range[decimals]);
+    const int range[3] = { 1, 10, 100 };
+    const uint16_t progress = AbstractProgressIndicator::getProgress(100 * range[decimals]);
     if (decimals > 0)
     {
         Unicode::snprintf(textBuffer, 8, "%d.%0*d", progress / range[decimals], decimals, progress % range[decimals]);
@@ -77,7 +71,7 @@ void TextProgress::setValue(int value)
         Unicode::snprintf(textBuffer, 8, "%d", progress);
     }
     textArea.setWildcard(textBuffer);
-    textArea.invalidate();
+    textArea.invalidateContent();
 }
 
 void TextProgress::setNumberOfDecimals(uint16_t numberOfDecimals)

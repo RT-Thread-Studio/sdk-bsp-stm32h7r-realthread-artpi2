@@ -279,7 +279,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 
   /* USER CODE BEGIN UART4_MspInit 1 */
     //@TODO base board hw0.1 fix UART reversed connections;
-    UART4->CR2 |= (1 << USART_CR2_SWAP_Pos);
+//    UART4->CR2 |= (1 << USART_CR2_SWAP_Pos);
     
   /* USER CODE END UART4_MspInit 1 */
 

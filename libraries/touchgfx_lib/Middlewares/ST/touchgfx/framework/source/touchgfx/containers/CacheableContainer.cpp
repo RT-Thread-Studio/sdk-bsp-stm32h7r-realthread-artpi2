@@ -1,26 +1,37 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 #include <touchgfx/containers/CacheableContainer.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/lcd/LCD.hpp>
 
 namespace touchgfx
 {
+CacheableContainer::CacheableContainer()
+    : Container(),
+      cachedBitmapId(BITMAP_INVALID),
+      cachedImage(),
+      isCachedMode(false),
+      childWasInvalidated(false)
+{
+    // Set this Container as parent for the cachedImage. This will
+    // make sure the cachedImage is clipped correctly.
+    cachedImage.setParent(this);
+    cachedImage.setXY(0, 0);
+}
+
 void CacheableContainer::setCacheBitmap(BitmapId bitmapId)
 {
-    Bitmap bitmap(bitmapId);
+    const Bitmap bitmap(bitmapId);
 
     cachedBitmapId = BITMAP_INVALID;
 
@@ -34,12 +45,17 @@ void CacheableContainer::setCacheBitmap(BitmapId bitmapId)
     LCD* auxLCD = HAL::getInstance()->getAuxiliaryLCD();
 
     /* Dynamic bitmap and framebuffer should be of the same format */
-    if (bitmap.getFormat() == HAL::lcd().framebufferFormat()
-            || (auxLCD && bitmap.getFormat() == auxLCD->framebufferFormat()))
+    if (bitmap.getFormat() == HAL::lcd().framebufferFormat() ||
+        (auxLCD && bitmap.getFormat() == auxLCD->framebufferFormat()))
     {
         cachedBitmapId = bitmapId;
         cachedImage.setBitmap(Bitmap(cachedBitmapId));
     }
+}
+
+BitmapId CacheableContainer::getCacheBitmap() const
+{
+    return cachedBitmapId;
 }
 
 void CacheableContainer::updateCache()
@@ -72,6 +88,11 @@ void CacheableContainer::invalidateRect(Rect& invalidatedArea) const
     }
 }
 
+bool CacheableContainer::setSolidRect(const Rect& solidRect) const
+{
+    return Bitmap::dynamicBitmapSetSolidRect(cachedBitmapId, solidRect);
+}
+
 bool CacheableContainer::isChildInvalidated() const
 {
     return childWasInvalidated;
@@ -81,8 +102,8 @@ void CacheableContainer::setupDrawChain(const Rect& invalidatedArea, Drawable** 
 {
     if (isCachedMode && (cachedBitmapId != BITMAP_INVALID) && isVisible())
     {
-        Rect r = getAbsoluteRect();
-        cachedImage.setPosition(r.x, r.y, r.width, r.height);
+        // Make sure cachedImage is same size as container and position in the same coordinates
+        cachedImage.setWidthHeight(getWidth(), getHeight());
         cachedImage.setupDrawChain(invalidatedArea, nextPreviousElement);
     }
     else

@@ -1,35 +1,30 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/Keyboard.hpp
  *
  * Declares the touchgfx::Keyboard class.
  */
-#ifndef KEYBOARD_HPP
-#define KEYBOARD_HPP
+#ifndef TOUCHGFX_KEYBOARD_HPP
+#define TOUCHGFX_KEYBOARD_HPP
 
 #include <touchgfx/Callback.hpp>
-#include <touchgfx/Color.hpp>
-#include <touchgfx/Font.hpp>
-#include <touchgfx/FontManager.hpp>
+#include <touchgfx/TypedText.hpp>
 #include <touchgfx/Unicode.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/events/ClickEvent.hpp>
+#include <touchgfx/events/DragEvent.hpp>
 #include <touchgfx/hal/Types.hpp>
-#include <touchgfx/lcd/LCD.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
@@ -57,26 +52,26 @@ class Keyboard : public Container
 {
 public:
     /** Mapping from rectangle to key id. */
-    typedef struct
+    struct Key
     {
         uint8_t keyId;              ///< The id of a key
         Rect keyArea;               ///< The area occupied by the key
         BitmapId highlightBitmapId; ///< A bitmap to show when the area is "pressed"
-    } Key;
+    };
 
     /** Mapping from rectangle to a callback method to execute. */
-    typedef struct
+    struct CallbackArea
     {
         Rect keyArea;                ///< The area occupied by a key
         GenericCallback<>* callback; ///< The callback to execute, when the area is "pressed". The callback should be a Callback<YourClass> member in the class using the keyboard
         BitmapId highlightBitmapId;  ///< A bitmap to show when the area is "pressed"
-    } CallbackArea;
+    };
 
     /**
      * Definition of the keyboard layout. The keyboard can handle changing layouts, so
      * different keyboard modes can be implemented by changing layouts and key mappings.
      */
-    typedef struct
+    struct Layout
     {
         BitmapId bitmap;                 ///< The bitmap used for the keyboard layout
         const Key* keyArray;             ///< The keys on the keyboard layout
@@ -88,21 +83,21 @@ public:
         colortype textAreaFontColor;     ///< The color used for the typing text
         FontId keyFont;                  ///< The font used for the keys
         colortype keyFontColor;          ///< The color used for the keys
-    } Layout;
+    };
 
     /** Mapping from key id to Unicode character. */
-    typedef struct
+    struct KeyMapping
     {
         uint8_t keyId;                 ///< Id of a key
         Unicode::UnicodeChar keyValue; ///< Unicode equivalent of the key id
-    } KeyMapping;
+    };
 
     /** List of KeyMappings to use. */
-    typedef struct
+    struct KeyMappingList
     {
         const KeyMapping* keyMappingArray; ///< The array of key mappings used by the keyboard
         uint8_t numberOfKeys;              ///< The number of keys in the list
-    } KeyMappingList;
+    };
 
     Keyboard();
 
@@ -222,18 +217,18 @@ public:
      * events internally and click events are _not_ propagated to drawables added to the
      * keyboard.
      *
-     * @param  evt The ClickEvent.
+     * @param  event The ClickEvent.
      */
-    virtual void handleClickEvent(const ClickEvent& evt);
+    virtual void handleClickEvent(const ClickEvent& event);
 
     /**
      * Overrides the handleDragEvent on the container. The keyboard handles drag events to
      * enable the container to, emit a CANCEL, if the user drags outside the currently
      * pressed key.
      *
-     * @param  evt The DragEvent.
+     * @param  event The DragEvent.
      */
-    virtual void handleDragEvent(const DragEvent& evt);
+    virtual void handleDragEvent(const DragEvent& event);
 
     /**
      * Sets the callback for the keyboard. The callback will be executed every time a key is
@@ -305,4 +300,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // KEYBOARD_HPP
+#endif // TOUCHGFX_KEYBOARD_HPP

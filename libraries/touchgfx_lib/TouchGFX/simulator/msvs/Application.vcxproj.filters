@@ -82,7 +82,7 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{92BBFF14-FBDB-4755-BA47-A830D863D92B}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;ttf;otf;bdf;png;wav;xlsx;props;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;ttf;otf;bdf;png;wav;xml;props;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Resource Files\assets">
       <UniqueIdentifier>{AF899B0F-78BE-47F9-A912-E92CB9156E40}</UniqueIdentifier>
@@ -130,47 +130,71 @@
     <Filter Include="Source Files\generated\simulator">
       <UniqueIdentifier>{C07B02B9-A55E-47AA-AD61-59A6AAD754E6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui">
-      <UniqueIdentifier>23A09361-D41F-2686-8490-509F90E4E261</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\gui">
-      <UniqueIdentifier>D4BDB648-11E2-968F-10BE-EDD1AC21DCEE</UniqueIdentifier>
+      <UniqueIdentifier>6A87A5F3-6152-BAF5-4DA5-9210AC5981DA</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\common">
-      <UniqueIdentifier>35922CF6-E3C2-18B0-F028-662DBB599E18</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated">
-      <UniqueIdentifier>F860A3C5-4DDC-F128-F5C4-672AB4BFD0AE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\model">
-      <UniqueIdentifier>A0E66692-8EC8-E291-8548-3CE55EB041D9</UniqueIdentifier>
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>9A7A1A3C-905B-11D2-1657-61FF311530E3</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\generated\gui_generated">
-      <UniqueIdentifier>DDDA205F-B63B-CF37-956D-BCC8F14A9B7B</UniqueIdentifier>
+      <UniqueIdentifier>6CF47C10-428C-DBD7-71BF-BAC37021318F</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\common">
+      <UniqueIdentifier>77D6547B-6BA0-01AC-7F0D-190F30A8376F</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated">
+      <UniqueIdentifier>15714131-9E62-4A83-EE84-FA57B89B7C7D</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gui\model">
-      <UniqueIdentifier>5BB393E1-4563-4664-2B53-96AC25148CB3</UniqueIdentifier>
+      <UniqueIdentifier>E914AD35-AD61-8B05-7C2E-7ABE32C4BE6E</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gui\common">
-      <UniqueIdentifier>40DBE23D-3F2A-3772-48C2-28A02E7B5A10</UniqueIdentifier>
+      <UniqueIdentifier>1FD47562-2FBE-C446-41BA-FFD4EF0F32BD</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\generated\gui_generated\common">
-      <UniqueIdentifier>08DDEB03-8991-3929-6DCF-10AE0F7BBF5F</UniqueIdentifier>
+    <Filter Include="Header Files\gui\model">
+      <UniqueIdentifier>A5DB11CF-9AFF-41AA-DF9F-812EF4F64615</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\containers">
+      <UniqueIdentifier>07A56143-EF10-0AD0-08A1-1A0190062C62</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\dice_screen">
+      <UniqueIdentifier>05000ACA-E93C-E2D0-6FAC-2893C8E428B6</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\dice_screen">
+      <UniqueIdentifier>B2CF2CC1-59B2-1899-DEB3-9C47C83E284B</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\containers">
+      <UniqueIdentifier>765D72FF-AD78-9548-30CD-F18B96DE07FC</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\generated\gui_generated\common">
-      <UniqueIdentifier>10F0A5E9-4866-FE3D-17C2-4790D0330013</UniqueIdentifier>
+      <UniqueIdentifier>0AF848CD-BB55-3B51-CDCF-7AFD3CF20F8B</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\main_screen">
-      <UniqueIdentifier>649108D0-ECF2-92D3-5F81-E0FAA7D6DE9C</UniqueIdentifier>
+    <Filter Include="Header Files\generated\gui_generated\containers">
+      <UniqueIdentifier>D10D8909-CD70-CEC8-3170-4BBA6085136E</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui\main_screen">
-      <UniqueIdentifier>3FF43462-B8AC-36F5-5796-E45478B4E816</UniqueIdentifier>
+    <Filter Include="Source Files\generated\gui_generated\containers">
+      <UniqueIdentifier>13D3B22C-98AC-CFA0-CF92-1342CD85A6A5</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\generated\gui_generated\main_screen">
-      <UniqueIdentifier>BBDD3096-45A1-B223-22BC-FC1F8F4D5F01</UniqueIdentifier>
+    <Filter Include="Header Files\generated\simulator\include">
+      <UniqueIdentifier>73AD3E87-21F9-D1F3-0F8D-FD8474B97765</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\generated\gui_generated\main_screen">
-      <UniqueIdentifier>ED8A2EA8-81B3-CD81-5DC6-349D13EE3FBF</UniqueIdentifier>
+    <Filter Include="Source Files\generated\simulator\video">
+      <UniqueIdentifier>A8F15BAA-D468-7E96-A2DD-49DF5231FB56</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\common">
+      <UniqueIdentifier>ACAF3D0B-8177-D3C1-3019-A630F1A3BD66</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\dice_screen">
+      <UniqueIdentifier>3F3B335D-23C9-EFA1-9F24-38D4B10A8063</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\dice_screen">
+      <UniqueIdentifier>7B77A129-0553-EBB3-EF3B-330BF2C14292</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\simulator\include\simulator">
+      <UniqueIdentifier>FF9BE4F6-1103-E2BB-E615-7707535635A1</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\simulator\include\simulator\video">
+      <UniqueIdentifier>64027CFD-C04B-7842-640E-B69A341F112B</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +216,39 @@
     <ClCompile Include="$(ApplicationRoot)\generated\simulator\src\mainBase.cpp">
       <Filter>Source Files\generated\simulator</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\AdvanceDiceContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\AdvanceDiceContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\animationsDepthButton.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\animationsDepthButtonBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\cubeLeftRightButtonsContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\cubeLeftRightButtonsContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\cubeUpDownButtonsContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\cubeUpDownButtonsContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\dice_screen\DicePresenter.cpp">
+      <Filter>Source Files\gui\dice_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\dice_screen\DiceView.cpp">
+      <Filter>Source Files\gui\dice_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\dice_screen\DiceViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\dice_screen</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp">
       <Filter>Source Files\gui\common</Filter>
     </ClCompile>
@@ -201,18 +258,36 @@
     <ClCompile Include="..\..\gui\src\model\Model.cpp">
       <Filter>Source Files\gui\model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\main_screen\MainPresenter.cpp">
-      <Filter>Source Files\gui\main_screen</Filter>
+    <ClCompile Include="..\..\gui\src\containers\scaleSliderContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\main_screen\MainView.cpp">
-      <Filter>Source Files\gui\main_screen</Filter>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\scaleSliderContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\main_screen\MainViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\main_screen</Filter>
+    <ClCompile Include="..\..\gui\src\containers\selectedIconsContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\selectedIconsContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\SimpleDiceContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\SimpleDiceContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp">
+      <Filter>Source Files\generated\simulator\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\TopBarContainer.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\TopBarContainerBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(ApplicationRoot)\assets\texts\texts.xlsx">
+    <None Include="$(ApplicationRoot)\assets\texts\texts.xml">
       <Filter>Resource Files\assets\texts</Filter>
     </None>
     <None Include="$(ApplicationRoot)\config\msvs\Application.props">
@@ -622,6 +697,42 @@
     <ClInclude Include="$(ApplicationRoot)\generated\simulator\include\simulator\mainBase.hpp">
       <Filter>Header Files\generated\simulator</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\AdvanceDiceContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\AdvanceDiceContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\animationsDepthButton.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\animationsDepthButtonBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\cubeLeftRightButtonsContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\cubeLeftRightButtonsContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\cubeUpDownButtonsContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\cubeUpDownButtonsContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\dice_screen\DicePresenter.hpp">
+      <Filter>Header Files\gui\dice_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\dice_screen\DiceView.hpp">
+      <Filter>Header Files\gui\dice_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\dice_screen\DiceViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\dice_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\DirectFrameBufferVideoController.hpp">
+      <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendApplication.hpp">
       <Filter>Header Files\gui\common</Filter>
     </ClInclude>
@@ -634,23 +745,44 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendHeapBase.hpp">
       <Filter>Header Files\generated\gui_generated\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\MJPEGDecoder.hpp">
+      <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp">
       <Filter>Header Files\gui\model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp">
       <Filter>Header Files\gui\model</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\scaleSliderContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\scaleSliderContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\selectedIconsContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\selectedIconsContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp">
       <Filter>Header Files\generated\gui_generated\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\main_screen\MainPresenter.hpp">
-      <Filter>Header Files\gui\main_screen</Filter>
+    <ClInclude Include="..\..\gui\include\gui\containers\SimpleDiceContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\main_screen\MainView.hpp">
-      <Filter>Header Files\gui\main_screen</Filter>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\SimpleDiceContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\main_screen\MainViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\main_screen</Filter>
+    <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp">
+      <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\TopBarContainer.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\TopBarContainerBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

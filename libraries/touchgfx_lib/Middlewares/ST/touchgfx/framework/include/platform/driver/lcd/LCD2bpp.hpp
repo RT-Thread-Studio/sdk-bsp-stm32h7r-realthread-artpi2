@@ -1,44 +1,37 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file platform/driver/lcd/LCD2bpp.hpp
  *
- * Declares the touchgfx::LCD2bpp and touchgfx::LCD2DebugPrinter class.
+ * Declares the touchgfx::LCD2bpp class.
  */
-#ifndef LCD2BPP_HPP
-#define LCD2BPP_HPP
+#ifndef TOUCHGFX_LCD2BPP_HPP
+#define TOUCHGFX_LCD2BPP_HPP
 
-#include <stdarg.h>
 #include <touchgfx/Bitmap.hpp>
-#include <touchgfx/Font.hpp>
-#include <touchgfx/TextProvider.hpp>
-#include <touchgfx/TextureMapTypes.hpp>
-#include <touchgfx/Unicode.hpp>
+#include <touchgfx/Color.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #include <touchgfx/hal/Types.hpp>
 #include <touchgfx/lcd/LCD.hpp>
+#include <touchgfx/lcd/LCD2DebugPrinter.hpp>
 
 namespace touchgfx
 {
-#undef LCD
 #define USE_LSB
 
 /**
  * This class contains the various low-level drawing routines for drawing bitmaps, texts and
- * rectangles on 2 bits per pixel grayscale displays.
+ * rectangles on 2 bits per pixel gray scale displays.
  *
  * @see LCD
  *
@@ -57,7 +50,13 @@ public:
 
     virtual uint16_t* copyFrameBufferRegionToMemory(const Rect& visRegion, const Rect& absRegion, const BitmapId bitmapId);
 
+    virtual Rect copyFrameBufferRegionToMemory(const Rect& visRegion, const Rect& absRegion, uint8_t* dst, int16_t dstWidth, int16_t dstHeight);
+
+    virtual void copyAreaFromTFTToClientBuffer(const Rect& region);
+
     virtual void fillRect(const Rect& rect, colortype color, uint8_t alpha = 255);
+
+    virtual void fillBuffer(uint8_t* const destination, uint16_t pixelStride, const Rect& rect, const colortype color, const uint8_t alpha);
 
     virtual uint8_t bitDepth() const
     {
@@ -86,11 +85,6 @@ public:
         return (HAL::FRAME_BUFFER_WIDTH + 3) / 4;
     }
 
-    virtual colortype getColorFrom24BitRGB(uint8_t red, uint8_t green, uint8_t blue) const
-    {
-        return getColorFromRGB(red, green, blue);
-    }
-
     /**
      * Generates a color representation to be used on the LCD, based on 24 bit RGB values.
      *
@@ -100,61 +94,22 @@ public:
      *
      * @return The color representation depending on LCD color format.
      */
-    FORCE_INLINE_FUNCTION static colortype getColorFromRGB(uint8_t red, uint8_t green, uint8_t blue)
+    FORCE_INLINE_FUNCTION static uint8_t getNativeColorFromRGB(uint8_t red, uint8_t green, uint8_t blue)
     {
         // Find the GRAY value (http://en.wikipedia.org/wiki/Luma_%28video%29) rounded to nearest integer
         return (red * 54 + green * 183 + blue * 19) >> 14;
     }
 
-    virtual uint8_t getRedColor(colortype color) const
-    {
-        return getRedFromColor(color);
-    }
-
     /**
-     * Gets red from color.
+     * Generates a color representation to be used on the LCD, based on 24 bit RGB values.
      *
      * @param  color The color.
      *
-     * @return The red from color.
+     * @return The color representation depending on LCD color format.
      */
-    virtual uint8_t getRedFromColor(colortype color) const
+    FORCE_INLINE_FUNCTION static uint8_t getNativeColor(colortype color)
     {
-        return (color & 0x3) * 0x55;
-    }
-
-    virtual uint8_t getGreenColor(colortype color) const
-    {
-        return getGreenFromColor(color);
-    }
-
-    /**
-     * Gets green from color.
-     *
-     * @param  color The color.
-     *
-     * @return The green from color.
-     */
-    FORCE_INLINE_FUNCTION static uint8_t getGreenFromColor(colortype color)
-    {
-        return (color & 0x3) * 0x55;
-    }
-
-    virtual uint8_t getBlueColor(colortype color) const
-    {
-        return getBlueFromColor(color);
-    }
-
-    /**
-     * Gets blue from color.
-     *
-     * @param  color The color.
-     *
-     * @return The blue from color.
-     */
-    FORCE_INLINE_FUNCTION static uint8_t getBlueFromColor(colortype color)
-    {
-        return (color & 0x3) * 0x55;
+        return getNativeColorFromRGB(Color::getRed(color), Color::getGreen(color), Color::getBlue(color));
     }
 
     /**
@@ -189,8 +144,75 @@ public:
      */
     void enableTextureMapperGRAY2_NearestNeighbor();
 
+    /**
+     * Shift value to get the right pixel in a byte.
+     *
+     * @param  offset The offset.
+     *
+     * @return The shift value.
+     */
+    FORCE_INLINE_FUNCTION static int shiftVal(int offset)
+    {
+#ifdef USE_LSB
+        return (offset & 3) << 1;
+#else
+        return (3 - (offset & 3)) << 1;
+#endif
+    }
+
+    /**
+     * Get pixel from buffer/image.
+     *
+     * @param  addr   The address.
+     * @param  offset The offset.
+     *
+     * @return The pixel value.
+     */
+    FORCE_INLINE_FUNCTION static uint8_t getPixel(const uint8_t* addr, int offset)
+    {
+        return (addr[offset >> 2] >> shiftVal(offset)) & 3;
+    }
+
+    /**
+     * Get pixel from buffer/image.
+     *
+     * @param  addr   The address.
+     * @param  offset The offset.
+     *
+     * @return The pixel value.
+     */
+    FORCE_INLINE_FUNCTION static uint8_t getPixel(const uint16_t* addr, int offset)
+    {
+        return getPixel(reinterpret_cast<const uint8_t*>(addr), offset);
+    }
+
+    /**
+     * Set pixel in buffer.
+     *
+     * @param [in] addr   The address.
+     * @param      offset The offset.
+     * @param      value  The value.
+     */
+    FORCE_INLINE_FUNCTION static void setPixel(uint8_t* addr, int offset, uint8_t value)
+    {
+        int shift = shiftVal(offset);
+        addr[offset >> 2] = (addr[offset >> 2] & ~(3 << shift)) | ((value & 3) << shift);
+    }
+
+    /**
+     * Set pixel in buffer.
+     *
+     * @param [in] addr   The address.
+     * @param      offset The offset.
+     * @param      value  The value.
+     */
+    FORCE_INLINE_FUNCTION static void setPixel(uint16_t* addr, int offset, uint8_t value)
+    {
+        setPixel(reinterpret_cast<uint8_t*>(addr), offset, value);
+    }
+
 protected:
-    static const uint8_t alphaTable2bpp[256]; ///< The alpha lookup table to avoid arithmetics when alpha blending
+    static const uint8_t alphaBlend[16][4][4]; ///< The alpha lookup table to avoid arithmetics when alpha blending
 
     virtual DrawTextureMapScanLineBase* getTextureMapperDrawScanLine(const TextureSurface& texture, RenderingVariant renderVariant, uint8_t alpha);
 
@@ -279,147 +301,68 @@ private:
     class DrawTextureMapScanLineBase2 : public DrawTextureMapScanLineBase
     {
     protected:
-        FORCE_INLINE_FUNCTION bool overrunCheckBilinearInterpolation(uint32_t& destOffset, int& pixelsToDraw, fixed16_16& U, fixed16_16& V, fixed16_16 deltaU, fixed16_16 deltaV, const int16_t maxWidth, const int16_t maxHeight);
-        FORCE_INLINE_FUNCTION bool overrunCheckNearestNeighbor(uint32_t& destOffset, int& pixelsToDraw, fixed16_16& U, fixed16_16& V, fixed16_16 deltaU, fixed16_16 deltaV, const int16_t maxWidth, const int16_t maxHeight);
+        FORCE_INLINE_FUNCTION bool overrunCheckBilinearInterpolation(uint32_t& destOffset, int& pixelsToDraw, fixed16_16& U, fixed16_16& V, fixed16_16 deltaU, fixed16_16 deltaV, const int16_t maxWidth, const int16_t maxHeight) const;
+        FORCE_INLINE_FUNCTION bool overrunCheckNearestNeighbor(uint32_t& destOffset, int& pixelsToDraw, fixed16_16& U, fixed16_16& V, fixed16_16 deltaU, fixed16_16 deltaV, const int16_t maxWidth, const int16_t maxHeight) const;
     };
 
     class TextureMapper_GRAY2_NonOpaque_BilinearInterpolation_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
-        void writePixelOnEdge(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
+        void writePixelOnEdge(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
     };
 
     class TextureMapper_GRAY2_Opaque_BilinearInterpolation_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
-        void writePixelOnEdge(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
+        void writePixelOnEdge(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
     };
 
     class TextureMapper_GRAY2_NonOpaque_NearestNeighbor_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint8_t* const alphaBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t alpha) const;
     };
 
     class TextureMapper_GRAY2_Opaque_NearestNeighbor_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, uint32_t const destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const int16_t bitmapStride, const int UInt, const int VInt, const uint8_t alpha) const;
     };
 
     class TextureMapper_A4_NearestNeighbor_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* const destAddress, const uint32_t destOffset, const uint8_t a4, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* const destAddress, const uint32_t destOffset, const uint8_t a4, const uint8_t alpha) const;
     };
 
     class TextureMapper_A4_BilinearInterpolation_GA : public DrawTextureMapScanLineBase2
     {
     public:
-        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const int16_t bitmapWidth, const int16_t bitmapHeight, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
+        virtual void drawTextureMapScanLineSubdivisions(int subdivisions, const int widthModLength, int pixelsToDraw, const int affineLength, float oneOverZRight, float UOverZRight, float VOverZRight, fixed16_16 U, fixed16_16 V, fixed16_16 deltaU, fixed16_16 deltaV, float ULeft, float VLeft, float URight, float VRight, float ZRight, const DrawingSurface& dest, const int destX, const int destY, const TextureSurface& texture, uint8_t alpha, const float dOneOverZdXAff, const float dUOverZdXAff, const float dVOverZdXAff);
 
     private:
-        FORCE_INLINE_FUNCTION void writePixel(uint16_t* const destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint32_t offset, const int16_t bitmapStride, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
-        void writePixelOnEdge(uint16_t* const destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha);
+        FORCE_INLINE_FUNCTION void writePixel(uint16_t* const destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint32_t offset, const int16_t bitmapStride, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
+        void writePixelOnEdge(uint16_t* const destAddress, const uint32_t destOffset, const uint16_t* const textureBits, const uint16_t bitmapStride, const int16_t bitmapWidth, const int16_t bitmapHeight, const int UInt, const int VInt, const uint8_t UFrac, const uint8_t VFrac, const uint8_t alpha) const;
     };
-};
-
-/**
- * Shift value to get the right pixel in a byte.
- *
- * @param  offset The offset.
- *
- * @return The shift value.
- */
-FORCE_INLINE_FUNCTION int LCD2shiftVal(int offset)
-{
-#ifdef USE_LSB
-    return (offset & 3) << 1;
-#else
-    return (3 - (offset & 3)) << 1;
-#endif
-}
-
-/**
- * Get pixel from buffer/image.
- *
- * @param  addr   The address.
- * @param  offset The offset.
- *
- * @return The pixel value.
- */
-FORCE_INLINE_FUNCTION uint8_t LCD2getPixel(const uint8_t* addr, int offset)
-{
-    return (addr[offset >> 2] >> LCD2shiftVal(offset)) & 3;
-}
-
-/**
- * Get pixel from buffer/image.
- *
- * @param  addr   The address.
- * @param  offset The offset.
- *
- * @return The pixel value.
- */
-FORCE_INLINE_FUNCTION uint8_t LCD2getPixel(const uint16_t* addr, int offset)
-{
-    return LCD2getPixel(reinterpret_cast<const uint8_t*>(addr), offset);
-}
-
-/**
- * Set pixel in buffer.
- *
- * @param [in] addr   The address.
- * @param      offset The offset.
- * @param      value  The value.
- */
-FORCE_INLINE_FUNCTION void LCD2setPixel(uint8_t* addr, int offset, uint8_t value)
-{
-    int shift = LCD2shiftVal(offset);
-    addr[offset >> 2] = (addr[offset >> 2] & ~(3 << shift)) | ((value & 3) << shift);
-}
-
-/**
- * Set pixel in buffer.
- *
- * @param [in] addr   The address.
- * @param      offset The offset.
- * @param      value  The value.
- */
-FORCE_INLINE_FUNCTION void LCD2setPixel(uint16_t* addr, int offset, uint8_t value)
-{
-    LCD2setPixel(reinterpret_cast<uint8_t*>(addr), offset, value);
-}
-
-/**
- * The class LCD2DebugPrinter implements the DebugPrinter interface for printing debug messages
- * on top of 24bit framebuffer.
- *
- * @see DebugPrinter
- */
-class LCD2DebugPrinter : public DebugPrinter
-{
-public:
-    virtual void draw(const Rect& rect) const;
 };
 
 } // namespace touchgfx
 
-#endif // LCD2BPP_HPP
+#endif // TOUCHGFX_LCD2BPP_HPP

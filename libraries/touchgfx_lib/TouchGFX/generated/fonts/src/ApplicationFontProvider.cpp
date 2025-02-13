@@ -9,8 +9,8 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
 {
     switch (typography)
     {
-    case Typography::LABELS:
-        // NotoSans_Regular_12_4bpp
+    case Typography::DEFAULT:
+        // Saira_Medium_20_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
     default:
         return 0;

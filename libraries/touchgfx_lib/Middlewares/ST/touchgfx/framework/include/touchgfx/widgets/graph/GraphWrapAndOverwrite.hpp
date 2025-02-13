@@ -1,26 +1,24 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/graph/GraphWrapAndOverwrite.hpp
  *
- * Declares the touchgfx::DataGraphWrapAndOverwrite and touchgfx::GraphWrapAndOverwrite classes.
+ * Declares the touchgfx::GraphWrapAndOverwriteData and touchgfx::GraphWrapAndOverwrite classes.
  */
-#ifndef GRAPHWRAPANDOVERWRITE_HPP
-#define GRAPHWRAPANDOVERWRITE_HPP
+#ifndef TOUCHGFX_GRAPHWRAPANDOVERWRITE_HPP
+#define TOUCHGFX_GRAPHWRAPANDOVERWRITE_HPP
 
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/graph/AbstractDataGraph.hpp>
 
 namespace touchgfx
@@ -30,16 +28,19 @@ namespace touchgfx
  * elements with new values after the graph has filled. There will be a gap between the newly
  * inserted element and the element after. This similar behavior to a heart beat monitor.
  */
-class DataGraphWrapAndOverwrite : public AbstractDataGraphWithY
+class GraphWrapAndOverwriteData : public DynamicDataGraph
 {
 public:
     /**
-     * Initializes a new instance of the DataGraphWrapAndOverwrite class.
+     * Initializes a new instance of the GraphWrapAndOverwriteData class.
      *
      * @param      capacity The capacity.
      * @param [in] values   Pointer to memory with room for capacity elements of type T.
      */
-    DataGraphWrapAndOverwrite(int16_t capacity, int* values);
+    GraphWrapAndOverwriteData(int16_t capacity, int* values)
+        : DynamicDataGraph(capacity, values), current(0)
+    {
+    }
 
     virtual void clear();
 
@@ -53,19 +54,24 @@ protected:
     virtual int16_t addValue(int value);
 };
 
-/** A Continuous graph. A quick way to create a DataGraphWrapAndOverwrite. */
+/**
+ * A Continuous graph. A quick way to create a GraphWrapAndOverwriteData.
+ *
+ * @tparam CAPACITY The maximum number of data points on the graph.
+ */
 template <int16_t CAPACITY>
-class GraphWrapAndOverwrite : public DataGraphWrapAndOverwrite
+class GraphWrapAndOverwrite : public GraphWrapAndOverwriteData
 {
 public:
     GraphWrapAndOverwrite()
-        : DataGraphWrapAndOverwrite(CAPACITY, yValues)
+        : GraphWrapAndOverwriteData(CAPACITY, y)
     {
     }
 
 private:
-    int yValues[CAPACITY];
+    int y[CAPACITY];
 };
+
 } // namespace touchgfx
 
-#endif // GRAPHWRAPANDOVERWRITE_HPP
+#endif // TOUCHGFX_GRAPHWRAPANDOVERWRITE_HPP

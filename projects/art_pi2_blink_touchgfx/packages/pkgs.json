@@ -1,0 +1,27 @@
+[
+ {
+  "name": "CMSIS_5",
+  "path": "/packages/system/CMSIS/CMSIS_5",
+  "ver": "v5.9.0"
+ },
+ {
+  "name": "CMSIS_5_AUX",
+  "path": "/packages/system/CMSIS/CMSIS_5_AUX",
+  "ver": "latest"
+ },
+ {
+  "name": "CMSIS_RTOS2",
+  "path": "/packages/system/CMSIS/CMSIS_RTOS2",
+  "ver": "latest"
+ },
+ {
+  "name": "FREERTOS_WRAPPER",
+  "path": "/packages/system/FreeRTOS_Wrapper",
+  "ver": "latest"
+ },
+ {
+  "name": "GT911",
+  "path": "/packages/peripherals/touch/gt911",
+  "ver": "latest"
+ }
+]

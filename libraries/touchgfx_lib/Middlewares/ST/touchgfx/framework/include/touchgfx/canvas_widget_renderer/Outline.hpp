@@ -1,25 +1,22 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/canvas_widget_renderer/Outline.hpp
  *
  * Declares the touchgfx::Outline class. Used internally by CanvasWidgetRenderer.
  */
-#ifndef OUTLINE_HPP
-#define OUTLINE_HPP
+#ifndef TOUCHGFX_OUTLINE_HPP
+#define TOUCHGFX_OUTLINE_HPP
 
 #include <touchgfx/canvas_widget_renderer/Cell.hpp>
 
@@ -28,7 +25,7 @@ namespace touchgfx
 {
 /**
  * An internal class that implements the main rasterization algorithm. Used in the Rasterizer.
- * Should not be used direcly.
+ * Should not be used directly.
  */
 class Outline
 {
@@ -69,7 +66,7 @@ public:
     void lineTo(int x, int y);
 
     /**
-     * Gets number cells registered in the current drawn path for the Outline.
+     * Gets number of cells registered in the current drawn path for the Outline.
      *
      * @return The number of cells.
      */
@@ -84,7 +81,7 @@ public:
      *
      * @return A pointer to the sorted list of Cell objects in the Outline.
      */
-    const Cell* getCells();
+    const Cell* closeOutlineAndSortCells();
 
     /**
      * Sets maximum render y coordinate. This is used to avoid registering any Cell that has
@@ -92,8 +89,9 @@ public:
      *
      * @param  y The max y coordinate to render for the Outline.
      */
-    void setMaxRenderY(int y)
+    void setMaxRender(int x, int y)
     {
+        maxRenderX = x;
         maxRenderY = y;
     }
 
@@ -103,9 +101,9 @@ public:
      *
      * @return false if the buffer for Outline Cell objects was too small.
      */
-    bool wasOutlineTooComplex()
+    FORCE_INLINE_FUNCTION bool wasOutlineTooComplex()
     {
-        return outlineTooComplex;
+        return numCells > maxCells;
     }
 
 private:
@@ -117,11 +115,16 @@ private:
      */
     void setCurCell(int x, int y);
 
+    /**
+     * Sets coordinate of the current Cell without checking if x,y differs from the curCell's x,y.
+     *
+     * @param  x The x coordinate.
+     * @param  y The y coordinate.
+     */
+    void setCurCellNew(int x, int y);
+
     /** Adds current cell to the Outline. */
     void addCurCell();
-
-    /** Sort cells in the Outline. */
-    void sortCells();
 
     /**
      * Render the scanline in the special case where the line is on the same scanline,
@@ -148,6 +151,18 @@ private:
      */
     void renderLine(int x1, int y1, int x2, int y2);
 
+    FORCE_INLINE_FUNCTION static void swapCells(Cell* a, Cell* b)
+    {
+        const Cell temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+
+    FORCE_INLINE_FUNCTION static bool lessThan(const Cell* a, const Cell* b)
+    {
+        return a->y < b->y || (a->y == b->y && a->x < b->x);
+    }
+
     /**
      * Quick sort Outline cells.
      *
@@ -156,30 +171,24 @@ private:
      */
     static void qsortCells(Cell* const start, unsigned num);
 
-private:
     unsigned maxCells;
     unsigned numCells;
     Cell* cells;
     Cell* curCellPtr;
-    Cell curCell;
     int curX;
     int curY;
     int closeX;
     int closeY;
-    int minX;
-    int minY;
-    int maxX;
-    int maxY;
     unsigned int flags;
+    int maxRenderX;
     int maxRenderY;
-    bool outlineTooComplex;
 #ifdef SIMULATOR
-    unsigned numCellsMissing;
-    unsigned numCellsUsed;
+    unsigned maxNumCells;
 #endif
 };
 
 } // namespace touchgfx
+
 /// @endcond
 
-#endif // OUTLINE_HPP
+#endif // TOUCHGFX_OUTLINE_HPP

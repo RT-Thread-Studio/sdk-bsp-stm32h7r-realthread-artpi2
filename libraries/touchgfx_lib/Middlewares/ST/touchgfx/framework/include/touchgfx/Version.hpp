@@ -1,24 +1,21 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
-#ifndef VERSION_HPP
-#define VERSION_HPP
+#ifndef TOUCHGFX_VERSION_HPP
+#define TOUCHGFX_VERSION_HPP
 
-#define TOUCHGFX_VERSION 41500
+#define TOUCHGFX_VERSION 42402
 #define TOUCHGFX_VERSION_MAJOR 4
-#define TOUCHGFX_VERSION_MINOR 15
-#define TOUCHGFX_VERSION_PATCH 0
+#define TOUCHGFX_VERSION_MINOR 24
+#define TOUCHGFX_VERSION_PATCH 2
 
-#endif // VERSION_HPP
+#endif // TOUCHGFX_VERSION_HPP

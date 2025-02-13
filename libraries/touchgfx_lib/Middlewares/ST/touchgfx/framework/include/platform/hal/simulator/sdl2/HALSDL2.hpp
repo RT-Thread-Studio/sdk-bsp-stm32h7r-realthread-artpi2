@@ -1,31 +1,30 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file platform/hal/simulator/sdl2/HALSDL2.hpp
  *
  * Declares the touchgfx::HALSDL2 class.
  */
-#ifndef HALSDL2_HPP
-#define HALSDL2_HPP
+#ifndef TOUCHGFX_HALSDL2_HPP
+#define TOUCHGFX_HALSDL2_HPP
 
-#include <SDL2/SDL_render.h>
-#include <SDL2/SDL_video.h>
+#include <stdio.h>
 #include <platform/driver/touch/TouchController.hpp>
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/lcd/LCD.hpp>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 
 namespace touchgfx
 {
@@ -66,6 +65,8 @@ public:
           isSkinActive(true),
           isWindowBorderless(false),
           isWindowVisible(true),
+          isConsoleVisible(true),
+          printFile(0),
           windowDrag(false)
     {
         setVsyncInterval(30.f); // Simulate 20Hz per default for backward compatibility
@@ -107,30 +108,6 @@ public:
     virtual void flushFrameBuffer(const Rect& rect);
 
     /**
-     * This function performs a platform-specific memcpy, if supported by the hardware.
-     *
-     * @param [out] dest     Pointer to destination memory.
-     * @param       src      Pointer to source memory.
-     * @param       numBytes Number of bytes to copy.
-     *
-     * @return true if the copy succeeded, false if copy was not performed.
-     */
-    virtual bool blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes);
-
-    ///@cond
-    /**
-     * If Blit-operations are supported, transparency-keying support is implicitly assumed.
-     *
-     * @param  key The "transparent" color value.
-     *
-     * @deprecated Transparancy key is no longer supported.
-     */
-    TOUCHGFX_DEPRECATED(
-        "Transparancy key is no longer supported.",
-        virtual void blitSetTransparencyKey(uint16_t key));
-    ///@endcond
-
-    /**
      * Sets vsync interval for simulating same tick speed as the real hardware. Due to
      * limitations in the granularity of SDL, the generated ticks in the simulator might not
      * occur at the exact time, but accumulated over several ticks, the precision is very
@@ -160,6 +137,8 @@ public:
      * @return True if touch detected, false otherwise.
      */
     bool doSampleTouch(int32_t& x, int32_t& y) const;
+
+    virtual void setFrameBufferSize(uint16_t width, uint16_t height);
 
     /**
      * Initializes SDL.
@@ -209,7 +188,7 @@ public:
      * @note When as skin is set, the entire framebuffer is rendered through SDL whenever there is
      *       a change. Without a skin, only the areas with changes is rendered through SDL.
      */
-    void loadSkin(touchgfx::DisplayOrientation orientation, int x, int y);
+    void loadSkin(DisplayOrientation orientation, int x, int y);
 
     /** Saves a screenshot to the default folder and default filename. */
     void saveScreenshot();
@@ -233,6 +212,14 @@ public:
 
     /** Copies the screenshot to clipboard. */
     virtual void copyScreenshotToClipboard();
+
+    /**
+     * Flash invalidated areas on/off. The area that needs to be redrawn is flashed in grey to help
+     * identify performance bottle necks.
+     *
+     * @param   flash   (Optional) True to flash the screen when updating.
+     */
+    virtual void setFlashInvalidatedAreas(bool flash = true);
 
     /**
      * Single stepping enable/disable. When single stepping is enabled, F10 will execute one
@@ -262,6 +249,11 @@ public:
      */
     static void singleStep(uint16_t steps = 1);
 
+    /**
+     * Terminate the application as quickly as possible
+     */
+    static void stopApplication();
+
 #ifndef __linux__
     /**
      * Gets the argc and argv for a Windows program.
@@ -276,38 +268,68 @@ public:
     /**
      * Scale framebuffer to 24bpp. The format of the framebuffer (src) is given in parameter
      * format. The result is placed in the pre-allocated memory pointed to by parameter dst.
-     * If the frambebuffer is in format Bitmap::RGB888, parameter dst is not used and the
+     * If the framebuffer is in format Bitmap::RGB888, parameter dst is not used and the
      * parameter src is simply returned.
      *
-     * @param [out] dst    Destination for the framebuffer. must be non-null unless format is
-     *                     Bitmap::RGB888.
      * @param [in]  src    The framebuffer.
      * @param       format Describes the format of the framebuffer (lcd().framebufferFormat()).
      *
      * @return Null if it fails, else a pointer to an uint8_t.
      */
-    static uint8_t* scaleTo24bpp(uint8_t* dst, uint16_t* src, Bitmap::BitmapFormat format);
+    static uint8_t* scaleTo24bpp(uint16_t* src, Bitmap::BitmapFormat format);
 
     /**
      * Rotates a framebuffer if the display is rotated.
      *
-     * @param [out] dst Destination for the rotated framebuffer. must be non-null if the
-     *                  screen is rotated.
      * @param [in]  src The framebuffer.
      *
      * @return Null if it fails, else a pointer to an uint8_t.
      */
-    static uint8_t* doRotate(uint8_t* dst, uint8_t* src);
+    static uint8_t* doRotate(uint8_t* src);
 
     /**
-     * Change visibility of window (hidden vs. shown).
+     * Change visibility of window (hidden vs. shown) as well as (due to
+     * backward compatibility) the visibility of the console window.
      *
      * @param  visible      Should the window be visible?
      * @param  redrawWindow (Optional) Should the window be redrawn? Default is true.
+     *
+     * @see getWindowVisible, setConsoleVisible
      */
     void setWindowVisible(bool visible, bool redrawWindow = true)
     {
         isWindowVisible = visible;
+        isConsoleVisible = visible;
+        if (redrawWindow)
+        {
+            recreateWindow();
+            simulator_enable_stdio();
+        }
+    }
+
+    /**
+     * Is the window visible?
+     *
+     * @return True if it is visible, false if it is hidden.
+     *
+     * @see setWindowVisible, getConsoleVisible
+     */
+    bool getWindowVisible() const
+    {
+        return isWindowVisible;
+    }
+
+    /**
+     * Change visibility of console window (hidden vs. shown).
+     *
+     * @param  visible      Should the window be visible?
+     * @param  redrawWindow (Optional) Should the window be redrawn? Default is true.
+     *
+     * @see setWindowVisible, getConsoleVisible
+     */
+    void setConsoleVisible(bool visible, bool redrawWindow = true)
+    {
+        isConsoleVisible = visible;
         if (redrawWindow)
         {
             recreateWindow();
@@ -316,14 +338,49 @@ public:
     }
 
     /**
-     * Are windows visible?
+     * Is console window visible?
      *
      * @return True if it is visible, false if it is hidden.
+     *
+     * @see setConsoleVisible, getWindowVisible
      */
-    bool getWindowVisible() const
+    bool getConsoleVisible() const
     {
-        return isWindowVisible;
+        return isConsoleVisible;
     }
+
+    /**
+     * Also write touchgfx_printf() to a file. The file will be generated (no appended to).
+     *
+     * @param filename The name of the file to write to (or null to stop writing to a file).
+     *
+     * @return True if the operation succeeds, false otherwise.
+     */
+    bool printToFile(const char* filename);
+
+    /**
+     * Get file handle to output file (if set).
+     *
+     * @return A file handle to the file where output is copied to.
+     *
+     * @see printToFile
+     */
+    FILE* getPrintFile() const
+    {
+        return printFile;
+    }
+
+    /**
+     * Generate name of file placed next to the simulator.
+     *
+     * @param [in]  buffer      If the buffer to fill with the local filename. Must be at least
+     *                          300+length of filename parameter.
+     * @param       buffer_size The size of the buffer in bytes.
+     * @param [in]  filename    The filename relative to the simulator executable.
+     *
+     * @return  The filled buffer.
+     */
+    char* localFileName(char* buffer, size_t buffer_size, const char* filename);
 
 protected:
     /**
@@ -383,7 +440,7 @@ private:
     void recreateWindow(bool updateContent = true);
     void pushTouch(bool down) const;
     bool popTouch() const;
-    static void updateTitle(int32_t x, int32_t y);
+    static void updateTitle();
     void alphaChannelCheck(SDL_Surface* surface, bool& isOpaque, bool& hasSemiTransparency);
     void updateCurrentSkin();
     int getCurrentSkinX() const;
@@ -405,10 +462,12 @@ private:
         bool hasSemiTransparency;
         int offsetX;
         int offsetY;
+
         SkinInfo()
             : surface(0), isOpaque(true), hasSemiTransparency(false), offsetX(0), offsetY(0)
         {
         }
+
         virtual ~SkinInfo()
         {
         }
@@ -421,6 +480,8 @@ private:
     bool isSkinActive;
     bool isWindowBorderless;
     bool isWindowVisible;
+    bool isConsoleVisible;
+    FILE* printFile;
     static bool flashInvalidatedRect;
 
     bool windowDrag;
@@ -448,4 +509,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // HALSDL2_HPP
+#endif // TOUCHGFX_HALSDL2_HPP

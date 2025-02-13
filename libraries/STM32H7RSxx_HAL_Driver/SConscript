@@ -47,19 +47,8 @@ if GetDepend(['RT_USING_SDIO']):
     src += ['Src/stm32h7rsxx_ll_sdmmc.c']
     src += ['Src/stm32h7rsxx_hal_sd.c']
 
-# if GetDepend(['RT_USING_I2C']):
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c']
-
 if GetDepend(['RT_USING_SPI']):
     src += ['Src/stm32h7rsxx_hal_spi.c']
-
-# if GetDepend(['RT_USING_USB_HOST']) or GetDepend(['RT_USING_USB_DEVICE']):
-#    # src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pccard.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pcd_ex.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hcd.c']
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c']
 
 # if GetDepend(['RT_USING_CAN']):
 #     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c']
@@ -108,11 +97,13 @@ if GetDepend(['BSP_USING_LCD']):
     src += ['Src/stm32h7rsxx_hal_ltdc.c']
     src += ['Src/stm32h7rsxx_hal_dma2d.c']
 
-# if GetDepend(['BSP_USING_DCMI']):
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dcmi.c']
-
-# if GetDepend(['RT_USING_PM']):
-#     src += ['STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_lptim.c']
+if GetDepend(['ART_PI_TouchGFX_LIB']):
+    src += ['Src/stm32h7rsxx_hal_ltdc.c']
+    src += ['Src/stm32h7rsxx_hal_dma2d.c']
+    src += ['Src/stm32h7rsxx_hal_jpeg.c']
+    src += ['Src/stm32h7rsxx_hal_gpu2d.c']
+    src += ['Src/stm32h7rsxx_hal_icache.c']
+    src += ['Src/stm32h7rsxx_hal_gfxmmu.c']
 
 path = [cwd + '/Inc',
     cwd + '/../CMSIS/Device/ST/STM32H7RSxx/Include',

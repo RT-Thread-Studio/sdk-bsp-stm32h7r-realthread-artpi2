@@ -1,0 +1,912 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Dice",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "Width": 800,
+            "Height": 480,
+            "RelativeFilename": "background_with_sparkles.png"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "cubeLeftRightButtons",
+            "X": 89,
+            "Y": 189,
+            "Width": 623,
+            "Height": 156,
+            "CustomContainerDefinitionName": "cubeLeftRightButtonsContainer"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "cubeUpDownButtons",
+            "X": 322,
+            "Y": 50,
+            "Width": 156,
+            "Height": 430,
+            "CustomContainerDefinitionName": "cubeUpDownButtonsContainer"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "animations",
+            "X": 685,
+            "Y": 135,
+            "Width": 80,
+            "Height": 260,
+            "CustomContainerDefinitionName": "animationsDepthButton"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "scaleSlider",
+            "X": 35,
+            "Y": 80,
+            "Width": 80,
+            "Height": 370,
+            "CustomContainerDefinitionName": "scaleSliderContainer"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "simpleDice",
+            "Width": 800,
+            "Height": 480,
+            "CustomContainerDefinitionName": "SimpleDiceContainer"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "topBar",
+            "Width": 800,
+            "Height": 64,
+            "CustomContainerDefinitionName": "TopBarContainer"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "advanceDice",
+            "Width": 800,
+            "Height": 480,
+            "Visible": false,
+            "CustomContainerDefinitionName": "AdvanceDiceContainer"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "ScaleSliderChanged",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "scaleSliderContainer newScaleValue happens",
+              "TriggerComponent": "scaleSlider"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice scaleSliderChanged",
+              "ParameterValue": "value",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "AnimationComplexityChanged",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "animationsDepthButton animationButtonPressed happens",
+              "TriggerComponent": "animations"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice animationComplexityChanged",
+              "ParameterValue": "value",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "LeftPressed",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "cubeLeftRightButtonsContainer leftPressed happens",
+              "TriggerComponent": "cubeLeftRightButtons"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice leftPressed",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "RightPressed",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "cubeLeftRightButtonsContainer rightPressed happens",
+              "TriggerComponent": "cubeLeftRightButtons"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice rightPressed",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "UpPressed",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "cubeUpDownButtonsContainer upPressed happens",
+              "TriggerComponent": "cubeUpDownButtons"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice upPressed",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "DownPressed",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "cubeUpDownButtonsContainer downPressed happens",
+              "TriggerComponent": "cubeUpDownButtons"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice downPressed",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "ExitCubeAnimationEnded",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "AdvanceDiceContainer exitAnimationEnded happens",
+              "TriggerComponent": "advanceDice"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice exitCubeAnimationEnded",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "EnterCubeAnimationEnded",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "AdvanceDiceContainer enterAnimationEnded happens",
+              "TriggerComponent": "advanceDice"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice enterCubeAnimationEnded",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "AdvanceAnimationDone",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "AdvanceDiceContainer animationDone happens",
+              "TriggerComponent": "advanceDice"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice animationDone",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "SimpleAnimationDone",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "SimpleDiceContainer animationDone happens",
+              "TriggerComponent": "simpleDice"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice animationDone",
+              "ActionComponent": "Dice"
+            }
+          },
+          {
+            "InteractionName": "ChromARTButtonPressed",
+            "Trigger": {
+              "Type": "TriggerCustom",
+              "TriggerCustomTypeName": "TopBarContainer chromArtPressed happens",
+              "TriggerComponent": "topBar"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Dice chromArtButtonPressed",
+              "ParameterValue": "value",
+              "ActionComponent": "Dice"
+            }
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "scaleSliderChanged",
+            "HasValue": true,
+            "ValueType": "int"
+          },
+          {
+            "Name": "animationComplexityChanged",
+            "HasValue": true,
+            "ValueType": "bool"
+          },
+          {
+            "Name": "leftPressed"
+          },
+          {
+            "Name": "rightPressed"
+          },
+          {
+            "Name": "upPressed"
+          },
+          {
+            "Name": "downPressed"
+          },
+          {
+            "Name": "exitCubeAnimationEnded"
+          },
+          {
+            "Name": "enterCubeAnimationEnded"
+          },
+          {
+            "Name": "animationDone"
+          },
+          {
+            "Name": "chromArtButtonPressed",
+            "HasValue": true,
+            "ValueType": "bool"
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [
+      {
+        "Name": "TopBarContainer",
+        "Width": 800,
+        "Height": 64,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "Width": 800,
+            "Height": 64,
+            "RelativeFilename": "top_bar.png"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "mcuTitle",
+            "X": 248,
+            "Y": 10,
+            "Width": 49,
+            "Height": 32,
+            "TextId": "__SingleUse_G7TJ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "mcuValue",
+            "X": 291,
+            "Y": 10,
+            "Width": 60,
+            "Height": 32,
+            "TextId": "__SingleUse_M2AJ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_CIBK",
+              "UseBuffer": true,
+              "BufferSize": 4
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "fpsTite",
+            "X": 448,
+            "Y": 10,
+            "Width": 42,
+            "Height": 32,
+            "TextId": "__SingleUse_VBBS",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "fpsValue",
+            "X": 482,
+            "Y": 10,
+            "Width": 43,
+            "Height": 32,
+            "TextId": "__SingleUse_Y7SC",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "Wildcard1": {
+              "TextId": "__SingleUse_O3IJ",
+              "UseBuffer": true,
+              "BufferSize": 3
+            }
+          },
+          {
+            "Type": "Image",
+            "Name": "infoIcon",
+            "X": 385,
+            "Y": 11,
+            "Width": 30,
+            "Height": 30,
+            "RelativeFilename": "icon_info.png"
+          },
+          {
+            "Type": "ToggleButton",
+            "Name": "chromArtButton",
+            "X": 645,
+            "Y": -1,
+            "Width": 152,
+            "Height": 50,
+            "InitialStatePressed": true,
+            "Pressed": "chrom_art_on_button.png",
+            "Released": "chrom_art_off_button.png"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "ChromARTButtonInteraction",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "chromArtButton"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "TopBarContainer chromArtPressed happens",
+              "ParameterValue": "chromArtButton.getState()"
+            }
+          }
+        ],
+        "CustomTriggers": [
+          {
+            "Name": "chromArtPressed",
+            "HasValue": true,
+            "ValueType": "bool"
+          }
+        ]
+      },
+      {
+        "Name": "SimpleDiceContainer",
+        "Width": 800,
+        "Height": 480,
+        "Components": [
+          {
+            "Type": "TextureMapper",
+            "Name": "singleSideDice",
+            "Width": 800,
+            "Height": 480,
+            "UseAnimation": true,
+            "RenderingAlgorithm": "Bilinear Interpolation",
+            "FileNameImage": "dice_large_1.png",
+            "XBitmapPosition": 220.0,
+            "YBitmapPosition": 85.0,
+            "Scale": 0.5,
+            "XOrigo": 400.0,
+            "YOrigo": 265.0,
+            "ZOrigo": 1180.0,
+            "CameraDistance": 1000.0,
+            "Fadeable": true
+          }
+        ],
+        "Interactions": [],
+        "CustomTriggers": [
+          {
+            "Name": "animationDone"
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "left"
+          },
+          {
+            "Name": "right"
+          },
+          {
+            "Name": "setScale",
+            "HasValue": true,
+            "ValueType": "float"
+          }
+        ]
+      },
+      {
+        "Name": "AdvanceDiceContainer",
+        "Width": 800,
+        "Height": 480,
+        "Components": [],
+        "Interactions": [],
+        "CustomTriggers": [
+          {
+            "Name": "animationDone"
+          },
+          {
+            "Name": "exitAnimationEnded"
+          },
+          {
+            "Name": "enterAnimationEnded"
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "left"
+          },
+          {
+            "Name": "right"
+          },
+          {
+            "Name": "up"
+          },
+          {
+            "Name": "down"
+          },
+          {
+            "Name": "setScale",
+            "HasValue": true,
+            "ValueType": "float"
+          }
+        ]
+      },
+      {
+        "Name": "cubeLeftRightButtonsContainer",
+        "X": 79,
+        "Y": 12,
+        "Width": 623,
+        "Height": 156,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "X": 61,
+            "Y": 38,
+            "Width": 500,
+            "Height": 80,
+            "RelativeFilename": "dice_left_right_bar.png"
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "buttonLeft",
+            "Width": 186,
+            "Height": 156,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 79,
+                "Y": 60,
+                "IconReleased": "icon_dice_left_normal.png",
+                "IconPressed": "icon_dice_left_pressed.png"
+              }
+            ]
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "buttonRight",
+            "X": 437,
+            "Width": 186,
+            "Height": 156,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 70,
+                "Y": 60,
+                "IconReleased": "icon_dice_right_normal.png",
+                "IconPressed": "icon_dice_right_pressed.png"
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "LeftPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonLeft"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "cubeLeftRightButtonsContainer leftPressed happens"
+            }
+          },
+          {
+            "InteractionName": "RightPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonRight"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "cubeLeftRightButtonsContainer rightPressed happens"
+            }
+          }
+        ],
+        "CustomTriggers": [
+          {
+            "Name": "leftPressed"
+          },
+          {
+            "Name": "rightPressed"
+          }
+        ]
+      },
+      {
+        "Name": "cubeUpDownButtonsContainer",
+        "Width": 156,
+        "Height": 430,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "X": 38,
+            "Y": 20,
+            "Width": 80,
+            "Height": 390,
+            "RelativeFilename": "dice_top_bottom_bar.png",
+            "Alpha": 0,
+            "Fadeable": true
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "buttonDown",
+            "Y": 329,
+            "Width": 156,
+            "Height": 101,
+            "Alpha": 0,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 60,
+                "Y": 35,
+                "IconReleased": "icon_dice_down_normal.png",
+                "IconPressed": "icon_dice_down_pressed.png"
+              }
+            ],
+            "Fadeable": true
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "buttonUp",
+            "Width": 156,
+            "Height": 101,
+            "Alpha": 0,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 60,
+                "Y": 32,
+                "IconReleased": "icon_dice_up_normal.png",
+                "IconPressed": "icon_dice_up_pressed.png"
+              }
+            ],
+            "Fadeable": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "UpPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonUp"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "cubeUpDownButtonsContainer upPressed happens"
+            }
+          },
+          {
+            "InteractionName": "DownPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonDown"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "cubeUpDownButtonsContainer downPressed happens"
+            }
+          }
+        ],
+        "CustomTriggers": [
+          {
+            "Name": "upPressed"
+          },
+          {
+            "Name": "downPressed"
+          },
+          {
+            "Name": "fadeAnimationEnded"
+          }
+        ]
+      },
+      {
+        "Name": "scaleSliderContainer",
+        "Width": 80,
+        "Height": 370,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "sliderBackground",
+            "Width": 80,
+            "Height": 370,
+            "RelativeFilename": "slider_main_bar.png"
+          },
+          {
+            "Type": "Slider",
+            "Name": "scaleSlider",
+            "X": 16,
+            "Y": 68,
+            "Width": 48,
+            "Height": 234,
+            "BackgroundUnselected": "scale_slider_bar.png",
+            "BackgroundSelected": "scale_slider_fill.png",
+            "Indicator": "scale_slider_knob.png",
+            "BackgroundX": 18,
+            "BackgroundY": 10,
+            "IndicatorMax": 186,
+            "ValueMax": 100,
+            "ValueMin": 20,
+            "InitValue": 50
+          },
+          {
+            "Type": "Image",
+            "Name": "largeScaleIcon",
+            "X": 20,
+            "Y": 20,
+            "Width": 40,
+            "Height": 40,
+            "RelativeFilename": "icon_scale_large.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "smallScaleIcon",
+            "X": 28,
+            "Y": 318,
+            "Width": 24,
+            "Height": 24,
+            "RelativeFilename": "icon_scale_small.png"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "newScaleValue",
+            "Trigger": {
+              "Type": "TriggerSliderValueChanged",
+              "TriggerComponent": "scaleSlider"
+            },
+            "Action": {
+              "Type": "ActionEmit",
+              "TriggerCustomTypeName": "scaleSliderContainer newScaleValue happens",
+              "ParameterValue": "value"
+            }
+          }
+        ],
+        "CustomTriggers": [
+          {
+            "Name": "newScaleValue",
+            "HasValue": true,
+            "ValueType": "int"
+          }
+        ]
+      },
+      {
+        "Name": "animationsDepthButton",
+        "Width": 80,
+        "Height": 260,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "background",
+            "Width": 80,
+            "Height": 260,
+            "RelativeFilename": "toggle_main_bar.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "dice3D",
+            "X": 16,
+            "Y": 169,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "icon_adv_dice_normal.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "dice2D",
+            "X": 16,
+            "Y": 43,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "icon_simple_dice_normal.png"
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "selectedIcons",
+            "Width": 80,
+            "Height": 134,
+            "CustomContainerDefinitionName": "selectedIconsContainer",
+            "Moveable": true
+          },
+          {
+            "Type": "FlexButton",
+            "Name": "buttonOverlay",
+            "Width": 80,
+            "Height": 260,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "BorderSize": 5,
+                "ColorReleased": {
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ]
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "TouchOverlayPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonOverlay"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call animationsDepthButton touchOverlayPressed",
+              "ActionComponent": "animationsDepthButton"
+            }
+          }
+        ],
+        "CustomTriggers": [
+          {
+            "Name": "animationButtonPressed",
+            "HasValue": true,
+            "ValueType": "bool"
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "touchOverlayPressed"
+          }
+        ]
+      },
+      {
+        "Name": "selectedIconsContainer",
+        "Width": 80,
+        "Height": 134,
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "selectedSettingMarker",
+            "Width": 80,
+            "Height": 134,
+            "RelativeFilename": "toggle_marker.png"
+          },
+          {
+            "Type": "Image",
+            "Name": "dice3DPressed",
+            "X": 16,
+            "Y": 43,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "icon_adv_dice_selected.png",
+            "Alpha": 0,
+            "Fadeable": true
+          },
+          {
+            "Type": "Image",
+            "Name": "dice2DPressed",
+            "X": 16,
+            "Y": 43,
+            "Width": 48,
+            "Height": 48,
+            "RelativeFilename": "icon_simple_dice_selected.png",
+            "Fadeable": true
+          }
+        ],
+        "Interactions": []
+      }
+    ],
+    "Name": "MyApplication_1",
+    "Resolution": {
+      "Width": 800,
+      "Height": 480
+    },
+    "SelectedColorDepth": 32,
+    "StartupScreenName": "Dice",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      32
+    ],
+    "AvailableLCDs": {
+      "32": "LCDGPU2D"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 800,
+        "Height": 480
+      }
+    ],
+    "PhysicalButtons": [],
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "CompileTargetCommandOverride": "make -f ../../gcc/Makefile -j8",
+    "FlashTargetCommandOverride": "make -f ../../gcc/Makefile flash",
+    "FlashTargetIntCommandOverride": "make -f ../../gcc/Makefile intflash",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32H7",
+    "SubFamily": "STM32H7R7/7S7",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m7",
+    "ProjectFile": "../../STM32H7S78-DK_24bpp.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+      "GPU2D"
+    ],
+    "AdditionalFeatures": [
+      "GPU2DVector",
+      "VectorFonts",
+      "Video"
+    ]
+  },
+  "Version": "4.24.2",
+  "CreatedBy": "4.24.2"
+}

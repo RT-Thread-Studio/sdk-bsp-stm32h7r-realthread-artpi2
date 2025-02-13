@@ -16,7 +16,7 @@
 #include <stdlib.h>
 
 #define DBG_TAG "gt9147"
-#define DBG_LVL DBG_INFO
+#define DBG_LVL DBG_LOG
 #include <rtdbg.h>
 
 #include <drivers/touch.h>
@@ -459,9 +459,9 @@ int rt_hw_gt9147_init(const char *name, struct rt_touch_config *cfg)
     /* hardware init */
     rt_pin_mode(*(rt_uint8_t *)cfg->user_data, PIN_MODE_OUTPUT);
     rt_pin_mode(cfg->irq_pin.pin, PIN_MODE_OUTPUT);
-    rt_pin_write(*(rt_uint8_t *)cfg->user_data, PIN_LOW);
-    rt_thread_mdelay(10);
     rt_pin_write(*(rt_uint8_t *)cfg->user_data, PIN_HIGH);
+    rt_thread_mdelay(10);
+    rt_pin_write(*(rt_uint8_t *)cfg->user_data, PIN_LOW);
     rt_thread_mdelay(10);
     rt_pin_mode(cfg->irq_pin.pin, PIN_MODE_INPUT);
     rt_thread_mdelay(100);

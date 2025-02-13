@@ -1,26 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/buttons/TiledImageButtonStyle.hpp
  *
  * Declares the touchgfx::TiledImageButtonStyle class.
  */
-#ifndef TILEDIMAGEBUTTONSTYLE_HPP
-#define TILEDIMAGEBUTTONSTYLE_HPP
+#ifndef TOUCHGFX_TILEDIMAGEBUTTONSTYLE_HPP
+#define TOUCHGFX_TILEDIMAGEBUTTONSTYLE_HPP
 
+#include <touchgfx/Bitmap.hpp>
+#include <touchgfx/containers/buttons/AbstractButtonContainer.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
 
 namespace touchgfx
@@ -83,8 +83,7 @@ public:
     {
         upTile = bmpReleased;
         downTile = bmpPressed;
-        AbstractButtonContainer::setWidth(downTile.getWidth());
-        AbstractButtonContainer::setHeight(downTile.getHeight());
+        AbstractButtonContainer::setWidthHeight(downTile);
 
         handlePressedUpdated();
     }
@@ -113,8 +112,7 @@ protected:
         int16_t buttonHeight = AbstractButtonContainer::getHeight();
 
         tiledImage.setBitmap(T::getPressed() ? downTile : upTile);
-        tiledImage.setWidth(buttonWidth);
-        tiledImage.setHeight(buttonHeight);
+        tiledImage.setWidthHeight(buttonWidth, buttonHeight);
         T::handlePressedUpdated();
     }
 
@@ -128,4 +126,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // TILEDIMAGEBUTTONSTYLE_HPP
+#endif // TOUCHGFX_TILEDIMAGEBUTTONSTYLE_HPP

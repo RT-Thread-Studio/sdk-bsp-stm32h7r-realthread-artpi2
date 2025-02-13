@@ -1,30 +1,30 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/containers/scrollers/ScrollBase.hpp
  *
  * Declares the touchgfx::ScrollBase class.
  */
-#ifndef SCROLLBASE_HPP
-#define SCROLLBASE_HPP
+#ifndef TOUCHGFX_SCROLLBASE_HPP
+#define TOUCHGFX_SCROLLBASE_HPP
 
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/containers/Container.hpp>
 #include <touchgfx/containers/scrollers/DrawableList.hpp>
+#include <touchgfx/events/DragEvent.hpp>
+#include <touchgfx/events/GestureEvent.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -119,7 +119,7 @@ public:
      *
      * @see setWidth, setHeight, setHorizontal
      */
-    void setDrawableSize(int16_t drawableSize, int16_t drawableMargin);
+    virtual void setDrawableSize(int16_t drawableSize, int16_t drawableMargin);
 
     /**
      * Gets drawable size as set through the first parameter in most recent call to
@@ -261,6 +261,33 @@ public:
     uint16_t getDragAcceleration() const;
 
     /**
+     * Sets overshoot percentage when dragging a non-circular list. This is the size relative to an
+     * item that can be dragged further than the actual list. Setting this to 50, it is possible to
+     * drag the list to show an empty space half the size of an item. Setting this to 0 prevents
+     * dragging further than the actual elements in the list.
+     *
+     * @param   percentage  The overshoot percentage.
+     *
+     * @see getOvershootPercentage
+     */
+    void setOvershootPercentage(uint8_t percentage)
+    {
+        overshootPercentage = percentage;
+    }
+
+    /**
+     * Gets overshoot percentage, as previously set using setOvershootPercentage.
+     *
+     * @return  The overshoot percentage.
+     *
+     * @see setOvershootPercentage
+     */
+    uint8_t getOvershootPercentage() const
+    {
+        return overshootPercentage;
+    }
+
+    /**
      * Enables horizontal scrolling to be passed to the children in the list (in case a child
      * widget is able to handle drag events). By default, scrolling in either direction is
      * disabled. This function can be used to explicitly (dis)allow scrolling in the
@@ -299,7 +326,7 @@ public:
     virtual void animateToItem(int16_t itemIndex, int16_t animationSteps = -1);
 
     /**
-     * Sets Callback which will be called when the selected item is clicked.
+     * Sets Callback which will be called when the selected item is clicked or dragged.
      *
      * @param [in] callback The callback.
      */
@@ -334,9 +361,9 @@ public:
      */
     void stopAnimation();
 
-    virtual void handleDragEvent(const DragEvent& evt);
+    virtual void handleDragEvent(const DragEvent& event);
 
-    virtual void handleGestureEvent(const GestureEvent& evt);
+    virtual void handleGestureEvent(const GestureEvent& event);
 
     virtual void handleTickEvent();
 
@@ -355,6 +382,20 @@ public:
     {
         list.refreshDrawables();
     }
+
+    /**
+     * Gets if the containner is currently scrolled.
+     *
+     * @return if the containner is currently scrolled.
+     */
+    bool getIsScrolling() const;
+
+    /**
+     * Gets if the container is currently pressed.
+     *
+     * @return if the container is currently pressed.
+     */
+    bool getIsPressed() const;
 
 protected:
     /**
@@ -437,6 +478,7 @@ protected:
     uint16_t maxSwipeItems;         ///< The maximum swipe items
     EasingEquation easingEquation;  ///< The easing equation used for animation
     uint16_t defaultAnimationSteps; ///< The animation steps
+    uint8_t overshootPercentage;    ///< The overshoot percentage when dragging
 
     GenericCallback<int16_t>* itemSelectedCallback; ///< The item selected callback
     GenericCallback<>* itemLockedInCallback;        ///< The item locked in callback
@@ -455,8 +497,11 @@ protected:
 
     bool draggableX; ///< Is the container draggable in the horizontal direction.
     bool draggableY; ///< Is the container draggable in the vertical direction.
+
+    bool isPressed;   ///< Is the container currently pressed (maybe show scrollbars)
+    bool isScrolling; ///< Is the container scrolling (i.e. has overcome the initial larger drag that is required to initiate a scroll).
 };
 
 } // namespace touchgfx
 
-#endif // SCROLLBASE_HPP
+#endif // TOUCHGFX_SCROLLBASE_HPP

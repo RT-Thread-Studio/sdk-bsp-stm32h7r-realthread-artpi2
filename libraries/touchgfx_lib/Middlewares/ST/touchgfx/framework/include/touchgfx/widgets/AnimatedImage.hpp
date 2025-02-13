@@ -1,26 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.15.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/AnimatedImage.hpp
  *
  * Declares the touchgfx::AnimatedImage class.
  */
-#ifndef ANIMATEDIMAGE_HPP
-#define ANIMATEDIMAGE_HPP
+#ifndef TOUCHGFX_ANIMATEDIMAGE_HPP
+#define TOUCHGFX_ANIMATEDIMAGE_HPP
 
+#include <touchgfx/Bitmap.hpp>
+#include <touchgfx/Callback.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
 namespace touchgfx
@@ -89,7 +89,7 @@ public:
      *               last if reverse order) bitmap.
      * @param  loop  (Optional) Defines if the animation should loop or do a single animation.
      */
-    virtual void startAnimation(const bool& rev, const bool& reset = false, const bool& loop = false);
+    virtual void startAnimation(const bool rev, const bool reset = false, const bool loop = false);
 
     /**
      * Stops and resets the animation. If the animation should not reset to the first image
@@ -122,22 +122,6 @@ public:
         animationDoneAction = &callback;
     }
 
-    ///@cond
-    /**
-     * Gets the running state of the AnimatedImage.
-     *
-     * @return true if the animation is currently running, false otherwise.
-     *
-     * @deprecated Use AnimatedImage::isAnimatedImageRunning().
-     */
-    TOUCHGFX_DEPRECATED(
-        "Use AnimatedImage::isAnimatedImageRunning().",
-        bool isRunning())
-    {
-        return isAnimatedImageRunning();
-    }
-    ///@endcond
-
     /**
      * Gets the running state of the AnimatedImage.
      *
@@ -159,6 +143,24 @@ public:
     }
 
     /**
+     * @copydoc Image::setBitmap(const Bitmap&)
+     *
+     * @see setBitmaps, setBitmapEnd
+     *
+     * @note This only sets the start image.
+     */
+    virtual void setBitmap(const Bitmap& bmp);
+
+    /**
+     * Sets the end bitmap for this AnimatedImage sequence.
+     *
+     * @param   bmp The bitmap.
+     *
+     * @see setBitmaps, setBitmap
+     */
+    virtual void setBitmapEnd(const Bitmap& bmp);
+
+    /**
      * Sets the bitmaps that are used by the animation.
      *
      * The animation will iterate over the bitmaps that lies between the IDs of start and
@@ -166,6 +168,8 @@ public:
      *
      * @param  start Defines the start of the range of images in the animation.
      * @param  end   Defines the end of the range of images in the animation.
+     *
+     * @see setBitmap, setBitmapEnd
      */
     void setBitmaps(BitmapId start, BitmapId end);
 
@@ -189,12 +193,8 @@ protected:
     bool reverse;                ///< If true, run in reverse direction (last to first).
     bool loopAnimation;          ///< If true, continuously loop animation.
     bool running;                ///< If true, animation is running.
-
-    virtual void setBitmap(const Bitmap& bmp)
-    {
-    }
 };
 
 } // namespace touchgfx
 
-#endif // ANIMATEDIMAGE_HPP
+#endif // TOUCHGFX_ANIMATEDIMAGE_HPP
