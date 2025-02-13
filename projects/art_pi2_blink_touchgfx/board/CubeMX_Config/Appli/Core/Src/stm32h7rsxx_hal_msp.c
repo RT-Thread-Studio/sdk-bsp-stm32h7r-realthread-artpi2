@@ -141,7 +141,6 @@ void HAL_DMA2D_MspInit(DMA2D_HandleTypeDef* hdma2d)
     __HAL_RCC_DMA2D_CLK_ENABLE();
     /* DMA2D interrupt Init */
     HAL_NVIC_SetPriority(DMA2D_IRQn, 5, 0);
-    HAL_NVIC_EnableIRQ(DMA2D_IRQn);
   /* USER CODE BEGIN DMA2D_MspInit 1 */
 
   /* USER CODE END DMA2D_MspInit 1 */
@@ -609,8 +608,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef* hltdc)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* LTDC interrupt Init */
-    HAL_NVIC_SetPriority(LTDC_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(LTDC_IRQn);
+    HAL_NVIC_SetPriority(LTDC_IRQn, 5, 0);
   /* USER CODE BEGIN LTDC_MspInit 1 */
 
   /* USER CODE END LTDC_MspInit 1 */

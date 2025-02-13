@@ -11,8 +11,22 @@
 #ifdef SIMULATOR
 #include <platform/driver/lcd/LCD32bpp.hpp>
 #endif
-#include <gui/dice_screen/DiceView.hpp>
-#include <gui/dice_screen/DicePresenter.hpp>
+#include <gui/roussetdemo_screen/RoussetDemoView.hpp>
+#include <gui/roussetdemo_screen/RoussetDemoPresenter.hpp>
+#include <gui/screentransitions_screen/ScreenTransitionsView.hpp>
+#include <gui/screentransitions_screen/ScreenTransitionsPresenter.hpp>
+#include <gui/e_bikescreen_screen/E_BikeScreenView.hpp>
+#include <gui/e_bikescreen_screen/E_BikeScreenPresenter.hpp>
+#include <gui/compassscreen_screen/CompassScreenView.hpp>
+#include <gui/compassscreen_screen/CompassScreenPresenter.hpp>
+#include <gui/videointroscreen_screen/VideoIntroScreenView.hpp>
+#include <gui/videointroscreen_screen/VideoIntroScreenPresenter.hpp>
+#include <gui/menulauncherscreen_screen/MenuLauncherScreenView.hpp>
+#include <gui/menulauncherscreen_screen/MenuLauncherScreenPresenter.hpp>
+#include <gui/infoscreen_screen/InfoScreenView.hpp>
+#include <gui/infoscreen_screen/InfoScreenPresenter.hpp>
+#include <gui/svg_screen/SVGView.hpp>
+#include <gui/svg_screen/SVGPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -35,15 +49,117 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
  * Screen Transition Declarations
  */
 
-// Dice
+// RoussetDemo
 
-void FrontendApplicationBase::gotoDiceScreenNoTransition()
+void FrontendApplicationBase::gotoRoussetDemoScreenWipeTransitionEast()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoDiceScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoRoussetDemoScreenWipeTransitionEastImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoDiceScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoRoussetDemoScreenWipeTransitionEastImpl()
 {
-    touchgfx::makeTransition<DiceView, DicePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<RoussetDemoView, RoussetDemoPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// ScreenTransitions
+
+void FrontendApplicationBase::gotoScreenTransitionsScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreenTransitionsScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreenTransitionsScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<ScreenTransitionsView, ScreenTransitionsPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// E_BikeScreen
+
+void FrontendApplicationBase::gotoE_BikeScreenScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoE_BikeScreenScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoE_BikeScreenScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<E_BikeScreenView, E_BikeScreenPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// CompassScreen
+
+void FrontendApplicationBase::gotoCompassScreenScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoCompassScreenScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoCompassScreenScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<CompassScreenView, CompassScreenPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// VideoIntroScreen
+
+void FrontendApplicationBase::gotoVideoIntroScreenScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoVideoIntroScreenScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoVideoIntroScreenScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<VideoIntroScreenView, VideoIntroScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// MenuLauncherScreen
+
+void FrontendApplicationBase::gotoMenuLauncherScreenScreenWipeTransitionWest()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoMenuLauncherScreenScreenWipeTransitionWestImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoMenuLauncherScreenScreenWipeTransitionWestImpl()
+{
+    touchgfx::makeTransition<MenuLauncherScreenView, MenuLauncherScreenPresenter, touchgfx::WipeTransition<WEST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplicationBase::gotoMenuLauncherScreenScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoMenuLauncherScreenScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoMenuLauncherScreenScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<MenuLauncherScreenView, MenuLauncherScreenPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// InfoScreen
+
+void FrontendApplicationBase::gotoInfoScreenScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoInfoScreenScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoInfoScreenScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<InfoScreenView, InfoScreenPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// SVG
+
+void FrontendApplicationBase::gotoSVGScreenWipeTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoSVGScreenWipeTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoSVGScreenWipeTransitionEastImpl()
+{
+    touchgfx::makeTransition<SVGView, SVGPresenter, touchgfx::WipeTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

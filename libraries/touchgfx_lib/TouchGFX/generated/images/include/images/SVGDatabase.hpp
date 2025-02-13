@@ -8,7 +8,20 @@
 
 enum SVGImages
 {
-    NUMBER_OF_SVG_IMAGES = 0
+    SVG_SCOOP_BALL_1_ID = 0,
+    SVG_SCOOP_BALL_2_ID = 1,
+    SVG_SCOOP_BALL_3_ID = 2,
+    SVG_SCOOP_BALL_4_ID = 3,
+    SVG_SCOOP_BALL_5_ID = 4,
+    SVG_SCOOP_BALL_6_ID = 5,
+    SVG_SOFT_ICE_1_ID = 6,
+    SVG_SOFT_ICE_2_ID = 7,
+    SVG_SOFT_ICE_3_ID = 8,
+    SVG_SOFT_ICE_4_ID = 9,
+    SVG_WAFFLE_LARGE_ID = 10,
+    SVG_WAFFLE_MEDIUM_ID = 11,
+    SVG_WAFFLE_SMALL_ID = 12,
+    NUMBER_OF_SVG_IMAGES = 13
 };
 
 namespace SVGDatabase

@@ -9,11 +9,27 @@
 #include <mvp/MVPHeap.hpp>
 
 #include <touchgfx/transitions/NoTransition.hpp>
+#include <touchgfx/transitions/WipeTransition.hpp>
+
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
-#include <gui/dice_screen/DiceView.hpp>
-#include <gui/dice_screen/DicePresenter.hpp>
+#include <gui/roussetdemo_screen/RoussetDemoView.hpp>
+#include <gui/roussetdemo_screen/RoussetDemoPresenter.hpp>
+#include <gui/screentransitions_screen/ScreenTransitionsView.hpp>
+#include <gui/screentransitions_screen/ScreenTransitionsPresenter.hpp>
+#include <gui/e_bikescreen_screen/E_BikeScreenView.hpp>
+#include <gui/e_bikescreen_screen/E_BikeScreenPresenter.hpp>
+#include <gui/compassscreen_screen/CompassScreenView.hpp>
+#include <gui/compassscreen_screen/CompassScreenPresenter.hpp>
+#include <gui/videointroscreen_screen/VideoIntroScreenView.hpp>
+#include <gui/videointroscreen_screen/VideoIntroScreenPresenter.hpp>
+#include <gui/menulauncherscreen_screen/MenuLauncherScreenView.hpp>
+#include <gui/menulauncherscreen_screen/MenuLauncherScreenPresenter.hpp>
+#include <gui/infoscreen_screen/InfoScreenView.hpp>
+#include <gui/infoscreen_screen/InfoScreenPresenter.hpp>
+#include <gui/svg_screen/SVGView.hpp>
+#include <gui/svg_screen/SVGPresenter.hpp>
 
 
 /**
@@ -36,8 +52,15 @@ public:
      * A list of all view types. Must end with meta::Nil.
      * @note All view types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< DiceView,
-            touchgfx::meta::Nil
+    typedef touchgfx::meta::TypeList< RoussetDemoView,
+            touchgfx::meta::TypeList< ScreenTransitionsView,
+            touchgfx::meta::TypeList< E_BikeScreenView,
+            touchgfx::meta::TypeList< CompassScreenView,
+            touchgfx::meta::TypeList< VideoIntroScreenView,
+            touchgfx::meta::TypeList< MenuLauncherScreenView,
+            touchgfx::meta::TypeList< InfoScreenView,
+            touchgfx::meta::TypeList< SVGView,
+            touchgfx::meta::Nil > > > > > > >
             > GeneratedViewTypes;
 
     /**
@@ -49,8 +72,15 @@ public:
      * A list of all presenter types. Must end with meta::Nil.
      * @note All presenter types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< DicePresenter,
-            touchgfx::meta::Nil
+    typedef touchgfx::meta::TypeList< RoussetDemoPresenter,
+            touchgfx::meta::TypeList< ScreenTransitionsPresenter,
+            touchgfx::meta::TypeList< E_BikeScreenPresenter,
+            touchgfx::meta::TypeList< CompassScreenPresenter,
+            touchgfx::meta::TypeList< VideoIntroScreenPresenter,
+            touchgfx::meta::TypeList< MenuLauncherScreenPresenter,
+            touchgfx::meta::TypeList< InfoScreenPresenter,
+            touchgfx::meta::TypeList< SVGPresenter,
+            touchgfx::meta::Nil > > > > > > >
             > GeneratedPresenterTypes;
 
     /**
@@ -63,7 +93,9 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< WipeTransition<WEST>,
+            touchgfx::meta::TypeList< WipeTransition<EAST>,
+            touchgfx::meta::Nil > >
             > GeneratedTransitionTypes;
 
     /**
@@ -73,7 +105,7 @@ public:
 
     virtual void gotoStartScreen(FrontendApplication& app)
     {
-        app.gotoDiceScreenNoTransition();
+        app.gotoVideoIntroScreenScreenNoTransition();
     }
 protected:
     FrontendHeapBase(touchgfx::AbstractPartition& presenters, touchgfx::AbstractPartition& views, touchgfx::AbstractPartition& transitions, FrontendApplication& app)

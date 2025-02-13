@@ -200,6 +200,7 @@ void HPDMA1_Channel0_IRQHandler(void)
   /* USER CODE BEGIN HPDMA1_Channel0_IRQn 0 */
 
   /* USER CODE END HPDMA1_Channel0_IRQn 0 */
+  HAL_DMA_IRQHandler(&handle_HPDMA1_Channel0);
   /* USER CODE BEGIN HPDMA1_Channel0_IRQn 1 */
 
   /* USER CODE END HPDMA1_Channel0_IRQn 1 */
@@ -213,6 +214,7 @@ void HPDMA1_Channel1_IRQHandler(void)
   /* USER CODE BEGIN HPDMA1_Channel1_IRQn 0 */
 
   /* USER CODE END HPDMA1_Channel1_IRQn 0 */
+  HAL_DMA_IRQHandler(&handle_HPDMA1_Channel1);
   /* USER CODE BEGIN HPDMA1_Channel1_IRQn 1 */
 
   /* USER CODE END HPDMA1_Channel1_IRQn 1 */
@@ -268,6 +270,7 @@ void GPU2D_IRQHandler(void)
   /* USER CODE BEGIN GPU2D_IRQn 0 */
 
   /* USER CODE END GPU2D_IRQn 0 */
+  HAL_GPU2D_IRQHandler(&hgpu2d);
   /* USER CODE BEGIN GPU2D_IRQn 1 */
 
   /* USER CODE END GPU2D_IRQn 1 */
@@ -281,6 +284,7 @@ void GPU2D_ER_IRQHandler(void)
   /* USER CODE BEGIN GPU2D_ER_IRQn 0 */
 
   /* USER CODE END GPU2D_ER_IRQn 0 */
+  HAL_GPU2D_ER_IRQHandler(&hgpu2d);
   /* USER CODE BEGIN GPU2D_ER_IRQn 1 */
 
   /* USER CODE END GPU2D_ER_IRQn 1 */

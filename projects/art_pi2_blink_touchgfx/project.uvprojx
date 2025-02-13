@@ -52,7 +52,7 @@
           <OutputName>rt-thread</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\build\</ListingPath>
@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>7</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -338,9 +338,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER, RT_USING_ARMLIBC, __RTTHREAD__, __CLK_TCK=RT_TICK_PER_SECOND, STM32H7S7xx, __STDC_LIMIT_MACROS, RT_USING_LIBC</Define>
+              <Define>__STDC_LIMIT_MACROS, __RTTHREAD__, RT_USING_LIBC, RT_USING_ARMLIBC, __CLK_TCK=RT_TICK_PER_SECOND, USE_HAL_DRIVER, STM32H7S7xx</Define>
               <Undefine></Undefine>
-              <IncludePath>rt-thread\components\libc\posix\ipc;board;rt-thread\components\finsh;rt-thread\components\libc\posix\io\epoll;rt-thread\include;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\drivers\include;packages\CMSIS_5-v5.9.0\CMSIS\Core\Include;libraries\touchgfx_lib\TouchGFX\generated\gui_generated\include;libraries\touchgfx_lib\TouchGFX\generated\videos\include;packages\FreeRTOS_Wrapper-latest\FreeRTOS\portable\rt-thread;rt-thread\components\libc\cplusplus;libraries\touchgfx_lib\TouchGFX;rt-thread\components\drivers\include;rt-thread\components\drivers\include;libraries\STM32H7RSxx_HAL_Driver\Inc;rt-thread\components\libc\posix\io\eventfd;libraries\CMSIS\Device\ST\STM32H7RSxx\Include;rt-thread\components\drivers\touch;libraries\touchgfx_lib\TouchGFX\generated\texts\include;libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\include;libraries\touchgfx_lib\TouchGFX\generated\images\include;rt-thread\components\libc\posix\io\poll;libraries\touchgfx_lib\Middlewares\ST\touchgfx\framework\include\touchgfx;rt-thread\components\drivers\include;rt-thread\components\drivers\include;libraries\bsp_components;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\dfs\dfs_v1\filesystems\devfs;libraries\touchgfx_lib\TouchGFX\target;board\CubeMX_Config\Appli\Core\Inc;packages\CMSIS_5-v5.9.0\CMSIS\RTOS2\Include;libraries\touchgfx_lib\TouchGFX\target\generated;rt-thread\components\dfs\dfs_v1\filesystems\romfs;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\include;libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\include;rt-thread\libcpu\arm\common;rt-thread\components\drivers\spi;.;libraries\drivers\include;libraries\touchgfx_lib\Middlewares\ST\touchgfx\framework\include;applications;libraries\CMSIS\Include;rt-thread\components\libc\compilers\common\extension\fcntl\octal;rt-thread\components\libc\compilers\common\extension;rt-thread\components\dfs\dfs_v1\include;libraries\touchgfx_lib\TouchGFX\gui\include;packages\FreeRTOS_Wrapper-latest\FreeRTOS\include\freertos;rt-thread\components\drivers\include;packages\CMSIS_RTOS2-latest;rt-thread\components\drivers\include;board\port;libraries\touchgfx_lib\TouchGFX\generated\fonts\include;packages\FreeRTOS_Wrapper-latest\FreeRTOS\include;packages\gt911-latest\inc;libraries\drivers;libraries\drivers\include\config</IncludePath>
+              <IncludePath>rt-thread\components\dfs\dfs_v1\include;rt-thread\components\libc\posix\io\epoll;rt-thread\components\libc\compilers\common\include;rt-thread\components\drivers\touch;libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\include;libraries\drivers;packages\CMSIS_5-v5.9.0\CMSIS\RTOS2\Include;rt-thread\components\dfs\dfs_v1\filesystems\devfs;libraries\CMSIS\Include;board\port;rt-thread\components\libc\compilers\common\extension\fcntl\octal;libraries\STM32H7RSxx_HAL_Driver\Inc;libraries\CMSIS\Device\ST\STM32H7RSxx\Include;applications;libraries\touchgfx_lib\TouchGFX\generated\images\include;libraries\touchgfx_lib\TouchGFX\target;rt-thread\components\libc\cplusplus;rt-thread\components\libc\posix\ipc;rt-thread\components\drivers\include;board\CubeMX_Config\Appli\Core\Inc;rt-thread\components\drivers\include;rt-thread\components\libc\compilers\common\extension;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\drivers\spi;libraries\bsp_components;rt-thread\components\drivers\include;rt-thread\components\libc\posix\io\eventfd;packages\CMSIS_RTOS2-latest;libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\include;packages\FreeRTOS_Wrapper-latest\FreeRTOS\include;libraries\touchgfx_lib\TouchGFX\generated\videos\include;libraries\touchgfx_lib\TouchGFX\generated\gui_generated\include;libraries\drivers\include\config;libraries\touchgfx_lib\TouchGFX\gui\include;packages\FreeRTOS_Wrapper-latest\FreeRTOS\include\freertos;packages\gt911-latest\inc;rt-thread\components\drivers\include;rt-thread\libcpu\arm\common;rt-thread\components\finsh;libraries\touchgfx_lib\TouchGFX;libraries\touchgfx_lib\TouchGFX\generated\texts\include;libraries\touchgfx_lib\TouchGFX\target\generated;rt-thread\components\drivers\include;rt-thread\components\dfs\dfs_v1\filesystems\romfs;libraries\touchgfx_lib\Middlewares\ST\touchgfx\framework\include;packages\CMSIS_5-v5.9.0\CMSIS\Core\Include;rt-thread\components\libc\posix\io\poll;rt-thread\components\drivers\include;libraries\touchgfx_lib\Middlewares\ST\touchgfx\framework\include\touchgfx;libraries\touchgfx_lib\TouchGFX\generated\fonts\include;.;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\include;rt-thread\libcpu\arm\cortex-m7;libraries\drivers\include;board;packages\FreeRTOS_Wrapper-latest\FreeRTOS\portable\rt-thread</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -353,7 +353,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <ClangAsOpt>1</ClangAsOpt>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -395,14 +395,14 @@
           <GroupName>CMSIS-RTOS2</GroupName>
           <Files>
             <File>
-              <FileName>os_systick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\CMSIS_RTOS2-latest\os_systick.c</FilePath>
-            </File>
-            <File>
               <FileName>cmsis_rtthread.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\CMSIS_RTOS2-latest\cmsis_rtthread.c</FilePath>
+            </File>
+            <File>
+              <FileName>os_systick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\CMSIS_RTOS2-latest\os_systick.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1741,14 +1741,14 @@
           <GroupName>Finsh</GroupName>
           <Files>
             <File>
+              <FileName>shell.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\finsh\shell.c</FilePath>
+            </File>
+            <File>
               <FileName>msh_file.c</FileName>
               <FileType>1</FileType>
               <FilePath>rt-thread\components\finsh\msh_file.c</FilePath>
-            </File>
-            <File>
-              <FileName>msh_parse.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\msh_parse.c</FilePath>
             </File>
             <File>
               <FileName>msh.c</FileName>
@@ -1756,14 +1756,14 @@
               <FilePath>rt-thread\components\finsh\msh.c</FilePath>
             </File>
             <File>
+              <FileName>msh_parse.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>rt-thread\components\finsh\msh_parse.c</FilePath>
+            </File>
+            <File>
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
               <FilePath>rt-thread\components\finsh\cmd.c</FilePath>
-            </File>
-            <File>
-              <FileName>shell.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\shell.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1771,9 +1771,9 @@
           <GroupName>FreeRTOS</GroupName>
           <Files>
             <File>
-              <FileName>port.c</FileName>
+              <FileName>tasks.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\portable\rt-thread\port.c</FilePath>
+              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\tasks.c</FilePath>
             </File>
             <File>
               <FileName>list.c</FileName>
@@ -1781,9 +1781,9 @@
               <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\list.c</FilePath>
             </File>
             <File>
-              <FileName>tasks.c</FileName>
+              <FileName>queue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\tasks.c</FilePath>
+              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\queue.c</FilePath>
             </File>
             <File>
               <FileName>timers.c</FileName>
@@ -1796,9 +1796,9 @@
               <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\event_groups.c</FilePath>
             </File>
             <File>
-              <FileName>queue.c</FileName>
+              <FileName>port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\queue.c</FilePath>
+              <FilePath>packages\FreeRTOS_Wrapper-latest\FreeRTOS\portable\rt-thread\port.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2691,49 +2691,9 @@
           <GroupName>STM32_HAL</GroupName>
           <Files>
             <File>
-              <FileName>stm32h7rsxx_hal_rng.c</FileName>
+              <FileName>stm32h7rsxx_hal_uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_jpeg.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_rcc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_crc_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_cortex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_flash_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_icache.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_icache.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_uart_ex.c</FileName>
@@ -2741,19 +2701,9 @@
               <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_rcc.c</FileName>
+              <FileName>stm32h7rsxx_hal_gpu2d.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_pwr_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpu2d.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_sram.c</FileName>
@@ -2761,19 +2711,9 @@
               <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_cec.c</FileName>
+              <FileName>stm32h7rsxx_hal_adc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_dma2d.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7rsxx_hal_gpu2d.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpu2d.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_gfxmmu.c</FileName>
@@ -2781,24 +2721,39 @@
               <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gfxmmu.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
-            </File>
-            <File>
               <FileName>system_stm32h7rsxx.c</FileName>
               <FileType>1</FileType>
               <FilePath>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_adc_ex.c</FileName>
+              <FileName>stm32h7rsxx_hal_cortex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_cryp_ex.c</FileName>
+              <FileName>stm32h7rsxx_hal_cryp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_rcc_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_dma.c</FileName>
@@ -2811,39 +2766,49 @@
               <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_uart.c</FileName>
+              <FileName>stm32h7rsxx_hal_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_ltdc.c</FileName>
+              <FileName>stm32h7rsxx_hal_cryp_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_crc.c</FileName>
+              <FileName>stm32h7rsxx_hal_crc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal.c</FileName>
+              <FileName>stm32h7rsxx_hal_rng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_cryp.c</FileName>
+              <FileName>stm32h7rsxx_hal_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_xspi.c</FileName>
+              <FileName>stm32h7rsxx_hal_flash_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
             </File>
             <File>
-              <FileName>startup_stm32h7r7xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
+              <FileName>stm32h7rsxx_hal_icache.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_icache.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_jpeg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_pwr.c</FileName>
@@ -2851,9 +2816,44 @@
               <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</FilePath>
             </File>
             <File>
-              <FileName>stm32h7rsxx_hal_gpio.c</FileName>
+              <FileName>stm32h7rsxx_hal_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_pwr_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_xspi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_stm32h7r7xx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7rsxx_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2861,24 +2861,9 @@
           <GroupName>TouchGFX_app</GroupName>
           <Files>
             <File>
-              <FileName>app_touchgfx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\App\app_touchgfx.c</FilePath>
-            </File>
-            <File>
-              <FileName>CortexMMCUInstrumentation.cpp</FileName>
+              <FileName>TouchGFXConfiguration.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\CortexMMCUInstrumentation.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Keil6.x_nemagfx_core_release-wchar16.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m7\Keil6.x\nemagfx_core_release-wchar16.lib</FilePath>
-            </File>
-            <File>
-              <FileName>nema_hal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\nema_hal.c</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXConfiguration.cpp</FilePath>
             </File>
             <File>
               <FileName>OSWrappers_RTT.cpp</FileName>
@@ -2886,34 +2871,14 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\OSWrappers_RTT.cpp</FilePath>
             </File>
             <File>
-              <FileName>TouchGFXConfiguration.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXConfiguration.cpp</FilePath>
+              <FileName>Keil6.x_nemagfx_core_release-wchar16.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m7\Keil6.x\nemagfx_core_release-wchar16.lib</FilePath>
             </File>
             <File>
               <FileName>TouchGFXGeneratedHAL.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXGeneratedHAL.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>TouchGFXGPIO.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\TouchGFXGPIO.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Keil6.x_touchgfxnema_release-wchar16.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m7\Keil6.x\touchgfxnema_release-wchar16.lib</FilePath>
-            </File>
-            <File>
-              <FileName>HardwareMJPEGDecoder.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\HardwareMJPEGDecoder.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>STM32DMA.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\STM32DMA.cpp</FilePath>
             </File>
             <File>
               <FileName>TouchGFXHAL.cpp</FileName>
@@ -2926,9 +2891,44 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\App\sample_touchgfx.c</FilePath>
             </File>
             <File>
+              <FileName>STM32DMA.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\STM32DMA.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>nema_hal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\nema_hal.c</FilePath>
+            </File>
+            <File>
               <FileName>STM32TouchController.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>libraries\touchgfx_lib\TouchGFX\target\STM32TouchController.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>app_touchgfx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\App\app_touchgfx.c</FilePath>
+            </File>
+            <File>
+              <FileName>Keil6.x_touchgfxnema_release-wchar16.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m7\Keil6.x\touchgfxnema_release-wchar16.lib</FilePath>
+            </File>
+            <File>
+              <FileName>HardwareMJPEGDecoder.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\generated\HardwareMJPEGDecoder.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TouchGFXGPIO.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\TouchGFXGPIO.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CortexMMCUInstrumentation.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\target\CortexMMCUInstrumentation.cpp</FilePath>
             </File>
             <File>
               <FileName>touchgfx_core_wchar16.lib</FileName>
@@ -2941,159 +2941,29 @@
           <GroupName>TouchGFX_generated</GroupName>
           <Files>
             <File>
-              <FileName>image_dice_large_2.cpp</FileName>
+              <FileName>Table_Saira_SemiBold_26_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_2.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiBold_26_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_icon_dice_up_pressed.cpp</FileName>
+              <FileName>Kerning_Saira_SemiBold_30_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_up_pressed.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiBold_30_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_dice_large_6.cpp</FileName>
+              <FileName>MCULoadPercentage_E_BikeBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_6.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_E_BikeBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>BitmapDatabase.cpp</FileName>
+              <FileName>Font_ShareTechMono_Regular_120_4bpp_0.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\BitmapDatabase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_120_4bpp_0.cpp</FilePath>
             </File>
             <File>
-              <FileName>Kerning_verdana_20_4bpp.cpp</FileName>
+              <FileName>Table_ShareTechMono_Regular_48_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_verdana_20_4bpp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>AdvanceDiceContainerBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\AdvanceDiceContainerBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_dice_right_pressed.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_right_pressed.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_dice_large_5.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_5.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_adv_dice_selected.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_adv_dice_selected.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_dice_down_normal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_down_normal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>VectorFontRendererBuffers.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\VectorFontRendererBuffers.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_scale_slider_fill.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_scale_slider_fill.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>ApplicationFontProvider.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\ApplicationFontProvider.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Kerning_verdana_10_4bpp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_verdana_10_4bpp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_scale_slider_bar.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_scale_slider_bar.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>LanguageGb.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\texts\src\LanguageGb.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SimpleDiceContainerBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\SimpleDiceContainerBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>DiceViewBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\dice_screen\DiceViewBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_dice_right_normal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_right_normal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>CachedFont.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\CachedFont.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Kerning_Saira_Medium_20_4bpp.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_20_4bpp.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_chrom_art_off_button.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_chrom_art_off_button.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_scale_large.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_scale_large.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_top_bar.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_top_bar.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_background_with_sparkles.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_background_with_sparkles.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Texts.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\texts\src\Texts.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>FrontendApplicationBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\common\FrontendApplicationBase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_info.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_info.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font_arialbd_40_4bpp_0.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_arialbd_40_4bpp_0.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_scale_slider_knob.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_scale_slider_knob.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>scaleSliderContainerBase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\scaleSliderContainerBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_48_4bpp.cpp</FilePath>
             </File>
             <File>
               <FileName>TypedTextDatabase.cpp</FileName>
@@ -3101,99 +2971,39 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\generated\texts\src\TypedTextDatabase.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_slider_main_bar.cpp</FileName>
+              <FileName>Kerning_ShareTechMono_Regular_90_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_slider_main_bar.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_90_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>Table_Saira_Medium_20_4bpp.cpp</FileName>
+              <FileName>scrollWheelCoverFlowBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_20_4bpp.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\scrollWheelCoverFlowBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_dice_large_4.cpp</FileName>
+              <FileName>clickableBuildingCustomContainerBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_4.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\clickableBuildingCustomContainerBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>animationsDepthButtonBase.cpp</FileName>
+              <FileName>Font_ShareTechMono_Regular_36_4bpp_0.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationsDepthButtonBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_36_4bpp_0.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_icon_adv_dice_normal.cpp</FileName>
+              <FileName>MenuLauncherScreenViewBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_adv_dice_normal.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\menulauncherscreen_screen\MenuLauncherScreenViewBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>FontCache.cpp</FileName>
+              <FileName>CompassScreenViewBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\FontCache.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\compassscreen_screen\CompassScreenViewBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>Font_verdana_10_4bpp_0.cpp</FileName>
+              <FileName>Font_SairaCondensed_Medium_32_4bpp_0.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_verdana_10_4bpp_0.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_chrom_art_on_button.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_chrom_art_on_button.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_dice_left_right_bar.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_left_right_bar.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_simple_dice_normal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_simple_dice_normal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_toggle_main_bar.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_toggle_main_bar.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>SVGDatabase.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\SVGDatabase.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_dice_large_3.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_3.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_simple_dice_selected.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_simple_dice_selected.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_toggle_marker.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_toggle_marker.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_scale_small.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_scale_small.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font_verdana_20_4bpp_0.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_verdana_20_4bpp_0.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_dice_left_normal.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_left_normal.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>Font_Saira_Medium_20_4bpp_0.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_20_4bpp_0.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_32_4bpp_0.cpp</FilePath>
             </File>
             <File>
               <FileName>UnmappedDataFont.cpp</FileName>
@@ -3201,9 +3011,64 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\UnmappedDataFont.cpp</FilePath>
             </File>
             <File>
-              <FileName>TopBarContainerBase.cpp</FileName>
+              <FileName>Font_ShareTechMono_Regular_70_4bpp_0.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\TopBarContainerBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_70_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_Saira_Medium_20_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_20_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SVGDatabase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\SVGDatabase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_ShareTechMono_Regular_36_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_36_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ApplicationFontProvider.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\ApplicationFontProvider.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>animationButtonBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationButtonBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_ShareTechMono_Regular_26_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_26_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_SemiBold_38_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_38_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_Saira_SemiBold_26_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiBold_26_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_CompassBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_CompassBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_SemiBold_22_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_22_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>LanguageGb.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\texts\src\LanguageGb.cpp</FilePath>
             </File>
             <File>
               <FileName>GeneratedFont.cpp</FileName>
@@ -3211,49 +3076,389 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\GeneratedFont.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_icon_dice_down_pressed.cpp</FileName>
+              <FileName>BitmapDatabase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_down_pressed.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\BitmapDatabase.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_icon_dice_left_pressed.cpp</FileName>
+              <FileName>Font_ShareTechMono_Regular_20_4bpp_0.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_left_pressed.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_20_4bpp_0.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_dice_top_bottom_bar.cpp</FileName>
+              <FileName>cloudCustomContainerBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_top_bottom_bar.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cloudCustomContainerBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>cubeUpDownButtonsContainerBase.cpp</FileName>
+              <FileName>handCustomContainerBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeUpDownButtonsContainerBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\handCustomContainerBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_dice_large_1.cpp</FileName>
+              <FileName>Kerning_ShareTechMono_Regular_20_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_dice_large_1.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_20_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_icon_dice_up_normal.cpp</FileName>
+              <FileName>Kerning_Saira_Medium_11_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_dice_up_normal.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_11_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>cubeLeftRightButtonsContainerBase.cpp</FileName>
+              <FileName>VideoIntroScreenViewBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeLeftRightButtonsContainerBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\videointroscreen_screen\VideoIntroScreenViewBase.cpp</FilePath>
             </File>
             <File>
-              <FileName>Kerning_arialbd_40_4bpp.cpp</FileName>
+              <FileName>Table_ShareTechMono_Regular_36_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_arialbd_40_4bpp.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_36_4bpp.cpp</FilePath>
             </File>
             <File>
-              <FileName>selectedIconsContainerBase.cpp</FileName>
+              <FileName>Table_Saira_Medium_20_4bpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\selectedIconsContainerBase.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_20_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_Gomme_Sans_W04_SemiBold_40_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Gomme_Sans_W04_SemiBold_40_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_Saira_Medium_20_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_20_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GroundhogCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\GroundhogCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_Medium_70_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_70_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_SVGBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_SVGBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Videos.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\videos\src\keil\Videos.s</FilePath>
+            </File>
+            <File>
+              <FileName>sphere_wheelBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\sphere_wheelBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_SemiBold_24_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_24_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IceScoopItemContainer_SVGBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\IceScoopItemContainer_SVGBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_ShareTechMono_Regular_70_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_70_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_Medium_70_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_70_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CachedFont.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\CachedFont.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>InfoScreenViewBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\infoscreen_screen\InfoScreenViewBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_SemiBold_22_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_22_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VectorFontRendererBuffers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\VectorFontRendererBuffers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_SemiBold_22_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_22_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_SemiBold_24_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_24_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_Saira_Medium_11_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_11_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>elementCoverFlowCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\elementCoverFlowCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage_SVGBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_SVGBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_Saira_SemiBold_26_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiBold_26_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TruckCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\TruckCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rotatingCoverFlowCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\rotatingCoverFlowCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ScreenTransitionsViewBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\screentransitions_screen\ScreenTransitionsViewBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FontCache.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\FontCache.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage_CompassBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_CompassBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_SemiBold_26_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_26_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_ShareTechMono_Regular_26_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_26_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_E_BikeBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_E_BikeBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_Saira_SemiBold_30_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiBold_30_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ScreenTranstionsTopbarContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\ScreenTranstionsTopbarContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>starsCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\starsCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_Medium_70_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_70_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ChimneyCustomContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\ChimneyCustomContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrontendApplicationBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\common\FrontendApplicationBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_Medium_32_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_32_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_ShareTechMono_Regular_120_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_120_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>WaffleMenuIconBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuIconBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_ShareTechMono_Regular_120_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_120_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_ShareTechMono_Regular_48_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_48_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_ShareTechMono_Regular_70_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_70_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_ShareTechMono_Regular_90_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_90_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_Saira_Medium_11_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_11_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RoussetDemoViewBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\roussetdemo_screen\RoussetDemoViewBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_SemiBold_38_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_38_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_Medium_32_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_32_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_SemiBold_38_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_38_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_ShareTechMono_Regular_90_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_90_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>transitionItemBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\transitionItemBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SVGViewBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\svg_screen\SVGViewBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_ShareTechMono_Regular_20_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_20_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_SemiBold_26_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_26_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_SairaCondensed_SemiBold_16_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_16_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Texts.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\texts\src\Texts.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_ShareTechMono_Regular_26_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_26_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>WaffleMenuContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_SemiBold_26_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_26_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>E_BikeScreenViewBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\e_bikescreen_screen\E_BikeScreenViewBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_SemiBold_16_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_16_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_Gomme_Sans_W04_SemiBold_40_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Gomme_Sans_W04_SemiBold_40_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TopBarContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\TopBarContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_SairaCondensed_SemiBold_16_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_16_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_Saira_SemiBold_30_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiBold_30_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Font_Gomme_Sans_W04_SemiBold_40_4bpp_0.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Gomme_Sans_W04_SemiBold_40_4bpp_0.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Kerning_ShareTechMono_Regular_48_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_48_4bpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>wheel_elementBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\wheel_elementBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>bottombarContainerBase.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\bottombarContainerBase.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Table_SairaCondensed_SemiBold_24_4bpp.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_24_4bpp.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -3261,24 +3466,259 @@
           <GroupName>TouchGFX_gui</GroupName>
           <Files>
             <File>
-              <FileName>selectedIconsContainer.cpp</FileName>
+              <FileName>SpinOutTransition.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\selectedIconsContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinOutTransition.cpp</FilePath>
             </File>
             <File>
-              <FileName>DiceView.cpp</FileName>
+              <FileName>E_BikeScreenPresenter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\dice_screen\DiceView.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\e_bikescreen_screen\E_BikeScreenPresenter.cpp</FilePath>
             </File>
             <File>
-              <FileName>scaleSliderContainer.cpp</FileName>
+              <FileName>CompassScreenPresenter.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\scaleSliderContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenPresenter.cpp</FilePath>
             </File>
             <File>
-              <FileName>DicePresenter.cpp</FileName>
+              <FileName>CurtainsTransition.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\dice_screen\DicePresenter.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CurtainsTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage_E_Bike.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_E_Bike.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>animationButton.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationButton.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>wheel_element.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\wheel_element.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\common\MCULoadPercentage.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>transitionItem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\transitionItem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>GroundhogCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\GroundhogCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VideoIntroScreenView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\videointroscreen_screen\VideoIntroScreenView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FlipTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\FlipTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ChimneyCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\ChimneyCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Transitions.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\Transitions.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage_SVG.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_SVG.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>InfoScreenPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\infoscreen_screen\InfoScreenPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>starsCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\starsCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_Compass.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_Compass.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>IceScoopItemContainer_SVG.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\IceScoopItemContainer_SVG.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SpinTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CompassScreenView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuLauncherScreenView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\menulauncherscreen_screen\MenuLauncherScreenView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ScreenTransitionsView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\screentransitions_screen\ScreenTransitionsView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cloudCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\cloudCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TopBarContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\TopBarContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RoussetDemoView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\roussetdemo_screen\RoussetDemoView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_E_Bike.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_E_Bike.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MenuLauncherScreenPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\menulauncherscreen_screen\MenuLauncherScreenPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>VideoIntroScreenPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\videointroscreen_screen\VideoIntroScreenPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CoverTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CoverTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>WaffleMenuIcon.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuIcon.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\common\FrameRate.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>InfoScreenView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\infoscreen_screen\InfoScreenView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>WaffleMenuContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RoussetDemoPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\roussetdemo_screen\RoussetDemoPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>TruckCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\TruckCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FloatEasingEquations.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\common\FloatEasingEquations.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SVGPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>sphere_wheel.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\sphere_wheel.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>E_BikeScreenView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\e_bikescreen_screen\E_BikeScreenView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>scrollWheelCoverFlow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\scrollWheelCoverFlow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>handCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\handCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SlideTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SlideTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>clickableBuildingCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\clickableBuildingCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ScreenTransitionsPresenter.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\screentransitions_screen\ScreenTransitionsPresenter.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>CubeTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CubeTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ScreenTranstionsTopbarContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\ScreenTranstionsTopbarContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRate_SVG.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_SVG.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCULoadPercentage_Compass.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_Compass.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RolloutTransition.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\RolloutTransition.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>rotatingCoverFlowCustomContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\rotatingCoverFlowCustomContainer.cpp</FilePath>
             </File>
             <File>
               <FileName>FrontendApplication.cpp</FileName>
@@ -3286,39 +3726,1244 @@
               <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\common\FrontendApplication.cpp</FilePath>
             </File>
             <File>
-              <FileName>SimpleDiceContainer.cpp</FileName>
+              <FileName>elementCoverFlowCustomContainer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\SimpleDiceContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\elementCoverFlowCustomContainer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SVGView.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGView.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>bottombarContainer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\bottombarContainer.cpp</FilePath>
             </File>
             <File>
               <FileName>Model.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\model\Model.cpp</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TouchGFX_resource</GroupName>
+          <Files>
             <File>
-              <FileName>cubeLeftRightButtonsContainer.cpp</FileName>
+              <FileName>image_waffle_menu_title.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeLeftRightButtonsContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_title.cpp</FilePath>
             </File>
             <File>
-              <FileName>AdvanceDiceContainer.cpp</FileName>
+              <FileName>image_Transtion_00015.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\AdvanceDiceContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00015.cpp</FilePath>
             </File>
             <File>
-              <FileName>animationsDepthButton.cpp</FileName>
+              <FileName>image_groundhog_hole.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationsDepthButton.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_groundhog_hole.cpp</FilePath>
             </File>
             <File>
-              <FileName>cubeUpDownButtonsContainer.cpp</FileName>
+              <FileName>image_stars_few.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeUpDownButtonsContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_stars_few.cpp</FilePath>
             </File>
             <File>
-              <FileName>TopBarContainer.cpp</FileName>
+              <FileName>image_h743_shadow.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>libraries\touchgfx_lib\TouchGFX\gui\src\containers\TopBarContainer.cpp</FilePath>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h743_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_infoscreen-icon.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\info-screen\image_infoscreen-icon.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00018.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00018.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_night_forground_samlet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_night_forground_samlet.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_transitionType1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_transitionType1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_main_background_numbers_mph.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers_mph.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00020.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00020.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_hand.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_hand.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_transitionType4.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_transitionType4.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_sun.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_sun.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_next_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_prevoius_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_pressed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_sky_bg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_sky_bg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00015.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00015.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00024.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00024.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_car_lightsON.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_car_lightsON.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_small_ball_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_small_ball_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00015.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00015.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_3of6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_3of6.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Blue_bg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_Blue_bg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_standard_button_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_back.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_trans_bund_tab.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_trans_bund_tab.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00018.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00018.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_close_icon_largerTouchZone.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_close_icon_largerTouchZone.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_speedometer_fill_overlay_numbers_kmh.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_kmh.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ice_cream_backgrond_with_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_ice_cream_backgrond_with_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_waffle_menu_cone_large.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_large.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00015.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00015.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00024.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00024.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_moon.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_moon.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_st_factory_car.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_st_factory_car.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_mode_sport_inactive.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_inactive.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h725_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h725_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_tab_close.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_icon_tab_close.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00019.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00019.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_transitionType2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_transitionType2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_compass_arrow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass_arrow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_info_icon.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_info_icon.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_compass_background_800_480.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_background_800_480.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_light.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_back_light.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00017.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00017.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00018.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00018.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_sky_2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_sky_2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_theme_images_navigation_chevron_left_55_55_E9F5E9.svg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\__generated\image_icon_theme_images_navigation_chevron_left_55_55_E9F5E9.svg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_windows_top_building.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_windows_top_building.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_button_pressed_e_bike.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_pressed_e_bike.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_coverflow_bg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_coverflow_bg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_speedometer_fill_overlay_numbers_mph.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_mph.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00015.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00015.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_speedometer_needle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_needle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00016.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00016.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00021.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00021.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_truck_front_light.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_truck_front_light.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_4of6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_4of6.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00019.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00019.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h735_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h735_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_foreground_small_area.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_foreground_small_area.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_graph_Overlay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_graph_Overlay.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_waffle_menu_cone_medium.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_medium.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00016.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00016.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_day_forground_samlet.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_day_forground_samlet.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ball_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_ball_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_waffle_menu_cone_small.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_small.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_play_dark.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_icon_play_dark.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_pinecone.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_pinecone.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_truck_yellow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_truck_yellow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_5of6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_5of6.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00022.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00022.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00020.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00020.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_groundhog.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_groundhog.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_theme_images_navigation_chevron_left_55_55_96A395.svg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\__generated\image_icon_theme_images_navigation_chevron_left_55_55_96A395.svg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_grass.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_grass.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_speed_slider.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_icon_speed_slider.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h750_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h750_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_max_button_active.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_active.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h7b3_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h7b3_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_standard_button_active.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_active.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00023.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00023.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_windows_left_building.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_windows_left_building.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_trans_bund_bg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_trans_bund_bg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_trans_bund_gradient_overlay_1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_trans_bund_gradient_overlay_1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_button_mph_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_pressed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00021.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00021.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00022.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00022.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_hills.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_hills.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_button_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_sky_1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_sky_1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_transitionType3.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_transitionType3.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h7s7_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h7s7_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_corner.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\info-screen\image_back_corner.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_foreground_small_area_night3.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_foreground_small_area_night3.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_compass.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_background_day_full.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_background_day_full.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_full.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_full.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_car_lightsOFF.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_car_lightsOFF.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_next_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_pressed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00023.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00023.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_truck_pink_night.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_truck_pink_night.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_button_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_pressed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_trans_bund_gradient_overlay_2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_trans_bund_gradient_overlay_2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_mode_sport_active.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_active.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_last_video_frame.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_last_video_frame.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00025.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00025.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_trans_top_bar.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_trans_top_bar.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_compass_disc.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_disc.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_background_night_full.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_background_night_full.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chimney_night.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_chimney_night.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_off_button_active.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_active.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ball_reflect.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_ball_reflect.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_windows_right_building.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_windows_right_building.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_tab_mini_slider.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_icon_tab_mini_slider.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_h7a3_shadow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\chips_coverFlow\image_h7a3_shadow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_arrow.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_back_arrow.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_back_button_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_pressed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_max_button_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00012.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00012.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_low.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_low.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00015.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00015.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00006.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00006.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chip_front.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_chip_front.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_off_button_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_back_button_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_toggle_speed_bg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_toggle_speed_bg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_battery_steps_2of6.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_2of6.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ball_big.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\image_ball_big.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_forground-1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_forground-1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_waffle_menu_expand.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_expand.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00005.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00005.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_star_single_shiny.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_star_single_shiny.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_emptyBottombarBg.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_emptyBottombarBg.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_button_kmh_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00016.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00016.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_remaining.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_remaining.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00013.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00013.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00014.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00014.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00017.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00017.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_star_single.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_star_single.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_mountains-1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_mountains-1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_chimney_day.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_chimney_day.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_button_mph_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00008.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00008.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00007.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00007.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Speedometer_00025.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Speedometer\image_Speedometer_00025.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_transitionType5.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_transitionType5.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_truck_blue.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_truck_blue.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Ellipse.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_Ellipse.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00002.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00002.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00001.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00001.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00017.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00017.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_main_background_numbers.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icecream_prevoius_normal.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_normal.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_ST_Factory_00011.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\ST_Factory\image_ST_Factory_00011.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00003.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00003.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Transtion_00000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Transition\image_Transtion_00000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Info_00004.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\InfoScreen\image_Info_00004.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_night_sky_overlayed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_night_sky_overlayed.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_back_button_normal_e_bike.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_normal_e_bike.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_Compass_00009.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\Compass\image_Compass_00009.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_SVG_00010.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher\Logos\IceCream\image_SVG_00010.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_groundhog_hole_overlay.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_groundhog_hole_overlay.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_windows_entrance_building.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\RoussetDemo\image_windows_entrance_building.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_icon_info.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitions\image_icon_info.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>image_button_kmh_pressed.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_pressed.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -55,11 +55,12 @@ menu "Onboard Peripheral Drivers"
                         prompt "Choose Touch Driver"
                         default BSP_USING_GT9147
                                 config BSP_USING_GT9147
-                                bool "USING Touch IC GT9147"
+                                    select PKG_USING_GT9147
+                                    bool "USING Touch IC GT9147"
 
-                                config BSP_USING_GT1151
-                                bool "USING Touch IC GT1151 GT1158"
-
+                                config BSP_USING_GT911
+                                    select PKG_USING_GT911
+                                    bool "USING Touch IC GT1151 GT1158"
                             default n
                     endchoice
                 endif

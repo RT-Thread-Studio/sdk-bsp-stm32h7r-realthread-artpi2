@@ -13,8 +13,10 @@ public:
 
     void updateFPS(int16_t fps);
     void updateMCU(uint16_t mcuLoad);
+
 protected:
 
+private:
 };
 
 #endif // TOPBARCONTAINER_HPP

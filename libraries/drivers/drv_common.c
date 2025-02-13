@@ -82,7 +82,7 @@ void _Error_Handler(void)
 {
     /* USER CODE BEGIN Error_Handler */
     /* User can add his own implementation to report the HAL error return state */
-    while(1)
+    while (1)
     {
     }
     /* USER CODE END Error_Handler */
@@ -99,10 +99,12 @@ void rt_hw_us_delay(rt_uint32_t us)
     start = SysTick->VAL;
     reload = SysTick->LOAD;
     us_tick = SystemCoreClock / 1000000UL;
-    do {
+    do
+    {
         now = SysTick->VAL;
         delta = start > now ? start - now : reload + start - now;
-    } while(delta < us_tick * us);
+    }
+    while (delta < us_tick * us);
 }
 
 /**
@@ -117,12 +119,15 @@ void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target
     SystemCoreClockUpdate();
     /* HAL_Init() function is called at the beginning of the program */
     HAL_Init();
+    
+    /* Peripheral clock enable */
+    __HAL_RCC_HPDMA1_CLK_ENABLE();
 
     /* Configure the system Power Supply */
     if (HAL_PWREx_ConfigSupply(PWR_DIRECT_SMPS_SUPPLY) != HAL_OK)
     {
-    /* Initialization error */
-    Error_Handler();
+        /* Initialization error */
+        Error_Handler();
     }
 
     /* System clock initialization */

@@ -6,10 +6,9 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <touchgfx/widgets/ToggleButton.hpp>
 
 class TopBarContainerBase : public touchgfx::Container
 {
@@ -18,40 +17,19 @@ public:
     virtual ~TopBarContainerBase();
     virtual void initialize();
 
-    /*
-     * Custom Trigger Callback Setters
-     */
-    void setChromArtPressedCallback(touchgfx::GenericCallback<bool>& callback)
-    {
-        this->chromArtPressedCallback = &callback;
-    }
-
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
     }
 
     /*
-     * Custom Trigger Emitters
-     */
-    virtual void emitChromArtPressedCallback(bool value)
-    {
-        if (chromArtPressedCallback && chromArtPressedCallback->isValid())
-        {
-            this->chromArtPressedCallback->execute( value);
-        }
-    }
-
-    /*
      * Member Declarations
      */
-    touchgfx::Image background;
+    touchgfx::Box topbarBox;
     touchgfx::TextArea mcuTitle;
     touchgfx::TextAreaWithOneWildcard mcuValue;
-    touchgfx::TextArea fpsTite;
+    touchgfx::TextArea fpsTitle;
     touchgfx::TextAreaWithOneWildcard fpsValue;
-    touchgfx::Image infoIcon;
-    touchgfx::ToggleButton chromArtButton;
 
     /*
      * Wildcard Buffers
@@ -62,21 +40,6 @@ protected:
     touchgfx::Unicode::UnicodeChar fpsValueBuffer[FPSVALUE_SIZE];
 
 private:
-
-    /*
-     * Custom Trigger Callback Declarations
-     */
-    touchgfx::GenericCallback<bool>* chromArtPressedCallback;
-
-    /*
-     * Callback Declarations
-     */
-    touchgfx::Callback<TopBarContainerBase, const touchgfx::AbstractButton&> buttonCallback;
-
-    /*
-     * Callback Handler Declarations
-     */
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

@@ -45,6 +45,7 @@ genSrc = Glob('./TouchGFX/generated/fonts/src/*.cpp')
 genSrc += Glob('./TouchGFX/generated/gui_generated/src/*/*.cpp')
 genSrc += Glob('./TouchGFX/generated/images/src/*.cpp')
 genSrc += Glob('./TouchGFX/generated/texts/src/*.cpp')
+genSrc += Glob('./TouchGFX/generated/videos/src/keil/*')
 
 genPath = [cwd + '/TouchGFX/generated/fonts/include']
 genPath += [cwd + '/TouchGFX/generated/gui_generated/include']
@@ -57,6 +58,7 @@ group = group + DefineGroup('TouchGFX_generated', genSrc, depend = ['ART_PI_Touc
 # add TouchGFX resource
 resSrc = Glob('./TouchGFX/generated/images/src/*/*.cpp')
 resSrc += Glob('./TouchGFX/generated/images/src/*/*/*.cpp')
+resSrc += Glob('./TouchGFX/generated/images/src/*/*/*/*.cpp')
 group = group + DefineGroup('TouchGFX_resource', resSrc, depend = ['ART_PI_TouchGFX_LIB'])
 
 # add TouchGFX gui
@@ -66,3 +68,4 @@ guiPath = [cwd + '/TouchGFX/gui/include']
 group = group + DefineGroup('TouchGFX_gui', guiSrc, depend = ['ART_PI_TouchGFX_LIB'], CPPPATH = guiPath)
 
 Return('group')
+

@@ -28,7 +28,7 @@
 #endif
 #include <lcd_port.h>
 
-static rt_device_t  dev = RT_NULL;
+static rt_device_t dev = RT_NULL;
 static struct rt_touch_data *read_data = NULL;
 static struct rt_touch_info info;
 
@@ -75,8 +75,6 @@ int touch_init(uint16_t x, uint16_t y)
 }
 #endif
 
-int width = LCD_WIDTH, height = LCD_HEIGHT;
-
 void STM32TouchController::init()
 {
     /**
@@ -84,7 +82,7 @@ void STM32TouchController::init()
      *
      */
 #if defined(PKG_USING_GT911) || defined(PKG_USING_GT9147)
-    if (touch_init(width, height) != RT_EOK)
+    if (touch_init(LCD_WIDTH, LCD_HEIGHT) != RT_EOK)
         return;
 #endif
 }

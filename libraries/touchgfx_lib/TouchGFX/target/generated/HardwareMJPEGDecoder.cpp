@@ -18,7 +18,7 @@
 
 #include <HardwareMJPEGDecoder.hpp>
 #include <touchgfx/hal/BlitOp.hpp>
-
+#include <rtthread.h>
 extern "C"
 {
 #include <string.h>
@@ -722,6 +722,7 @@ extern "C"
         /* Signal Hardware Decoding to wake up */
         if (!DMA2D_reference->isDMARunning())
         {
+            rt_kprintf("725 SEM_POST(semDecodingDone)\n");
             SEM_POST(semDecodingDone);
         }
     }
@@ -923,6 +924,7 @@ void DMA2D_ExternalJobCompleted(JPEG_Data_BufferTypeDef& job)
             DMA2D_CopyBufferEnd = 1;
         }
 
+        rt_kprintf("927 SEM_POST(semDecodingDone)\n");
         /* Signal decoder thread to wake up and continue decoding */
         SEM_POST(semDecodingDone);
     }

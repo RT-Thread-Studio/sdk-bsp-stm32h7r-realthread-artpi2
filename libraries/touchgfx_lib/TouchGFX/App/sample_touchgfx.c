@@ -34,8 +34,8 @@ static void MX_DMA2D_Init(void);
     #include "gt911.h"
 #endif
 
-#define TOUCH_RST_PIN   GET_PIN(N, 12) //PN12
-#define TOUCH_IRQ_PIN   GET_PIN(E, 15) //PE15
+#define TOUCH_RST_PIN   GET_PIN(N, 12) // PN12
+#define TOUCH_IRQ_PIN   GET_PIN(E, 15) // PE15
 
 int rt_hw_touch_port(void)
 {
@@ -120,6 +120,7 @@ void JPEG_IRQHandler(void)
     /* USER CODE BEGIN JPEG_IRQn 0 */
     rt_interrupt_enter();
     /* USER CODE END JPEG_IRQn 0 */
+    rt_kprintf("JPEG_IRQHandler\n");
     HAL_JPEG_IRQHandler(&hjpeg);
     /* USER CODE BEGIN JPEG_IRQn 1 */
     rt_interrupt_leave();
@@ -410,7 +411,7 @@ static void MX_LTDC_Init(void)
     pLayerCfg.WindowX1 = 800;
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = 480;
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
     pLayerCfg.Alpha = 255;
     pLayerCfg.Alpha0 = 0;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
@@ -426,7 +427,13 @@ static void MX_LTDC_Init(void)
         Error_Handler();
     }
     /* USER CODE BEGIN LTDC_Init 2 */
-
+    // Reconfigure pixelformat since TouchGFX project generator does not allow setting different format for LTDC and remaining configuration
+    // This way TouchGFX runs 32BPP mode but the LTDC accesses the real framebuffer in 24BPP
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
+    if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
+    {
+        Error_Handler();
+    }
     /* USER CODE END LTDC_Init 2 */
 }
 
@@ -458,7 +465,7 @@ int TouchGFXTask(void)
     rt_thread_t tid = NULL;
     tid = rt_thread_create("TouchGFX",
                            touchgfx_thread_entry, RT_NULL,
-                           8192, 15, 20);
+                           4096, 22, 20);
 
     if (tid != RT_NULL)
         rt_thread_startup(tid);
