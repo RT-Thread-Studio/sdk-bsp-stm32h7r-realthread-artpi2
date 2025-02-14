@@ -10,7 +10,7 @@ void MCULoadPercentage_Compass::initialize()
     MCULoadPercentage_CompassBase::initialize();
 }
 
-void MCULoadPercentage_Compass::updateShownInformation()
+void MCULoadPercentage_Compass::updateShownMCULoadPercentage()
 {
     Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%d", currentMCULoadPercentage);
     mcuLoadPercentage.invalidate();

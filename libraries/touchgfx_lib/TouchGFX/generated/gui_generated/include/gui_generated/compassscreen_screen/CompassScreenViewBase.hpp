@@ -49,8 +49,8 @@ protected:
     touchgfx::Button backButton;
     touchgfx::TextArea mcuLoadLabelText;
     touchgfx::TextArea fpsLabelText;
-    FrameRate_Compass frameRate;
-    MCULoadPercentage_Compass mcuLoadPercentage;
+    FrameRate_Compass frameRateContainer;
+    MCULoadPercentage_Compass mcuLoadPercentageContainer;
 
     /*
      * Wildcard Buffers

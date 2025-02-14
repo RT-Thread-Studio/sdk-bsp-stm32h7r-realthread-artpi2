@@ -8,7 +8,6 @@
 #include<images/SVGDatabase.hpp>
 
 SVGViewBase::SVGViewBase() :
-    updateItemCallback(this, &SVGViewBase::updateItemCallbackHandler),
     hideTheMainWaffleEndedCallback(this, &SVGViewBase::hideTheMainWaffleEndedCallbackHandler),
     waffleMenuNewWaffleIsChosenCallback(this, &SVGViewBase::waffleMenuNewWaffleIsChosenCallbackHandler),
     buttonCallback(this, &SVGViewBase::buttonCallbackHandler),
@@ -58,19 +57,8 @@ SVGViewBase::SVGViewBase() :
     waffleMenu.setSlideMenuChangedStateCallback(waffleMenuSlideMenuChangedStateCallback);
     add(waffleMenu);
 
-    iceScoopScrollWheel.setPosition(0, 130, 800, 200);
-    iceScoopScrollWheel.setHorizontal(true);
-    iceScoopScrollWheel.setCircular(true);
-    iceScoopScrollWheel.setEasingEquation(touchgfx::EasingEquations::sineEaseOut);
-    iceScoopScrollWheel.setSwipeAcceleration(100);
-    iceScoopScrollWheel.setDragAcceleration(10);
-    iceScoopScrollWheel.setNumberOfItems(10);
-    iceScoopScrollWheel.setSelectedItemOffset(300);
-    iceScoopScrollWheel.setOvershootPercentage(0);
-    iceScoopScrollWheel.setDrawableSize(200, 0);
-    iceScoopScrollWheel.setDrawables(iceScoopScrollWheelListItems, updateItemCallback);
-    iceScoopScrollWheel.animateToItem(4, 0);
-    add(iceScoopScrollWheel);
+    iceWheelContainer.setXY(0, 130);
+    add(iceWheelContainer);
 }
 
 SVGViewBase::~SVGViewBase()
@@ -83,11 +71,7 @@ void SVGViewBase::setupScreen()
     mcuLoadPercentageContainer.initialize();
     frameRateContainer.initialize();
     waffleMenu.initialize();
-    iceScoopScrollWheel.initialize();
-    for (int i = 0; i < iceScoopScrollWheelListItems.getNumberOfDrawables(); i++)
-    {
-        iceScoopScrollWheelListItems[i].initialize();
-    }
+    iceWheelContainer.initialize();
 }
 
 void SVGViewBase::waffleMenuNewWaffleIsChosenCallbackHandler()
@@ -119,9 +103,9 @@ void SVGViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
     if (&src == &backButton)
     {
         //GoBackToMenu
-        //When backButton clicked change screen to MenuLauncherScreen
-        //Go to MenuLauncherScreen with screen transition towards West
-        application().gotoMenuLauncherScreenScreenWipeTransitionWest();
+        //When backButton clicked change screen to Menu
+        //Go to Menu with screen transition towards North
+        application().gotoMenuScreenWipeTransitionNorth();
     }
 }
 
@@ -140,27 +124,4 @@ void SVGViewBase::hideTheMainWaffleEndedCallbackHandler(const touchgfx::MoveAnim
     //Call changeTheMainWaffle
     changeTheMainWaffle();
 
-}
-
-void SVGViewBase::handleKeyEvent(uint8_t key)
-{
-    if(48 == key)
-    {
-        //Interaction1
-        //When hardware button 48 clicked execute C++ code
-        //Execute C++ code
-        int i = 1;
-        i++;
-    
-    }
-}
-
-void SVGViewBase::updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex)
-{
-    if (items == &iceScoopScrollWheelListItems)
-    {
-        touchgfx::Drawable* d = items->getDrawable(containerIndex);
-        IceScoopItemContainer_SVG* cc = (IceScoopItemContainer_SVG*)d;
-        iceScoopScrollWheelUpdateItem(*cc, itemIndex);
-    }
 }

@@ -12,16 +12,15 @@ FrameRate_SVGBase::FrameRate_SVGBase()
     fpsTite.setXY(0, 0);
     fpsTite.setColor(touchgfx::Color::getColorFromRGB(216, 169, 252));
     fpsTite.setLinespacing(0);
-    fpsTite.setTypedText(touchgfx::TypedText(T___SINGLEUSE_QGUA));
+    fpsTite.setTypedText(touchgfx::TypedText(T___SINGLEUSE_NRRU));
     add(fpsTite);
 
-    fpsValue.setXY(47, 0);
+    fpsValue.setPosition(42, 0, 43, 30);
     fpsValue.setColor(touchgfx::Color::getColorFromRGB(216, 169, 252));
     fpsValue.setLinespacing(0);
-    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_S875).getText());
+    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_1A84).getText());
     fpsValue.setWildcard(fpsValueBuffer);
-    fpsValue.resizeToCurrentText();
-    fpsValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_V2NX));
+    fpsValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_MP6A));
     add(fpsValue);
 }
 

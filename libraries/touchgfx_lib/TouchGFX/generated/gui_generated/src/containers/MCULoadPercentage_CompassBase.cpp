@@ -7,14 +7,14 @@
 
 MCULoadPercentage_CompassBase::MCULoadPercentage_CompassBase()
 {
-    setWidth(85);
+    setWidth(100);
     setHeight(54);
-    mcuLoadPercentage.setPosition(0, 0, 85, 54);
+    mcuLoadPercentage.setPosition(0, 0, 100, 55);
     mcuLoadPercentage.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     mcuLoadPercentage.setLinespacing(0);
-    Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_MO1T).getText());
+    Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_51NZ).getText());
     mcuLoadPercentage.setWildcard(mcuLoadPercentageBuffer);
-    mcuLoadPercentage.setTypedText(touchgfx::TypedText(T_MCULOADPERCENTAGECOMPASS));
+    mcuLoadPercentage.setTypedText(touchgfx::TypedText(T_MCULOADPERCENTAGE_COMPASS));
     add(mcuLoadPercentage);
 }
 

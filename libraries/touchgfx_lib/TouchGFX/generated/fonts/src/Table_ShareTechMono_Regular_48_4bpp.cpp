@@ -4,18 +4,17 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_ShareTechMono_Regular_48_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x0025,  26,  34,  34,   0,  26,   0,   0, 0x00 }, // percent
-    {   442, 0x0030,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // zero
-    {   748, 0x0031,  17,  34,  34,   4,  26,   0,   0, 0x00 }, // one
-    {  1054, 0x0032,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // two
-    {  1326, 0x0033,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // three
-    {  1598, 0x0034,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // four
-    {  1904, 0x0035,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // five
-    {  2176, 0x0036,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // six
-    {  2482, 0x0037,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // seven
-    {  2754, 0x0038,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // eight
-    {  3060, 0x0039,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // nine
-    {  3366, 0x003F,  14,  34,  34,   6,  26,   0,   0, 0x00 }  // question
+    {     0, 0x0030,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // zero
+    {   306, 0x0031,  17,  34,  34,   4,  26,   0,   0, 0x00 }, // one
+    {   612, 0x0032,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // two
+    {   884, 0x0033,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // three
+    {  1156, 0x0034,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // four
+    {  1462, 0x0035,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // five
+    {  1734, 0x0036,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // six
+    {  2040, 0x0037,  16,  34,  34,   5,  26,   0,   0, 0x00 }, // seven
+    {  2312, 0x0038,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // eight
+    {  2618, 0x0039,  18,  34,  34,   4,  26,   0,   0, 0x00 }, // nine
+    {  2924, 0x003F,  14,  34,  34,   6,  26,   0,   0, 0x00 }  // question
 };
 
 // ShareTechMono_Regular_48_4bpp
@@ -33,6 +32,6 @@ touchgfx::GeneratedFont& getFont_ShareTechMono_Regular_48_4bpp();
 
 touchgfx::GeneratedFont& getFont_ShareTechMono_Regular_48_4bpp()
 {
-    static touchgfx::GeneratedFont ShareTechMono_Regular_48_4bpp(glyphs_ShareTechMono_Regular_48_4bpp, 12, 48, 48, 0, 0, 4, 1, 0, 0, unicodes_ShareTechMono_Regular_48_4bpp, kerning_ShareTechMono_Regular_48_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont ShareTechMono_Regular_48_4bpp(glyphs_ShareTechMono_Regular_48_4bpp, 11, 48, 48, 0, 0, 4, 1, 0, 0, unicodes_ShareTechMono_Regular_48_4bpp, kerning_ShareTechMono_Regular_48_4bpp, 63, 0, 0, 0);
     return ShareTechMono_Regular_48_4bpp;
 }

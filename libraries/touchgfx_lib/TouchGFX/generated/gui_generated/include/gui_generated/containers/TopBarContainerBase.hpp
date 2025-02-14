@@ -6,16 +6,24 @@
 
 #include <gui/common/FrontendApplication.hpp>
 #include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 
-class TopBarContainerBase : public touchgfx::Container
+class topbarContainerBase : public touchgfx::Container
 {
 public:
-    TopBarContainerBase();
-    virtual ~TopBarContainerBase();
+    topbarContainerBase();
+    virtual ~topbarContainerBase();
     virtual void initialize();
+
+    /*
+     * Custom Trigger Callback Setters
+     */
+    void setBackButtonIsPressedCallback(touchgfx::GenericCallback<>& callback)
+    {
+        this->backButtonIsPressedCallback = &callback;
+    }
 
 protected:
     FrontendApplication& application() {
@@ -23,13 +31,24 @@ protected:
     }
 
     /*
+     * Custom Trigger Emitters
+     */
+    virtual void emitBackButtonIsPressedCallback()
+    {
+        if (backButtonIsPressedCallback && backButtonIsPressedCallback->isValid())
+        {
+            this->backButtonIsPressedCallback->execute();
+        }
+    }
+
+    /*
      * Member Declarations
      */
-    touchgfx::Box topbarBox;
     touchgfx::TextArea mcuTitle;
     touchgfx::TextAreaWithOneWildcard mcuValue;
-    touchgfx::TextArea fpsTitle;
+    touchgfx::TextArea fpsTite;
     touchgfx::TextAreaWithOneWildcard fpsValue;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  backButton;
 
     /*
      * Wildcard Buffers
@@ -40,6 +59,21 @@ protected:
     touchgfx::Unicode::UnicodeChar fpsValueBuffer[FPSVALUE_SIZE];
 
 private:
+
+    /*
+     * Custom Trigger Callback Declarations
+     */
+    touchgfx::GenericCallback<>* backButtonIsPressedCallback;
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<topbarContainerBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

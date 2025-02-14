@@ -1,5 +1,5 @@
 #include "gui/Transitions/SpinOutTransition.hpp"
-#include "BitmapDatabase.hpp"
+#include <images/BitmapDatabase.hpp>
 #include "gui/common/FloatEasingEquations.hpp"
 
 SpinOutTransition::SpinOutTransition()

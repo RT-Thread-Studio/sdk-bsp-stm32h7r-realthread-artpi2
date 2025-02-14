@@ -9,19 +9,18 @@ MCULoadPercentage_SVGBase::MCULoadPercentage_SVGBase()
 {
     setWidth(122);
     setHeight(41);
-    mcuValue.setXY(55, 0);
+    mcuValue.setPosition(48, 0, 60, 32);
     mcuValue.setColor(touchgfx::Color::getColorFromRGB(216, 169, 252));
     mcuValue.setLinespacing(0);
-    Unicode::snprintf(mcuValueBuffer, MCUVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_9RDV).getText());
+    Unicode::snprintf(mcuValueBuffer, MCUVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_FJG4).getText());
     mcuValue.setWildcard(mcuValueBuffer);
-    mcuValue.resizeToCurrentText();
-    mcuValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_B9OK));
+    mcuValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ICBQ));
     add(mcuValue);
 
     mcuTitle.setXY(0, 0);
     mcuTitle.setColor(touchgfx::Color::getColorFromRGB(216, 169, 252));
     mcuTitle.setLinespacing(0);
-    mcuTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_5FZL));
+    mcuTitle.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZJWC));
     add(mcuTitle);
 }
 

@@ -10,13 +10,3 @@ void Model::tick()
 {
 
 }
-
-void Model::setSelectedDemoNumber(int value)
-{
-    selectedDemoNumber = value;
-}
-
-int Model::getSelectedDemoNumber()
-{
-    return selectedDemoNumber;
-}

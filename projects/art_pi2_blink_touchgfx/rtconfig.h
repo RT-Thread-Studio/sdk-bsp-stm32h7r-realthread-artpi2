@@ -234,13 +234,6 @@
 
 /* CMSIS: ARM Cortex-M Microcontroller Software Interface Standard */
 
-#define PKG_USING_CMSIS_5
-#define PKG_CMSIS_CORE
-#define PKG_USING_CMSIS_5_V50900
-#define PKG_CMSIS_5_VER_NUM 0x50900
-#define PKG_USING_CMSIS_5_AUX
-#define PKG_USING_CMSIS_RTOS2
-#define PKG_USING_CMSIS_RTOS2_LATEST_VERSION
 /* end of CMSIS: ARM Cortex-M Microcontroller Software Interface Standard */
 
 /* Micrium: Micrium software products porting for RT-Thread */

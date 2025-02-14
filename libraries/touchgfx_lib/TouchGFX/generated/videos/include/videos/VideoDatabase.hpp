@@ -5,18 +5,11 @@
 
 #include <touchgfx/hal/Types.hpp>
 
-const uint32_t video_mediumRoussetFactoryDemo_bin_length = 13304702;
+const uint32_t video_ST8464_bin_length = 29749630;
 #ifdef SIMULATOR
-extern const uint8_t* video_mediumRoussetFactoryDemo_bin_start;
+extern const uint8_t* video_ST8464_bin_start;
 #else
-extern const uint8_t video_mediumRoussetFactoryDemo_bin_start[];
-#endif
-
-const uint32_t video_smallRoussetFactoryDemo_bin_length = 587798;
-#ifdef SIMULATOR
-extern const uint8_t* video_smallRoussetFactoryDemo_bin_start;
-#else
-extern const uint8_t video_smallRoussetFactoryDemo_bin_start[];
+extern const uint8_t video_ST8464_bin_start[];
 #endif
 
 const uint32_t video_output_short_bin_length = 6405366;

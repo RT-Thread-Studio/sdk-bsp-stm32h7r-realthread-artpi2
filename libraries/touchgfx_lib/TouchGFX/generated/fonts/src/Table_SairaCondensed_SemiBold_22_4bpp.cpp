@@ -4,6 +4,7 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_SairaCondensed_SemiBold_22_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
+    {     0, 0x0020,   0,   0,   0,   0,   4,   0,   0, 0x00 }, // space
     {     0, 0x0030,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // zero
     {    80, 0x0031,   6,  16,  16,   0,   7,   0,   0, 0x00 }, // one
     {   128, 0x0032,   9,  16,  16,   0,  10,   0,   0, 0x00 }, // two
@@ -15,17 +16,26 @@ KEEP extern const touchgfx::GlyphNode glyphs_SairaCondensed_SemiBold_22_4bpp[] F
     {   592, 0x0038,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // eight
     {   672, 0x0039,  10,  16,  16,   0,  10,   0,   0, 0x00 }, // nine
     {   752, 0x003F,   8,  16,  16,   0,   8,   0,   0, 0x00 }, // question
-    {   816, 0x0041,  11,  16,  16,   0,  11,   0,   2, 0x00 }, // A
+    {   816, 0x0041,  11,  16,  16,   0,  11,   0,   4, 0x00 }, // A
     {   912, 0x0043,   8,  16,  16,   1,   9,   0,   0, 0x00 }, // C
     {   976, 0x0044,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // D
     {  1056, 0x0045,   8,  16,  16,   1,   9,   0,   0, 0x00 }, // E
-    {  1120, 0x0047,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // G
-    {  1200, 0x0049,   3,  16,  16,   1,   5,   0,   0, 0x00 }, // I
-    {  1232, 0x004E,  10,  16,  16,   1,  12,   0,   0, 0x00 }, // N
-    {  1312, 0x004F,  10,  16,  16,   1,  11,   0,   0, 0x00 }, // O
-    {  1392, 0x0052,  10,  16,  16,   1,  11,   0,   0, 0x00 }, // R
-    {  1472, 0x0054,   9,  16,  16,   0,   9,   0,   0, 0x00 }, // T
-    {  1552, 0x0056,  11,  16,  16,   0,  10,   0,   0, 0x00 }  // V
+    {  1120, 0x0046,   8,  16,  16,   1,   9,   0,   0, 0x00 }, // F
+    {  1184, 0x0047,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // G
+    {  1264, 0x0049,   3,  16,  16,   1,   5,   0,   0, 0x00 }, // I
+    {  1296, 0x004C,   7,  16,  16,   1,   8,   0,   0, 0x00 }, // L
+    {  1360, 0x004D,  13,  16,  16,   1,  15,   0,   0, 0x00 }, // M
+    {  1472, 0x004E,  10,  16,  16,   1,  12,   0,   0, 0x00 }, // N
+    {  1552, 0x004F,  10,  16,  16,   1,  11,   0,   0, 0x00 }, // O
+    {  1632, 0x0050,   9,  16,  16,   1,  10,   0,   0, 0x00 }, // P
+    {  1712, 0x0052,  10,  16,  16,   1,  11,   0,   0, 0x00 }, // R
+    {  1792, 0x0053,   9,  16,  16,   0,  10,   0,   0, 0x00 }, // S
+    {  1872, 0x0054,   9,  16,  16,   0,   9,   0,   0, 0x00 }, // T
+    {  1952, 0x0055,   9,  16,  16,   1,  11,   0,   0, 0x00 }, // U
+    {  2032, 0x0056,  11,  16,  16,   0,  10,   4,   1, 0x00 }, // V
+    {  2128, 0x0061,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // a
+    {  2188, 0x0064,   9,  17,  17,   0,  10,   5,   2, 0x00 }, // d
+    {  2273, 0x006F,   9,  12,  12,   0,  10,   7,   2, 0x00 }  // o
 };
 
 // SairaCondensed_SemiBold_22_4bpp
@@ -43,6 +53,6 @@ touchgfx::GeneratedFont& getFont_SairaCondensed_SemiBold_22_4bpp();
 
 touchgfx::GeneratedFont& getFont_SairaCondensed_SemiBold_22_4bpp()
 {
-    static touchgfx::GeneratedFont SairaCondensed_SemiBold_22_4bpp(glyphs_SairaCondensed_SemiBold_22_4bpp, 22, 22, 22, 0, 0, 4, 1, 0, 1, unicodes_SairaCondensed_SemiBold_22_4bpp, kerning_SairaCondensed_SemiBold_22_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SairaCondensed_SemiBold_22_4bpp(glyphs_SairaCondensed_SemiBold_22_4bpp, 32, 22, 22, 0, 0, 4, 1, 0, 1, unicodes_SairaCondensed_SemiBold_22_4bpp, kerning_SairaCondensed_SemiBold_22_4bpp, 63, 0, 0, 0);
     return SairaCondensed_SemiBold_22_4bpp;
 }

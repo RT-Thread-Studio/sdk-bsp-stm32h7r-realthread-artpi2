@@ -85,18 +85,14 @@ void SVGView::moveTheWaffleBackFromButtom()
     mainWaffle.startMoveAnimation(290, 230, 50, touchgfx::EasingEquations::bounceEaseOut, touchgfx::EasingEquations::bounceEaseOut);
 }
 
-void SVGView::iceScoopScrollWheelUpdateItem(IceScoopItemContainer_SVG& item, int16_t itemIndex)
-{
-    item.setIceScoopSVG(itemIndex);
-}
-
 void SVGView::handleTickEvent()
 {
     mcuLoadPercentageContainer.checkMCULoad();
     frameRateContainer.countTheFrames();
+    iceWheelContainer.handleTickEvent();
 
-    leftButton.setTouchable(!iceScoopScrollWheel.isAnimating());
-    rightButton.setTouchable(!iceScoopScrollWheel.isAnimating());
+    leftButton.setTouchable(!iceWheelContainer.isAnimating());
+    rightButton.setTouchable(!iceWheelContainer.isAnimating());
 
     tickCounter++;
     attractUserAttentionToWaffleMenu();
@@ -119,10 +115,10 @@ void SVGView::resetTickCounter()
 
 void SVGView::moveIceScoopsToLeft()
 {
-    iceScoopScrollWheel.animateToItem(iceScoopScrollWheel.getSelectedItem() - 1);
+    iceWheelContainer.moveContainerElementsToLeft();
 }
 
 void SVGView::moveIceScoopsToRight()
 {
-    iceScoopScrollWheel.animateToItem(iceScoopScrollWheel.getSelectedItem() + 1);
+    iceWheelContainer.moveContainerElementsToRight();
 }

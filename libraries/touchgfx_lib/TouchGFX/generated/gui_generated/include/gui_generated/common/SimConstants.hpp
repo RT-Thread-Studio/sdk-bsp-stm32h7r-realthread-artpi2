@@ -6,6 +6,6 @@
 
 static unsigned short SIM_WIDTH = 800;
 static unsigned short SIM_HEIGHT = 480;
-#define SIM_TITLE "TouchGFXDemo9"
+#define SIM_TITLE "TouchGFXDemo7_NO24"
 
 #endif // SIMCONSTANTS_HPP

@@ -166,20 +166,6 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles EXTI line3 interrupt.
-  */
-void EXTI3_IRQHandler(void)
-{
-  /* USER CODE BEGIN EXTI3_IRQn 0 */
-
-  /* USER CODE END EXTI3_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(TP_IRQ_Pin);
-  /* USER CODE BEGIN EXTI3_IRQn 1 */
-
-  /* USER CODE END EXTI3_IRQn 1 */
-}
-
-/**
   * @brief This function handles TIM6 global interrupt.
   */
 void TIM6_IRQHandler(void)
@@ -187,6 +173,7 @@ void TIM6_IRQHandler(void)
   /* USER CODE BEGIN TIM6_IRQn 0 */
 
   /* USER CODE END TIM6_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_IRQn 1 */
 
   /* USER CODE END TIM6_IRQn 1 */

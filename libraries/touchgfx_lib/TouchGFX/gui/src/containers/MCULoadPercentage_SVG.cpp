@@ -10,7 +10,7 @@ void MCULoadPercentage_SVG::initialize()
     MCULoadPercentage_SVGBase::initialize();
 }
 
-void MCULoadPercentage_SVG::updateShownInformation()
+void MCULoadPercentage_SVG::updateShownMCULoadPercentage()
 {
     Unicode::snprintf(mcuValueBuffer, MCUVALUE_SIZE, "%d", currentMCULoadPercentage);
     mcuValue.invalidate();

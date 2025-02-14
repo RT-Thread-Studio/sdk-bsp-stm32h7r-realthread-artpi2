@@ -12,7 +12,7 @@ public:
 
     virtual void initialize();
 protected:
-    virtual void updateShownInformation();
+    virtual void updateShownMCULoadPercentage();
 };
 
 #endif // MCULOADPERCENTAGE_COMPASS_HPP

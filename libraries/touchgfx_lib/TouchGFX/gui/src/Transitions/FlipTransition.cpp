@@ -1,6 +1,6 @@
 #include "gui/Transitions/FlipTransition.hpp"
 #include "gui/common/FloatEasingEquations.hpp"
-#include "BitmapDatabase.hpp"
+#include <images/BitmapDatabase.hpp>
 
 FlipTransition::FlipTransition()
 {
@@ -24,7 +24,6 @@ void FlipTransition::setupTranstion(Bitmap start, Bitmap end)
     endTextureMapper.updateAngles(0.000f, 0.000f, 0.000f);
     endTextureMapper.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
 
-
     startTextureMapper.setXY(0, 0);
     startTextureMapper.setBitmap(touchgfx::Bitmap(start));
     startTextureMapper.setWidth(800);
@@ -39,7 +38,6 @@ void FlipTransition::setupTranstion(Bitmap start, Bitmap end)
 
     add(endTextureMapper);
     add(startTextureMapper);
-
 
     startTextureMapper.invalidate();
     endTextureMapper.invalidate();

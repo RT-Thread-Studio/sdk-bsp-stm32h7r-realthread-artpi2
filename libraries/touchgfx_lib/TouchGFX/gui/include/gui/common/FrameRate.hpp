@@ -13,7 +13,7 @@ public:
 protected:
 
     void checkIf_FPS_RequiresUpdate();
-    virtual void updateShownInformation() = 0;
+    virtual void updateShownFPS() = 0;
 
     uint16_t frameSkippedCounter;
     uint16_t frames;

@@ -43,11 +43,7 @@ KEEP extern const touchgfx::GlyphNode glyphs_SairaCondensed_SemiBold_26_4bpp[] F
     {  3713, 0x0057,  19,  19,  19,   0,  19,  17,   1, 0x00 }, // W
     {  3903, 0x0058,  13,  19,  19,   0,  13,  18,   4, 0x00 }, // X
     {  4036, 0x0059,  12,  19,  19,   0,  12,  22,   1, 0x00 }, // Y
-    {  4150, 0x005A,  11,  19,  19,   0,  11,   0,   0, 0x00 }, // Z
-    {  4264, 0x0061,  10,  14,  14,   0,  11,  23,   3, 0x00 }, // a
-    {  4334, 0x0064,  10,  20,  20,   1,  12,  26,   6, 0x00 }, // d
-    {  4434, 0x006C,   4,  20,  20,   1,   6,   0,   0, 0x00 }, // l
-    {  4474, 0x006F,  10,  14,  14,   1,  11,  32,   6, 0x00 }  // o
+    {  4150, 0x005A,  11,  19,  19,   0,  11,   0,   0, 0x00 }  // Z
 };
 
 // SairaCondensed_SemiBold_26_4bpp
@@ -65,6 +61,6 @@ touchgfx::GeneratedFont& getFont_SairaCondensed_SemiBold_26_4bpp();
 
 touchgfx::GeneratedFont& getFont_SairaCondensed_SemiBold_26_4bpp()
 {
-    static touchgfx::GeneratedFont SairaCondensed_SemiBold_26_4bpp(glyphs_SairaCondensed_SemiBold_26_4bpp, 44, 29, 26, 0, 0, 4, 1, 0, 0, unicodes_SairaCondensed_SemiBold_26_4bpp, kerning_SairaCondensed_SemiBold_26_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SairaCondensed_SemiBold_26_4bpp(glyphs_SairaCondensed_SemiBold_26_4bpp, 40, 29, 26, 0, 0, 4, 1, 0, 0, unicodes_SairaCondensed_SemiBold_26_4bpp, kerning_SairaCondensed_SemiBold_26_4bpp, 63, 0, 0, 0);
     return SairaCondensed_SemiBold_26_4bpp;
 }

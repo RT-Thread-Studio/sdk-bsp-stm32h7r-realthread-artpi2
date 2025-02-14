@@ -10,7 +10,7 @@ void MCULoadPercentage_E_Bike::initialize()
     MCULoadPercentage_E_BikeBase::initialize();
 }
 
-void MCULoadPercentage_E_Bike::updateShownInformation()
+void MCULoadPercentage_E_Bike::updateShownMCULoadPercentage()
 {
     Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%d", currentMCULoadPercentage);
     mcuLoadPercentage.invalidate();

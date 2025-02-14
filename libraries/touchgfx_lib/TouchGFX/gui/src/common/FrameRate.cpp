@@ -30,7 +30,7 @@ void FrameRate::checkIf_FPS_RequiresUpdate()
         if (fps != frames)
         {
             fps = frames;
-            updateShownInformation();
+            updateShownFPS();
         }
         frameSkippedCounter = 0;
         frames = 0;

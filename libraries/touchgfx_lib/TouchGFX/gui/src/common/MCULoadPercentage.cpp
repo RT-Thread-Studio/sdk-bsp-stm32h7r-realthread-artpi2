@@ -14,7 +14,7 @@ void MCULoadPercentage::checkMCULoad()
     // Only update the displayed number when it is different than the previous one
     if (currentMCULoadPercentage != previousMcuLoadPercentage)
     {
-        updateShownInformation();
+        updateShownMCULoadPercentage();
         previousMcuLoadPercentage = currentMCULoadPercentage;
     }
 }

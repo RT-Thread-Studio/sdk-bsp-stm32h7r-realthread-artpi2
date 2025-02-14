@@ -36,7 +36,7 @@ NVIC_PENDSVSET  EQU     0x10000000               ; value to trigger PendSV excep
 ; * rt_base_t rt_hw_interrupt_disable();
 ; */
 rt_hw_interrupt_disable    PROC
-    EXPORT  rt_hw_interrupt_disable
+    EXPORT  rt_hw_interrupt_disable [WEAK]
     MRS     r0, PRIMASK
     CPSID   I
     BX      LR
@@ -46,7 +46,7 @@ rt_hw_interrupt_disable    PROC
 ; * void rt_hw_interrupt_enable(rt_base_t level);
 ; */
 rt_hw_interrupt_enable    PROC
-    EXPORT  rt_hw_interrupt_enable
+    EXPORT  rt_hw_interrupt_enable [WEAK]
     MSR     PRIMASK, r0
     BX      LR
     ENDP
@@ -207,6 +207,10 @@ rt_hw_context_switch_to    PROC
     ; enable interrupts at processor level
     CPSIE   F
     CPSIE   I
+
+    /* clear the BASEPRI register to disable masking priority */
+    MOV     r0, #0x00
+    MSR     BASEPRI, r0
 
     ; ensure PendSV exception taken place before subsequent operation
     DSB

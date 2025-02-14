@@ -7,14 +7,14 @@
 
 MCULoadPercentage_E_BikeBase::MCULoadPercentage_E_BikeBase()
 {
-    setWidth(115);
-    setHeight(60);
-    mcuLoadPercentage.setPosition(0, 0, 115, 60);
+    setWidth(130);
+    setHeight(70);
+    mcuLoadPercentage.setPosition(0, 0, 130, 70);
     mcuLoadPercentage.setColor(touchgfx::Color::getColorFromRGB(210, 243, 255));
     mcuLoadPercentage.setLinespacing(0);
-    Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_MO1T).getText());
+    Unicode::snprintf(mcuLoadPercentageBuffer, MCULOADPERCENTAGE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_NJCX).getText());
     mcuLoadPercentage.setWildcard(mcuLoadPercentageBuffer);
-    mcuLoadPercentage.setTypedText(touchgfx::TypedText(T_MCULOADPERCENTAGE));
+    mcuLoadPercentage.setTypedText(touchgfx::TypedText(T_MCULOADPERCENTAGE_EBIKE));
     add(mcuLoadPercentage);
 }
 

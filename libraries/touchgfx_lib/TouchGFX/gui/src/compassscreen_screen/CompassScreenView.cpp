@@ -1,12 +1,5 @@
 #include <gui/compassscreen_screen/CompassScreenView.hpp>
 
-#include <BitmapDatabase.hpp>
-
-#include <array>
-#include <cmath>
-#include <initializer_list>
-#include <string>
-
 // angle range indices
 //
 //       0      45     90    135    180    225    270    315    360
@@ -28,6 +21,7 @@ int32_t CompassScreenView::computeRangeIndex(float angle_deg)
     return static_cast<int32_t>(std::floor((angle_deg + 22.5f) / 45.0f)) & 7;
 }
 
+
 CompassScreenView::CompassScreenView() :
     _wheel{ },
     _tick(0),
@@ -43,13 +37,7 @@ CompassScreenView::CompassScreenView() :
 void CompassScreenView::setupScreen()
 {
     CompassScreenViewBase::setupScreen();
-    HAL::getInstance()->setFrameRateCompensation(true);
-
-    angle_verbose_deg = -1;
-    angle_range_index = -1;
-    initialized = false;
     _wheel._dirty = true;
-
     updateView();
 }
 
@@ -97,8 +85,8 @@ void CompassScreenView::handleTickEvent()
 {
     updateView();
 
-    frameRate.countTheFrames();
-    mcuLoadPercentage.checkMCULoad();
+    frameRateContainer.countTheFrames();
+    mcuLoadPercentageContainer.checkMCULoad();
 
     tick++;
 }

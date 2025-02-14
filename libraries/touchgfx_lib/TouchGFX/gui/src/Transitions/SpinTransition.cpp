@@ -1,5 +1,5 @@
 #include "gui/Transitions/SpinTransition.hpp"
-#include "BitmapDatabase.hpp"
+#include <images/BitmapDatabase.hpp>
 #include <gui/common/FloatEasingEquations.hpp>
 #include "touchgfx/EasingEquations.hpp"
 
@@ -52,7 +52,6 @@ void SpinTransition::animationTick(uint16_t step, uint16_t duration)
     {
         endTextureMapper.setVisible(true);
     }
-
     float newAngle = FloatEasingEquations::floatCubicEaseInOut((float)step, 0, 2 * PI, (float)duration);
     startTextureMapper.updateZAngle(newAngle);
     endTextureMapper.updateZAngle(newAngle);

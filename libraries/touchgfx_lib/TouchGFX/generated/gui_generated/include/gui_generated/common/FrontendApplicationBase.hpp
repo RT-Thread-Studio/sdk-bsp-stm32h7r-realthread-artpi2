@@ -17,65 +17,71 @@ public:
 
     virtual void changeToStartScreen()
     {
-        gotoVideoIntroScreenScreenNoTransition();
+        gotoMenuScreenNoTransition();
     }
 
-    // RoussetDemo
-    void gotoRoussetDemoScreenWipeTransitionEast();
+    // Menu
+    void gotoMenuScreenNoTransition();
 
-    // ScreenTransitions
-    void gotoScreenTransitionsScreenWipeTransitionEast();
+    void gotoMenuScreenWipeTransitionNorth();
 
-    // E_BikeScreen
-    void gotoE_BikeScreenScreenWipeTransitionEast();
+    void gotoMenuScreenWipeTransitionSouth();
 
-    // CompassScreen
-    void gotoCompassScreenScreenWipeTransitionEast();
+    void gotoMenuScreenWipeTransitionWest();
 
-    // VideoIntroScreen
-    void gotoVideoIntroScreenScreenNoTransition();
-
-    // MenuLauncherScreen
-    void gotoMenuLauncherScreenScreenWipeTransitionWest();
-
-    void gotoMenuLauncherScreenScreenNoTransition();
-
-    // InfoScreen
-    void gotoInfoScreenScreenWipeTransitionEast();
+    void gotoMenuScreenWipeTransitionEast();
 
     // SVG
-    void gotoSVGScreenWipeTransitionEast();
+    void gotoSVGScreenWipeTransitionSouth();
+
+    // DiceDemo
+    void gotoDiceDemoScreenWipeTransitionNorth();
+
+    // MJPEG
+    void gotoMJPEGScreenWipeTransitionEast();
+
+    // CompassScreen
+    void gotoCompassScreenScreenWipeTransitionWest();
+
+    // E_BikeDemo
+    void gotoE_BikeDemoScreenWipeTransitionNorth();
+
+    // ScreenTransitionDemo
+    void gotoScreenTransitionDemoScreenWipeTransitionSouth();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
     Model& model;
 
-    // RoussetDemo
-    void gotoRoussetDemoScreenWipeTransitionEastImpl();
+    // Menu
+    void gotoMenuScreenNoTransitionImpl();
 
-    // ScreenTransitions
-    void gotoScreenTransitionsScreenWipeTransitionEastImpl();
+    void gotoMenuScreenWipeTransitionNorthImpl();
 
-    // E_BikeScreen
-    void gotoE_BikeScreenScreenWipeTransitionEastImpl();
+    void gotoMenuScreenWipeTransitionSouthImpl();
 
-    // CompassScreen
-    void gotoCompassScreenScreenWipeTransitionEastImpl();
+    void gotoMenuScreenWipeTransitionWestImpl();
 
-    // VideoIntroScreen
-    void gotoVideoIntroScreenScreenNoTransitionImpl();
-
-    // MenuLauncherScreen
-    void gotoMenuLauncherScreenScreenWipeTransitionWestImpl();
-
-    void gotoMenuLauncherScreenScreenNoTransitionImpl();
-
-    // InfoScreen
-    void gotoInfoScreenScreenWipeTransitionEastImpl();
+    void gotoMenuScreenWipeTransitionEastImpl();
 
     // SVG
-    void gotoSVGScreenWipeTransitionEastImpl();
+    void gotoSVGScreenWipeTransitionSouthImpl();
+
+    // DiceDemo
+    void gotoDiceDemoScreenWipeTransitionNorthImpl();
+
+    // MJPEG
+    void gotoMJPEGScreenWipeTransitionEastImpl();
+
+    // CompassScreen
+    void gotoCompassScreenScreenWipeTransitionWestImpl();
+
+    // E_BikeDemo
+    void gotoE_BikeDemoScreenWipeTransitionNorthImpl();
+
+    // ScreenTransitionDemo
+    void gotoScreenTransitionDemoScreenWipeTransitionSouthImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

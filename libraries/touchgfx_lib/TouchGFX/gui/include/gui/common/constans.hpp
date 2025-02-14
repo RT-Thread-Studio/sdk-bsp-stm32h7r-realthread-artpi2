@@ -7,7 +7,7 @@ static const int SELECTION_WHEEL_TEXT_FADE_DURATION     = 30;
 static const int TRANSITION_SPEED_FAST                  = 50;
 static const int TRANSITION_SPEED_SLOW                  = 300;
 
-static const int CHROM_ART_GRADIENT_FADE_DURATION       = 50;
+static const int NEO_CHROM_GRADIENT_FADE_DURATION       = 50;
 static const int INDICATOR_MOVE_DURATION                = 18;
 static const int TRANSITION_MENU_TIMEOUT                = 600;
 

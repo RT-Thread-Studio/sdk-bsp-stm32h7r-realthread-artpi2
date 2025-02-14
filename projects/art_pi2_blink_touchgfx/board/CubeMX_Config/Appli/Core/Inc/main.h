@@ -69,7 +69,6 @@ void Error_Handler(void);
 #define LCD_EN_GPIO_Port GPIOE
 #define TP_IRQ_Pin GPIO_PIN_3
 #define TP_IRQ_GPIO_Port GPIOE
-#define TP_IRQ_EXTI_IRQn EXTI3_IRQn
 #define LCD_BL_CTRL_Pin GPIO_PIN_15
 #define LCD_BL_CTRL_GPIO_Port GPIOG
 

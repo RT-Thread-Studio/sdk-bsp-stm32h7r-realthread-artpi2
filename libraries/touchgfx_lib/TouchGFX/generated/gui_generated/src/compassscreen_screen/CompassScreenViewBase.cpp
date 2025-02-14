@@ -14,11 +14,11 @@ CompassScreenViewBase::CompassScreenViewBase() :
     add(__background);
 
     background.setXY(0, 0);
-    background.setBitmap(touchgfx::Bitmap(BITMAP_COMPASS_BACKGROUND_800_480_ID));
+    background.setBitmap(touchgfx::Bitmap(BITMAP_COMPASS_BACKGROUND_480_VIPER_ID));
     add(background);
 
     wheel.setXY(252, 30);
-    wheel.setBitmap(touchgfx::Bitmap(BITMAP_COMPASS_DISC_ID));
+    wheel.setBitmap(touchgfx::Bitmap(BITMAP_COMPASS_DISC_VIPER_ID));
     wheel.setWidth(420);
     wheel.setHeight(420);
     wheel.setBitmapPosition(0.0f, 0.0f);
@@ -30,7 +30,7 @@ CompassScreenViewBase::CompassScreenViewBase() :
     wheel.setRenderingAlgorithm(touchgfx::TextureMapper::BILINEAR_INTERPOLATION);
     add(wheel);
 
-    angleVerbose.setPosition(30, 275, 175, 60);
+    angleVerbose.setPosition(30, 281, 175, 60);
     angleVerbose.setColor(touchgfx::Color::getColorFromRGB(0, 221, 246));
     angleVerbose.setLinespacing(0);
     Unicode::snprintf(angleVerboseBuffer, ANGLEVERBOSE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_VVZP).getText());
@@ -38,13 +38,13 @@ CompassScreenViewBase::CompassScreenViewBase() :
     angleVerbose.setTypedText(touchgfx::TypedText(T_ROTATIONLABEL));
     add(angleVerbose);
 
-    angleNumeric.setXY(24, 135);
+    angleNumeric.setXY(20, 104);
     angleNumeric.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     angleNumeric.setLinespacing(0);
     Unicode::snprintf(angleNumericBuffer, ANGLENUMERIC_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_MUJS).getText());
     angleNumeric.setWildcard(angleNumericBuffer);
     angleNumeric.resizeToCurrentText();
-    angleNumeric.setTypedText(touchgfx::TypedText(T_ROTATIONDEGREECOMPASS));
+    angleNumeric.setTypedText(touchgfx::TypedText(T_ROTATIONDEGREE));
     add(angleNumeric);
 
     compassCenter.setXY(391, 169);
@@ -52,27 +52,27 @@ CompassScreenViewBase::CompassScreenViewBase() :
     add(compassCenter);
 
     backButton.setXY(0, 0);
-    backButton.setBitmaps(touchgfx::Bitmap(BITMAP_BACK_BUTTON_NORMAL_ID), touchgfx::Bitmap(BITMAP_BACK_BUTTON_PRESSED_ID));
+    backButton.setBitmaps(touchgfx::Bitmap(BITMAP_BACK_BUTTON_NORMAL_COMPASS_ID), touchgfx::Bitmap(BITMAP_BACK_BUTTON_PRESSED_COMPASS_ID));
     backButton.setAction(buttonCallback);
     add(backButton);
 
-    mcuLoadLabelText.setPosition(684, 25, 100, 35);
+    mcuLoadLabelText.setPosition(682, 15, 100, 35);
     mcuLoadLabelText.setColor(touchgfx::Color::getColorFromRGB(137, 154, 254));
     mcuLoadLabelText.setLinespacing(0);
     mcuLoadLabelText.setTypedText(touchgfx::TypedText(T_MCULABELTEXT_COMPASS));
     add(mcuLoadLabelText);
 
-    fpsLabelText.setPosition(740, 367, 35, 35);
+    fpsLabelText.setPosition(745, 430, 35, 35);
     fpsLabelText.setColor(touchgfx::Color::getColorFromRGB(137, 154, 254));
     fpsLabelText.setLinespacing(0);
     fpsLabelText.setTypedText(touchgfx::TypedText(T_FPSLABELTEXT_COMPASS));
     add(fpsLabelText);
 
-    frameRate.setXY(708, 402);
-    add(frameRate);
+    frameRateContainer.setXY(713, 380);
+    add(frameRateContainer);
 
-    mcuLoadPercentage.setXY(699, 60);
-    add(mcuLoadPercentage);
+    mcuLoadPercentageContainer.setXY(682, 50);
+    add(mcuLoadPercentageContainer);
 }
 
 CompassScreenViewBase::~CompassScreenViewBase()
@@ -82,17 +82,17 @@ CompassScreenViewBase::~CompassScreenViewBase()
 
 void CompassScreenViewBase::setupScreen()
 {
-    frameRate.initialize();
-    mcuLoadPercentage.initialize();
+    frameRateContainer.initialize();
+    mcuLoadPercentageContainer.initialize();
 }
 
 void CompassScreenViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
     if (&src == &backButton)
     {
-        //ChangeScreenToMain
-        //When backButton clicked change screen to MenuLauncherScreen
-        //Go to MenuLauncherScreen with screen transition towards West
-        application().gotoMenuLauncherScreenScreenWipeTransitionWest();
+        //GoBackToMenu
+        //When backButton clicked change screen to Menu
+        //Go to Menu with screen transition towards East
+        application().gotoMenuScreenWipeTransitionEast();
     }
 }

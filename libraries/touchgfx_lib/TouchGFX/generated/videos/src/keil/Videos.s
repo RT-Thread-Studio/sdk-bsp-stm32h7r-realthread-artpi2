@@ -2,15 +2,11 @@
 
 	AREA	ExtFlashSection, DATA, READONLY
 
-	EXPORT	video_mediumRoussetFactoryDemo_bin_start
-	EXPORT	video_smallRoussetFactoryDemo_bin_start
+	EXPORT	video_ST8464_bin_start
 	EXPORT	video_output_short_bin_start
 
-video_mediumRoussetFactoryDemo_bin_start
-	INCBIN	../../bin/mediumRoussetFactoryDemo.bin
-
-video_smallRoussetFactoryDemo_bin_start
-	INCBIN	../../bin/smallRoussetFactoryDemo.bin
+video_ST8464_bin_start
+	INCBIN	../../bin/ST8464.bin
 
 video_output_short_bin_start
 	INCBIN	../../bin/output_short.bin

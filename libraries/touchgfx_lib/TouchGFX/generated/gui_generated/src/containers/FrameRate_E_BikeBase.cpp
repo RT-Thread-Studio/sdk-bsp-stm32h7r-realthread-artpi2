@@ -7,14 +7,14 @@
 
 FrameRate_E_BikeBase::FrameRate_E_BikeBase()
 {
-    setWidth(80);
-    setHeight(60);
-    fpsValue.setPosition(0, 0, 80, 60);
+    setWidth(78);
+    setHeight(70);
+    fpsValue.setPosition(0, 0, 78, 70);
     fpsValue.setColor(touchgfx::Color::getColorFromRGB(210, 243, 255));
     fpsValue.setLinespacing(0);
-    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_BYCA).getText());
+    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_UHJ4).getText());
     fpsValue.setWildcard(fpsValueBuffer);
-    fpsValue.setTypedText(touchgfx::TypedText(T_FPSVALUE));
+    fpsValue.setTypedText(touchgfx::TypedText(T_FPSVALUE_EBIKE));
     add(fpsValue);
 }
 

@@ -1,22 +1,21 @@
 #ifndef TOPBARCONTAINER_HPP
 #define TOPBARCONTAINER_HPP
 
-#include <gui_generated/containers/TopBarContainerBase.hpp>
+#include <gui_generated/containers/topbarContainerBase.hpp>
+#include <gui/common/FrameRate.hpp>
+#include <gui/common/MCULoadPercentage.hpp>
 
-class TopBarContainer : public TopBarContainerBase
+class topbarContainer : public topbarContainerBase, public FrameRate, public MCULoadPercentage
 {
 public:
-    TopBarContainer();
-    virtual ~TopBarContainer() {}
+    topbarContainer();
+    virtual ~topbarContainer() {}
 
     virtual void initialize();
-
-    void updateFPS(int16_t fps);
-    void updateMCU(uint16_t mcuLoad);
-
 protected:
 
-private:
+    virtual void updateShownFPS();
+    virtual void updateShownMCULoadPercentage();
 };
 
 #endif // TOPBARCONTAINER_HPP

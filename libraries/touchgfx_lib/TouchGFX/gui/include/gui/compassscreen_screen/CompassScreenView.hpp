@@ -8,7 +8,6 @@
 #include <cmath>
 #include <string>
 
-
 class CompassScreenView : public CompassScreenViewBase
 {
 public:
@@ -20,6 +19,7 @@ public:
         float _velocity = 0.0f;
         bool _dirty = false;
     };
+
     CompassScreenView();
     virtual ~CompassScreenView() {}
     virtual void setupScreen();

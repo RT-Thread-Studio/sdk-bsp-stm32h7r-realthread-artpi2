@@ -25,6 +25,10 @@ path += [cwd + '/TouchGFX/target']
 path += [cwd + '/TouchGFX/target/generated']
 path += [cwd + '/Middlewares/ST/touchgfx/framework/include']
 path += [cwd + '/Middlewares/ST/touchgfx/framework/include/touchgfx']
+path += [cwd + '/Middlewares/Third_Party/CMSIS_RTOS_V2']
+path += [cwd + '/../../libraries/CMSIS/RTOS2/Include']
+
+src += Glob('./Middlewares/Third_Party/CMSIS_RTOS_V2/*.c')
 
 if rtconfig.CROSS_TOOL == 'gcc':
     libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc']
@@ -38,7 +42,7 @@ elif rtconfig.CROSS_TOOL == 'keil':
     src += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/Keil6.x/nemagfx_core_release-wchar16.lib']
     src += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/lib/cortex_m7/Keil6.x/touchgfxnema_release-wchar16.lib']
 
-group = DefineGroup('TouchGFX_app', src, depend = ['ART_PI_TouchGFX_LIB'], CPPPATH = path, LIBS = libs, LIBPATH = libpath)
+group = DefineGroup('TouchGFX_lib', src, depend = ['ART_PI_TouchGFX_LIB'], CPPPATH = path, LIBS = libs, LIBPATH = libpath)
 
 # add TouchGFX generated
 genSrc = Glob('./TouchGFX/generated/fonts/src/*.cpp')

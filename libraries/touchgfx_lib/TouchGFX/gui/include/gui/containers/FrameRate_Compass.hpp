@@ -12,7 +12,7 @@ public:
 
     virtual void initialize();
 protected:
-    virtual void updateShownInformation();
+    virtual void updateShownFPS();
 };
 
 #endif // FRAMERATE_COMPASS_HPP

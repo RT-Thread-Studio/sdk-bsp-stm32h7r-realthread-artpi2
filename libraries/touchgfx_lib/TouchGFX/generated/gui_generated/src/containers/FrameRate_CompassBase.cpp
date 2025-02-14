@@ -12,9 +12,9 @@ FrameRate_CompassBase::FrameRate_CompassBase()
     fpsValue.setPosition(0, 0, 67, 53);
     fpsValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     fpsValue.setLinespacing(0);
-    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_BYCA).getText());
+    Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_UDE8).getText());
     fpsValue.setWildcard(fpsValueBuffer);
-    fpsValue.setTypedText(touchgfx::TypedText(T_FPSVALUECOMPASS));
+    fpsValue.setTypedText(touchgfx::TypedText(T_FPSVALUE_COMPASS));
     add(fpsValue);
 }
 

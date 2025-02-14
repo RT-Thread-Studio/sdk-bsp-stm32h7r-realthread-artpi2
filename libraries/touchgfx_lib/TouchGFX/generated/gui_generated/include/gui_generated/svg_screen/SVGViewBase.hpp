@@ -16,8 +16,7 @@
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/mixins/MoveAnimator.hpp>
 #include <gui/containers/WaffleMenuContainer.hpp>
-#include <touchgfx/containers/scrollers/ScrollWheel.hpp>
-#include <gui/containers/IceScoopItemContainer_SVG.hpp>
+#include <gui/containers/IceScoopWheelContainer_SVG.hpp>
 
 class SVGViewBase : public touchgfx::View<SVGPresenter>
 {
@@ -25,12 +24,6 @@ public:
     SVGViewBase();
     virtual ~SVGViewBase();
     virtual void setupScreen();
-
-    virtual void iceScoopScrollWheelUpdateItem(IceScoopItemContainer_SVG& item, int16_t itemIndex)
-    {
-        // Override and implement this function in SVG
-    }
-    virtual void handleKeyEvent(uint8_t key);
 
     /*
      * Virtual Action Handlers
@@ -69,8 +62,7 @@ protected:
     touchgfx::Button leftButton;
     touchgfx::Button rightButton;
     WaffleMenuContainer waffleMenu;
-    touchgfx::ScrollWheel iceScoopScrollWheel;
-    touchgfx::DrawableListItems<IceScoopItemContainer_SVG, 5> iceScoopScrollWheelListItems;
+    IceScoopWheelContainer_SVG iceWheelContainer;
 
 private:
 
@@ -83,7 +75,6 @@ private:
     /*
      * Callback Declarations
      */
-    touchgfx::Callback<SVGViewBase, touchgfx::DrawableListItemsInterface*, int16_t, int16_t> updateItemCallback;
     touchgfx::Callback < SVGViewBase, const touchgfx::MoveAnimator<touchgfx::SVGImage>& > hideTheMainWaffleEndedCallback;
     touchgfx::Callback<SVGViewBase> waffleMenuNewWaffleIsChosenCallback;
     touchgfx::Callback<SVGViewBase, const touchgfx::AbstractButton&> buttonCallback;
@@ -92,7 +83,6 @@ private:
     /*
      * Callback Handler Declarations
      */
-    void updateItemCallbackHandler(touchgfx::DrawableListItemsInterface* items, int16_t containerIndex, int16_t itemIndex);
     void hideTheMainWaffleEndedCallbackHandler(const touchgfx::MoveAnimator<touchgfx::SVGImage>& comp);
     void waffleMenuNewWaffleIsChosenCallbackHandler();
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);

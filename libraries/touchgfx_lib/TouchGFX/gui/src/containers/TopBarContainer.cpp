@@ -1,23 +1,25 @@
-#include <gui/containers/TopBarContainer.hpp>
+#include <gui/containers/topbarContainer.hpp>
+#include "gui/common/constans.hpp"
+#include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
 
-TopBarContainer::TopBarContainer()
+topbarContainer::topbarContainer()
 {
-
 }
 
-void TopBarContainer::initialize()
+void topbarContainer::initialize()
 {
-    TopBarContainerBase::initialize();
+    topbarContainerBase::initialize();
 }
 
-void TopBarContainer::updateFPS(int16_t fps)
+void topbarContainer::updateShownFPS()
 {
     Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%d", fps);
     fpsValue.invalidate();
 }
 
-void TopBarContainer::updateMCU(uint16_t mcuLoad)
+void topbarContainer::updateShownMCULoadPercentage()
 {
-    Unicode::snprintf(mcuValueBuffer, MCUVALUE_SIZE, "%d", mcuLoad);
+    Unicode::snprintf(mcuValueBuffer, MCUVALUE_SIZE, "%d", currentMCULoadPercentage);
     mcuValue.invalidate();
 }

@@ -25,11 +25,8 @@
 /* USER CODE BEGIN TouchGFXHAL.cpp */
 #include "FreeRTOS.h"
 #include <platform/driver/lcd/LCD16bpp.hpp>
-#include "stm32h7rsxx_hal.h"
 
 using namespace touchgfx;
-
-extern GFXMMU_HandleTypeDef hgfxmmu;
 
 void activateNeoChrom(bool active)
 {
@@ -58,7 +55,6 @@ void TouchGFXHAL::initialize()
     enableDMAAcceleration(false);
 }
 
-static uint16_t* tft = 0;
 /**
  * Gets the frame buffer address used by the TFT controller.
  *
@@ -66,7 +62,12 @@ static uint16_t* tft = 0;
  */
 uint16_t* TouchGFXHAL::getTFTFrameBuffer() const
 {
-    return tft;
+    // Calling parent implementation of getTFTFrameBuffer().
+    //
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
+
+    return TouchGFXGeneratedHAL::getTFTFrameBuffer();
 }
 
 /**
@@ -76,15 +77,12 @@ uint16_t* TouchGFXHAL::getTFTFrameBuffer() const
  */
 void TouchGFXHAL::setTFTFrameBuffer(uint16_t* address)
 {
-    tft = address;
-    if (tft == (uint16_t*)GFXMMU_VIRTUAL_BUFFER0_BASE)
-    {
-        TouchGFXGeneratedHAL::setTFTFrameBuffer((uint16_t*)hgfxmmu.Init.Buffers.Buf0Address);
-    }
-    else
-    {
-        TouchGFXGeneratedHAL::setTFTFrameBuffer((uint16_t*)hgfxmmu.Init.Buffers.Buf1Address);
-    }
+    // Calling parent implementation of setTFTFrameBuffer(uint16_t* address).
+    //
+    // To overwrite the generated implementation, omit call to parent function
+    // and implemented needed functionality here.
+
+    TouchGFXGeneratedHAL::setTFTFrameBuffer(address);
 }
 
 /**

@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "gfxmmu_lut.h"
 #include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -46,8 +45,6 @@
 CRC_HandleTypeDef hcrc;
 
 DMA2D_HandleTypeDef hdma2d;
-
-GFXMMU_HandleTypeDef hgfxmmu;
 
 GPU2D_HandleTypeDef hgpu2d;
 
@@ -77,7 +74,6 @@ static void MX_FLASH_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_GPU2D_Init(void);
 static void MX_ICACHE_GPU2D_Init(void);
-static void MX_GFXMMU_Init(void);
 static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -137,7 +133,6 @@ int main(void)
   MX_I2C1_Init();
   MX_GPU2D_Init();
   MX_ICACHE_GPU2D_Init();
-  MX_GFXMMU_Init();
   MX_UART4_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
@@ -263,55 +258,6 @@ static void MX_FLASH_Init(void)
   /* USER CODE BEGIN FLASH_Init 2 */
 
   /* USER CODE END FLASH_Init 2 */
-
-}
-
-/**
-  * @brief GFXMMU Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GFXMMU_Init(void)
-{
-
-  /* USER CODE BEGIN GFXMMU_Init 0 */
-
-  /* USER CODE END GFXMMU_Init 0 */
-
-  GFXMMU_PackingTypeDef pPacking = {0};
-
-  /* USER CODE BEGIN GFXMMU_Init 1 */
-
-  /* USER CODE END GFXMMU_Init 1 */
-  hgfxmmu.Instance = GFXMMU;
-  hgfxmmu.Init.BlockSize = GFXMMU_12BYTE_BLOCKS;
-  hgfxmmu.Init.DefaultValue = 0;
-  hgfxmmu.Init.AddressTranslation = DISABLE;
-  hgfxmmu.Init.Buffers.Buf0Address = 0x90000000;
-  hgfxmmu.Init.Buffers.Buf1Address = 0x90200000;
-  hgfxmmu.Init.Buffers.Buf2Address = 0;
-  hgfxmmu.Init.Buffers.Buf3Address = 0;
-  hgfxmmu.Init.Interrupts.Activation = DISABLE;
-  if (HAL_GFXMMU_Init(&hgfxmmu) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  pPacking.Buffer0Activation = ENABLE;
-  pPacking.Buffer0Mode = GFXMMU_PACKING_MSB_REMOVE;
-  pPacking.Buffer1Activation = ENABLE;
-  pPacking.Buffer1Mode = GFXMMU_PACKING_MSB_REMOVE;
-  pPacking.Buffer2Activation = DISABLE;
-  pPacking.Buffer2Mode = GFXMMU_PACKING_MSB_REMOVE;
-  pPacking.Buffer3Activation = DISABLE;
-  pPacking.Buffer3Mode = GFXMMU_PACKING_MSB_REMOVE;
-  pPacking.DefaultAlpha = 0xFF;
-  if (HAL_GFXMMU_ConfigPacking(&hgfxmmu, &pPacking) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN GFXMMU_Init 2 */
-
-  /* USER CODE END GFXMMU_Init 2 */
 
 }
 
@@ -514,12 +460,12 @@ static void MX_LTDC_Init(void)
   pLayerCfg.WindowX1 = 800;
   pLayerCfg.WindowY0 = 0;
   pLayerCfg.WindowY1 = 480;
-  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
   pLayerCfg.Alpha = 255;
   pLayerCfg.Alpha0 = 0;
   pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
   pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
-  pLayerCfg.FBStartAdress = GFXMMU_VIRTUAL_BUFFER0_BASE;
+  pLayerCfg.FBStartAdress = 0;
   pLayerCfg.ImageWidth = 800;
   pLayerCfg.ImageHeight = 480;
   pLayerCfg.Backcolor.Blue = 0;
@@ -644,10 +590,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LCD_BL_CTRL_GPIO_Port, &GPIO_InitStruct);
-
-  /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(TP_IRQ_EXTI_IRQn, 5, 0);
-  HAL_NVIC_EnableIRQ(TP_IRQ_EXTI_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

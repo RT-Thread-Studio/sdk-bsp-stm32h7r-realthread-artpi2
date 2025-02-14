@@ -21,7 +21,6 @@ DMA_HandleTypeDef handle_HPDMA1_Channel0;
 LTDC_HandleTypeDef hltdc;
 JPEG_HandleTypeDef hjpeg;
 GPU2D_HandleTypeDef hgpu2d;
-GFXMMU_HandleTypeDef hgfxmmu;
 DMA2D_HandleTypeDef hdma2d;
 
 static void MX_CRC_Init(void);
@@ -212,55 +211,6 @@ static void MX_DMA2D_Init(void)
 }
 
 /**
-  * @brief GFXMMU Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GFXMMU_Init(void)
-{
-
-    /* USER CODE BEGIN GFXMMU_Init 0 */
-
-    /* USER CODE END GFXMMU_Init 0 */
-
-    GFXMMU_PackingTypeDef pPacking = {0};
-
-    /* USER CODE BEGIN GFXMMU_Init 1 */
-
-    /* USER CODE END GFXMMU_Init 1 */
-    hgfxmmu.Instance = GFXMMU;
-    hgfxmmu.Init.BlockSize = GFXMMU_12BYTE_BLOCKS;
-    hgfxmmu.Init.DefaultValue = 0;
-    hgfxmmu.Init.AddressTranslation = DISABLE;
-    hgfxmmu.Init.Buffers.Buf0Address = 0x90000000;
-    hgfxmmu.Init.Buffers.Buf1Address = 0x90200000;
-    hgfxmmu.Init.Buffers.Buf2Address = 0;
-    hgfxmmu.Init.Buffers.Buf3Address = 0;
-    hgfxmmu.Init.Interrupts.Activation = DISABLE;
-    if (HAL_GFXMMU_Init(&hgfxmmu) != HAL_OK)
-    {
-        Error_Handler();
-    }
-    pPacking.Buffer0Activation = ENABLE;
-    pPacking.Buffer0Mode = GFXMMU_PACKING_MSB_REMOVE;
-    pPacking.Buffer1Activation = ENABLE;
-    pPacking.Buffer1Mode = GFXMMU_PACKING_MSB_REMOVE;
-    pPacking.Buffer2Activation = DISABLE;
-    pPacking.Buffer2Mode = GFXMMU_PACKING_MSB_REMOVE;
-    pPacking.Buffer3Activation = DISABLE;
-    pPacking.Buffer3Mode = GFXMMU_PACKING_MSB_REMOVE;
-    pPacking.DefaultAlpha = 0xFF;
-    if (HAL_GFXMMU_ConfigPacking(&hgfxmmu, &pPacking) != HAL_OK)
-    {
-        Error_Handler();
-    }
-    /* USER CODE BEGIN GFXMMU_Init 2 */
-
-    /* USER CODE END GFXMMU_Init 2 */
-
-}
-
-/**
   * @brief GPU2D Initialization Function
   * @param None
   * @retval None
@@ -411,12 +361,12 @@ static void MX_LTDC_Init(void)
     pLayerCfg.WindowX1 = 800;
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = 480;
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
     pLayerCfg.Alpha = 255;
     pLayerCfg.Alpha0 = 0;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
     pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
-    pLayerCfg.FBStartAdress = GFXMMU_VIRTUAL_BUFFER0_BASE;
+    pLayerCfg.FBStartAdress = 0;
     pLayerCfg.ImageWidth = 800;
     pLayerCfg.ImageHeight = 480;
     pLayerCfg.Backcolor.Blue = 0;
@@ -429,11 +379,11 @@ static void MX_LTDC_Init(void)
     /* USER CODE BEGIN LTDC_Init 2 */
     // Reconfigure pixelformat since TouchGFX project generator does not allow setting different format for LTDC and remaining configuration
     // This way TouchGFX runs 32BPP mode but the LTDC accesses the real framebuffer in 24BPP
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
-    if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
-    {
-        Error_Handler();
-    }
+//    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
+//    if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
+//    {
+//        Error_Handler();
+//    }
     /* USER CODE END LTDC_Init 2 */
 }
 
@@ -452,7 +402,6 @@ void touchgfx_thread_entry(void *parameter)
     MX_JPEG_Init();
     MX_GPU2D_Init();
     MX_ICACHE_GPU2D_Init();
-    MX_GFXMMU_Init();
 
     En_LCDBlacklight();
 

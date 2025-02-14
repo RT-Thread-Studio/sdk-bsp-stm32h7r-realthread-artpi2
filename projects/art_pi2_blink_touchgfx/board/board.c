@@ -17,9 +17,23 @@
 #define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
-void system_clock_config(int target_freq_mhz)
-{
+#define RT_NVIC_PRO_BITS    __NVIC_PRIO_BITS
+#define RT_MAX_SYSCALL_INTERRUPT_PRIORITY    7
 
+rt_base_t rt_hw_interrupt_disable(void)
+{
+    rt_base_t level = __get_BASEPRI();
+    __set_BASEPRI(RT_MAX_SYSCALL_INTERRUPT_PRIORITY << (8 - RT_NVIC_PRO_BITS));
+
+    __ISB();
+    __DSB();
+
+    return level;
+}
+
+void rt_hw_interrupt_enable(rt_base_t level)
+{
+    __set_BASEPRI(level);
 }
 
 int clock_information(void)
@@ -35,11 +49,6 @@ int clock_information(void)
     return RT_EOK;
 }
 INIT_BOARD_EXPORT(clock_information);
-
-void clk_init(char *clk_source, int source_freq, int target_freq)
-{
-    system_clock_config(target_freq);
-}
 
 void rt_hw_board_init()
 {

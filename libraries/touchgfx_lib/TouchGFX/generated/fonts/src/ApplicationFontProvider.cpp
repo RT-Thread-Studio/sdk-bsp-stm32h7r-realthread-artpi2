@@ -9,69 +9,66 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
 {
     switch (typography)
     {
-    case Typography::TOPBAR:
-        // Saira_Medium_20_4bpp
+    case Typography::SHARETECH_55:
+        // ShareTechMono_Regular_55_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
-    case Typography::WHEELTEXT:
-        // Saira_Medium_11_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
-    case Typography::LARGETRANSITIONTEXT:
-        // Saira_SemiBold_30_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
-    case Typography::TOPBARTEXT:
-        // Saira_Medium_20_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[0]);
-    case Typography::ANIMATIONSPEED:
-        // Saira_Medium_11_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
-    case Typography::SHARETECH_36:
-        // ShareTechMono_Regular_36_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::SHARETECH_26:
         // ShareTechMono_Regular_26_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[1]);
     case Typography::SHARETECH_20:
         // ShareTechMono_Regular_20_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
-    case Typography::SHARETECH_70:
-        // ShareTechMono_Regular_70_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[2]);
+    case Typography::SHARETECH_65:
+        // ShareTechMono_Regular_65_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
     case Typography::SHARETECH_120:
         // ShareTechMono_Regular_120_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
     case Typography::SAIRASEMIBOLD_22:
         // SairaCondensed_SemiBold_22_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
     case Typography::SAIRASEMIBOLD_16:
         // SairaCondensed_SemiBold_16_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
+    case Typography::SAIRAMEDIUM_65:
+        // SairaCondensed_Medium_65_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[7]);
+    case Typography::TOPBARTEXT:
+        // Saira_Medium_20_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
+    case Typography::MAINSELECTEDSUBDEMO:
+        // Saira_SemiCondensed_SemiBold_32_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[9]);
-    case Typography::SAIRAMEDIUM_70:
-        // SairaCondensed_Medium_70_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[10]);
     case Typography::SHARETECH_48:
         // ShareTechMono_Regular_48_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[11]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[10]);
     case Typography::SHARETECH_90:
         // ShareTechMono_Regular_90_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[12]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[11]);
     case Typography::SAIRASEMIBOLD_26:
         // SairaCondensed_SemiBold_26_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[13]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[12]);
     case Typography::SAIRAMEDIUM_32:
         // SairaCondensed_Medium_32_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[14]);
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[13]);
     case Typography::SAIRASEMIBOLD_38:
         // SairaCondensed_SemiBold_38_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[14]);
+    case Typography::WHEELTEXT_SCREENTRANSITION:
+        // Saira_Medium_11_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[15]);
-    case Typography::LARGE:
-        // Gomme_Sans_W04_SemiBold_40_4bpp
+    case Typography::LARGETRANSITIONTEXT_SCREENTRANSITION:
+        // Saira_SemiBold_30_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[16]);
-    case Typography::TYPOGRAPHY_00:
-        // Saira_SemiBold_26_4bpp
+    case Typography::TOPBARTEXT_SCREENTRANSITION:
+        // Saira_Medium_20_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[8]);
+    case Typography::ANIMATIONSPEED_SCREENTRANSITION:
+        // Saira_Medium_11_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[15]);
+    case Typography::SHARETECH_36:
+        // ShareTechMono_Regular_36_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[17]);
-    case Typography::INFOSCREEN:
-        // SairaCondensed_SemiBold_24_4bpp
-        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[18]);
     default:
         return 0;
     }

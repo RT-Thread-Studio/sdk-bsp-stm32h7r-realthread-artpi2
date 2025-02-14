@@ -10,7 +10,7 @@ void FrameRate_Compass::initialize()
     FrameRate_CompassBase::initialize();
 }
 
-void FrameRate_Compass::updateShownInformation()
+void FrameRate_Compass::updateShownFPS()
 {
     Unicode::snprintf(fpsValueBuffer, FPSVALUE_SIZE, "%d", fps);
     fpsValue.invalidate();
