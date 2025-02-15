@@ -14,12 +14,12 @@ MJPEGViewBase::MJPEGViewBase() :
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    video.setPosition(0, 0, 800, 480);
-    video.setVideoData(video_ST8464_bin_start, video_ST8464_bin_length);
-    video.setRepeat(false);
-    video.play();
-    video.setMovieEndedAction(videoEndedCallback);
-    add(video);
+//    video.setPosition(0, 0, 800, 480);
+//    video.setVideoData(video_ST8464_bin_start, video_ST8464_bin_length);
+//    video.setRepeat(false);
+//    video.play();
+//    video.setMovieEndedAction(videoEndedCallback);
+//    add(video);
 
     BlackScreen.setPosition(0, 0, 800, 480);
     BlackScreen.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));

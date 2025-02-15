@@ -11,6 +11,8 @@
 #ifdef SIMULATOR
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #endif
+#include <gui/videointro_screen/VideoIntroView.hpp>
+#include <gui/videointro_screen/VideoIntroPresenter.hpp>
 #include <gui/menu_screen/MenuView.hpp>
 #include <gui/menu_screen/MenuPresenter.hpp>
 #include <gui/svg_screen/SVGView.hpp>

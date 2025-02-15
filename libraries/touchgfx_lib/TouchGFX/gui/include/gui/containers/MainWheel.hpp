@@ -34,8 +34,8 @@ public:
 
     void confirmButtonClicked();
 
-    static const int NUMBER_OF_WHEEL_ELEMENTS = 6;
-    static const int NUMBER_OF_SUB_DEMOS = 6;
+    static const int NUMBER_OF_WHEEL_ELEMENTS = 5;
+    static const int NUMBER_OF_SUB_DEMOS = 5;
 
 protected:
     static const int16_t ORIGIN_X = 260; // X coordidate of the menu wheel center

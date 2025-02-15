@@ -37,19 +37,19 @@ void MainWheel::initialize()
             wheelElements[i].textId = T_MAINSELECTEDSUBDEMODICE;
             wheelElements[i].icon.setIcon(BITMAP_DICE_ICON_NORMAL_ID);
             break;
+        // case 2:
+        //     wheelElements[i].textId = T_MAINSELECTEDSUBDEMOMJPEG;
+        //     wheelElements[i].icon.setIcon(BITMAP_MJPEG_ICON_NORMAL_ID);
+        //     break;
         case 2:
-            wheelElements[i].textId = T_MAINSELECTEDSUBDEMOMJPEG;
-            wheelElements[i].icon.setIcon(BITMAP_MJPEG_ICON_NORMAL_ID);
-            break;
-        case 3:
             wheelElements[i].textId = T_MAINSELECTEDSUBDEMOCOMPASS;
             wheelElements[i].icon.setIcon(BITMAP_COMPASS_ICON_NORMAL_ID);
             break;
-        case 4:
+        case 3:
             wheelElements[i].textId = T_MAINSELECTEDSUBDEMOTRANSITION;
             wheelElements[i].icon.setIcon(BITMAP_TRANSITIONS_ICON_NORMAL_ID);
             break;
-        case 5:
+        case 4:
             wheelElements[i].textId = T_MAINSELECTEDSUBDEMOEBIKE;
             wheelElements[i].icon.setIcon(BITMAP_EBIKE_ICON_NORMAL_ID);
             break;
@@ -368,8 +368,8 @@ uint16_t MainWheel::switchToSelectedIcon(bool active, uint32_t myTextEnum)
         return active ? BITMAP_SVG_ICON_SELECTED_ID : BITMAP_SVG_ICON_NORMAL_ID;
     case T_MAINSELECTEDSUBDEMODICE:
         return active ? BITMAP_DICE_ICON_SELECTED_ID : BITMAP_DICE_ICON_NORMAL_ID;
-    case T_MAINSELECTEDSUBDEMOMJPEG:
-        return active ? BITMAP_MJPEG_ICON_SELECTED_ID : BITMAP_MJPEG_ICON_NORMAL_ID;
+    // case T_MAINSELECTEDSUBDEMOMJPEG:
+    //     return active ? BITMAP_MJPEG_ICON_SELECTED_ID : BITMAP_MJPEG_ICON_NORMAL_ID;
     case T_MAINSELECTEDSUBDEMOCOMPASS:
         return active ? BITMAP_COMPASS_ICON_SELECTED_ID : BITMAP_COMPASS_ICON_NORMAL_ID;
     case T_MAINSELECTEDSUBDEMOTRANSITION:

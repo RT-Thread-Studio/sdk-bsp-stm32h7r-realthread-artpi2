@@ -11,6 +11,17 @@ config SOC_SERIES_STM32H7RS
     select SOC_FAMILY_STM32
     default y
 
+menuconfig RT_USING_INDEPENDENT_INTERRUPT_MANAGEMENT
+    bool "Enable independent interrupt management"
+    default n
+
+    if RT_USING_INDEPENDENT_INTERRUPT_MANAGEMENT
+        config RT_MAX_SYSCALL_INTERRUPT_PRIORITY
+            int "Set max syscall interrupt priority"
+            range 0 7
+            default 6
+    endif
+
 menu "Onboard Peripheral Drivers"
 
     config BSP_USING_USB_TO_USART

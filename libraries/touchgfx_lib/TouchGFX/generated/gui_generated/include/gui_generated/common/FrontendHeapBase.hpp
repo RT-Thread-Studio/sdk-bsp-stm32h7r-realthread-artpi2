@@ -14,6 +14,8 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
+#include <gui/videointro_screen/VideoIntroView.hpp>
+#include <gui/videointro_screen/VideoIntroPresenter.hpp>
 #include <gui/menu_screen/MenuView.hpp>
 #include <gui/menu_screen/MenuPresenter.hpp>
 #include <gui/svg_screen/SVGView.hpp>
@@ -50,14 +52,15 @@ public:
      * A list of all view types. Must end with meta::Nil.
      * @note All view types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< MenuView,
+    typedef touchgfx::meta::TypeList< VideoIntroView,
+            touchgfx::meta::TypeList< MenuView,
             touchgfx::meta::TypeList< SVGView,
             touchgfx::meta::TypeList< DiceDemoView,
             touchgfx::meta::TypeList< MJPEGView,
             touchgfx::meta::TypeList< CompassScreenView,
             touchgfx::meta::TypeList< E_BikeDemoView,
             touchgfx::meta::TypeList< ScreenTransitionDemoView,
-            touchgfx::meta::Nil > > > > > >
+            touchgfx::meta::Nil > > > > > > >
             > GeneratedViewTypes;
 
     /**
@@ -69,14 +72,15 @@ public:
      * A list of all presenter types. Must end with meta::Nil.
      * @note All presenter types used in the application MUST be added to this list!
      */
-    typedef touchgfx::meta::TypeList< MenuPresenter,
+    typedef touchgfx::meta::TypeList< VideoIntroPresenter,
+            touchgfx::meta::TypeList< MenuPresenter,
             touchgfx::meta::TypeList< SVGPresenter,
             touchgfx::meta::TypeList< DiceDemoPresenter,
             touchgfx::meta::TypeList< MJPEGPresenter,
             touchgfx::meta::TypeList< CompassScreenPresenter,
             touchgfx::meta::TypeList< E_BikeDemoPresenter,
             touchgfx::meta::TypeList< ScreenTransitionDemoPresenter,
-            touchgfx::meta::Nil > > > > > >
+            touchgfx::meta::Nil > > > > > > >
             > GeneratedPresenterTypes;
 
     /**

@@ -80,8 +80,8 @@ uint16_t MenuView::convertTextIdToBitmapId(const uint32_t textId)
         return BITMAP_PREVIEW_SVG_ID;
     case T_MAINSELECTEDSUBDEMODICE:
         return BITMAP_PREVIEW_DICE_ID;
-    case T_MAINSELECTEDSUBDEMOMJPEG:
-        return BITMAP_PREVIEW_MJPEG_ID;
+    // case T_MAINSELECTEDSUBDEMOMJPEG:
+    //     return BITMAP_PREVIEW_MJPEG_ID;
     case T_MAINSELECTEDSUBDEMOCOMPASS:
         return BITMAP_PREVIEW_COMPASS_ID;
     case T_MAINSELECTEDSUBDEMOTRANSITION:
@@ -103,16 +103,16 @@ void MenuView::changeScreenTo(uint8_t selectedDemoIndex)
     case 1:
         goToDice();
         break;
+    // case 2:
+    //     goToMJPEG();
+    //     break;
     case 2:
-        goToMJPEG();
-        break;
-    case 3:
         goToCompass();
         break;
-    case 4:
+    case 3:
         goToTransition();
         break;
-    case 5:
+    case 4:
         goToEBike();
         break;
     }

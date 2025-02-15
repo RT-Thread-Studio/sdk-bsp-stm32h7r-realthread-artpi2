@@ -17,8 +17,8 @@
 #define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
+#ifdef RT_USING_INDEPENDENT_INTERRUPT_MANAGEMENT
 #define RT_NVIC_PRO_BITS    __NVIC_PRIO_BITS
-#define RT_MAX_SYSCALL_INTERRUPT_PRIORITY    7
 
 rt_base_t rt_hw_interrupt_disable(void)
 {
@@ -35,6 +35,8 @@ void rt_hw_interrupt_enable(rt_base_t level)
 {
     __set_BASEPRI(level);
 }
+
+#endif /* RT_USING_INDEPENDENT_INTERRUPT_MANAGEMENT */
 
 int clock_information(void)
 {

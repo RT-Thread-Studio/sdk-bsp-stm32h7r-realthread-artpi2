@@ -410,7 +410,7 @@ BaseType_t xQueueGenericSendFromISR( QueueHandle_t xQueue,
     {
         if ( xCopyPosition == queueSEND_TO_BACK )
         {
-            err = rt_mq_send( ( rt_mq_t ) pipc, pvItemToQueue, ( ( rt_mq_t ) pipc )->msg_size);
+            err = rt_mq_send_interruptible( ( rt_mq_t ) pipc, pvItemToQueue, ( ( rt_mq_t ) pipc )->msg_size);
         }
         else if ( xCopyPosition == queueSEND_TO_FRONT )
         {
@@ -543,11 +543,11 @@ BaseType_t xQueueReceiveFromISR( QueueHandle_t xQueue,
     RT_ASSERT( type != RT_Object_Class_Mutex );
     if ( type == RT_Object_Class_Semaphore )
     {
-        err = rt_sem_take( ( rt_sem_t ) pipc, RT_WAITING_NO );
+        err = rt_sem_take_interruptible( ( rt_sem_t ) pipc, RT_WAITING_NO );
     }
     else if ( type == RT_Object_Class_MessageQueue )
     {
-        err = ( rt_err_t ) rt_mq_recv( ( rt_mq_t ) pipc, pvBuffer, ( ( rt_mq_t ) pipc )->msg_size, RT_WAITING_NO );
+        err = ( rt_err_t ) rt_mq_recv_interruptible( ( rt_mq_t ) pipc, pvBuffer, ( ( rt_mq_t ) pipc )->msg_size, RT_WAITING_NO );
 #if RT_VER_NUM >= 0x50001
         if (( rt_ssize_t ) err >= 0)
         {

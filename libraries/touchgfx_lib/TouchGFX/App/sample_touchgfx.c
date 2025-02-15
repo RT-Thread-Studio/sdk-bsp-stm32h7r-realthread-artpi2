@@ -119,7 +119,6 @@ void JPEG_IRQHandler(void)
     /* USER CODE BEGIN JPEG_IRQn 0 */
     rt_interrupt_enter();
     /* USER CODE END JPEG_IRQn 0 */
-    rt_kprintf("JPEG_IRQHandler\n");
     HAL_JPEG_IRQHandler(&hjpeg);
     /* USER CODE BEGIN JPEG_IRQn 1 */
     rt_interrupt_leave();
