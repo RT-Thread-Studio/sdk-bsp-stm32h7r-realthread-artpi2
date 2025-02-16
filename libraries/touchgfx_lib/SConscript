@@ -32,7 +32,11 @@ app_path += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/inclu
 appSrc = Glob('./TouchGFX/App/app_touchgfx.c')
 appSrc += Glob('./TouchGFX/App/sample_touchgfx.c')
 
-if rtconfig.CROSS_TOOL == 'keil':
+if rtconfig.CROSS_TOOL == 'gcc':
+    libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc']
+    libs += ['touchgfx-float-abi-hard']
+    appSrc += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc/libtouchgfx-float-abi-hard.a']
+elif rtconfig.CROSS_TOOL == 'keil':
     libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/Keil6.x']
     libs += ['touchgfx_core_wchar16']
     appSrc += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/Keil6.x/nemagfx_core_release-wchar16.lib']
