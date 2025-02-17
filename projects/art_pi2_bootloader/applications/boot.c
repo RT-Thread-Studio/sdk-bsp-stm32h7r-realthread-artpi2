@@ -15,7 +15,7 @@ void rt_application_init(void);
 void rt_hw_board_init(void);
 int rtthread_startup(void);
 
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
+#ifdef __ARMCC_VERSION
 extern int $Super$$main(void);
 /* re-define main function */
 int $Sub$$main(void)
@@ -24,7 +24,6 @@ int $Sub$$main(void)
     return 0;
 }
 #elif defined(__ICCARM__)
-extern int main(void);
 /* __low_level_init will auto called by IAR cstartup */
 extern void __iar_data_init3(void);
 int __low_level_init(void)
@@ -50,25 +49,28 @@ static rt_uint8_t main_stack[RT_MAIN_THREAD_STACK_SIZE];
 struct rt_thread main_thread;
 #endif
 
-/* the system main thread */
-void main_thread_entry(void *parameter)
+static void main_thread_entry(void *parameter)
 {
     extern int main(void);
-    extern int $Super$$main(void);
+    RT_UNUSED(parameter);
 
 #ifdef RT_USING_COMPONENTS_INIT
     /* RT-Thread components initialization */
     rt_components_init();
-#endif
+#endif /* RT_USING_COMPONENTS_INIT */
+
 #ifdef RT_USING_SMP
     rt_hw_secondary_cpu_up();
-#endif
+#endif /* RT_USING_SMP */
     /* invoke system main function */
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
-    $Super$$main(); /* for ARMCC. */
-#elif defined(__ICCARM__) || defined(__GNUC__)
+#ifdef __ARMCC_VERSION
+    {
+        extern int $Super$$main(void);
+        $Super$$main(); /* for ARMCC. */
+    }
+#elif defined(__ICCARM__) || defined(__GNUC__) || defined(__TASKING__) || defined(__TI_COMPILER_VERSION__)
     main();
-#endif
+#endif /* __ARMCC_VERSION */
 }
 
 void rt_application_init(void)
@@ -140,11 +142,6 @@ int rtthread_startup(void)
 #ifdef RT_USING_SMP
     rt_hw_spin_lock(&_cpus_lock);
 #endif /*RT_USING_SMP*/
-
-#ifndef FIRMWARE_EXEC_USING_QEMU
-//@TODO external flash escape from OCTAL Mode to basic 1-line spi mode.
-
-#endif
 
     /* start scheduler */
     rt_system_scheduler_start();

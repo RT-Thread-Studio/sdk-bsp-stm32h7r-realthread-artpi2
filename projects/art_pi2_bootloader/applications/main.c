@@ -235,25 +235,24 @@ int main(void)
     MX_XSPI2_Init();
 
     // HAL_XSPI_GetDelayValue(&hxspi1, &cal);
-    // LOG_D("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
+    // rt_kprintf("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
     if (W35T51NWTBIE_OK != W35T51NWTBIE_ReadID(&hxspi2,
                                                W35T51NWTBIE_SPI_MODE,
                                                W35T51NWTBIE_STR_TRANSFER,
                                                device_id, W35T51NWTBIE_3BYTES_SIZE))
-
     {
-        LOG_E("Read ID Fail");
+        rt_kprintf("Read ID Fail\n");
     }
     else
     {
-        LOG_D("Read Flash ID success:0x%.2x 0x%.2x 0x%.2x", device_id[0], device_id[1], device_id[2]);
+        rt_kprintf("Read Flash ID success:0x%.2x 0x%.2x 0x%.2x\n", device_id[0], device_id[1], device_id[2]);
         retr = W35T51NWTBIE_EnterOctal_DTR_Mode(&hxspi2);
-        LOG_D("Enter octal:%d", retr);
+        rt_kprintf("Enter octal:%d\n", retr);
         if (HAL_XSPI_DeInit(&hxspi2) != HAL_OK)
         {
-            LOG_E("octal flash deinit error");
+            rt_kprintf("octal flash deinit error\n");
         }
-        LOG_W("reconfigure flash clock");
+        rt_kprintf("reconfigure flash clock\n");
         MX_XSPI2_Init();
 
         if (W35T51NWTBIE_OK != W35T51NWTBIE_ReadID(&hxspi2,
@@ -261,17 +260,17 @@ int main(void)
                                                    W35T51NWTBIE_DTR_TRANSFER,
                                                    device_id, W35T51NWTBIE_4BYTES_SIZE))
         {
-            LOG_E("Flash Enter octal failed");
+            rt_kprintf("Flash Enter octal failed\n");
         }
         else
         {
-            LOG_I("Flash Enter Octal DTR and Read ID success:%.2x %.2x %.2x", device_id[0], device_id[1], device_id[2]);
+            LOG_I("Flash Enter Octal DTR and Read ID success:%.2x %.2x %.2x\n", device_id[0], device_id[1], device_id[2]);
         }
     }
 
     if (W35T51NWTBIE_OK != W35T51NWTBIE_EnableMemoryMappedModeDTR(&hxspi2, RT_NULL))
     {
-        LOG_E("XIP octal failed");
+        rt_kprintf("XIP octal failed\n");
         return -1;
     }
 
@@ -280,29 +279,27 @@ int main(void)
 
     if (APS256XX_OK != APS256XX_Reset(&hxspi1))
     {
-        LOG_E("PSRAM Reset error");
+        rt_kprintf("PSRAM Reset error\n");
     }
     rt_thread_mdelay(20);
 
     if (APS256XX_OK == APS256XX_ReadReg(&hxspi1, APS256XX_MR0_ADDRESS, reg, 5))
     {
-        LOG_D("PSRAM MR0: 0x%.2x, MR1: 0x%.2x", reg[0], reg[1]);
+        rt_kprintf("PSRAM MR0: 0x%.2x, MR1: 0x%.2x\n", reg[0], reg[1]);
     }
 
     MODIFY_REG(reg[0], ((uint8_t)APS256XX_MR0_LATENCY_TYPE | (uint8_t)APS256XX_MR0_READ_LATENCY_CODE | (uint8_t)APS256XX_MR0_DRIVE_STRENGTH),
                ((uint8_t)APS256XX_MR0_LATENCY_TYPE_FIXED | (uint8_t)APS256XX_MR0_RLC_7 | (uint8_t)APS256XX_MR0_DS_FULL));
     if (APS256XX_OK == APS256XX_WriteReg(&hxspi1, APS256XX_MR0_ADDRESS, reg[0]))
     {
-        LOG_D("PSRAM MR0 SET");
-        // return APS256XX_ERROR;
+        rt_kprintf("PSRAM MR0 SET\n");
     }
 
     MODIFY_REG(reg[0], (uint8_t)(APS256XX_MR4_WRITE_LATENCY_CODE | APS256XX_MR4_RF_RATE | APS256XX_MR4_PASR),
                ((uint8_t)APS256XX_MR4_WLC_7 | APS256XX_MR4_RF_4X | APS256XX_MR4_PASR_FULL));
     if (APS256XX_OK == APS256XX_WriteReg(&hxspi1, APS256XX_MR4_ADDRESS, reg[0]))
     {
-        LOG_D("PSRAM MR4 SET");
-        // return APS256XX_ERROR;
+        rt_kprintf("PSRAM MR4 SET\n");
     }
     reg[0] = 0;
     MODIFY_REG(reg[0], ((uint8_t)APS256XX_MR8_X8_X16 | (uint8_t)APS256XX_MR8_RBX | (uint8_t)APS256XX_MR8_BT | (uint8_t)APS256XX_MR8_BL),
@@ -310,40 +307,37 @@ int main(void)
     // reg[0] = 0x40;
     if (APS256XX_OK == APS256XX_WriteReg(&hxspi1, APS256XX_MR8_ADDRESS, reg[0]))
     {
-        LOG_D("PSRAM MR8 SET");
-        // return APS256XX_ERROR;
+        rt_kprintf("PSRAM MR8 SET\n");
     }
 
     HAL_XSPI_GetDelayValue(&hxspi1, &cal);
-    LOG_D("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
+    rt_kprintf("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x\n", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
 
     if (APS256XX_OK == APS256XX_ReadReg(&hxspi1, APS256XX_MR0_ADDRESS, reg, 7))
     {
-        LOG_D("PSRAM MR0: 0x%.2x, MR1: 0x%.2x", reg[0], reg[1]);
+        rt_kprintf("PSRAM MR0: 0x%.2x, MR1: 0x%.2x\n", reg[0], reg[1]);
     }
     if (APS256XX_OK == APS256XX_ReadReg(&hxspi1, APS256XX_MR4_ADDRESS, reg, 7))
     {
-        LOG_D("PSRAM MR4: 0x%.2x, MR5: 0x%.2x", reg[0], reg[1]);
+        rt_kprintf("PSRAM MR4: 0x%.2x, MR5: 0x%.2x\n", reg[0], reg[1]);
     }
     if (APS256XX_OK == APS256XX_ReadReg(&hxspi1, APS256XX_MR8_ADDRESS, reg, 7))
     {
-        LOG_D("PSRAM MR8: 0x%.2x, MR1: 0x%.2x", reg[0], reg[1]);
+        rt_kprintf("PSRAM MR8: 0x%.2x, MR1: 0x%.2x\n", reg[0], reg[1]);
     }
 
     HAL_XSPI_GetDelayValue(&hxspi1, &cal);
-    LOG_D("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
+    rt_kprintf("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
     /*Configure Memory Mapped mode*/
     if (APS256XX_OK != APS256XX_EnableMemoryMappedMode(&hxspi1, ReadLatencyVal, WriteLatencyVal, HAL_XSPI_DATA_16_LINES, 0)) // Liner Burst
     {
-        LOG_E("PSRAM Enter XIP Failed");
+        rt_kprintf("PSRAM Enter XIP Faile\n");
     }else
     {
-        LOG_W("PSRAM Enter XIP Success");
+        rt_kprintf("PSRAM Enter XIP Success\n");
     }
 
-
     rt_kprintf("\nJump to APP...\n");
-    rt_thread_mdelay(300);
 
     JumpToApplication();
 

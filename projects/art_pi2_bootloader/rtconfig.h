@@ -9,20 +9,12 @@
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
 #define RT_TICK_PER_SECOND 1000
-#define RT_USING_OVERFLOW_CHECK
-#define RT_USING_HOOK
-#define RT_HOOK_USING_FUNC_PTR
-#define RT_USING_IDLE_HOOK
-#define RT_IDLE_HOOK_LIST_SIZE 4
 #define IDLE_THREAD_STACK_SIZE 256
 
 /* kservice optimization */
 
 #define RT_KSERVICE_USING_STDLIB
 /* end of kservice optimization */
-#define RT_USING_DEBUG
-#define RT_DEBUGING_COLOR
-#define RT_DEBUGING_CONTEXT
 
 /* Inter-Thread communication */
 
@@ -32,7 +24,6 @@
 
 /* Memory Management */
 
-#define RT_USING_MEMPOOL
 #define RT_USING_MEMHEAP
 #define RT_MEMHEAP_FAST_MODE
 #define RT_USING_MEMHEAP_AS_HEAP
@@ -79,8 +70,8 @@
 #define RT_USING_DEVICE_IPC
 #define RT_UNAMED_PIPE_NUMBER 64
 #define RT_USING_SERIAL
-#define RT_USING_SERIAL_V2
-#define RT_USING_SPI
+#define RT_USING_SERIAL_V1
+#define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_PIN
 
 /* Using USB */
