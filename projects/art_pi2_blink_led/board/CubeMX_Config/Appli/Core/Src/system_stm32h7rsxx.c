@@ -82,7 +82,7 @@
          configuration. */
 /*!< Uncomment the following line or define USER_VECT_TAB_ADDRESS at compiler level if you need
      to relocate the vector table anywhere in Flash or Sram, else the vector table is kept at
-	 the automatic remap of the selected boot address */
+     the automatic remap of the selected boot address */
 /* #define USER_VECT_TAB_ADDRESS */
 
 #if defined(USER_VECT_TAB_ADDRESS)

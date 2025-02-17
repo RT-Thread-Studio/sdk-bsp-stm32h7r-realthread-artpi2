@@ -27,20 +27,20 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 //extern const Diskio_drvTypeDef  MMC_Driver;
-typedef uint32_t	DSTATUS;
+typedef uint32_t    DSTATUS;
 /* Disk Status Bits (DSTATUS) */
 
-#define STA_NOINIT		0x01	/* Drive not initialized */
-#define STA_NODISK		0x02	/* No medium in the drive */
-#define STA_PROTECT		0x04	/* Write protected */
+#define STA_NOINIT      0x01    /* Drive not initialized */
+#define STA_NODISK      0x02    /* No medium in the drive */
+#define STA_PROTECT     0x04    /* Write protected */
 
 /* Results of Disk Functions */
 typedef enum {
-	RES_OK = 0,		/* 0: Successful */
-	RES_ERROR,		/* 1: R/W Error */
-	RES_WRPRT,		/* 2: Write Protected */
-	RES_NOTRDY,		/* 3: Not Ready */
-	RES_PARERR		/* 4: Invalid Parameter */
+    RES_OK = 0,     /* 0: Successful */
+    RES_ERROR,      /* 1: R/W Error */
+    RES_WRPRT,      /* 2: Write Protected */
+    RES_NOTRDY,     /* 3: Not Ready */
+    RES_PARERR      /* 4: Invalid Parameter */
 } DRESULT;
 
 

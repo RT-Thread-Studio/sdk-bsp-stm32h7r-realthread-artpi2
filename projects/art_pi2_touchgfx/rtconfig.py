@@ -73,7 +73,7 @@ elif PLATFORM == 'armclang':
 
     DEVICE = ' --cpu Cortex-M7.fp.sp '
     CFLAGS = ' --target=arm-arm-none-eabi -mcpu=cortex-M7 '
-    CFLAGS += ' -mcpu=cortex-M7 -mfpu=fpv4-sp-d16 '
+    CFLAGS += ' -mcpu=cortex-M7 -mfpu=fpv5-d16 '
     CFLAGS += ' -mfloat-abi=hard -c -fno-rtti -funsigned-char -fshort-enums -fshort-wchar '
     CFLAGS += ' -gdwarf-3 -ffunction-sections '
     AFLAGS = DEVICE + ' --apcs=interwork '

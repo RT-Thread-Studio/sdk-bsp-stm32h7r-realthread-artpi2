@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2023, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -31,7 +31,7 @@ extern "C" {
 
 struct dma_config {
     DMA_INSTANCE_TYPE *Instance;
-    uint32_t request;  
+    uint32_t request;
     rt_uint32_t dma_rcc;
     IRQn_Type dma_irq;
 

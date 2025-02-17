@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -401,7 +401,7 @@ const rt_uint8_t gc0328c_5pfs_talbe[][2] =
 {
     // all AEC_EXP_LEVEL_X set to 0xa3c = 2620
     {0xFE,0x01},  // page p1
-     
+
     {0x2B,0x0a},  // AEC_EXP_LEVEL_0 [11:8]
     {0x2C,0x3c},  // AEC_EXP_LEVEL_0 [7:0]
 

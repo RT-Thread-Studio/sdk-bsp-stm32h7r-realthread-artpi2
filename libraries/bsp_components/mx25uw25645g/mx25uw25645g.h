@@ -443,7 +443,7 @@ int32_t MX25UW25645G_NoOperation(XSPI_HandleTypeDef *Ctx, MX25UW25645G_Interface
 int32_t MX25UW25645G_EnterPowerDown(XSPI_HandleTypeDef *Ctx, MX25UW25645G_Interface_t Mode,
                                     MX25UW25645G_Transfer_t Rate);
 int32_t MX25UW25645G_ReleaseFromPowerDown(XSPI_HandleTypeDef *Ctx, MX25UW25645G_Interface_t Mode,
-                                          MX25UW25645G_Transfer_t Rate);           
+                                          MX25UW25645G_Transfer_t Rate);
 
 /**
   * @}

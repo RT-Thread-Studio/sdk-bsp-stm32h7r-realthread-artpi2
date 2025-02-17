@@ -28,12 +28,12 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void changePreviewWheel()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void goToSVG();
     virtual void goToDice();
     virtual void goToMJPEG();

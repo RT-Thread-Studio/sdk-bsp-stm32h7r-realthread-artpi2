@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -61,6 +61,8 @@ void HAL_Delay(__IO uint32_t Delay)
 /* re-implement tick interface for STM32 HAL */
 HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
 {
+    rt_hw_systick_init();
+
     /* Return function status */
     return HAL_OK;
 }
@@ -104,10 +106,13 @@ void rt_hw_us_delay(rt_uint32_t us)
  */
 void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq)
 {
-    extern void rt_hw_systick_init(void);
-
     /* Update SystemCoreClock variable according to RCC registers values. */
     SystemCoreClockUpdate();
+
+    /* System clock initialization */
+    extern void clk_init(char *clk_source, int source_freq, int target_freq);
+    clk_init(clock_src, clock_src_freq, clock_target_freq);
+
     /* HAL_Init() function is called at the beginning of the program */
     HAL_Init();
 
@@ -117,8 +122,6 @@ void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target
         /* Initialization error */
         Error_Handler();
     }
-
-    rt_hw_systick_init();
 
     /* Pin driver initialization is open by default */
 #ifdef RT_USING_PIN

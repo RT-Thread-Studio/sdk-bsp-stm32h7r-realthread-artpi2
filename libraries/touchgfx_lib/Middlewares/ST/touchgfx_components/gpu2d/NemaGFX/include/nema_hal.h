@@ -174,16 +174,16 @@ void  nema_host_free(void *ptr );
 typedef struct nema_ringbuffer_t_ {
     nema_buffer_t bo;
     int      offset;    //number of 32-bit entries
-    int	     last_submission_id;
+    int      last_submission_id;
 } nema_ringbuffer_t;
 
 
 /** \brief Initialize Ring Buffer. Should be called from inside nema_sys_init().
  *   This is a private function, the user should never call it.
  *
- * \param *rb 	Pointer to nema_ring_buffer_t struct
+ * \param *rb   Pointer to nema_ring_buffer_t struct
  * \param reset Resets the Ring Buffer if non-zero
- * \return 		Negative number on error
+ * \return      Negative number on error
  * \see nema_sys_init()
  *
  */

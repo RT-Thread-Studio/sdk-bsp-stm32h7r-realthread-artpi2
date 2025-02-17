@@ -51,7 +51,8 @@ void VideoIntroViewBase::videoEndedCallbackHandler(const touchgfx::VideoWidget& 
         //Fade backgroundImage to alpha:255 with LinearIn easing in 800 ms (48 Ticks)
         backgroundImage.clearFadeAnimationEndedAction();
         backgroundImage.startFadeAnimation(255, 48, touchgfx::EasingEquations::linearEaseIn);
-        backgroundImage.setFadeAnimationEndedAction(fadeInBackgroundEndedCallback);
+        backgroundImage.setFadeAnimationEndedAction(fadeInBackgroundEndedCallback);
+
         //replaceVideoWithImage
         //When introVideo video ended show lastVideoFrameImage
         //Show lastVideoFrameImage

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2024, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -23,7 +23,7 @@
   #define VAR_CONVERTED_DATA_INIT_VALUE    (__LL_ADC_DIGITAL_SCALE(LL_ADC_RESOLUTION_12B) + 1)
 
 
-const static uint16_t hardware_vol_rank[8] = 
+const static uint16_t hardware_vol_rank[8] =
 {
   50,   // less than 50mV, fail
   75,   // 50-75 (normally 65mV) HW=0.1, BOM=0.1
@@ -35,7 +35,7 @@ const static uint16_t hardware_vol_rank[8] =
   65535,
 };
 
-const static uint16_t hardware_ver_rank[8] = 
+const static uint16_t hardware_ver_rank[8] =
 {
   0x0101, //HW 0.1, BOM 0.1
   0x0201,

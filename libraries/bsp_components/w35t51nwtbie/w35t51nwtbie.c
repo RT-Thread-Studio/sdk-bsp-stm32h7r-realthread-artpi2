@@ -1453,7 +1453,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
   int32_t retr = W35T51NWTBIE_OK;
   XSPI_RegularCmdTypeDef  sCommand = {0};
   XSPI_AutoPollingTypeDef sConfig  = {0};
-  
+
   sCommand.OperationType      = HAL_XSPI_OPTYPE_COMMON_CFG;
   sCommand.InstructionMode    = HAL_XSPI_INSTRUCTION_1_LINE;
   sCommand.InstructionWidth    = HAL_XSPI_INSTRUCTION_8_BITS;
@@ -1466,7 +1466,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
   sConfig.MatchMode           = HAL_XSPI_MATCH_MODE_AND;
   sConfig.AutomaticStop       = HAL_XSPI_AUTOMATIC_STOP_ENABLE;
   sConfig.IntervalTime        = 0x10;
-  
+
   {
     /* Enable write operations */
     sCommand.Instruction = W35T51NWTBIE_WRITE_ENABLE_CMD;    // 1-0-0
@@ -1481,11 +1481,11 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     /* Reconfigure XSPI to automatic polling mode to wait for write enabling */
     sConfig.MatchMask           = 0x02;
     sConfig.MatchValue          = 0x02;
-    
+
     sCommand.Instruction    = W35T51NWTBIE_READ_STATUS_REG_CMD;  // 1-0-1
     sCommand.DataMode       = HAL_XSPI_DATA_1_LINE;
     sCommand.DataLength         = 1;
-    
+
     if (HAL_XSPI_Command(Ctx, &sCommand, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -2;
@@ -1519,7 +1519,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     {
       retr = -8;
     }
-    
+
     if (HAL_XSPI_Transmit(Ctx, &reg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -9;
@@ -1541,11 +1541,11 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     /* Reconfigure XSPI to automatic polling mode to wait for write enabling */
     sConfig.MatchMask           = 0x02;
     sConfig.MatchValue          = 0x02;
-    
+
     sCommand.Instruction    = W35T51NWTBIE_READ_STATUS_REG_CMD;  // 1-0-1
     sCommand.DataMode       = HAL_XSPI_DATA_1_LINE;
     sCommand.DataLength         = 1;
-    
+
     if (HAL_XSPI_Command(Ctx, &sCommand, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -2;
@@ -1579,7 +1579,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     {
       retr = -8;
     }
-    
+
     if (HAL_XSPI_Transmit(Ctx, &reg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -9;
@@ -1601,11 +1601,11 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     /* Reconfigure XSPI to automatic polling mode to wait for write enabling */
     sConfig.MatchMask           = 0x02;
     sConfig.MatchValue          = 0x02;
-    
+
     sCommand.Instruction    = W35T51NWTBIE_READ_STATUS_REG_CMD;  // 1-0-1
     sCommand.DataMode       = HAL_XSPI_DATA_1_LINE;
     sCommand.DataLength         = 1;
-    
+
     if (HAL_XSPI_Command(Ctx, &sCommand, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -2;
@@ -1635,19 +1635,19 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
     // reg = 0xDF;   // standard SPI
     reg = 0xE7;   // with in DQS IO Enabled
     // reg = 0xC7;   // with in DQS IO disabled
-    
+
     if (HAL_XSPI_Command(Ctx, &sCommand, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -8;
     }
-    
+
     if (HAL_XSPI_Transmit(Ctx, &reg, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
     {
       retr = -9;
     }
 
   }
-  
+
   HAL_Delay(100);
 //   {
 //     sCommand.Instruction    = W35T51NWTBIE_OCTA_READ_STATUS_REG_CMD;    // 8d-0-8d dummy:8
@@ -1661,7 +1661,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
 //     sCommand.DataLength     = 1;
 //     sCommand.DummyCycles        = 8;
 //     sCommand.DQSMode            = HAL_XSPI_DQS_ENABLE;
-    
+
 //     // sCommand.Instruction = READ_STATUS_REG_CMD;    // 1-0-1
 //     // sCommand.InstructionMode    = HAL_XSPI_INSTRUCTION_1_LINE;
 //     // sCommand.InstructionWidth    = HAL_XSPI_INSTRUCTION_8_BITS;
@@ -1674,7 +1674,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
 //     // sCommand.AlternateBytesMode = HAL_XSPI_ALT_BYTES_NONE;
 //     // sCommand.DummyCycles        = 0;
 //     // sCommand.DQSMode            = HAL_XSPI_DQS_DISABLE;
-  
+
 //     sConfig.MatchMask           = 0x02;
 //     sConfig.MatchValue          = 0x02;
 //     // sConfig.MatchValue = 0U;
@@ -1686,7 +1686,7 @@ int32_t W35T51NWTBIE_EnterOctal_DTR_Mode(XSPI_HandleTypeDef *Ctx)
 //     {
 //       retr = -10;
 //     }
-    
+
 //     if (HAL_XSPI_AutoPolling(Ctx, &sConfig, HAL_XSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
 //     {
 //       retr = -11;

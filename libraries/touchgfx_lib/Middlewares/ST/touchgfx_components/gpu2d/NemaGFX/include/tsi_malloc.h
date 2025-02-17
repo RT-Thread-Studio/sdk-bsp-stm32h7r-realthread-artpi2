@@ -34,22 +34,22 @@ extern "C" {
 
 
 #define tsi_malloc_init(base_virt, base_phys, size, reset) \
-		tsi_malloc_init_pool(0, base_virt, base_phys, size, reset)
+        tsi_malloc_init_pool(0, base_virt, base_phys, size, reset)
 
 #define tsi_malloc(size) tsi_malloc_pool(0, size)
 
-int   tsi_malloc_init_pool(	int pool,
-						   	void *base_virt,
-						   	uintptr_t base_phys,
-						   	int size,
-						   	int reset);
+int   tsi_malloc_init_pool( int pool,
+                            void *base_virt,
+                            uintptr_t base_phys,
+                            int size,
+                            int reset);
 
-int   tsi_malloc_init_pool_aligned(	int pool,
-						   	        void *base_virt,
-						   	        uintptr_t base_phys,
-						   	        int size,
-						   	        int reset,
-							        int alignment); /*alignment must be multiple of 4, otherwise it will be overwritten internaly to be multiple of 4*/
+int   tsi_malloc_init_pool_aligned( int pool,
+                                    void *base_virt,
+                                    uintptr_t base_phys,
+                                    int size,
+                                    int reset,
+                                    int alignment); /*alignment must be multiple of 4, otherwise it will be overwritten internaly to be multiple of 4*/
 
 void *tsi_malloc_pool(int pool, int size);
 void  tsi_free(void *ptr);

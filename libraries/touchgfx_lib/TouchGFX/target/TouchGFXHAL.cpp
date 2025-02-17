@@ -53,9 +53,9 @@ void TouchGFXHAL::initialize()
     lcd16.enableTextureMapperAll();
     activateNeoChrom(true);
     enableDMAAcceleration(false);
-	
-//	#include <rtthread.h>
-//	rt_thread_idle_sethook(IdleTaskHook);
+
+//  #include <rtthread.h>
+//  rt_thread_idle_sethook(IdleTaskHook);
 }
 
 /**
@@ -181,35 +181,35 @@ void TouchGFXHAL::endFrame()
 
 extern "C"
 {
-	void idle_task_hook(void)
-	{
-		static rt_bool_t is_mcu_active = RT_FALSE;
+    void idle_task_hook(void)
+    {
+        static rt_bool_t is_mcu_active = RT_FALSE;
 
-		if (rt_thread_self() != rt_thread_idle_gethandler())
-		{
-			if (!is_mcu_active)
-			{
-				touchgfx::HAL::getInstance()->setMCUActive(true);
-				is_mcu_active = RT_TRUE;
-			}
-		}
-		else
-		{
-			if (is_mcu_active)
-			{
-				touchgfx::HAL::getInstance()->setMCUActive(false);
-				is_mcu_active = RT_FALSE;
-			}
-		}
-	}
+        if (rt_thread_self() != rt_thread_idle_gethandler())
+        {
+            if (!is_mcu_active)
+            {
+                touchgfx::HAL::getInstance()->setMCUActive(true);
+                is_mcu_active = RT_TRUE;
+            }
+        }
+        else
+        {
+            if (is_mcu_active)
+            {
+                touchgfx::HAL::getInstance()->setMCUActive(false);
+                is_mcu_active = RT_FALSE;
+            }
+        }
+    }
 
-	int idle_hook_init(void)
-	{
-		rt_thread_idle_sethook(idle_task_hook);
-		return 0;
-	}
+    int idle_hook_init(void)
+    {
+        rt_thread_idle_sethook(idle_task_hook);
+        return 0;
+    }
 
-//	INIT_APP_EXPORT(idle_hook_init);
+//  INIT_APP_EXPORT(idle_hook_init);
 
     portBASE_TYPE IdleTaskHook(void* p)
     {

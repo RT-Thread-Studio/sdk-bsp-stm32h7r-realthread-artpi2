@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2024, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -59,7 +59,7 @@ static void FillBuff(uint32_t pattern)
         LOG_W("FillBuff read check error more than 5 times, skip this round.\n");
         break;
       }
-      
+
     }
     pBuf++;
   }
@@ -262,7 +262,7 @@ void test_memburn_wr()
         ReadSpeedTest();
         rt_thread_mdelay(5);
     }
-    
+
 }
 MSH_CMD_EXPORT_ALIAS(test_memburn_wr, testburn, PSRAM benchmark);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -51,7 +51,7 @@ int mpu_init(void)
 #endif
 
 #ifdef BSP_USING_ETH
-    /* Configure the MPU attributes as Device not cacheable 
+    /* Configure the MPU attributes as Device not cacheable
        for ETH DMA descriptors */
     MPU_InitStruct.Enable = MPU_REGION_ENABLE;
     MPU_InitStruct.BaseAddress = 0x30040000;
@@ -66,8 +66,8 @@ int mpu_init(void)
     MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
 
     HAL_MPU_ConfigRegion(&MPU_InitStruct);
-  
-    /* Configure the MPU attributes as Cacheable write through 
+
+    /* Configure the MPU attributes as Cacheable write through
        for LwIP RAM heap which contains the Tx buffers */
     MPU_InitStruct.Enable = MPU_REGION_ENABLE;
     MPU_InitStruct.BaseAddress = 0x30044000;
@@ -121,7 +121,7 @@ int mpu_init(void)
     /* Enable CACHE */
     SCB_EnableICache();
     SCB_EnableDCache();
-    
+
     return RT_EOK;
 
 }

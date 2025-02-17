@@ -155,7 +155,7 @@ BSP_MMC_CardInfo cardinfo;
 HAL_MMC_CardCIDTypeDef card_cid;
 DSTATUS MMC_getCardInfo(uint8_t lun)
 {
-    
+
   if((BSP_MMC_GetCardInfo(0, &cardinfo)== BSP_ERROR_NONE))
   {
     Stat &= ~STA_NOINIT;
@@ -300,7 +300,7 @@ DRESULT MMC_ioctl(BYTE lun, BYTE cmd, void *buff)
   case GET_BLOCK_SIZE :
     BSP_MMC_GetCardInfo(0, &CardInfo);
     *(DWORD*)buff = CardInfo.LogBlockSize / MMC_DEFAULT_BLOCK_SIZE;
-	res = RES_OK;
+    res = RES_OK;
     break;
 
   default:

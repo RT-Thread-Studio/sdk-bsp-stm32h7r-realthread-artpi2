@@ -247,7 +247,7 @@ int32_t W35T51NWTBIE_ReadID(XSPI_HandleTypeDef *Ctx, W35T51NWTBIE_Interface_t Mo
 /* Reset Commands *************************************************************/
 int32_t W35T51NWTBIE_ResetEnable(XSPI_HandleTypeDef *Ctx, W35T51NWTBIE_Interface_t Mode, W35T51NWTBIE_Transfer_t Rate);
 int32_t W35T51NWTBIE_ResetMemory(XSPI_HandleTypeDef *Ctx, W35T51NWTBIE_Interface_t Mode, W35T51NWTBIE_Transfer_t Rate);
-    
+
 
 /**
   * @}

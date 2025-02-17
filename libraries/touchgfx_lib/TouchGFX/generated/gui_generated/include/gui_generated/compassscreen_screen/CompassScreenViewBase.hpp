@@ -30,7 +30,7 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
 
 protected:
     FrontendApplication& application() {

@@ -122,7 +122,8 @@ void ScreenTransitionDemoViewBase::slideMenuStateChangedCallbackHandler(const to
         //SliderMenueStateChangedInteraction1
         //When transitionMenu state changed call animateArrow on bottombar
         //Call animateArrow
-        bottombar.animateArrow(transitionMenu.getState());
+        bottombar.animateArrow(transitionMenu.getState());
+
         //SliderMenueStateChangedInteraction2
         //When transitionMenu state changed call sliderMenuStateChanged on ScreenTransitionDemo
         //Call sliderMenuStateChanged

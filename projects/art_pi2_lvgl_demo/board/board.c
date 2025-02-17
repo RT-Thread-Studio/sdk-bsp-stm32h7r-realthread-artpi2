@@ -23,19 +23,6 @@
     #define PSRAM_SIZE                      ((uint32_t)0x2000000)   // 32MB
 #endif /* RT_USING_MEMHEAP_AS_HEAP */
 
-void system_clock_config(int target_freq_mhz)
-{
-
-  /* Enable the XSPIM_P1 interface */
-//  HAL_PWREx_EnableXSPIM1();
-
-  /* Enable USB Voltage detector */
-//   if(HAL_PWREx_EnableUSBVoltageDetector() != HAL_OK)
-//   {
-//    /* Initialization error */
-//    Error_Handler();
-//   }
-}
 int clock_information(void)
 {
     LOG_I("System Clock information");
@@ -50,12 +37,6 @@ int clock_information(void)
 }
 INIT_BOARD_EXPORT(clock_information);
 
-void clk_init(char *clk_source, int source_freq, int target_freq)
-{
-    system_clock_config(target_freq);
-}
-
-
 void rt_hw_board_init()
 {
     extern void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq);
@@ -63,15 +44,6 @@ void rt_hw_board_init()
     mpu_init();
     SCB_EnableICache();
     SCB_EnableDCache();
-#ifdef SCB_EnableICache
-    /* Enable I-Cache---------------------------------------------------------*/
-    SCB_EnableICache();
-#endif
-
-#ifdef SCB_EnableDCache
-    /* Enable D-Cache---------------------------------------------------------*/
-    SCB_EnableDCache();
-#endif
 
     hw_board_init(BSP_CLOCK_SOURCE, BSP_CLOCK_SOURCE_FREQ_MHZ, BSP_CLOCK_SYSTEM_FREQ_MHZ);
     /* Heap initialization */

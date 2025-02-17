@@ -33,32 +33,32 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void getTransitionInfo(TransitionInfo* value)
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void scrollWheelPressed()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void scrollWheelAnimationEnded()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void sliderMenuStateChanged(SlideMenu::State value)
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void animationSpeedButtonPressed(bool value)
     {
         // Override and implement this function in Screen1
     }
-    
+
 
     /*
      * Virtual Action Handlers

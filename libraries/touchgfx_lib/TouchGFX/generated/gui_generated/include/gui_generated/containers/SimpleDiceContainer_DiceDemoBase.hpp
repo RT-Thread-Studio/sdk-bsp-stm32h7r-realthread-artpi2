@@ -24,17 +24,17 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void right()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void setScale(float value)
     {
         // Override and implement this function in Screen1
     }
-    
+
 
     /*
      * Custom Trigger Callback Setters

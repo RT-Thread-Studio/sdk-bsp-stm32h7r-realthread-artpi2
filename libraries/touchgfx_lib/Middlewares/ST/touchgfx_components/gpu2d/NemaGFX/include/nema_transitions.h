@@ -187,7 +187,7 @@ The transition is complete when 'step' is 0 or 1.
  *
  */
 void nema_transition_fade(nema_tex_t initial, nema_tex_t final,
-						  uint32_t blending_mode, float step, int width, int height);
+                          uint32_t blending_mode, float step, int width, int height);
 
 /** \brief Fade-zoom transition. Initial texture is being zoomed and faded out, while final texture is being zoomed and faded in.
 The transition is complete when 'step' is 0 or 1.

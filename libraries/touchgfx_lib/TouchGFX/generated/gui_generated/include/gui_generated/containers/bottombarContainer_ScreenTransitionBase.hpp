@@ -35,7 +35,7 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
 
     /*
      * Custom Trigger Callback Setters

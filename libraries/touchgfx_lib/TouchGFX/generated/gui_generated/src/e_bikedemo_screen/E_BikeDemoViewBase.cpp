@@ -11,7 +11,7 @@ E_BikeDemoViewBase::E_BikeDemoViewBase() :
     buttonCallback(this, &E_BikeDemoViewBase::buttonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
-    
+
     __background.setPosition(0, 0, 800, 480);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
@@ -260,49 +260,49 @@ void E_BikeDemoViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When velocityKmh clicked call virtual function
         //Call selectMiles
         selectMiles();
-    
+
         //hideKmhButton
         //When selectMiles completed hide velocityKmh
         //Hide velocityKmh
         velocityKmh.setVisible(false);
         velocityKmh.invalidate();
-    
-    
+
+
         //showMilesButton
         //When selectMiles completed show velocityMiles
         //Show velocityMiles
         velocityMiles.setVisible(true);
         velocityMiles.invalidate();
-    
-    
+
+
         //showTotalDistanceMiles
         //When selectMiles completed show totalDistanceMi
         //Show totalDistanceMi
         totalDistanceMi.setVisible(true);
         totalDistanceMi.invalidate();
-    
-    
+
+
         //hideTotalDistanceKm
         //When selectMiles completed hide totalDistanceKm
         //Hide totalDistanceKm
         totalDistanceKm.setVisible(false);
         totalDistanceKm.invalidate();
-    
-    
+
+
         //hideHighlightKmh
         //When selectMiles completed hide highlightKmh
         //Hide highlightKmh
         highlightKmh.setVisible(false);
         highlightKmh.invalidate();
-    
-    
+
+
         //showHighlightMph
         //When selectMiles completed show highlightMph
         //Show highlightMph
         highlightMph.setVisible(true);
         highlightMph.invalidate();
-    
-    
+
+
         //showMphBackground
         //When selectMiles completed show speedometerBackgroundMPH
         //Show speedometerBackgroundMPH
@@ -315,49 +315,49 @@ void E_BikeDemoViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& s
         //When velocityMiles clicked call virtual function
         //Call selectKmh
         selectKmh();
-    
+
         //hideMilesButton
         //When selectKmh completed hide velocityMiles
         //Hide velocityMiles
         velocityMiles.setVisible(false);
         velocityMiles.invalidate();
-    
-    
+
+
         //showKmhButton
         //When selectKmh completed show velocityKmh
         //Show velocityKmh
         velocityKmh.setVisible(true);
         velocityKmh.invalidate();
-    
-    
+
+
         //showTotalDistanceKm
         //When selectKmh completed show totalDistanceKm
         //Show totalDistanceKm
         totalDistanceKm.setVisible(true);
         totalDistanceKm.invalidate();
-    
-    
+
+
         //hideTotalDistanceMi
         //When selectKmh completed hide totalDistanceMi
         //Hide totalDistanceMi
         totalDistanceMi.setVisible(false);
         totalDistanceMi.invalidate();
-    
-    
+
+
         //showHighlightKmh
         //When selectKmh completed show highlightKmh
         //Show highlightKmh
         highlightKmh.setVisible(true);
         highlightKmh.invalidate();
-    
-    
+
+
         //hideHighlightMph
         //When selectKmh completed hide highlightMph
         //Hide highlightMph
         highlightMph.setVisible(false);
         highlightMph.invalidate();
-    
-    
+
+
         //hideMphBackground
         //When selectKmh completed hide speedometerBackgroundMPH
         //Hide speedometerBackgroundMPH

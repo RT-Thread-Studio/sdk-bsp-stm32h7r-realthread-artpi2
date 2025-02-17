@@ -38,13 +38,13 @@ extern "C" {
 #define FORCE_INLINE _Pragma("inline = forced")
 #else
 #define FORCE_INLINE
-#endif  
-  
+#endif
+
 /* No Multi-Thread support */
 #define TLS_VAR
 
 #ifdef NEMA_VG_INVALIDATE_CACHE
-void platform_disable_cache(void);  
+void platform_disable_cache(void);
 void platform_invalidate_cache(void);
 
 #define NEMA_VG_DISABLE_CACHE platform_disable_cache()

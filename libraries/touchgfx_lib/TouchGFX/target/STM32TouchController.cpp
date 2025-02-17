@@ -68,7 +68,7 @@ int touch_init(uint16_t x, uint16_t y)
     rt_kprintf("point_num = %d \n", info.point_num);
 
     read_data = (struct rt_touch_data *)rt_malloc(sizeof(struct rt_touch_data) * info.point_num);
-    
+
     rt_free(id);
 
     return RT_EOK;

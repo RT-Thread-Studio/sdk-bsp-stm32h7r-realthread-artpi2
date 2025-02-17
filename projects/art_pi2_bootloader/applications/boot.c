@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2020, RT-Thread Development Team
+ * Copyright (c) 2006-2025, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -145,7 +145,7 @@ int rtthread_startup(void)
 //@TODO external flash escape from OCTAL Mode to basic 1-line spi mode.
 
 #endif
-    
+
     /* start scheduler */
     rt_system_scheduler_start();
 

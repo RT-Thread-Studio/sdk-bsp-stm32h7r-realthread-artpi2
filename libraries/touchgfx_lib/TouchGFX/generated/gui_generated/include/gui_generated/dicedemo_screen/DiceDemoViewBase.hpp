@@ -31,47 +31,47 @@ public:
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void animationComplexTionChanged(bool value)
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void leftPressed()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void rightPressed()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void upPressed()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void downPressed()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void exitCubeAnimationEnded()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void enterCubeAnimationEnded()
     {
         // Override and implement this function in Screen1
     }
-    
+
     virtual void animationDone()
     {
         // Override and implement this function in Screen1
     }
-    
+
 
 protected:
     FrontendApplication& application() {
