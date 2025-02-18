@@ -339,6 +339,8 @@ int main(void)
 
     rt_kprintf("\nJump to APP...\n");
 
+	rt_thread_mdelay(200);
+
     JumpToApplication();
 
     return RT_EOK;

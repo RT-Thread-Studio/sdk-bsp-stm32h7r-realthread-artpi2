@@ -107,13 +107,13 @@ void SystemClock_Config(void)
 
 int clock_information(void)
 {
-    LOG_D("System Clock information");
-    LOG_D("SYSCLK_Frequency = %d", HAL_RCC_GetSysClockFreq());
-    LOG_D("HCLK_Frequency   = %d", HAL_RCC_GetHCLKFreq());
-    LOG_D("PCLK1_Frequency  = %d", HAL_RCC_GetPCLK1Freq());
-    LOG_D("PCLK2_Frequency  = %d", HAL_RCC_GetPCLK2Freq());
-    LOG_D("PLL2S_XSPI1_2_Frequency  = %d", HAL_RCC_GetPLL2SFreq());
-    LOG_D("PLL2T_Frequency  = %d", HAL_RCC_GetPLL2TFreq());
+    rt_kprintf("System Clock information\n");
+    rt_kprintf("SYSCLK_Frequency = %d\n", HAL_RCC_GetSysClockFreq());
+    rt_kprintf("HCLK_Frequency   = %d\n", HAL_RCC_GetHCLKFreq());
+    rt_kprintf("PCLK1_Frequency  = %d\n", HAL_RCC_GetPCLK1Freq());
+    rt_kprintf("PCLK2_Frequency  = %d\n", HAL_RCC_GetPCLK2Freq());
+    rt_kprintf("PLL2S_XSPI1_2_Frequency  = %d\n", HAL_RCC_GetPLL2SFreq());
+    rt_kprintf("PLL2T_Frequency  = %d\n", HAL_RCC_GetPLL2TFreq());
     return RT_EOK;
 }
 INIT_BOARD_EXPORT(clock_information);
