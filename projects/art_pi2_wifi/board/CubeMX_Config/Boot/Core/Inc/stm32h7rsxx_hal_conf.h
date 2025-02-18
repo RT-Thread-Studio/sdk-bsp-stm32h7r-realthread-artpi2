@@ -241,6 +241,14 @@
 
 /* ################## CRYP peripheral configuration ########################## */
 
+/**
+  * @brief  For code optimization purpose, uncomment and set to "1U" the USE_HAL_CRYP_ONLY or USE_HAL_SAES_ONLY,
+  *         to use only one peripheral. Both defines cannot be set to "1U" at the same time.
+  */
+
+/* #define USE_HAL_CRYP_ONLY       1U */
+/* #define USE_HAL_SAES_ONLY       0U */
+
 #define USE_HAL_CRYP_SUSPEND_RESUME   0U
 
 /* ################## HASH peripheral configuration ########################## */
