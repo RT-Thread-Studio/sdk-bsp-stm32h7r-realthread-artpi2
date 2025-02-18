@@ -138,27 +138,13 @@ int JumpToApplication(void)
     /* Disable D-Cache---------------------------------------------------------*/
     SCB_DisableDCache();
 
-    /* Initialize user application's Stack Pointer & Jump to user application  */
-    primask_bit = __get_PRIMASK();
-    __disable_irq();
-
     /* Apply offsets for image location and vector table offset */
     //  Application_vector += EXTMEM_XIP_IMAGE_OFFSET + EXTMEM_HEADER_OFFSET;
     Application_vector = APPLICATION_ADDRESS;
     SCB->VTOR = (uint32_t)Application_vector;
     JumpToApp = (pFunction)(*(__IO uint32_t *)(Application_vector + 4u));
 
-#if ((defined(__ARM_ARCH_8M_MAIN__) && (__ARM_ARCH_8M_MAIN__ == 1)) ||     \
-     (defined(__ARM_ARCH_8_1M_MAIN__) && (__ARM_ARCH_8_1M_MAIN__ == 1)) || \
-     (defined(__ARM_ARCH_8M_BASE__) && (__ARM_ARCH_8M_BASE__ == 1)))
-    /* on ARM v8m, set MSPLIM before setting MSP to avoid unwanted stack overflow faults */
-    __set_MSPLIM(0x00000000);
-#endif /* __ARM_ARCH_8M_MAIN__ or __ARM_ARCH_8M_BASE__ */
-
     __set_MSP(*(__IO uint32_t *)Application_vector);
-
-    /* Re-enable the interrupts */
-//    __set_PRIMASK(primask_bit);
 
     JumpToApp();
     return 0;
@@ -172,49 +158,49 @@ int JumpToApplication(void)
 static void MX_FLASH_Init(void)
 {
 
-  /* USER CODE BEGIN FLASH_Init 0 */
+    /* USER CODE BEGIN FLASH_Init 0 */
 
-  /* USER CODE END FLASH_Init 0 */
+    /* USER CODE END FLASH_Init 0 */
 
-  FLASH_OBProgramInitTypeDef pOBInit = {0};
+    FLASH_OBProgramInitTypeDef pOBInit = {0};
 
-  /* USER CODE BEGIN FLASH_Init 1 */
+    /* USER CODE BEGIN FLASH_Init 1 */
 
-  /* USER CODE END FLASH_Init 1 */
-  if (HAL_FLASH_Unlock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_OB_Unlock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  pOBInit.OptionType = OPTIONBYTE_USER;
-  pOBInit.USERType = OB_USER_IWDG_SW|OB_USER_NRST_STOP
-                              |OB_USER_NRST_STDBY|OB_USER_VDDIO_HSLV
-                              |OB_USER_IWDG_STOP|OB_USER_IWDG_STDBY
-                              |OB_USER_XSPI1_HSLV|OB_USER_XSPI2_HSLV
-                              |OB_USER_I2C_NI3C;
-  pOBInit.USERConfig1 = OB_IWDG_SW|OB_STOP_NORST
-                              |OB_STANDBY_NORST|OB_VDDIO_HSLV_DISABLE
-                              |OB_IWDG_STOP_RUN|OB_IWDG_STDBY_RUN
-                              |OB_XSPI1_HSLV_ENABLE|OB_XSPI2_HSLV_ENABLE;
-  pOBInit.USERConfig2 = OB_I2C_NI3C_I2C;
-  if (HAL_FLASHEx_OBProgram(&pOBInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_OB_Lock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_FLASH_Lock() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN FLASH_Init 2 */
+    /* USER CODE END FLASH_Init 1 */
+    if (HAL_FLASH_Unlock() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    if (HAL_FLASH_OB_Unlock() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    pOBInit.OptionType = OPTIONBYTE_USER;
+    pOBInit.USERType = OB_USER_IWDG_SW | OB_USER_NRST_STOP
+                       | OB_USER_NRST_STDBY | OB_USER_VDDIO_HSLV
+                       | OB_USER_IWDG_STOP | OB_USER_IWDG_STDBY
+                       | OB_USER_XSPI1_HSLV | OB_USER_XSPI2_HSLV
+                       | OB_USER_I2C_NI3C;
+    pOBInit.USERConfig1 = OB_IWDG_SW | OB_STOP_NORST
+                          | OB_STANDBY_NORST | OB_VDDIO_HSLV_DISABLE
+                          | OB_IWDG_STOP_RUN | OB_IWDG_STDBY_RUN
+                          | OB_XSPI1_HSLV_ENABLE | OB_XSPI2_HSLV_ENABLE;
+    pOBInit.USERConfig2 = OB_I2C_NI3C_I2C;
+    if (HAL_FLASHEx_OBProgram(&pOBInit) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    if (HAL_FLASH_OB_Lock() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    if (HAL_FLASH_Lock() != HAL_OK)
+    {
+        Error_Handler();
+    }
+    /* USER CODE BEGIN FLASH_Init 2 */
 
-  /* USER CODE END FLASH_Init 2 */
+    /* USER CODE END FLASH_Init 2 */
 
 }
 
@@ -237,9 +223,9 @@ int main(void)
     // HAL_XSPI_GetDelayValue(&hxspi1, &cal);
     // rt_kprintf("cal delay: 0x%.2x, fine: 0x%.2x, coarse 0x%.2x, max 0x%.2x", cal.DelayValueType, cal.FineCalibrationUnit, cal.CoarseCalibrationUnit, cal.MaxCalibration);
     if (W35T51NWTBIE_OK != W35T51NWTBIE_ReadID(&hxspi2,
-                                               W35T51NWTBIE_SPI_MODE,
-                                               W35T51NWTBIE_STR_TRANSFER,
-                                               device_id, W35T51NWTBIE_3BYTES_SIZE))
+            W35T51NWTBIE_SPI_MODE,
+            W35T51NWTBIE_STR_TRANSFER,
+            device_id, W35T51NWTBIE_3BYTES_SIZE))
     {
         rt_kprintf("Read ID Fail\n");
     }
@@ -256,9 +242,9 @@ int main(void)
         MX_XSPI2_Init();
 
         if (W35T51NWTBIE_OK != W35T51NWTBIE_ReadID(&hxspi2,
-                                                   W35T51NWTBIE_OPI_MODE,
-                                                   W35T51NWTBIE_DTR_TRANSFER,
-                                                   device_id, W35T51NWTBIE_4BYTES_SIZE))
+                W35T51NWTBIE_OPI_MODE,
+                W35T51NWTBIE_DTR_TRANSFER,
+                device_id, W35T51NWTBIE_4BYTES_SIZE))
         {
             rt_kprintf("Flash Enter octal failed\n");
         }
@@ -332,14 +318,15 @@ int main(void)
     if (APS256XX_OK != APS256XX_EnableMemoryMappedMode(&hxspi1, ReadLatencyVal, WriteLatencyVal, HAL_XSPI_DATA_16_LINES, 0)) // Liner Burst
     {
         rt_kprintf("PSRAM Enter XIP Faile\n");
-    }else
+    }
+    else
     {
         rt_kprintf("PSRAM Enter XIP Success\n");
     }
 
     rt_kprintf("\nJump to APP...\n");
 
-	rt_thread_mdelay(200);
+    rt_hw_interrupt_disable();
 
     JumpToApplication();
 

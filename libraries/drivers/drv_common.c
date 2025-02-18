@@ -7,25 +7,25 @@
  * Date           Author       Notes
  * 2018-11-7      SummerGift   first version
  */
- #include "drv_common.h"
- #include <board.h>
- 
- #ifdef RT_USING_PIN
- #include <drv_gpio.h>
- #endif
- 
- #ifdef RT_USING_SERIAL
- #ifdef RT_USING_SERIAL_V2
- #include <drv_usart_v2.h>
- #else
- #include <drv_usart.h>
- #endif /* RT_USING_SERIAL */
- #endif /* RT_USING_SERIAL_V2 */
- 
- #define DBG_TAG "drv_common"
- #define DBG_LVL DBG_INFO
- #include <rtdbg.h>
- 
+#include "drv_common.h"
+#include <board.h>
+
+#ifdef RT_USING_PIN
+    #include <drv_gpio.h>
+#endif
+
+#ifdef RT_USING_SERIAL
+    #ifdef RT_USING_SERIAL_V2
+        #include <drv_usart_v2.h>
+    #else
+        #include <drv_usart.h>
+    #endif /* RT_USING_SERIAL */
+#endif /* RT_USING_SERIAL_V2 */
+
+#define DBG_TAG "drv_common"
+#define DBG_LVL DBG_INFO
+#include <rtdbg.h>
+
 #ifdef RT_USING_FINSH
 #include <finsh.h>
 static void reboot(uint8_t argc, char **argv)
