@@ -88,7 +88,7 @@ extern "C"
 #define BSP_UART6_RX_PIN       "PC7"
 #endif
 
-
+void SystemClock_Config(void);
 /*-------------------------- UART CONFIG END --------------------------*/
 
 #ifdef __cplusplus

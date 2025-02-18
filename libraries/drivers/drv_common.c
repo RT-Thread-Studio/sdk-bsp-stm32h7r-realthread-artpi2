@@ -7,31 +7,51 @@
  * Date           Author       Notes
  * 2018-11-7      SummerGift   first version
  */
-
-#include "drv_common.h"
-#include "board.h"
-
+ #include "drv_common.h"
+ #include <board.h>
+ 
+ #ifdef RT_USING_PIN
+ #include <drv_gpio.h>
+ #endif
+ 
+ #ifdef RT_USING_SERIAL
+ #ifdef RT_USING_SERIAL_V2
+ #include <drv_usart_v2.h>
+ #else
+ #include <drv_usart.h>
+ #endif /* RT_USING_SERIAL */
+ #endif /* RT_USING_SERIAL_V2 */
+ 
+ #define DBG_TAG "drv_common"
+ #define DBG_LVL DBG_INFO
+ #include <rtdbg.h>
+ 
 #ifdef RT_USING_FINSH
 #include <finsh.h>
 static void reboot(uint8_t argc, char **argv)
 {
     rt_hw_cpu_reset();
 }
-FINSH_FUNCTION_EXPORT_ALIAS(reboot, __cmd_reboot, Reboot System);
+MSH_CMD_EXPORT(reboot, Reboot System);
 #endif /* RT_USING_FINSH */
+
+extern __IO uint32_t uwTick;
+static uint32_t _systick_ms = 1;
 
 /* SysTick configuration */
 void rt_hw_systick_init(void)
 {
-#if defined (SOC_SERIES_STM32H7RS)
-    HAL_SYSTICK_Config((HAL_RCC_GetSysClockFreq()) / RT_TICK_PER_SECOND);
-#else
-    HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq() / RT_TICK_PER_SECOND);
-#endif
-    HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-    NVIC_SetPriority(SysTick_IRQn, 0xFF);
-}
+    // Updates the variable SystemCoreClock
+    SystemCoreClockUpdate();
 
+    HAL_SYSTICK_Config(SystemCoreClock / RT_TICK_PER_SECOND);
+
+    NVIC_SetPriority(SysTick_IRQn, 0xFF);
+
+    _systick_ms = 1000u / RT_TICK_PER_SECOND;
+    if (_systick_ms == 0)
+        _systick_ms = 1;
+}
 /**
  * This is the timer interrupt service routine.
  *
@@ -41,7 +61,9 @@ void SysTick_Handler(void)
     /* enter interrupt */
     rt_interrupt_enter();
 
-    HAL_IncTick();
+    if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)
+        HAL_IncTick();
+
     rt_tick_increase();
 
     /* leave interrupt */
@@ -50,12 +72,38 @@ void SysTick_Handler(void)
 
 uint32_t HAL_GetTick(void)
 {
-    return rt_tick_get() * 1000 / RT_TICK_PER_SECOND;
+    if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)
+        HAL_IncTick();
+
+    return uwTick;
+}
+
+void HAL_IncTick(void)
+{
+    uwTick += _systick_ms;
+}
+
+void HAL_SuspendTick(void)
+{
+}
+
+void HAL_ResumeTick(void)
+{
 }
 
 void HAL_Delay(__IO uint32_t Delay)
 {
-    rt_thread_mdelay(Delay);
+    if (rt_thread_self())
+    {
+        rt_thread_mdelay(Delay);
+    }
+    else
+    {
+        for (rt_uint32_t count = 0; count < Delay; count++)
+        {
+            rt_hw_us_delay(1000);
+        }
+    }
 }
 
 /* re-implement tick interface for STM32 HAL */
@@ -89,50 +137,80 @@ void _Error_Handler(void)
  */
 void rt_hw_us_delay(rt_uint32_t us)
 {
-    rt_uint32_t start, now, delta, reload, us_tick;
-    start = SysTick->VAL;
-    reload = SysTick->LOAD;
-    us_tick = SystemCoreClock / 1000000UL;
-    do
+    rt_uint64_t ticks;
+    rt_uint32_t told, tnow, tcnt = 0;
+    rt_uint32_t reload = SysTick->LOAD;
+
+    ticks = us * (reload / (1000000 / RT_TICK_PER_SECOND));
+    told = SysTick->VAL;
+    while (1)
     {
-        now = SysTick->VAL;
-        delta = start > now ? start - now : reload + start - now;
+        tnow = SysTick->VAL;
+        if (tnow != told)
+        {
+            if (tnow < told)
+            {
+                tcnt += told - tnow;
+            }
+            else
+            {
+                tcnt += reload - tnow + told;
+            }
+            told = tnow;
+            if (tcnt >= ticks)
+            {
+                break;
+            }
+        }
     }
-    while (delta < us_tick * us);
 }
 
 /**
  * This function will initial STM32 board.
  */
-void hw_board_init(char *clock_src, int32_t clock_src_freq, int32_t clock_target_freq)
+rt_weak void rt_hw_board_init(void)
 {
-    /* Update SystemCoreClock variable according to RCC registers values. */
-    SystemCoreClockUpdate();
+#ifdef BSP_SCB_ENABLE_I_CACHE
+    /* Enable I-Cache---------------------------------------------------------*/
+    SCB_EnableICache();
+#endif
 
-    /* System clock initialization */
-    extern void clk_init(char *clk_source, int source_freq, int target_freq);
-    clk_init(clock_src, clock_src_freq, clock_target_freq);
+#ifdef BSP_SCB_ENABLE_D_CACHE
+    /* Enable D-Cache---------------------------------------------------------*/
+    SCB_EnableDCache();
+#endif
 
     /* HAL_Init() function is called at the beginning of the program */
     HAL_Init();
 
-    /* Configure the system Power Supply */
-    if (HAL_PWREx_ConfigSupply(PWR_DIRECT_SMPS_SUPPLY) != HAL_OK)
-    {
-        /* Initialization error */
-        Error_Handler();
-    }
+    /* System clock initialization */
+    SystemClock_Config();
 
-    /* Pin driver initialization is open by default */
+#if defined(RT_USING_HEAP)
+    /* Heap initialization */
+    rt_system_heap_init((void *)HEAP_BEGIN, (void *)HEAP_END);
+#endif
+
 #ifdef RT_USING_PIN
-    extern int rt_hw_pin_init(void);
     rt_hw_pin_init();
 #endif
 
-    /* USART driver initialization is open by default */
 #ifdef RT_USING_SERIAL
-    extern int rt_hw_usart_init(void);
     rt_hw_usart_init();
 #endif
 
+#if defined(RT_USING_CONSOLE) && defined(RT_USING_DEVICE)
+    /* Set the shell console output device */
+    rt_console_set_device(RT_CONSOLE_DEVICE_NAME);
+#endif
+
+#if defined(RT_USING_CONSOLE) && defined(RT_USING_NANO)
+    extern void rt_hw_console_init(void);
+    rt_hw_console_init();
+#endif
+
+#ifdef RT_USING_COMPONENTS_INIT
+    /* Board underlying hardware initialization */
+    rt_components_board_init();
+#endif
 }

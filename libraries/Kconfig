@@ -24,6 +24,14 @@ menuconfig RT_USING_INDEPENDENT_INTERRUPT_MANAGEMENT
 
 menu "Onboard Peripheral Drivers"
 
+    config BSP_SCB_ENABLE_I_CACHE
+        bool "Enable ICACHE"
+        default y
+
+    config BSP_SCB_ENABLE_D_CACHE
+        bool "Enable DCACHE"
+        default y
+
     config BSP_USING_USB_TO_USART
         bool "Enable Debuger USART (uart4)"
         select BSP_USING_UART

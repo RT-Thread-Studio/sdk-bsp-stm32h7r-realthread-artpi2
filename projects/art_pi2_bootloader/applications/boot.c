@@ -8,7 +8,6 @@
  * 2020-09-25     armink       the first version
  */
 
-#include <rthw.h>
 #include <rtthread.h>
 
 void rt_application_init(void);

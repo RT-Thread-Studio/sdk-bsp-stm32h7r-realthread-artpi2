@@ -208,7 +208,7 @@ rt_hw_context_switch_to    PROC
     CPSIE   F
     CPSIE   I
 
-    /* clear the BASEPRI register to disable masking priority */
+    ; clear the BASEPRI register to disable masking priority */
     MOV     r0, #0x00
     MSR     BASEPRI, r0
 
