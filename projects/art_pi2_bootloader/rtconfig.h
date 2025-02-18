@@ -317,7 +317,6 @@
 #define BSP_USING_UART4
 #define BSP_UART4_RX_BUFSIZE 256
 #define BSP_UART4_TX_BUFSIZE 0
-#define BSP_USING_PSRAM
 /* end of On-chip Peripheral */
 /* end of Hardware Drivers Config */
 
