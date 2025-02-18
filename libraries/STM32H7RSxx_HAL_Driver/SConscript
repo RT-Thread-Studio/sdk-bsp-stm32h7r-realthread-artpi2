@@ -96,6 +96,7 @@ if GetDepend(['RT_USING_SPI']):
 if GetDepend(['BSP_USING_LCD']):
     src += ['Src/stm32h7rsxx_hal_ltdc.c']
     src += ['Src/stm32h7rsxx_hal_dma2d.c']
+    src += ['Src/stm32h7rsxx_hal_jpeg.c']
 
 if GetDepend(['ART_PI_TouchGFX_LIB']):
     src += ['Src/stm32h7rsxx_hal_ltdc.c']

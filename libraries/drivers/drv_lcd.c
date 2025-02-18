@@ -37,6 +37,58 @@ static rt_err_t drv_lcd_init(struct rt_device *device)
     return RT_EOK;
 }
 
+static rt_err_t drv_lcd_control(struct rt_device *device, int cmd, void *args)
+{
+    struct drv_lcd_device *lcd = LCD_DEVICE(device);
+
+    switch (cmd)
+    {
+    case RTGRAPHIC_CTRL_RECT_UPDATE:
+    {
+        /* update */
+        if (_lcd.cur_buf)
+        {
+            /* back_buf is being used */
+            memcpy(_lcd.front_buf, _lcd.lcd_info.framebuffer, LCD_BUF_SIZE);
+            /* Configure the color frame buffer start address */
+            LTDC_LAYER(&LtdcHandle, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
+            LTDC_LAYER(&LtdcHandle, 0)->CFBAR = (uint32_t)(_lcd.front_buf);
+            _lcd.cur_buf = 0;
+        }
+        else
+        {
+            /* front_buf is being used */
+            memcpy(_lcd.back_buf, _lcd.lcd_info.framebuffer, LCD_BUF_SIZE);
+            /* Configure the color frame buffer start address */
+            LTDC_LAYER(&LtdcHandle, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
+            LTDC_LAYER(&LtdcHandle, 0)->CFBAR = (uint32_t)(_lcd.back_buf);
+            _lcd.cur_buf = 1;
+        }
+        rt_sem_take(&_lcd.lcd_lock, RT_TICK_PER_SECOND / 20);
+        HAL_LTDC_Relaod(&LtdcHandle, LTDC_SRCR_VBR);
+    }
+    break;
+
+    case RTGRAPHIC_CTRL_GET_INFO:
+    {
+        struct rt_device_graphic_info *info = (struct rt_device_graphic_info *)args;
+
+        RT_ASSERT(info != RT_NULL);
+        info->pixel_format = lcd->lcd_info.pixel_format;
+        info->bits_per_pixel = 16;
+        info->width = lcd->lcd_info.width;
+        info->height = lcd->lcd_info.height;
+        info->framebuffer = lcd->lcd_info.framebuffer;
+    }
+    break;
+
+    default:
+        return -RT_EINVAL;
+    }
+
+    return RT_EOK;
+}
+
 void LTDC_IRQHandler(void)
 {
     rt_interrupt_enter();
@@ -162,6 +214,7 @@ rt_err_t stm32_lcd_init(struct drv_lcd_device *lcd)
         return RT_EOK;
     }
 }
+
 #if defined(LCD_BACKLIGHT_USING_PWM)
 void turn_on_lcd_backlight(void)
 {
@@ -233,11 +286,16 @@ int drv_lcd_hw_init(void)
     memset(_lcd.back_buf, 0xFF, LCD_BUF_SIZE);
     memset(_lcd.front_buf, 0xFF, LCD_BUF_SIZE);
 
+	rt_kprintf("_lcd.framebuffer:%#x\n", _lcd.lcd_info.framebuffer);
+	rt_kprintf("_lcd.back_buf:%#x\n", _lcd.back_buf);
+	rt_kprintf("_lcd.front_buf:%#x\n", _lcd.front_buf);
+
     device->type    = RT_Device_Class_Graphic;
 #ifdef RT_USING_DEVICE_OPS
     device->ops     = &lcd_ops;
 #else
     device->init    = drv_lcd_init;
+	device->control = drv_lcd_control;
 #endif
 
     /* register lcd device */
