@@ -15,20 +15,13 @@
 #define LOG_TAG             "lvgl.disp"
 #include <drv_log.h>
 
-#ifdef BSP_USING_ILI9488
-    #include "drv_spi_ili9488.h"
-    #define COLOR_BUFFER  (LV_HOR_RES_MAX * LV_VER_RES_MAX / 5)
-#else
-    #include <lcd_port.h>
-    #define COLOR_BUFFER  (LV_HOR_RES_MAX * LV_VER_RES_MAX * 2)
-#endif
+#include <lcd_port.h>
+#define COLOR_BUFFER  (LV_HOR_RES_MAX * LV_VER_RES_MAX * 2)
 
 static lv_display_t *disp;
 
-#ifdef BSP_USING_LCD_RGB
 static DMA2D_HandleTypeDef hdma2d;
 extern LTDC_HandleTypeDef LtdcHandle;
-static rt_sem_t trans_done_semphr = RT_NULL;
 
 static void mDMA2Dcallvack(DMA2D_HandleTypeDef *hdma2d)
 {
@@ -69,17 +62,24 @@ void DMA2D_IRQHandler(void)
     /* exit interrupt */
     rt_interrupt_leave();
 }
-#endif
 
 static void lcd_fb_flush(lv_display_t  *disp_drv, const lv_area_t *area, uint8_t *color_p)
 {
-#ifdef BSP_USING_ILI9488
-    /* color_p is a buffer pointer; the buffer is provided by LVGL */
-    lcd_fill_array(area->x1, area->y1, area->x2, area->y2, color_p);
-    lv_disp_flush_ready(disp_drv);
+#ifdef DIRECT_MODE
+    if (lv_display_flush_is_last(disp))
+    {
+        SCB_CleanInvalidateDCache();
+        // wait for VSYNC to avoid tearing
+        while (!(LTDC->CDSR & LTDC_CDSR_VSYNCS));
+        // swap framebuffers (NOTE: LVGL will swap the buffers in the background, so here we can set the LCD framebuffer to the current LVGL buffer, which has been just completed)
+        HAL_LTDC_SetAddress(&hltdc, (uint32_t)(lv_display_get_buf_active(disp)->data), 0);
+    }
+    lv_display_flush_ready(disp);
 #else
     lv_coord_t width = lv_area_get_width(area);
     lv_coord_t height = lv_area_get_height(area);
+
+    SCB_CleanInvalidateDCache();
 
     DMA2D->CR = 0x0U << DMA2D_CR_MODE_Pos;
     DMA2D->FGPFCCR = DMA2D_INPUT_RGB565;
