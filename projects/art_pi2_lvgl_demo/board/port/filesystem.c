@@ -41,7 +41,7 @@ const struct romfs_dirent romfs_root = {
 #ifdef BSP_USING_SDCARD_FS
 
 /* SD Card hot plug detection pin */
-#define SD_CHECK_PIN GET_PIN(D, 5)
+#define SD_CHECK_PIN GET_PIN(N, 7)
 
 static void _sdcard_mount(void)
 {
