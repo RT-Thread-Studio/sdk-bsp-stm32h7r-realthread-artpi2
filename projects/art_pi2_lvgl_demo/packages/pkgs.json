@@ -5,11 +5,6 @@
   "ver": "latest"
  },
  {
-  "name": "LV_MUSIC_DEMO",
-  "path": "/packages/multimedia/LVGL/lv_music_demo",
-  "ver": "latest"
- },
- {
   "name": "GT9147",
   "path": "/packages/peripherals/touch/gt9147",
   "ver": "v1.1.0"

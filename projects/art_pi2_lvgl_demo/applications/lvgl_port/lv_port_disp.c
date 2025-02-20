@@ -105,21 +105,23 @@ void lv_port_disp_init(void)
         return;
     }
 
+#if defined (LV_COLOR_DEPTH) && (LV_COLOR_DEPTH == 1U)
+#if LV_COLOR_DEPTH == 16
+    static __attribute__((aligned(32))) uint8_t buf_2[LV_HOR_RES_MAX * LV_VER_RES_MAX * 2];
+    lv_st_ltdc_create_direct((void *)lcd->lcd_info.framebuffer, lv_disp_buf, LV_DISPLAY_RENDER_MODE_PARTIAL);
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    static __attribute__((aligned(32))) uint8_t buf_1[MY_DISP_HOR_RES * MY_DISP_VER_RES];
+    static __attribute__((aligned(32))) uint8_t buf_2[MY_DISP_HOR_RES * MY_DISP_VER_RES];
+    lv_st_ltdc_create_partial(buf_1, buf_2, sizeof(buf_1), 0);
+#else
+#error LV_COLOR_DEPTH not supported
+#endif
+#else
     disp = lv_display_create(LV_HOR_RES_MAX, LV_VER_RES_MAX);
     lv_display_set_buffers(disp, (void *)lcd->lcd_info.framebuffer, lv_disp_buf, COLOR_BUFFER, LV_DISPLAY_RENDER_MODE_PARTIAL);
     lv_display_set_flush_cb(disp, lcd_fb_flush);
 
     /* interrupt callback for DMA2D transfer */
     hdma2d.XferCpltCallback = mDMA2Dcallvack;
-
-//#if LV_COLOR_DEPTH == 16
-//  static __attribute__((aligned(32))) uint8_t buf_2[LV_HOR_RES_MAX * LV_VER_RES_MAX * 2];
-//  lv_st_ltdc_create_direct((void *)lcd->lcd_info.framebuffer, lv_disp_buf, 0);
-//#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
-//  static __attribute__((aligned(32))) uint8_t buf_1[MY_DISP_HOR_RES * MY_DISP_VER_RES];
-//  static __attribute__((aligned(32))) uint8_t buf_2[MY_DISP_HOR_RES * MY_DISP_VER_RES];
-//  lv_st_ltdc_create_partial(buf_1, buf_2, sizeof(buf_1), 0);
-//#else
-//  #error LV_COLOR_DEPTH not supported
-//#endif
+#endif  /* LV_COLOR_DEPTH == 1U */
 }

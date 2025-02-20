@@ -25,7 +25,7 @@
 
 #define LCD_DEVICE(dev)     (struct drv_lcd_device*)(dev)
 
-LTDC_HandleTypeDef LtdcHandle = {0};
+LTDC_HandleTypeDef hltdc = {0};
 
 struct drv_lcd_device _lcd;
 
@@ -51,8 +51,8 @@ static rt_err_t drv_lcd_control(struct rt_device *device, int cmd, void *args)
             /* back_buf is being used */
             memcpy(_lcd.front_buf, _lcd.lcd_info.framebuffer, LCD_BUF_SIZE);
             /* Configure the color frame buffer start address */
-            LTDC_LAYER(&LtdcHandle, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
-            LTDC_LAYER(&LtdcHandle, 0)->CFBAR = (uint32_t)(_lcd.front_buf);
+            LTDC_LAYER(&hltdc, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
+            LTDC_LAYER(&hltdc, 0)->CFBAR = (uint32_t)(_lcd.front_buf);
             _lcd.cur_buf = 0;
         }
         else
@@ -60,12 +60,12 @@ static rt_err_t drv_lcd_control(struct rt_device *device, int cmd, void *args)
             /* front_buf is being used */
             memcpy(_lcd.back_buf, _lcd.lcd_info.framebuffer, LCD_BUF_SIZE);
             /* Configure the color frame buffer start address */
-            LTDC_LAYER(&LtdcHandle, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
-            LTDC_LAYER(&LtdcHandle, 0)->CFBAR = (uint32_t)(_lcd.back_buf);
+            LTDC_LAYER(&hltdc, 0)->CFBAR &= ~(LTDC_LxCFBAR_CFBADD);
+            LTDC_LAYER(&hltdc, 0)->CFBAR = (uint32_t)(_lcd.back_buf);
             _lcd.cur_buf = 1;
         }
         rt_sem_take(&_lcd.lcd_lock, RT_TICK_PER_SECOND / 20);
-        HAL_LTDC_Relaod(&LtdcHandle, LTDC_SRCR_VBR);
+        HAL_LTDC_Relaod(&hltdc, LTDC_SRCR_VBR);
     }
     break;
 
@@ -93,7 +93,7 @@ void LTDC_IRQHandler(void)
 {
     rt_interrupt_enter();
 
-    HAL_LTDC_IRQHandler(&LtdcHandle);
+    HAL_LTDC_IRQHandler(&hltdc);
 
     rt_interrupt_leave();
 }
@@ -106,38 +106,38 @@ rt_err_t stm32_lcd_init(struct drv_lcd_device *lcd)
 
     /* Polarity configuration */
     /* Initialize the horizontal synchronization polarity as active low */
-    LtdcHandle.Init.HSPolarity = LTDC_HSPOLARITY_AL;
+    hltdc.Init.HSPolarity = LTDC_HSPOLARITY_AL;
     /* Initialize the vertical synchronization polarity as active low */
-    LtdcHandle.Init.VSPolarity = LTDC_VSPOLARITY_AL;
+    hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
     /* Initialize the data enable polarity as active low */
-    LtdcHandle.Init.DEPolarity = LTDC_DEPOLARITY_AL;
+    hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
     /* Initialize the pixel clock polarity as input pixel clock */
-    LtdcHandle.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
+    hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
 
     /* Timing configuration */
     /* Horizontal synchronization width = Hsync - 1 */
-    LtdcHandle.Init.HorizontalSync = LCD_HSYNC_WIDTH - 1;
+    hltdc.Init.HorizontalSync = LCD_HSYNC_WIDTH - 1;
     /* Vertical synchronization height = Vsync - 1 */
-    LtdcHandle.Init.VerticalSync = LCD_VSYNC_HEIGHT - 1;
+    hltdc.Init.VerticalSync = LCD_VSYNC_HEIGHT - 1;
     /* Accumulated horizontal back porch = Hsync + HBP - 1 */
-    LtdcHandle.Init.AccumulatedHBP = LCD_HSYNC_WIDTH + LCD_HBP - 1;
+    hltdc.Init.AccumulatedHBP = LCD_HSYNC_WIDTH + LCD_HBP - 1;
     /* Accumulated vertical back porch = Vsync + VBP - 1 */
-    LtdcHandle.Init.AccumulatedVBP = LCD_VSYNC_HEIGHT + LCD_VBP - 1;
+    hltdc.Init.AccumulatedVBP = LCD_VSYNC_HEIGHT + LCD_VBP - 1;
     /* Accumulated active width = Hsync + HBP + Active Width - 1 */
-    LtdcHandle.Init.AccumulatedActiveW = LCD_HSYNC_WIDTH + LCD_HBP + lcd->lcd_info.width - 1 ;
+    hltdc.Init.AccumulatedActiveW = LCD_HSYNC_WIDTH + LCD_HBP + lcd->lcd_info.width - 1 ;
     /* Accumulated active height = Vsync + VBP + Active Heigh - 1 */
-    LtdcHandle.Init.AccumulatedActiveH = LCD_VSYNC_HEIGHT + LCD_VBP + lcd->lcd_info.height - 1;
+    hltdc.Init.AccumulatedActiveH = LCD_VSYNC_HEIGHT + LCD_VBP + lcd->lcd_info.height - 1;
     /* Total height = Vsync + VBP + Active Heigh + VFP - 1 */
-    LtdcHandle.Init.TotalHeigh = LtdcHandle.Init.AccumulatedActiveH + LCD_VFP;
+    hltdc.Init.TotalHeigh = hltdc.Init.AccumulatedActiveH + LCD_VFP;
     /* Total width = Hsync + HBP + Active Width + HFP - 1 */
-    LtdcHandle.Init.TotalWidth = LtdcHandle.Init.AccumulatedActiveW + LCD_HFP;
+    hltdc.Init.TotalWidth = hltdc.Init.AccumulatedActiveW + LCD_HFP;
 
     /* Configure R,G,B component values for LCD background color */
-    LtdcHandle.Init.Backcolor.Blue = 0;
-    LtdcHandle.Init.Backcolor.Green = 0;
-    LtdcHandle.Init.Backcolor.Red = 0;
+    hltdc.Init.Backcolor.Blue = 0;
+    hltdc.Init.Backcolor.Green = 0;
+    hltdc.Init.Backcolor.Red = 0;
 
-    LtdcHandle.Instance = LTDC;
+    hltdc.Instance = LTDC;
 
     /* Layer1 Configuration ------------------------------------------------------*/
 
@@ -193,14 +193,14 @@ rt_err_t stm32_lcd_init(struct drv_lcd_device *lcd)
     pLayerCfg.ImageHeight = lcd->lcd_info.height;
 
     /* Configure the LTDC */
-    if (HAL_LTDC_Init(&LtdcHandle) != HAL_OK)
+    if (HAL_LTDC_Init(&hltdc) != HAL_OK)
     {
         LOG_E("LTDC init failed");
         return -RT_ERROR;
     }
 
     /* Configure the Background Layer*/
-    if (HAL_LTDC_ConfigLayer(&LtdcHandle, &pLayerCfg, 0) != HAL_OK)
+    if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
     {
         LOG_E("LTDC layer init failed");
         return -RT_ERROR;
