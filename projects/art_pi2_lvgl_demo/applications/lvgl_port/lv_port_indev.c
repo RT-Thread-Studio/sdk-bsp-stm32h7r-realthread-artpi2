@@ -125,7 +125,7 @@ int rt_hw_touch_port(void)
 #endif
     return 0;
 }
-INIT_ENV_EXPORT(rt_hw_touch_port);
+INIT_DEVICE_EXPORT(rt_hw_touch_port);
 
 void lv_port_indev_init(void)
 {
