@@ -19,7 +19,7 @@
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadImage" value="true"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadSymbols" value="true"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.otherDownloadOption" value=""/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.otherGdbserverOption" value=""/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.otherGdbserverOption" value="-m 1"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.pcRegister" value=""/>
 <intAttribute key="org.eclipse.cdt.debug.gdbjtag.core.portNumber" value="61235"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.resetMode" value=" -hardRst"/>

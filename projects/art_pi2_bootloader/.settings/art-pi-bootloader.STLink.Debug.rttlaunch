@@ -7,14 +7,12 @@
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doHalt" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doReset" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.erase" value=""/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoader" value="${workspace_loc:/${ProjName}/board/stldr/ART-Pi2_ST_winbond_64MB.stldr}"/>
-<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoaderButton" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.externalLoaderButton" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.flashVerify" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageFileName" value=""/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageOffset" value=""/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.initCommands" value=""/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.ipAddress" value="localhost"/>
-<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.isUseInternal" value="false"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.jtagDeviceId" value="org.eclipse.cdt.debug.gdbjtag.core.jtagdevice.genericDevice"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadImage" value="true"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadSymbols" value="true"/>
@@ -39,11 +37,11 @@
 <intAttribute key="org.eclipse.cdt.launch.ATTR_BUILD_BEFORE_LAUNCH_ATTR" value="0"/>
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_START_MODE" value="remote"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/rtthread.elf"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="art_pi2_lvgl_demo"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="art-pi-bootloader"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/art_pi2_lvgl_demo"/>
+<listEntry value="/art-pi-bootloader"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
