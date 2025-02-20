@@ -179,7 +179,14 @@ lv_result_t lv_thread_sync_delete(lv_thread_sync_t * sync)
 
 lv_result_t lv_thread_sync_signal_isr(lv_thread_sync_t * sync)
 {
-    LV_UNUSED(sync);
+    rt_err_t ret = rt_sem_release(sync->sem);
+    if(ret) {
+        LV_LOG_WARN("Error: %d", ret);
+        return LV_RESULT_INVALID;
+    }
+    else {
+        return LV_RESULT_OK;
+    }
     return LV_RESULT_INVALID;
 }
 

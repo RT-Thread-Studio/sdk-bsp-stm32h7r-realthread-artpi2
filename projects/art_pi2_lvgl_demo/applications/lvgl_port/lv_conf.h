@@ -30,7 +30,8 @@
 #   define LV_VER_RES_MAX           454
 #elif defined(BSP_USING_LCD_800_RGB)
 #   define LV_COLOR_DEPTH           16
-#   define LV_USE_DRAW_DMA2D        1
+#   define LV_USE_ST_LTDC           1
+#   define LV_ST_LTDC_USE_DMA2D_FLUSH           1
 #   define LV_DRAW_DMA2D_HAL_INCLUDE "stm32h7rsxx.h"
 #   define LV_USE_NEMA_GFX          0
 #   define LV_HOR_RES_MAX           800

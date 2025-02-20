@@ -217,6 +217,7 @@
 #define USE_HAL_RNG_REGISTER_CALLBACKS        0U
 #define USE_HAL_RTC_REGISTER_CALLBACKS        0U
 #define USE_HAL_SAI_REGISTER_CALLBACKS        0U
+#define USE_HAL_LTDC_REGISTER_CALLBACKS       1U
 #define USE_HAL_SD_REGISTER_CALLBACKS         0U
 #define USE_HAL_SDRAM_REGISTER_CALLBACKS      0U
 #define USE_HAL_SMARTCARD_REGISTER_CALLBACKS  0U
@@ -240,6 +241,14 @@
 #define USE_SPI_CRC                   1U
 
 /* ################## CRYP peripheral configuration ########################## */
+
+/**
+  * @brief  For code optimization purpose, uncomment and set to "1U" the USE_HAL_CRYP_ONLY or USE_HAL_SAES_ONLY,
+  *         to use only one peripheral. Both defines cannot be set to "1U" at the same time.
+  */
+
+/* #define USE_HAL_CRYP_ONLY       1U */
+/* #define USE_HAL_SAES_ONLY       0U */
 
 #define USE_HAL_CRYP_SUSPEND_RESUME   0U
 

@@ -20,8 +20,8 @@
 
 static lv_display_t *disp;
 
-static DMA2D_HandleTypeDef hdma2d;
-extern LTDC_HandleTypeDef LtdcHandle;
+DMA2D_HandleTypeDef hdma2d;
+extern LTDC_HandleTypeDef hltdc;
 
 static void mDMA2Dcallvack(DMA2D_HandleTypeDef *hdma2d)
 {
@@ -42,6 +42,7 @@ static void lvgl_dma2d_config(void)
     hdma2d.LayerCfg[1].InputAlpha = 0;
     hdma2d.LayerCfg[1].AlphaInverted = DMA2D_REGULAR_ALPHA;
     hdma2d.LayerCfg[1].RedBlueSwap = DMA2D_RB_REGULAR;
+    hdma2d.LayerCfg[1].ChromaSubSampling = DMA2D_NO_CSS;
     if (HAL_DMA2D_Init(&hdma2d) != HAL_OK)
     {
         Error_Handler();
@@ -65,17 +66,6 @@ void DMA2D_IRQHandler(void)
 
 static void lcd_fb_flush(lv_display_t  *disp_drv, const lv_area_t *area, uint8_t *color_p)
 {
-#ifdef DIRECT_MODE
-    if (lv_display_flush_is_last(disp))
-    {
-        SCB_CleanInvalidateDCache();
-        // wait for VSYNC to avoid tearing
-        while (!(LTDC->CDSR & LTDC_CDSR_VSYNCS));
-        // swap framebuffers (NOTE: LVGL will swap the buffers in the background, so here we can set the LCD framebuffer to the current LVGL buffer, which has been just completed)
-        HAL_LTDC_SetAddress(&hltdc, (uint32_t)(lv_display_get_buf_active(disp)->data), 0);
-    }
-    lv_display_flush_ready(disp);
-#else
     lv_coord_t width = lv_area_get_width(area);
     lv_coord_t height = lv_area_get_height(area);
 
@@ -86,14 +76,13 @@ static void lcd_fb_flush(lv_display_t  *disp_drv, const lv_area_t *area, uint8_t
     DMA2D->FGMAR = (uint32_t)color_p;
     DMA2D->FGOR = 0;
     DMA2D->OPFCCR = DMA2D_OUTPUT_RGB565;
-    DMA2D->OMAR = LtdcHandle.LayerCfg[0].FBStartAdress + 2 * \
+    DMA2D->OMAR = hltdc.LayerCfg[0].FBStartAdress + 2 * \
                   (area->y1 * LV_HOR_RES_MAX + area->x1);
     DMA2D->OOR = LV_HOR_RES_MAX - width;
     DMA2D->NLR = (width << DMA2D_NLR_PL_Pos) | (height << DMA2D_NLR_NL_Pos);
     DMA2D->IFCR = 0x3FU;
     DMA2D->CR |= DMA2D_CR_TCIE;
     DMA2D->CR |= DMA2D_CR_START;
-#endif
 }
 
 void lv_port_disp_init(void)
@@ -104,24 +93,33 @@ void lv_port_disp_init(void)
     if (lv_disp_buf != RT_NULL)
         rt_kprintf("lv_disp_buf = %p\n", lv_disp_buf);
     else
-        rt_kprintf("malloc failed\n");
+        LOG_E("malloc failed\n");
 
-#ifdef BSP_USING_LCD_RGB
     lvgl_dma2d_config();
 
-    rt_device_t lcd_device = rt_device_find("lcd");
-    rt_err_t result = rt_device_open(lcd_device, RT_DEVICE_FLAG_RDWR);
-    if (result != RT_EOK)
+    struct drv_lcd_device *lcd;
+    lcd = (struct drv_lcd_device *)rt_device_find("lcd");
+    if (lcd == RT_NULL)
     {
         LOG_E("lcd device open error!");
         return;
     }
 
     disp = lv_display_create(LV_HOR_RES_MAX, LV_VER_RES_MAX);
-    lv_display_set_buffers(disp, lv_disp_buf, NULL, COLOR_BUFFER, LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_buffers(disp, (void *)lcd->lcd_info.framebuffer, lv_disp_buf, COLOR_BUFFER, LV_DISPLAY_RENDER_MODE_PARTIAL);
     lv_display_set_flush_cb(disp, lcd_fb_flush);
 
     /* interrupt callback for DMA2D transfer */
     hdma2d.XferCpltCallback = mDMA2Dcallvack;
-#endif
+
+//#if LV_COLOR_DEPTH == 16
+//  static __attribute__((aligned(32))) uint8_t buf_2[LV_HOR_RES_MAX * LV_VER_RES_MAX * 2];
+//  lv_st_ltdc_create_direct((void *)lcd->lcd_info.framebuffer, lv_disp_buf, 0);
+//#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+//  static __attribute__((aligned(32))) uint8_t buf_1[MY_DISP_HOR_RES * MY_DISP_VER_RES];
+//  static __attribute__((aligned(32))) uint8_t buf_2[MY_DISP_HOR_RES * MY_DISP_VER_RES];
+//  lv_st_ltdc_create_partial(buf_1, buf_2, sizeof(buf_1), 0);
+//#else
+//  #error LV_COLOR_DEPTH not supported
+//#endif
 }
