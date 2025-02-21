@@ -13,5 +13,15 @@
   "name": "GT9147",
   "path": "/packages/peripherals/touch/gt9147",
   "ver": "v1.1.0"
+ },
+ {
+  "name": "WIFI_HOST_DRIVER",
+  "path": "/packages/iot/wifi-host-driver",
+  "ver": "latest"
+ },
+ {
+  "name": "NETUTILS",
+  "path": "/packages/iot/netutils",
+  "ver": "latest"
  }
 ]

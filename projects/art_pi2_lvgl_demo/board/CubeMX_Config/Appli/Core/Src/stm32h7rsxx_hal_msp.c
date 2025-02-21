@@ -1,4 +1,3 @@
-
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -668,22 +667,8 @@ void HAL_SD_MspInit(SD_HandleTypeDef* hsd)
   /* USER CODE BEGIN SDMMC1_MspInit 1 */
 
   /* USER CODE END SDMMC1_MspInit 1 */
-
   }
-
-}
-
-/**
-* @brief MMC MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hmmc: MMC handle pointer
-* @retval None
-*/
-void HAL_MMC_MspInit(MMC_HandleTypeDef* hmmc)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  if(hmmc->Instance==SDMMC2)
+  else if(hsd->Instance==SDMMC2)
   {
   /* USER CODE BEGIN SDMMC2_MspInit 0 */
 
@@ -741,10 +726,12 @@ void HAL_MMC_MspInit(MMC_HandleTypeDef* hmmc)
     GPIO_InitStruct.Alternate = GPIO_AF9_SDMMC2;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    /* SDMMC2 interrupt Init */
+    HAL_NVIC_SetPriority(SDMMC2_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(SDMMC2_IRQn);
   /* USER CODE BEGIN SDMMC2_MspInit 1 */
 
   /* USER CODE END SDMMC2_MspInit 1 */
-
   }
 
 }
@@ -784,18 +771,7 @@ void HAL_SD_MspDeInit(SD_HandleTypeDef* hsd)
 
   /* USER CODE END SDMMC1_MspDeInit 1 */
   }
-
-}
-
-/**
-* @brief MMC MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hmmc: MMC handle pointer
-* @retval None
-*/
-void HAL_MMC_MspDeInit(MMC_HandleTypeDef* hmmc)
-{
-  if(hmmc->Instance==SDMMC2)
+  else if(hsd->Instance==SDMMC2)
   {
   /* USER CODE BEGIN SDMMC2_MspDeInit 0 */
 
@@ -819,6 +795,8 @@ void HAL_MMC_MspDeInit(MMC_HandleTypeDef* hmmc)
 
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_14|GPIO_PIN_15);
 
+    /* SDMMC2 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(SDMMC2_IRQn);
   /* USER CODE BEGIN SDMMC2_MspDeInit 1 */
 
   /* USER CODE END SDMMC2_MspDeInit 1 */
