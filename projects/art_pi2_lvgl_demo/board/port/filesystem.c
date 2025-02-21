@@ -45,6 +45,13 @@ const struct romfs_dirent romfs_root = {
 /* SD Card hot plug detection pin */
 #define SD_CHECK_PIN GET_PIN(N, 7)
 
+static rt_sem_t sdcard_mount;
+
+void whd_wait_fs_mount (void)
+{
+    rt_sem_take(sdcard_mount, RT_WAITING_FOREVER);
+}
+
 static void _sdcard_mount(void)
 {
     rt_device_t device;
@@ -108,6 +115,9 @@ static void sd_mount(void *parameter)
 
 int mount_init(void)
 {
+    sdcard_mount = rt_sem_create("sdcard_mount", 0, RT_IPC_FLAG_PRIO);
+    RT_ASSERT(sdcard_mount != RT_NULL);
+
     if (dfs_mount(RT_NULL, "/", "rom", 0, &(romfs_root)) != 0)
     {
         LOG_E("rom mount to '/' failed!");
@@ -166,6 +176,7 @@ int mount_init(void)
         LOG_E("create sd_mount thread err!");
     }
 #endif
+    rt_sem_release(sdcard_mount);
     return RT_EOK;
 }
 INIT_APP_EXPORT(mount_init);

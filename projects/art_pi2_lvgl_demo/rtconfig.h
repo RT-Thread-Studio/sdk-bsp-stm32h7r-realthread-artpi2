@@ -488,7 +488,6 @@
 /* Onboard Peripheral Drivers */
 
 #define BSP_SCB_ENABLE_I_CACHE
-#define BSP_SCB_ENABLE_D_CACHE
 #define BSP_USING_USB_TO_USART
 #define BSP_USING_LVGL
 #define BSP_USING_LCD_RGB
