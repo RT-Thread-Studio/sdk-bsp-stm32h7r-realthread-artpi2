@@ -31,9 +31,11 @@
 #define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
+extern const struct romfs_dirent romfs_root_wifi_bt_bin;
 static const struct romfs_dirent _romfs_root[] = {
 //    {ROMFS_DIRENT_DIR, "flash", RT_NULL, 0},
-    {ROMFS_DIRENT_DIR, "sdcard", RT_NULL, 0}};
+{ROMFS_DIRENT_DIR, "wifi_blob", RT_NULL, 0},
+{ROMFS_DIRENT_DIR, "sdcard", RT_NULL, 0}};
 
 const struct romfs_dirent romfs_root = {
     ROMFS_DIRENT_DIR, "/", (rt_uint8_t *)_romfs_root, sizeof(_romfs_root) / sizeof(_romfs_root[0])};
@@ -42,13 +44,6 @@ const struct romfs_dirent romfs_root = {
 
 /* SD Card hot plug detection pin */
 #define SD_CHECK_PIN GET_PIN(N, 7)
-
-static rt_sem_t sdcard_mount;
-
-void whd_wait_fs_mount (void)
-{
-    rt_sem_take(sdcard_mount, RT_WAITING_FOREVER);
-}
 
 static void _sdcard_mount(void)
 {
@@ -67,7 +62,6 @@ static void _sdcard_mount(void)
         if (dfs_mount("sd0", "/sdcard", "elm", 0, 0) == RT_EOK)
         {
             LOG_I("sd card mount to '/sdcard'");
-            rt_sem_release(sdcard_mount);
         }
         else
         {
@@ -114,13 +108,15 @@ static void sd_mount(void *parameter)
 
 int mount_init(void)
 {
-    sdcard_mount = rt_sem_create("sdcard_mount", 0, RT_IPC_FLAG_PRIO);
-    RT_ASSERT(sdcard_mount != RT_NULL);
-
     if (dfs_mount(RT_NULL, "/", "rom", 0, &(romfs_root)) != 0)
     {
         LOG_E("rom mount to '/' failed!");
     }
+    if (dfs_mount(RT_NULL, "/wifi_blob", "rom", 0, &(romfs_root_wifi_bt_bin)) != 0)
+    {
+        LOG_E("romfs mount to '/' failed!");
+    }
+
 #ifdef BSP_USING_SPI_FLASH_FS
     struct rt_device *flash_dev = RT_NULL;
 
