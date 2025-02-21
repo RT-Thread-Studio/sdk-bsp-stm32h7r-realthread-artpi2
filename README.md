@@ -44,19 +44,13 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
 
 ## Usage
 
-The **sdk-bsp-stm32h7r-realthread-artpi** supports development with RT-Thread Studio and MDK.
-
-### Development with RT-Thread Studio
-
-1. Open the RT-Thread Studio package manager and install the ART-Pi SDK resource package.
-
-    <img src="documents/figures/sdk_manager.png" alt="sdk_manager" style="zoom: 67%;" />
-
-2. After installation, select "Create Project Based on BSP."
-
-    <img src="documents/figures/creat_project.png" alt="image-20200926143024666" style="zoom:50%;" />
+The **sdk-bsp-stm32h7r-realthread-artpi** supports development with MDK.
 
 ### Development with MDK
+
+Install the newer version of MDK: [MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41)
+
+Install the STM32H7R-MDK chip pack: [Keil.STM32H7RSxx_DFP.1. 0.0.pack](. /tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack)
 
 To avoid the SDK becoming bloated due to continuous updates, the `rt-thread` and `libraries` folders are extracted separately. This may cause compilation errors in MDK projects due to missing files. Here are two methods to resolve this issue:
 

@@ -49,21 +49,13 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
   wifi 固件，MDK下载算法等
 ## 使用
 
-sdk-bsp-stm32h7r-realthread-artpi 支持 RT-Thread Studio 和 MDK 开发
-
-### RT-Thread Studio 开发
-
-
-1. 打开 RT-Thread Studio 的包管理器，安装 ART-PI SDK 资源包
-
-    <img src="documents/figures/sdk_manager.png" alt="sdk_manager" style="zoom: 67%;" />
-
-
-2. 安装完成后，选择基于 BSP 创建工程即可
-
-    <img src="documents\figures\creat_project.png" alt="image-20200926143024666" style="zoom:50%;" />
+sdk-bsp-stm32h7r-realthread-artpi 支持 MDK 开发，稍后支持 RT-Thread Studio 开发；
 
 ### MDK 开发
+
+安装较新版本MDK：[MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41)
+
+安装STM32H7R-MDK芯片pack包：[Keil.STM32H7RSxx_DFP.1.0.0.pack](./tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack)
 
 为了避免 SDK 在持续更新中，每一个 `projects` 都创建一份 `rt-thread` 文件夹 和 `libraries` 文件夹导致的 SDK 越来越臃肿，所以这些通用文件夹被单独提取了出来。这样就会导致直接打开 `MDK` 的工程编译会提示缺少上述两个文件夹的文件，我们有两个方法来解决这个问题：
 
