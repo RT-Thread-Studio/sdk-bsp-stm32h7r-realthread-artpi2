@@ -25,10 +25,10 @@
 <intAttribute key="org.eclipse.cdt.debug.gdbjtag.core.portNumber" value="61235"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.resetMode" value=" -hardRst"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.resetRun" value="true"/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.runCommands" value=""/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.runCommands" value="monitor reset"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.setPcRegister" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.setStopAt" value="true"/>
-<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.stopAt" value="main"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.stopAt" value="Reset_Handler"/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.symbolsFileName" value=""/>
 <stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.symbolsOffset" value=""/>
 <booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useFileForImage" value="false"/>
