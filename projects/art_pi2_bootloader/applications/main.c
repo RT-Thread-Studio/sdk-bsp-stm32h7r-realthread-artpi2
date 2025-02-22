@@ -24,7 +24,6 @@
 
 int JumpToApplication(void)
 {
-    uint32_t primask_bit;
     typedef void (*pFunction)(void);
     pFunction JumpToApp;
     uint32_t Application_vector;
