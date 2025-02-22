@@ -47,15 +47,37 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
   rt-thread 源码
 -  tools
   wifi 固件，MDK下载算法等
-## 使用
+## 使用说明
 
-sdk-bsp-stm32h7r-realthread-artpi 支持 MDK 开发，稍后支持 RT-Thread Studio 开发；
+sdk-bsp-stm32h7r-realthread-artpi 支持 MDK 开发和 RT-Thread Studio 开发；
+
+### STM32CubeProg 软件
+
+下载最新版本的软件：[STM32CubeProg - 意法半导体](https://www.st.com.cn/zh/development-tools/stm32cubeprog.html#get-software)
+
+### RT-Thread Studio 开发
+
+1. 请下载 v2.2.9 版本 Studio：[下载地址](https://download-redirect.rt-thread.org/download/studio/RT-Thread_Studio_2.2.9-setup-x86_64_202412161335.exe)；
+
+2. 拷贝 [org.rt-thread.studio.common.core_1.0.128.jar](tools/studio/) 文件，替换上面安装的 Studio 目录下 `plugins` 文件夹内的同名文件即可；
+
+（上面步骤会在下一个Studio版本修复）
+
+3. 打开 RT-Thread Studio 的包管理器，安装 ART-Pi2 SDK 资源包；
+
+<img src="documents/figures/sdk_manager.png" alt="sdk_manager" style="zoom: 67%;" />
+
+4. 安装完成后，选择 `文件→新建→RT-Thread 项目→基于开发板` 选择 ART-Pi2 开发板即可；
+
+<img src="documents/figures/create_proj.png" alt="sdk_manager" style="zoom: 67%;" />
 
 ### MDK 开发
 
-安装较新版本MDK：[MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41)
+1. 安装较新版本MDK：[MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41)；
 
-安装STM32H7R-MDK芯片pack包：[Keil.STM32H7RSxx_DFP.1.0.0.pack](./tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack)
+2. 安装STM32H7R-MDK芯片pack包：[Keil.STM32H7RSxx_DFP.1.0.0.pack](./tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack)；
+
+3. 将  `tools\download_algorithm\flm\ART-Pi2_winbond_64MB.FLM` 下载算法拷贝到 `MDK安装目录\Core\ARM\Flash` 下 ；
 
 为了避免 SDK 在持续更新中，每一个 `projects` 都创建一份 `rt-thread` 文件夹 和 `libraries` 文件夹导致的 SDK 越来越臃肿，所以这些通用文件夹被单独提取了出来。这样就会导致直接打开 `MDK` 的工程编译会提示缺少上述两个文件夹的文件，我们有两个方法来解决这个问题：
 

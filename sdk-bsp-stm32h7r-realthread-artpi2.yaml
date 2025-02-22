@@ -4,19 +4,19 @@ pkg_version: 1.0.0
 pkg_vendor: RealThread
 pkg_type: Board_Support_Packages
 board:
-  name: STM32H7R7-RT-ART-PI2
+  name: STM32H7R7-RT-ART-Pi2
   version: 1.0.0
   vendor: RT-Thread
-  description_zh: ART-Pi2 是 RT-Thread 团队经过半年的精心准备，专门为嵌入式软件工程师、开源创客设计的一款极具扩展功能的 DIY 开源硬件.
+  description_zh: ART-Pi2 是 RT-Thread 团队专门为嵌入式软件工程师、开源创客设计的一款极具扩展功能的 DIY 开源硬件.
   description_en: ART-Pi2 is a DIY open source hardware specially designed for embedded software engineers and open source makers after six months of careful preparation by RT-Thread team
   small_image: documents/figures/board_small.png
   large_image: documents/figures/board_large.png
   sale_contact_cn: https://www.rt-thread.org/
   sale_contact_global: https://www.rt-thread.org/
-  buy_url_cn: https://item.taobao.com/item.htm?id=629477793246
-  buy_url_global: https://item.taobao.com/item.htm?id=629477793246
-  price_cn: 288 CNY
-  price_global: 43.99 USD
+  buy_url_cn: https://item.taobao.com/item.htm?id=889303761993
+  buy_url_global: https://item.taobao.com/item.htm?id=889303761993
+  price_cn: NA CNY
+  price_global: NA USD
   debugger: ST-LINK
   debug_interface: SWD
   emulator_machine: ''
@@ -33,38 +33,36 @@ chip:
   target_freq: '480000000'
   uart_name: UART4
 docs:
-- file: "documents/UM5001-RT-Thread ART-Pi 快速上手.md"
+- file: "documents/ART-Pi2 快速上手.md"
   title: "RT-Thread ART-Pi2 快速上手"
   category: manual
 - file: documents/board/STM32H7/STM32H7R7x8 Datasheet.pdf
   title: STM32H7R7x8 Datasheet
   category: sheet
 features:
-- STM32H750XBH6 microcontroller featuring 128 Kbytes of Flash memory, 1024 Kbytes of RAM in an TFBGA240 package
+- STM32H7R7L8HxH microcontroller featuring 64 Kbytes of Flash memory, 620 Kbytes of SRAM in an TFBGA225 package
 - On-board ST-LINK/V2.1
 - "USB OTG with Type-C connector"
 - SDIO TF Card slot
-- SDIO WIFI:AP6212
-- HDC UART BuleTooth:AP6212
+- SDIO WIFI:CYWL6208
+- HDC UART BuleTooth:CYWL6208
 - RGB888 FPC connector
-- 32-Mbytes SDRAM
-- 16-Mbytes SPI FLASH
-- 8-Mbytes QSPI FLASH
+- 32-MB HyperRAM
+- 64-MB HyperFlash
 - D1 (blue) for 3.3 V power-on
 - "Two user LEDs: D2 (blue), D2 (red)"
 - "Two ST-LINK LEDs: D4 (blue), D4 (red)"
 - Two push-buttons (user and reset)
 features_zh:
-- STM32H750XBH6 microcontroller featuring 128 Kbytes of Flash memory, 1024 Kbytes of RAM in an TFBGA240 package
+- STM32H7R7L8HxH microcontroller featuring 64 Kbytes of Flash memory, 620 Kbytes of SRAM in an TFBGA225 package
 - On-board ST-LINK/V2.1
 - "USB OTG with Type-C connector"
 - SDIO TF Card slot
-- SDIO WIFI:AP6212
-- HDC UART BuleTooth:AP6212
+- SDIO WIFI:CYWL6208
+- HDC UART BuleTooth:CYWL6208
 - RGB888 FPC connector
-- 32-Mbytes SDRAM
-- 16-Mbytes SPI FLASH
-- 8-Mbytes QSPI FLASH
+- 32-MB HyperRAM
+- 64-MB HyperFlash
 - D3 (blue) for 3.3 V power-on
 - "Two user LEDs: D2 (blue), D2 (red)"
 - "Two ST-LINK LEDs: D4 (blue), D4 (red)"
@@ -83,10 +81,10 @@ template_projects:
     files_and_folders:
     - libraries
     - rt-thread
-  - source_path_offset: 'debug/stldr'
+  - source_path_offset: 'tools/download_algorithm/stldr'
     target_path_offset: 'board/stldr'
     files_and_folders:
-    - ART-Pi_W25Q64.stldr
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_name: GNU_Tools_for_ARM_Embedded_Processors
     package_type: ToolChain_Support_Packages
@@ -116,10 +114,10 @@ example_projects:
     files_and_folders:
     - libraries
     - rt-thread
-  - source_path_offset: 'debug/stldr'
+  - source_path_offset: 'tools/download_algorithm/stldr'
     target_path_offset: 'board/stldr'
     files_and_folders:
-    - ART-Pi_W25Q64.stldr
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_type: Chip_Support_Packages
     package_vendor: RealThread
@@ -141,10 +139,10 @@ example_projects:
     files_and_folders:
     - libraries
     - rt-thread
-  - source_path_offset: 'debug/stldr'
+  - source_path_offset: 'tools/download_algorithm/stldr'
     target_path_offset: 'board/stldr'
     files_and_folders:
-    - ART-Pi_W25Q64.stldr
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_type: Chip_Support_Packages
     package_vendor: RealThread
@@ -166,10 +164,10 @@ example_projects:
     files_and_folders:
     - libraries
     - rt-thread
-  - source_path_offset: 'debug/stldr'
+  - source_path_offset: 'tools/download_algorithm/stldr'
     target_path_offset: 'board/stldr'
     files_and_folders:
-    - ART-Pi_W25Q64.stldr
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_type: Chip_Support_Packages
     package_vendor: RealThread
@@ -191,6 +189,10 @@ example_projects:
     files_and_folders:
     - libraries
     - rt-thread
+  - source_path_offset: 'tools/download_algorithm/stldr'
+    target_path_offset: 'board/stldr'
+    files_and_folders:
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_type: Chip_Support_Packages
     package_vendor: RealThread
@@ -212,10 +214,10 @@ example_projects:
     files_and_folders:
     - libraries
     - rt-thread
-  - source_path_offset: 'debug/stldr'
+  - source_path_offset: 'tools/download_algorithm/stldr'
     target_path_offset: 'board/stldr'
     files_and_folders:
-    - ART-Pi_W25Q64.stldr
+    - ART-Pi2_ST_winbond_64MB.stldr
   external_files:
   - package_type: Chip_Support_Packages
     package_vendor: RealThread

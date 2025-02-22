@@ -42,24 +42,36 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
 - **rt-thread**: RT-Thread source code.
 - **tools**: Contains Wi-Fi firmware, MDK download algorithms, etc.
 
-## Usage
+## Usage Instructions
 
-The **sdk-bsp-stm32h7r-realthread-artpi** supports development with MDK.
+sdk-bsp-stm32h7r-realthread-artpi supports MDK development and RT-Thread Studio development.
 
-### Development with MDK
+### STM32CubeProg Software
 
-Install the newer version of MDK: [MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41)
+Download the latest version of the software: [STM32CubeProg - STMicroelectronics](https://www.st.com.cn/zh/development-tools/stm32cubeprog.html#get-software).
 
-Install the STM32H7R-MDK chip pack: [Keil.STM32H7RSxx_DFP.1. 0.0.pack](. /tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack)
+### RT-Thread Studio Development
 
-To avoid the SDK becoming bloated due to continuous updates, the `rt-thread` and `libraries` folders are extracted separately. This may cause compilation errors in MDK projects due to missing files. Here are two methods to resolve this issue:
+1. Download Studio version v2.2.9: [Download Link](https://download-redirect.rt-thread.org/download/studio/RT-Thread_Studio_2.2.9-setup-x86_64_202412161335.exe).
+2. Copy the [org.rt-thread.studio.common.core_1.0.128.jar](tools/studio/) file and replace the file with the same name in the `plugins` folder of the installed Studio directory.
+   (This step will be fixed in the next Studio version.)
+3. Open the RT-Thread Studio package manager and install the ART-Pi2 SDK resource package.
+   <img src="documents/figures/sdk_manager.png" alt="sdk_manager" style="zoom: 67%;" />
+4. After installation, select `File → New → RT-Thread Project → Based on Development Board` and choose the ART-Pi2 development board.
+   <img src="documents/figures/create_proj.png" alt="sdk_manager" style="zoom: 67%;" />
+
+### MDK Development
+
+1. Install the latest version of MDK: [MDK-ARM Version 5.41 Product Update](https://www.keil.com/update/sw/mdk/5.41).
+2. Install the STM32H7R-MDK chip pack: [Keil.STM32H7RSxx_DFP.1.0.0.pack](./tools/mdk_pack/Keil.STM32H7RSxx_DFP.1.0.0.pack).
+3. Copy the `tools\download_algorithm\flm\ART-Pi2_winbond_64MB.FLM` download algorithm to the `MDK Installation Directory\Core\ARM\Flash` folder.
+
+To avoid the SDK becoming bloated due to continuous updates, where each `projects` folder creates a copy of the `rt-thread` and `libraries` folders, these common folders have been extracted separately. This may cause compilation errors in MDK projects due to missing files from these folders. There are two methods to resolve this issue:
 
 **Method 1:**
 
 1. Double-click the `mklinks.bat` file in the `project` directory, such as the one in `sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led`.
-
-2. Check if the `rt-thread` and `libraries` folders appear in the `sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led` directory.
-
+2. Check if the `rt-thread` and `libraries` folder icons appear in the `sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led` directory.
 3. Use the [ENV-2.0](https://club.rt-thread.org/ask/article/af8952fcf0ca464b.html) tool to execute `scons --target=mdk5` to update the MDK5 project files.
 
 **Method 2:**
@@ -68,9 +80,9 @@ To avoid the SDK becoming bloated due to continuous updates, the `rt-thread` and
 2. Navigate to the project directory, e.g., `sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led`.
 3. Use the [ENV-2.0](https://club.rt-thread.org/ask/article/af8952fcf0ca464b.html) tool to execute the `mklink` command to create symbolic links for the `rt-thread` and `libraries` folders.
 
-```
+```shell
 E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led>mklink /D rt-thread ....\rt-thread
-  symbolic link created for rt-thread <<===>> ....\rt-thread
+symbolic link created for rt-thread <<===>> ....\rt-thread
 
 E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects>mklink /D libraries ....\libraries
 symbolic link created for libraries <<===>> ....\libraries
@@ -78,11 +90,10 @@ symbolic link created for libraries <<===>> ....\libraries
 E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects>
 ```
 
-4. Use the [ENV-2.0](https://club.rt-thread.org/ask/article/af8952fcf0ca464b.html) tool to execute `scons --target=mdk5` to update the MDK5 project files.
-
+Use the [ENV-2.0](https://club.rt-thread.org/ask/article/af8952fcf0ca464b.html) tool to execute `scons --target=mdk5` to update the MDK5 project files.
 ## ART-Pi Communication Platform
 
-ART-Pi is an open-source creative hardware platform. We look forward to more enthusiasts discovering its potential. If you have any ideas or suggestions while using it, please contact us through the following channels:
+ART-Pi is an open-source creative hardware platform. We look forward to more enthusiasts discovering its potential. If you have any ideas or suggestions during use, please contact us through the following channels:
 
 - RT-Thread [Community Forum](https://club.rt-thread.org).
 - ART-Pi Official QQ Group (1016035998).
@@ -91,13 +102,13 @@ ART-Pi is an open-source creative hardware platform. We look forward to more ent
 
 ## Contributing Code
 
-If you are interested in ART-Pi and have some exciting projects to share, we welcome your contributions. Please refer to the [ART-Pi Code Contribution Guide](https://github.com/RT-Thread-Studio/sdk-bsp-stm32h7r-realthread-artpi/blob/master/documents/UM5004-RT-Thread%20ART-Pi%20%E4%BB%A3%E7%A0%81%E8%B4%A1%E7%8C%AE%E6%89%8B%E5%86%8C.md).
+If you are interested in ART-Pi and have some fun projects you'd like to share with everyone, we welcome your code contributions. You can refer to the [ART-Pi Code Contribution Guide](https://github.com/RT-Thread-Studio/sdk-bsp-stm32h7r-realthread-artpi/blob/master/documents/UM5004-RT-Thread%20ART-Pi%20%E4%BB%A3%E7%A0%81%E8%B4%A1%E7%8C%AE%E6%89%8B%E5%86%8C.md).
 
 ## Participating in Projects
 
-Here are some ways you can contribute:
+Here are some ways you can participate:
 - Maintain existing SDK repository code.
-- Submit project code to be merged into the SDK repository.
-- Submit showcase projects (code may not be merged into the SDK repository but can be open-sourced elsewhere).
+- Submit project code that can be merged into the SDK repository.
+- Submit showcase projects whose code cannot be merged into the SDK repository but are open-sourced elsewhere.
 - Submit expansion boards.
-- Write articles or tutorials.
+- Write column articles.
