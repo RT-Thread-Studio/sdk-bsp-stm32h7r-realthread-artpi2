@@ -39,6 +39,9 @@ docs:
 - file: documents/board/STM32H7/STM32H7R7x8 Datasheet.pdf
   title: STM32H7R7x8 Datasheet
   category: sheet
+- file: documents/board/STM32H7/ART-Pi2_Base_A_SCH_V1.0_preview.pdf
+  title: ART-Pi2 底板原理图
+  category: other
 features:
 - STM32H7R7L8HxH microcontroller featuring 64 Kbytes of Flash memory, 620 Kbytes of SRAM in an TFBGA225 package
 - On-board ST-LINK/V2.1
