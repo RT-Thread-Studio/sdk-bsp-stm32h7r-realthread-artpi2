@@ -35,7 +35,10 @@ appSrc += Glob('./TouchGFX/App/sample_touchgfx.c')
 if rtconfig.CROSS_TOOL == 'gcc':
     libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc']
     libs += ['touchgfx-float-abi-hard']
-    appSrc += [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc/libtouchgfx-float-abi-hard.a']
+    appSrc += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/gcc/libnemagfx.a']
+    appSrc += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/gcc/libnemagfx-wc16.a']
+    appSrc += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/lib/core/cortex_m7/gcc/libnemagfx-float-abi-hard-wc16.a']
+    appSrc += [cwd + '/Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/lib/cortex_m7/gcc/libtouchgfxnema.a']
 elif rtconfig.CROSS_TOOL == 'keil':
     libpath = [cwd + '/Middlewares/ST/touchgfx/lib/core/cortex_m7/Keil6.x']
     libs += ['touchgfx_core_wchar16']
@@ -54,11 +57,12 @@ group = group + DefineGroup('TouchGFX/Middlewares/rtt', md_src, depend = ['ART_P
 genSrc = Glob('./TouchGFX/generated/fonts/src/*.cpp')
 genSrc += Glob('./TouchGFX/generated/gui_generated/src/*/*.cpp')
 genSrc += Glob('./TouchGFX/generated/texts/src/*.cpp')
-genSrc += Glob('./TouchGFX/generated/videos/src/keil/*')
 genSrc += Glob('./TouchGFX/generated/images/src/*.cpp')
 genSrc += Glob('./TouchGFX/generated/images/src/*/*.cpp')
 genSrc += Glob('./TouchGFX/generated/images/src/*/*/*.cpp')
 genSrc += Glob('./TouchGFX/generated/images/src/*/*/*/*.cpp')
+if rtconfig.CROSS_TOOL == 'keil':
+    genSrc += Glob('./TouchGFX/generated/videos/src/keil/*.s')
 
 genPath = [cwd + '/TouchGFX/generated/fonts/include']
 genPath += [cwd + '/TouchGFX/generated/gui_generated/include']
