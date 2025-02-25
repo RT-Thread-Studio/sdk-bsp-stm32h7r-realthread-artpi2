@@ -239,7 +239,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\armlibc\syscall_mem.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\armlibc\syscall_mem.c</PathWithFileName>
       <FilenameWithoutPath>syscall_mem.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -251,7 +251,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\armlibc\syscalls.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\armlibc\syscalls.c</PathWithFileName>
       <FilenameWithoutPath>syscalls.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -263,7 +263,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\cctype.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\cctype.c</PathWithFileName>
       <FilenameWithoutPath>cctype.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -275,7 +275,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\cstdlib.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\cstdlib.c</PathWithFileName>
       <FilenameWithoutPath>cstdlib.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -287,7 +287,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\cstring.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\cstring.c</PathWithFileName>
       <FilenameWithoutPath>cstring.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -299,7 +299,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\ctime.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\ctime.c</PathWithFileName>
       <FilenameWithoutPath>ctime.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -311,7 +311,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\cunistd.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\cunistd.c</PathWithFileName>
       <FilenameWithoutPath>cunistd.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -323,7 +323,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\compilers\common\cwchar.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\compilers\common\cwchar.c</PathWithFileName>
       <FilenameWithoutPath>cwchar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -343,7 +343,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\cplusplus\cxx_crt_init.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\cplusplus\cxx_crt_init.c</PathWithFileName>
       <FilenameWithoutPath>cxx_crt_init.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -355,7 +355,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\libc\cplusplus\cxx_crt.cpp</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\libc\cplusplus\cxx_crt.cpp</PathWithFileName>
       <FilenameWithoutPath>cxx_crt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -375,7 +375,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\core\device.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\core\device.c</PathWithFileName>
       <FilenameWithoutPath>device.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -387,7 +387,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\i2c\i2c-bit-ops.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\i2c\i2c-bit-ops.c</PathWithFileName>
       <FilenameWithoutPath>i2c-bit-ops.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -399,7 +399,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\i2c\i2c_core.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\i2c\i2c_core.c</PathWithFileName>
       <FilenameWithoutPath>i2c_core.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -411,7 +411,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\i2c\i2c_dev.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\i2c\i2c_dev.c</PathWithFileName>
       <FilenameWithoutPath>i2c_dev.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -423,7 +423,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\completion.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\completion.c</PathWithFileName>
       <FilenameWithoutPath>completion.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -435,7 +435,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\condvar.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\condvar.c</PathWithFileName>
       <FilenameWithoutPath>condvar.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -447,7 +447,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\dataqueue.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\dataqueue.c</PathWithFileName>
       <FilenameWithoutPath>dataqueue.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -459,7 +459,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\pipe.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\pipe.c</PathWithFileName>
       <FilenameWithoutPath>pipe.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -471,7 +471,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\ringblk_buf.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\ringblk_buf.c</PathWithFileName>
       <FilenameWithoutPath>ringblk_buf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -483,7 +483,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\ringbuffer.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\ringbuffer.c</PathWithFileName>
       <FilenameWithoutPath>ringbuffer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -495,7 +495,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\waitqueue.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\waitqueue.c</PathWithFileName>
       <FilenameWithoutPath>waitqueue.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -507,7 +507,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\ipc\workqueue.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\ipc\workqueue.c</PathWithFileName>
       <FilenameWithoutPath>workqueue.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -519,7 +519,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\mtd\mtd_nor.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\mtd\mtd_nor.c</PathWithFileName>
       <FilenameWithoutPath>mtd_nor.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -531,7 +531,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\pin\pin.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\pin\pin.c</PathWithFileName>
       <FilenameWithoutPath>pin.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -543,7 +543,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\serial\dev_serial.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\serial\dev_serial.c</PathWithFileName>
       <FilenameWithoutPath>dev_serial.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -555,7 +555,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\spi\sfud\src\sfud.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\spi\sfud\src\sfud.c</PathWithFileName>
       <FilenameWithoutPath>sfud.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -567,7 +567,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\spi\sfud\src\sfud_sfdp.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\spi\sfud\src\sfud_sfdp.c</PathWithFileName>
       <FilenameWithoutPath>sfud_sfdp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -579,7 +579,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\spi\spi_core.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\spi\spi_core.c</PathWithFileName>
       <FilenameWithoutPath>spi_core.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -591,7 +591,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\spi\spi_dev.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\spi\spi_dev.c</PathWithFileName>
       <FilenameWithoutPath>spi_dev.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -603,7 +603,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\spi\spi_flash_sfud.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\spi\spi_flash_sfud.c</PathWithFileName>
       <FilenameWithoutPath>spi_flash_sfud.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -615,7 +615,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\drivers\touch\touch.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\drivers\touch\touch.c</PathWithFileName>
       <FilenameWithoutPath>touch.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -683,7 +683,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_common.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_common.c</PathWithFileName>
       <FilenameWithoutPath>drv_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -695,7 +695,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_gpio.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_gpio.c</PathWithFileName>
       <FilenameWithoutPath>drv_gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -707,7 +707,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_psram.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_psram.c</PathWithFileName>
       <FilenameWithoutPath>drv_psram.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -719,7 +719,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_soft_i2c.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_soft_i2c.c</PathWithFileName>
       <FilenameWithoutPath>drv_soft_i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -731,7 +731,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_spi.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_spi.c</PathWithFileName>
       <FilenameWithoutPath>drv_spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -743,7 +743,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\drivers\drv_usart.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\drivers\drv_usart.c</PathWithFileName>
       <FilenameWithoutPath>drv_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -763,7 +763,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\filesystems\devfs\devfs.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\filesystems\devfs\devfs.c</PathWithFileName>
       <FilenameWithoutPath>devfs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -775,7 +775,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\filesystems\romfs\dfs_romfs.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\filesystems\romfs\dfs_romfs.c</PathWithFileName>
       <FilenameWithoutPath>dfs_romfs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -787,7 +787,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\src\dfs.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\src\dfs.c</PathWithFileName>
       <FilenameWithoutPath>dfs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -799,7 +799,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\src\dfs_file.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_file.c</PathWithFileName>
       <FilenameWithoutPath>dfs_file.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -811,7 +811,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\src\dfs_fs.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_fs.c</PathWithFileName>
       <FilenameWithoutPath>dfs_fs.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -823,7 +823,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\dfs\dfs_v1\src\dfs_posix.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_posix.c</PathWithFileName>
       <FilenameWithoutPath>dfs_posix.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -843,7 +843,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\finsh\msh_parse.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh_parse.c</PathWithFileName>
       <FilenameWithoutPath>msh_parse.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -855,7 +855,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\finsh\cmd.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\finsh\cmd.c</PathWithFileName>
       <FilenameWithoutPath>cmd.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -867,7 +867,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\finsh\shell.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\finsh\shell.c</PathWithFileName>
       <FilenameWithoutPath>shell.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -879,7 +879,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\finsh\msh.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh.c</PathWithFileName>
       <FilenameWithoutPath>msh.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -891,7 +891,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\components\finsh\msh_file.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\components\finsh\msh_file.c</PathWithFileName>
       <FilenameWithoutPath>msh_file.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1011,7 +1011,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\clock.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\clock.c</PathWithFileName>
       <FilenameWithoutPath>clock.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1023,7 +1023,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\components.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\components.c</PathWithFileName>
       <FilenameWithoutPath>components.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1035,7 +1035,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\idle.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\idle.c</PathWithFileName>
       <FilenameWithoutPath>idle.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1047,7 +1047,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\ipc.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\ipc.c</PathWithFileName>
       <FilenameWithoutPath>ipc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1059,7 +1059,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\irq.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\irq.c</PathWithFileName>
       <FilenameWithoutPath>irq.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1071,7 +1071,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\klibc\kstdio.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\klibc\kstdio.c</PathWithFileName>
       <FilenameWithoutPath>kstdio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1083,7 +1083,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\klibc\kstring.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\klibc\kstring.c</PathWithFileName>
       <FilenameWithoutPath>kstring.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1095,7 +1095,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\kservice.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\kservice.c</PathWithFileName>
       <FilenameWithoutPath>kservice.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1107,7 +1107,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\memheap.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\memheap.c</PathWithFileName>
       <FilenameWithoutPath>memheap.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1119,7 +1119,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\mempool.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\mempool.c</PathWithFileName>
       <FilenameWithoutPath>mempool.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1131,7 +1131,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\object.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\object.c</PathWithFileName>
       <FilenameWithoutPath>object.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1143,7 +1143,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\scheduler_comm.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\scheduler_comm.c</PathWithFileName>
       <FilenameWithoutPath>scheduler_comm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1155,7 +1155,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\scheduler_up.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\scheduler_up.c</PathWithFileName>
       <FilenameWithoutPath>scheduler_up.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1167,7 +1167,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\thread.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\thread.c</PathWithFileName>
       <FilenameWithoutPath>thread.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1179,7 +1179,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\src\timer.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\src\timer.c</PathWithFileName>
       <FilenameWithoutPath>timer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1199,7 +1199,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\libcpu\arm\common\div0.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\libcpu\arm\common\div0.c</PathWithFileName>
       <FilenameWithoutPath>div0.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1211,7 +1211,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\libcpu\arm\common\showmem.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\libcpu\arm\common\showmem.c</PathWithFileName>
       <FilenameWithoutPath>showmem.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1223,7 +1223,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\libcpu\arm\cortex-m7\context_rvds.S</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\libcpu\arm\cortex-m7\context_rvds.S</PathWithFileName>
       <FilenameWithoutPath>context_rvds.S</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1235,7 +1235,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\libcpu\arm\cortex-m7\cpu_cache.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\libcpu\arm\cortex-m7\cpu_cache.c</PathWithFileName>
       <FilenameWithoutPath>cpu_cache.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1247,7 +1247,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>rt-thread\libcpu\arm\cortex-m7\cpuport.c</PathWithFileName>
+      <PathWithFileName>..\..\rt-thread\libcpu\arm\cortex-m7\cpuport.c</PathWithFileName>
       <FilenameWithoutPath>cpuport.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1267,7 +1267,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_cryp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1279,7 +1279,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_dma2d.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1291,7 +1291,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gfxmmu.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gfxmmu.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_gfxmmu.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1303,7 +1303,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1315,7 +1315,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_ltdc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1327,7 +1327,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</PathWithFileName>
+      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32h7r7xx.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1339,7 +1339,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1351,7 +1351,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_cec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1363,7 +1363,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_dma_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1375,7 +1375,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_flash_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1387,7 +1387,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_cryp_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1399,7 +1399,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_crc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1411,7 +1411,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_adc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1423,7 +1423,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_rcc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1435,7 +1435,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_pwr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1447,7 +1447,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1459,7 +1459,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1471,7 +1471,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpu2d.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpu2d.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_gpu2d.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1483,7 +1483,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1495,7 +1495,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_adc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1507,7 +1507,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</PathWithFileName>
       <FilenameWithoutPath>system_stm32h7rsxx.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1519,7 +1519,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1531,7 +1531,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_cortex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1543,7 +1543,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_rng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1555,7 +1555,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_rcc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1567,7 +1567,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_uart_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1579,7 +1579,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_pwr_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1591,7 +1591,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_jpeg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1603,7 +1603,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_xspi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1615,7 +1615,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1627,7 +1627,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_icache.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_icache.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_icache.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1639,7 +1639,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_crc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1651,7 +1651,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</PathWithFileName>
       <FilenameWithoutPath>stm32h7rsxx_hal_sram.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1671,7 +1671,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\App\app_touchgfx.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\App\app_touchgfx.c</PathWithFileName>
       <FilenameWithoutPath>app_touchgfx.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1683,7 +1683,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m7\Keil6.x\nemagfx_core_release-wchar16.lib</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m7\Keil6.x\nemagfx_core_release-wchar16.lib</PathWithFileName>
       <FilenameWithoutPath>Keil6.x_nemagfx_core_release-wchar16.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1695,7 +1695,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\App\sample_touchgfx.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\App\sample_touchgfx.c</PathWithFileName>
       <FilenameWithoutPath>sample_touchgfx.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1707,7 +1707,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m7\Keil6.x\touchgfxnema_release-wchar16.lib</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m7\Keil6.x\touchgfxnema_release-wchar16.lib</PathWithFileName>
       <FilenameWithoutPath>Keil6.x_touchgfxnema_release-wchar16.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1719,7 +1719,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\Middlewares\ST\touchgfx\lib\core\cortex_m7\Keil6.x\touchgfx_core_wchar16.lib</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\Middlewares\ST\touchgfx\lib\core\cortex_m7\Keil6.x\touchgfx_core_wchar16.lib</PathWithFileName>
       <FilenameWithoutPath>touchgfx_core_wchar16.lib</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1739,7 +1739,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_left_right_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_left_right_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_left_right_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1751,7 +1751,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_65_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_65_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_65_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1763,7 +1763,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_scale_slider_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1775,7 +1775,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_16_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_16_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_SemiBold_16_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1787,7 +1787,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_background_night_full.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_background_night_full.cpp</PathWithFileName>
       <FilenameWithoutPath>image_background_night_full.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1799,7 +1799,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_button_kmh_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1811,7 +1811,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_left_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_left_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_left_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1823,7 +1823,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_next_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1835,7 +1835,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_tab_close.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_tab_close.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_tab_close.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1847,7 +1847,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_20_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_20_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_20_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1859,7 +1859,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_menu_background.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_menu_background.cpp</PathWithFileName>
       <FilenameWithoutPath>image_menu_background.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1871,7 +1871,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\CachedFont.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\CachedFont.cpp</PathWithFileName>
       <FilenameWithoutPath>CachedFont.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1883,7 +1883,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_26_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_26_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_SemiBold_26_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1895,7 +1895,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuContainerBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuContainerBase.cpp</PathWithFileName>
       <FilenameWithoutPath>WaffleMenuContainerBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1907,7 +1907,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\UnmappedDataFont.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\UnmappedDataFont.cpp</PathWithFileName>
       <FilenameWithoutPath>UnmappedDataFont.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1919,7 +1919,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_3.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_3.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_3.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1931,7 +1931,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_slider_main_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_slider_main_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_slider_main_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1943,7 +1943,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_toggle_speed_bg.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_toggle_speed_bg.cpp</PathWithFileName>
       <FilenameWithoutPath>image_toggle_speed_bg.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1955,7 +1955,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\ApplicationFontProvider.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\ApplicationFontProvider.cpp</PathWithFileName>
       <FilenameWithoutPath>ApplicationFontProvider.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1967,7 +1967,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\scaleSliderContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\scaleSliderContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>scaleSliderContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1979,7 +1979,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_90_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_90_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_90_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1991,7 +1991,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_small.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_small.cpp</PathWithFileName>
       <FilenameWithoutPath>image_waffle_menu_cone_small.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2003,7 +2003,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers_mph.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers_mph.cpp</PathWithFileName>
       <FilenameWithoutPath>image_main_background_numbers_mph.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2015,7 +2015,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_up_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_up_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_up_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2027,7 +2027,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_mjpeg_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_mjpeg_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_mjpeg_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2039,7 +2039,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_compass.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2051,7 +2051,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_11_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_11_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_Saira_Medium_11_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2063,7 +2063,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\IceScoopItemContainer_SVGBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\IceScoopItemContainer_SVGBase.cpp</PathWithFileName>
       <FilenameWithoutPath>IceScoopItemContainer_SVGBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2075,7 +2075,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_top_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_top_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_trans_top_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2087,7 +2087,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_medium.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_medium.cpp</PathWithFileName>
       <FilenameWithoutPath>image_waffle_menu_cone_medium.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2099,7 +2099,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_5.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_5.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_5.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2111,7 +2111,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_full.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_full.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_full.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2123,7 +2123,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_ebike_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_ebike_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_ebike_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2135,7 +2135,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_needle.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_needle.cpp</PathWithFileName>
       <FilenameWithoutPath>image_speedometer_needle.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2147,7 +2147,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_32_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_32_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_Medium_32_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2159,7 +2159,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_36_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_36_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_36_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2171,7 +2171,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_back_24_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_back_24_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_back_24_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2183,7 +2183,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_down_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_down_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_down_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2195,7 +2195,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_simple_dice_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_simple_dice_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_simple_dice_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2207,7 +2207,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiCondensed_SemiBold_32_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiCondensed_SemiBold_32_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_Saira_SemiCondensed_SemiBold_32_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2219,7 +2219,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_confirm_button_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2231,7 +2231,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_120_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_120_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_120_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2243,7 +2243,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitions_neochrome_toggle_button_off_notxt.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitions_neochrome_toggle_button_off_notxt.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitions_neochrome_toggle_button_off_notxt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2255,7 +2255,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_dice.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_dice.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_dice.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2267,7 +2267,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\screentransitiondemo_screen\ScreenTransitionDemoViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\screentransitiondemo_screen\ScreenTransitionDemoViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>ScreenTransitionDemoViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2279,7 +2279,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_E_BikeBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_E_BikeBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_E_BikeBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2291,7 +2291,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\svg_screen\SVGViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\svg_screen\SVGViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>SVGViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2303,7 +2303,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_SVGBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_SVGBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_SVGBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2315,7 +2315,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_1.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_1.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_1.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2327,7 +2327,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_switch_compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_switch_compass.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_switch_compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2339,7 +2339,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_6.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_6.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2351,7 +2351,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_normal_ebike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_normal_ebike.cpp</PathWithFileName>
       <FilenameWithoutPath>image_back_button_normal_ebike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2363,7 +2363,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_toggle_main_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_toggle_main_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_toggle_main_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2375,7 +2375,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_prevoius_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2387,7 +2387,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_inactive.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_inactive.cpp</PathWithFileName>
       <FilenameWithoutPath>image_mode_sport_inactive.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2399,7 +2399,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\transitionItem_ScreenTransitionBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\transitionItem_ScreenTransitionBase.cpp</PathWithFileName>
       <FilenameWithoutPath>transitionItem_ScreenTransitionBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2411,7 +2411,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_65_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_65_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_Medium_65_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2423,7 +2423,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\videos\src\keil\Videos.s</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\videos\src\keil\Videos.s</PathWithFileName>
       <FilenameWithoutPath>Videos.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2435,7 +2435,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_pressed_compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_pressed_compass.cpp</PathWithFileName>
       <FilenameWithoutPath>image_back_button_pressed_compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2447,7 +2447,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_simple_dice_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_simple_dice_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_simple_dice_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2459,7 +2459,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_20_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_20_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_20_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2471,7 +2471,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_background_day_full.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_background_day_full.cpp</PathWithFileName>
       <FilenameWithoutPath>image_background_day_full.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2483,7 +2483,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitions_neochrome_toggle_button_on_notxt.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitions_neochrome_toggle_button_on_notxt.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitions_neochrome_toggle_button_on_notxt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2495,7 +2495,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\topbarContainerBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\topbarContainerBase.cpp</PathWithFileName>
       <FilenameWithoutPath>topbarContainerBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2507,7 +2507,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_20_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_20_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_Saira_Medium_20_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2519,7 +2519,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\VectorFontRendererBuffers.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\VectorFontRendererBuffers.cpp</PathWithFileName>
       <FilenameWithoutPath>VectorFontRendererBuffers.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2531,7 +2531,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_normal_compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_back_button_normal_compass.cpp</PathWithFileName>
       <FilenameWithoutPath>image_back_button_normal_compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2543,7 +2543,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_ice_cream_backgrond_with_shadow.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_ice_cream_backgrond_with_shadow.cpp</PathWithFileName>
       <FilenameWithoutPath>image_ice_cream_backgrond_with_shadow.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2555,7 +2555,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_low.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_low.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_low.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2567,7 +2567,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_22_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_22_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_SemiBold_22_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2579,7 +2579,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_play_dark.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_play_dark.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_play_dark.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2591,7 +2591,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\dicedemo_screen\DiceDemoViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\dicedemo_screen\DiceDemoViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>DiceDemoViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2603,7 +2603,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_right_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_right_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_right_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2615,7 +2615,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_active.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_active.cpp</PathWithFileName>
       <FilenameWithoutPath>image_max_button_active.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2627,7 +2627,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_large.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_cone_large.cpp</PathWithFileName>
       <FilenameWithoutPath>image_waffle_menu_cone_large.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2639,7 +2639,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType1.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType1.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitionType1.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2651,7 +2651,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_dice_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_dice_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2663,7 +2663,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_26_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_26_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_26_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2675,7 +2675,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_ebike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_ebike.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_ebike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2687,7 +2687,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeLeftRightButtonsContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeLeftRightButtonsContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>cubeLeftRightButtonsContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2699,7 +2699,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_48_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_48_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_48_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2711,7 +2711,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MainWheelBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MainWheelBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MainWheelBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2723,7 +2723,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\videointro_screen\VideoIntroViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\videointro_screen\VideoIntroViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>VideoIntroViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2735,7 +2735,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_2.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_2.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_2.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2747,7 +2747,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_neochrome_toggle_button_off_notxt.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_neochrome_toggle_button_off_notxt.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_neochrome_toggle_button_off_notxt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2759,7 +2759,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_gradient_overlay_1.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_gradient_overlay_1.cpp</PathWithFileName>
       <FilenameWithoutPath>image_trans_bund_gradient_overlay_1.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2771,7 +2771,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_2of6.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_2of6.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_2of6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2783,7 +2783,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_26_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_26_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_SemiBold_26_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2795,7 +2795,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_tab_mini_slider.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_tab_mini_slider.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_tab_mini_slider.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2807,7 +2807,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_button_mph_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2819,7 +2819,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2831,7 +2831,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\texts\src\Texts.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\texts\src\Texts.cpp</PathWithFileName>
       <FilenameWithoutPath>Texts.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2843,7 +2843,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_Ellipse.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_Ellipse.cpp</PathWithFileName>
       <FilenameWithoutPath>image_Ellipse.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2855,7 +2855,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_adv_dice_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_adv_dice_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_adv_dice_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2867,7 +2867,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_svg_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_svg_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_svg_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2879,7 +2879,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_dice_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_dice_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2891,7 +2891,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType2.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType2.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitionType2.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2903,7 +2903,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_mjpeg.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_mjpeg.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_mjpeg.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2915,7 +2915,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiBold_30_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_SemiBold_30_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_Saira_SemiBold_30_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2927,7 +2927,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MainWheelIconBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MainWheelIconBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MainWheelIconBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2939,7 +2939,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_background_480_Viper.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_background_480_Viper.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass_background_480_Viper.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2951,7 +2951,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_back_button_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2963,7 +2963,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_120_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_120_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_120_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2975,7 +2975,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_top_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_top_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_top_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2987,7 +2987,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_26_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_26_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_SemiBold_26_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -2999,7 +2999,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\menu_screen\MenuViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\menu_screen\MenuViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MenuViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3011,7 +3011,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\AdvanceDiceContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\AdvanceDiceContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>AdvanceDiceContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3023,7 +3023,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_gradient_overlay_2.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_gradient_overlay_2.cpp</PathWithFileName>
       <FilenameWithoutPath>image_trans_bund_gradient_overlay_2.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3035,7 +3035,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_fill.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_fill.cpp</PathWithFileName>
       <FilenameWithoutPath>image_scale_slider_fill.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3047,7 +3047,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_36_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_36_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_36_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3059,7 +3059,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_36_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_36_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_36_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3071,7 +3071,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_svg.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_svg.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_svg.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3083,7 +3083,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_65_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_Medium_65_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_Medium_65_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3095,7 +3095,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_90_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_90_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_90_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3107,7 +3107,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_off.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_off.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_off.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3119,7 +3119,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_4.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_large_4.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_large_4.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3131,7 +3131,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_3of6.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_3of6.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_3of6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3143,7 +3143,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_top_bottom_bar.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_top_bottom_bar.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_top_bottom_bar.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3155,7 +3155,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_90_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_90_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_90_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3167,7 +3167,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_38_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_SemiBold_38_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_SemiBold_38_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3179,7 +3179,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_mjpeg_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_mjpeg_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_mjpeg_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3191,7 +3191,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_button_off.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_button_off.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_button_off.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3203,7 +3203,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_120_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_120_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_120_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3215,7 +3215,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\mjpeg_screen\MJPEGViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\mjpeg_screen\MJPEGViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MJPEGViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3227,7 +3227,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_55_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_55_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_55_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3239,7 +3239,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_title.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_title.cpp</PathWithFileName>
       <FilenameWithoutPath>image_waffle_menu_title.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3251,7 +3251,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_kmh_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_button_kmh_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3263,7 +3263,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_active.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_active.cpp</PathWithFileName>
       <FilenameWithoutPath>image_confirm_button_active.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3275,7 +3275,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType3.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType3.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitionType3.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3287,7 +3287,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_switch_ebike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_switch_ebike.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_switch_ebike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3299,7 +3299,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_16_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_16_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_SemiBold_16_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3311,7 +3311,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\selectedIconsContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\selectedIconsContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>selectedIconsContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3323,7 +3323,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\SVGDatabase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\SVGDatabase.cpp</PathWithFileName>
       <FilenameWithoutPath>SVGDatabase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3335,7 +3335,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_CompassBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_CompassBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_CompassBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3347,7 +3347,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_button_mph_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_button_mph_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3359,7 +3359,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_compass_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_compass_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3371,7 +3371,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_11_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_11_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_Saira_Medium_11_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3383,7 +3383,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_svg_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_svg_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_svg_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3395,7 +3395,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_active.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_active.cpp</PathWithFileName>
       <FilenameWithoutPath>image_off_button_active.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3407,7 +3407,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_38_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_38_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_SemiBold_38_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3419,7 +3419,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_65_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_65_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_65_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3431,7 +3431,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationButton_ScreenTransitionBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationButton_ScreenTransitionBase.cpp</PathWithFileName>
       <FilenameWithoutPath>animationButton_ScreenTransitionBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3443,7 +3443,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationsDepthButton_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\animationsDepthButton_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>animationsDepthButton_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3455,7 +3455,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\BitmapDatabase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\BitmapDatabase.cpp</PathWithFileName>
       <FilenameWithoutPath>BitmapDatabase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3467,7 +3467,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_on.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_neochrom_on.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_on.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3479,7 +3479,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_right_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_right_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_right_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3491,7 +3491,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_graph_Overlay.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_graph_Overlay.cpp</PathWithFileName>
       <FilenameWithoutPath>image_graph_Overlay.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3503,7 +3503,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_scale_small.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_scale_small.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_scale_small.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3515,7 +3515,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_inactive.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_confirm_button_inactive.cpp</PathWithFileName>
       <FilenameWithoutPath>image_confirm_button_inactive.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3527,7 +3527,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_48_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_48_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_48_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3539,7 +3539,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_active.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_mode_sport_active.cpp</PathWithFileName>
       <FilenameWithoutPath>image_mode_sport_active.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3551,7 +3551,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_20_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_Medium_20_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_Saira_Medium_20_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3563,7 +3563,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_55_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_ShareTechMono_Regular_55_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_ShareTechMono_Regular_55_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3575,7 +3575,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\IceScoopWheelContainer_SVGBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\IceScoopWheelContainer_SVGBase.cpp</PathWithFileName>
       <FilenameWithoutPath>IceScoopWheelContainer_SVGBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3587,7 +3587,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_bg.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_bg.cpp</PathWithFileName>
       <FilenameWithoutPath>image_trans_bund_bg.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3599,7 +3599,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_4of6.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_4of6.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_4of6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3611,7 +3611,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_down_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_down_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_down_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3623,7 +3623,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiBold_30_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_Saira_SemiBold_30_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_Saira_SemiBold_30_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3635,7 +3635,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_prevoius_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_prevoius_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3647,7 +3647,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_off_button_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_off_button_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3659,7 +3659,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\e_bikedemo_screen\E_BikeDemoViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\e_bikedemo_screen\E_BikeDemoViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>E_BikeDemoViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3671,7 +3671,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_65_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_65_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_65_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3683,7 +3683,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\bottombarContainer_ScreenTransitionBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\bottombarContainer_ScreenTransitionBase.cpp</PathWithFileName>
       <FilenameWithoutPath>bottombarContainer_ScreenTransitionBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3695,7 +3695,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\video-intro\image_last_video_frame.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\video-intro\image_last_video_frame.cpp</PathWithFileName>
       <FilenameWithoutPath>image_last_video_frame.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3707,7 +3707,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_max_button_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_max_button_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3719,7 +3719,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_26_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_26_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_26_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3731,7 +3731,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_ebike_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_ebike_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_ebike_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3743,7 +3743,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType4.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType4.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitionType4.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3755,7 +3755,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_remaining.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_remaining.cpp</PathWithFileName>
       <FilenameWithoutPath>image_remaining.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3767,7 +3767,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_back_button_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_back_button_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3779,7 +3779,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_22_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_SairaCondensed_SemiBold_22_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_SairaCondensed_SemiBold_22_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3791,7 +3791,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\compassscreen_screen\CompassScreenViewBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\compassscreen_screen\CompassScreenViewBase.cpp</PathWithFileName>
       <FilenameWithoutPath>CompassScreenViewBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3803,7 +3803,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_background_with_sparkles.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_background_with_sparkles.cpp</PathWithFileName>
       <FilenameWithoutPath>image_background_with_sparkles.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3815,7 +3815,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_E_BikeBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_E_BikeBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_E_BikeBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3827,7 +3827,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_pressed_ebike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_back_button_pressed_ebike.cpp</PathWithFileName>
       <FilenameWithoutPath>image_back_button_pressed_ebike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3839,7 +3839,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_icecream_next_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icecream_next_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3851,7 +3851,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_toggle_marker.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_toggle_marker.cpp</PathWithFileName>
       <FilenameWithoutPath>image_toggle_marker.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3863,7 +3863,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_transitions_icon_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_transitions_icon_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitions_icon_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3875,7 +3875,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_20_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_Medium_20_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_Saira_Medium_20_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3887,7 +3887,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_tab.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_trans_bund_tab.cpp</PathWithFileName>
       <FilenameWithoutPath>image_trans_bund_tab.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3899,7 +3899,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_20_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_20_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_20_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3911,7 +3911,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuIconBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\WaffleMenuIconBase.cpp</PathWithFileName>
       <FilenameWithoutPath>WaffleMenuIconBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3923,7 +3923,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\texts\src\LanguageGb.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\texts\src\LanguageGb.cpp</PathWithFileName>
       <FilenameWithoutPath>LanguageGb.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3935,7 +3935,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_disc_Viper.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\compass-screen\image_compass_disc_Viper.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass_disc_Viper.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3947,7 +3947,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_up_pressed.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_up_pressed.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_up_pressed.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3959,7 +3959,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_48_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_48_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_48_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3971,7 +3971,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\FontCache.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\FontCache.cpp</PathWithFileName>
       <FilenameWithoutPath>FontCache.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3983,7 +3983,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_32_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_Medium_32_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_Medium_32_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -3995,7 +3995,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\texts\src\TypedTextDatabase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\texts\src\TypedTextDatabase.cpp</PathWithFileName>
       <FilenameWithoutPath>TypedTextDatabase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4007,7 +4007,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_MenuBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_MenuBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_MenuBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4019,7 +4019,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_neochrome_toggle_button_on_notxt.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_dice_neochrome_toggle_button_on_notxt.cpp</PathWithFileName>
       <FilenameWithoutPath>image_dice_neochrome_toggle_button_on_notxt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4031,7 +4031,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_5of6.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_battery_steps_5of6.cpp</PathWithFileName>
       <FilenameWithoutPath>image_battery_steps_5of6.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4043,7 +4043,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4055,7 +4055,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiBold_30_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiBold_30_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_Saira_SemiBold_30_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4067,7 +4067,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_emptyBottombarBg.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_emptyBottombarBg.cpp</PathWithFileName>
       <FilenameWithoutPath>image_emptyBottombarBg.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4079,7 +4079,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_active.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_active.cpp</PathWithFileName>
       <FilenameWithoutPath>image_standard_button_active.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4091,7 +4091,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\topbarContainer_ScreenTransitionBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\topbarContainer_ScreenTransitionBase.cpp</PathWithFileName>
       <FilenameWithoutPath>topbarContainer_ScreenTransitionBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4103,7 +4103,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_26_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_ShareTechMono_Regular_26_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_ShareTechMono_Regular_26_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4115,7 +4115,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeUpDownButtonsContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\cubeUpDownButtonsContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>cubeUpDownButtonsContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4127,7 +4127,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_adv_dice_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_adv_dice_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_adv_dice_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4139,7 +4139,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_55_4bpp_0.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Font_ShareTechMono_Regular_55_4bpp_0.cpp</PathWithFileName>
       <FilenameWithoutPath>Font_ShareTechMono_Regular_55_4bpp_0.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4151,7 +4151,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_main_background_numbers.cpp</PathWithFileName>
       <FilenameWithoutPath>image_main_background_numbers.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4163,7 +4163,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_32_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_32_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_Medium_32_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4175,7 +4175,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_kmh.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_kmh.cpp</PathWithFileName>
       <FilenameWithoutPath>image_speedometer_fill_overlay_numbers_kmh.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4187,7 +4187,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType5.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_transitionType5.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitionType5.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4199,7 +4199,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_transitions.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\menu-launcher-screen\image_preview_transitions.cpp</PathWithFileName>
       <FilenameWithoutPath>image_preview_transitions.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4211,7 +4211,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_SVGBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_SVGBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_SVGBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4223,7 +4223,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_16_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_16_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_SemiBold_16_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4235,7 +4235,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_back_24_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\image_icon_back_24_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_back_24_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4247,7 +4247,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_left_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_dice_left_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_dice_left_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4259,7 +4259,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_expand.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\svg-screen\image_waffle_menu_expand.cpp</PathWithFileName>
       <FilenameWithoutPath>image_waffle_menu_expand.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4271,7 +4271,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_scale_large.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_icon_scale_large.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_scale_large.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4283,7 +4283,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_Saira_SemiCondensed_SemiBold_32_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4295,7 +4295,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_22_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_22_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_SemiBold_22_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4307,7 +4307,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_MenuBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\MCULoadPercentage_MenuBase.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_MenuBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4319,7 +4319,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_65_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Kerning_SairaCondensed_Medium_65_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Kerning_SairaCondensed_Medium_65_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4331,7 +4331,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_transitions_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_transitions_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_transitions_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4343,7 +4343,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_mph.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_speedometer_fill_overlay_numbers_mph.cpp</PathWithFileName>
       <FilenameWithoutPath>image_speedometer_fill_overlay_numbers_mph.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4355,7 +4355,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\SimpleDiceContainer_DiceDemoBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\SimpleDiceContainer_DiceDemoBase.cpp</PathWithFileName>
       <FilenameWithoutPath>SimpleDiceContainer_DiceDemoBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4367,7 +4367,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_38_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_SairaCondensed_SemiBold_38_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_SairaCondensed_SemiBold_38_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4379,7 +4379,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\common\FrontendApplicationBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\common\FrontendApplicationBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FrontendApplicationBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4391,7 +4391,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass_arrow.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_compass_arrow.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass_arrow.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4403,7 +4403,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_knob.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\DiceDemo\image_scale_slider_knob.cpp</PathWithFileName>
       <FilenameWithoutPath>image_scale_slider_knob.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4415,7 +4415,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\GeneratedFont.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\GeneratedFont.cpp</PathWithFileName>
       <FilenameWithoutPath>GeneratedFont.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4427,7 +4427,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_compass_icon_selected.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\Main\image_compass_icon_selected.cpp</PathWithFileName>
       <FilenameWithoutPath>image_compass_icon_selected.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4439,7 +4439,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_speed_slider.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ScreenTransitionDemo\image_icon_speed_slider.cpp</PathWithFileName>
       <FilenameWithoutPath>image_icon_speed_slider.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4451,7 +4451,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_button_on.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_neochrom_button_on.cpp</PathWithFileName>
       <FilenameWithoutPath>image_neochrom_button_on.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4463,7 +4463,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_normal.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\images\src\ebike-screen\image_standard_button_normal.cpp</PathWithFileName>
       <FilenameWithoutPath>image_standard_button_normal.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4475,7 +4475,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_11_4bpp.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\fonts\src\Table_Saira_Medium_11_4bpp.cpp</PathWithFileName>
       <FilenameWithoutPath>Table_Saira_Medium_11_4bpp.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4487,7 +4487,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_CompassBase.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\generated\gui_generated\src\containers\FrameRate_CompassBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_CompassBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4507,7 +4507,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGView.cpp</PathWithFileName>
       <FilenameWithoutPath>SVGView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4519,7 +4519,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\common\FloatEasingEquations.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\common\FloatEasingEquations.cpp</PathWithFileName>
       <FilenameWithoutPath>FloatEasingEquations.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4531,7 +4531,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SlideTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SlideTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>SlideTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4543,7 +4543,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\mjpeg_screen\MJPEGPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\mjpeg_screen\MJPEGPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>MJPEGPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4555,7 +4555,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\topbarContainer_ScreenTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\topbarContainer_ScreenTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>topbarContainer_ScreenTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4567,7 +4567,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>CompassScreenPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4579,7 +4579,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\common\FrontendApplication.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\common\FrontendApplication.cpp</PathWithFileName>
       <FilenameWithoutPath>FrontendApplication.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4591,7 +4591,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\IceScoopItemContainer_SVG.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\IceScoopItemContainer_SVG.cpp</PathWithFileName>
       <FilenameWithoutPath>IceScoopItemContainer_SVG.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4603,7 +4603,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\screentransitiondemo_screen\ScreenTransitionDemoPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\screentransitiondemo_screen\ScreenTransitionDemoPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>ScreenTransitionDemoPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4615,7 +4615,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\selectedIconsContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\selectedIconsContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>selectedIconsContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4627,7 +4627,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\AdvanceDiceContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\AdvanceDiceContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>AdvanceDiceContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4639,7 +4639,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_E_Bike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_E_Bike.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_E_Bike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4651,7 +4651,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\dicedemo_screen\DiceDemoView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\dicedemo_screen\DiceDemoView.cpp</PathWithFileName>
       <FilenameWithoutPath>DiceDemoView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4663,7 +4663,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MainWheelIcon.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MainWheelIcon.cpp</PathWithFileName>
       <FilenameWithoutPath>MainWheelIcon.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4675,7 +4675,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeUpDownButtonsContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeUpDownButtonsContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>cubeUpDownButtonsContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4687,7 +4687,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\IceScoopWheelContainer_SVG.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\IceScoopWheelContainer_SVG.cpp</PathWithFileName>
       <FilenameWithoutPath>IceScoopWheelContainer_SVG.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4699,7 +4699,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\mjpeg_screen\MJPEGView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\mjpeg_screen\MJPEGView.cpp</PathWithFileName>
       <FilenameWithoutPath>MJPEGView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4711,7 +4711,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CurtainsTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CurtainsTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>CurtainsTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4723,7 +4723,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\menu_screen\MenuView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\menu_screen\MenuView.cpp</PathWithFileName>
       <FilenameWithoutPath>MenuView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4735,7 +4735,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_Menu.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_Menu.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_Menu.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4747,7 +4747,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\dicedemo_screen\DiceDemoPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\dicedemo_screen\DiceDemoPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>DiceDemoPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4759,7 +4759,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MainWheel.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MainWheel.cpp</PathWithFileName>
       <FilenameWithoutPath>MainWheel.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4771,7 +4771,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\common\FrameRate.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\common\FrameRate.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4783,7 +4783,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\e_bikedemo_screen\E_BikeDemoView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\e_bikedemo_screen\E_BikeDemoView.cpp</PathWithFileName>
       <FilenameWithoutPath>E_BikeDemoView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4795,7 +4795,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_E_Bike.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_E_Bike.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_E_Bike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4807,7 +4807,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\menu_screen\MenuPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\menu_screen\MenuPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>MenuPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4819,7 +4819,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\SimpleDiceContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\SimpleDiceContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>SimpleDiceContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4831,7 +4831,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CoverTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CoverTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>CoverTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4843,7 +4843,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuContainer.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuContainer.cpp</PathWithFileName>
       <FilenameWithoutPath>WaffleMenuContainer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4855,7 +4855,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_Compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_Compass.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_Compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4867,7 +4867,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\e_bikedemo_screen\E_BikeDemoPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\e_bikedemo_screen\E_BikeDemoPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>E_BikeDemoPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4879,7 +4879,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\RolloutTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\RolloutTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>RolloutTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4891,7 +4891,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>SpinTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4903,7 +4903,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\videointro_screen\VideoIntroView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\videointro_screen\VideoIntroView.cpp</PathWithFileName>
       <FilenameWithoutPath>VideoIntroView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4915,7 +4915,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_SVG.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\MCULoadPercentage_SVG.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage_SVG.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4927,7 +4927,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\compassscreen_screen\CompassScreenView.cpp</PathWithFileName>
       <FilenameWithoutPath>CompassScreenView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4939,7 +4939,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\model\Model.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\model\Model.cpp</PathWithFileName>
       <FilenameWithoutPath>Model.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4951,7 +4951,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationsDepthButton_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationsDepthButton_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>animationsDepthButton_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4963,7 +4963,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationButton_ScreenTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\animationButton_ScreenTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>animationButton_ScreenTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4975,7 +4975,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\FlipTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\FlipTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>FlipTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4987,7 +4987,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\screentransitiondemo_screen\ScreenTransitionDemoView.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\screentransitiondemo_screen\ScreenTransitionDemoView.cpp</PathWithFileName>
       <FilenameWithoutPath>ScreenTransitionDemoView.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -4999,7 +4999,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\svg_screen\SVGPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>SVGPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5011,7 +5011,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\bottombarContainer_ScreenTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\bottombarContainer_ScreenTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>bottombarContainer_ScreenTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5023,7 +5023,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\common\MCULoadPercentage.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\common\MCULoadPercentage.cpp</PathWithFileName>
       <FilenameWithoutPath>MCULoadPercentage.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5035,7 +5035,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\transitionItem_ScreenTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\transitionItem_ScreenTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>transitionItem_ScreenTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5047,7 +5047,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\topbarContainer.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\topbarContainer.cpp</PathWithFileName>
       <FilenameWithoutPath>topbarContainer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5059,7 +5059,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CubeTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\CubeTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>CubeTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5071,7 +5071,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_Compass.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_Compass.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_Compass.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5083,7 +5083,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_Menu.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_Menu.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_Menu.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5095,7 +5095,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\videointro_screen\VideoIntroPresenter.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\videointro_screen\VideoIntroPresenter.cpp</PathWithFileName>
       <FilenameWithoutPath>VideoIntroPresenter.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5107,7 +5107,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\scaleSliderContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\scaleSliderContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>scaleSliderContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5119,7 +5119,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinOutTransition.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\SpinOutTransition.cpp</PathWithFileName>
       <FilenameWithoutPath>SpinOutTransition.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5131,7 +5131,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuIcon.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\WaffleMenuIcon.cpp</PathWithFileName>
       <FilenameWithoutPath>WaffleMenuIcon.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5143,7 +5143,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\Transitions.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\Transitions\Transitions.cpp</PathWithFileName>
       <FilenameWithoutPath>Transitions.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5155,7 +5155,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_SVG.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\FrameRate_SVG.cpp</PathWithFileName>
       <FilenameWithoutPath>FrameRate_SVG.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5167,7 +5167,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeLeftRightButtonsContainer_DiceDemo.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\gui\src\containers\cubeLeftRightButtonsContainer_DiceDemo.cpp</PathWithFileName>
       <FilenameWithoutPath>cubeLeftRightButtonsContainer_DiceDemo.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5187,7 +5187,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\Middlewares\Third_Party\CMSIS_RTOS_V2\cmsis_os2.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\Middlewares\Third_Party\CMSIS_RTOS_V2\cmsis_os2.c</PathWithFileName>
       <FilenameWithoutPath>cmsis_os2.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5207,7 +5207,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\OSWrappers.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\OSWrappers.cpp</PathWithFileName>
       <FilenameWithoutPath>OSWrappers.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5219,7 +5219,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\TouchGFXGPIO.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\TouchGFXGPIO.cpp</PathWithFileName>
       <FilenameWithoutPath>TouchGFXGPIO.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5231,7 +5231,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXGeneratedHAL.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXGeneratedHAL.cpp</PathWithFileName>
       <FilenameWithoutPath>TouchGFXGeneratedHAL.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5243,7 +5243,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\HardwareMJPEGDecoder.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\HardwareMJPEGDecoder.cpp</PathWithFileName>
       <FilenameWithoutPath>HardwareMJPEGDecoder.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5255,7 +5255,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\nema_hal.c</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\nema_hal.c</PathWithFileName>
       <FilenameWithoutPath>nema_hal.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5267,7 +5267,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\STM32TouchController.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\STM32TouchController.cpp</PathWithFileName>
       <FilenameWithoutPath>STM32TouchController.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5279,7 +5279,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\TouchGFXHAL.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\TouchGFXHAL.cpp</PathWithFileName>
       <FilenameWithoutPath>TouchGFXHAL.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5291,7 +5291,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXConfiguration.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\TouchGFXConfiguration.cpp</PathWithFileName>
       <FilenameWithoutPath>TouchGFXConfiguration.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5303,7 +5303,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\generated\STM32DMA.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\generated\STM32DMA.cpp</PathWithFileName>
       <FilenameWithoutPath>STM32DMA.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -5315,7 +5315,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>libraries\touchgfx_lib\TouchGFX\target\CortexMMCUInstrumentation.cpp</PathWithFileName>
+      <PathWithFileName>..\..\libraries\touchgfx_lib\TouchGFX\target\CortexMMCUInstrumentation.cpp</PathWithFileName>
       <FilenameWithoutPath>CortexMMCUInstrumentation.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
