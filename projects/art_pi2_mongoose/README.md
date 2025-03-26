@@ -127,7 +127,7 @@ packages/wifi-host-driver-latest/wifi-host-driver/WiFi_Host_Driver/resources/fir
 2. **下载程序**：将程序下载到开发板，并复位启动 RT-Thread。
 3. **连接无线网络**：在 FinSH 控制台中输入命令 `wifi join [ssid] [password]`，连接到无线网络。
 4. **启动 Web Server**：按下开发板的 user 按键，启动 Web Server。
-5. **访问Web**：在 PC（或手机）的浏览器中输入URL `http://[开发板IP地址]:8000` (例如 `http://192.168.1.1:8000`)，按下回车访问web。
+5. **访问Web**：在 PC（或手机）的浏览器中输入URL `http://[开发板IP地址]:8000` (例如 `http://192.168.1.1:8000`)，按下回车访问web。（账号为：admin 密码：admin
 
 ### 运行效果
 ![demo](./figures/demo.gif)
