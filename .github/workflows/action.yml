@@ -41,7 +41,7 @@ jobs:
         run: |
           pip install rt-thread-studio
           python -c "from rt_thread_studio import bsp_checker;bsp_path = '.';checker = bsp_checker.BspChecker(bsp_path);checker.check();"
-      
+
   compile:
     needs: [check]
     runs-on: ubuntu-latest
@@ -56,13 +56,15 @@ jobs:
          - {RTT_BSP: "art_pi2_sdcard"}
          - {RTT_BSP: "art_pi2_wifi"}
          - {RTT_BSP: "art_pi2_mongoose"}
+         - {RTT_BSP: "art_pi2_cherryusb_usbdev_cdc_acm"}
+         - {RTT_BSP: "art_pi2_cherryusb_usbhost"}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@master
         with:
           python-version: 3.8
-    
+
       - name: Install Arm ToolChains
         if: ${{ success() }}
         shell: bash

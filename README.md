@@ -32,6 +32,8 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
 │ ├── art_pi2_sdcard
 │ ├── art_pi_wifi
 │ └── art_pi_mongoose
+│ └── art_pi2_cherryusb_usbdev_cdc_acm
+│ └── art_pi2_cherryusb_usbhost
 ├── rt-thread
 └── tools
 ```

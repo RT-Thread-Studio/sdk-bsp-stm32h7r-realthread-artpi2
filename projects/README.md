@@ -9,3 +9,5 @@ ART-Pi 开源项目如下表所示：
 | [art_pi2_wifi](./art_pi2_wifi)             | 实现 wifi 联网                             |
 | [art_pi2_lvgl](./art_pi2_lvgl_demo) | 实现了在 RGB 屏幕上对 LVGL 的支持          |
 | [art_pi2_touchgfx](./art_pi2_touchgfx)     | 实现了在 RGB 屏幕上对 TouchGFX 的支持      |
+| [art_pi2_cherryusb_usbdev_cdc_acm](./art_pi2_cherryusb_usbdev_cdc_acm)     | 实现了 CherryUSB device 支持      |
+| [art_pi2_cherryusb_usbhost](./art_pi2_cherryusb_usbhost)     | 实现了 CherryUSB host 支持     |

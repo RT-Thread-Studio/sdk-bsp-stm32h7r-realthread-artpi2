@@ -32,6 +32,8 @@ $ sdk-bsp-stm32h7r-realthread-artpi2
 │   ├── art_pi2_sdcard
 │   ├── art_pi_wifi
 │   └── art_pi_mongoose
+│   └── art_pi2_cherryusb_usbdev_cdc_acm
+│   └── art_pi2_cherryusb_usbhost
 ├── rt-thread
 └── tools
 ```
@@ -100,10 +102,10 @@ sdk-bsp-stm32h7r-realthread-artpi 支持 MDK 开发和 RT-Thread Studio 开发�
    ```
    E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects\art_pi2_blink_led>mklink /D rt-thread ..\..\rt-thread
    symbolic link created for rt-thread <<===>> ..\..\rt-thread
-   
+
    E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects>mklink /D libraries ..\..\libraries
    symbolic link created for libraries <<===>> ..\..\libraries
-   
+
    E:\project\sdk-bsp-stm32h7r-realthread-artpi2\projects>
    ```
 4. 使用 [ENV-2.0](https://club.rt-thread.org/ask/article/af8952fcf0ca464b.html) 工具执行 scons --target=mdk5 更新 MDK5 工程文件

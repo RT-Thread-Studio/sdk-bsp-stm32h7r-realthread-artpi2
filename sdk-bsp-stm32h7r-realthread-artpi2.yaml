@@ -110,7 +110,7 @@ template_projects:
     source_path_offset: ''
     target_path_offset: ''
     files_and_folders: []
-example_projects: 
+example_projects:
 - project_name: art_pi2_blink_led
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
@@ -160,7 +160,7 @@ example_projects:
     package_version: 0.1.9
     source_path_offset: ''
     target_path_offset: ''
-    files_and_folders: []    
+    files_and_folders: []
 - project_name: art_pi2_lvgl_demo
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
@@ -185,7 +185,7 @@ example_projects:
     package_version: 0.1.9
     source_path_offset: ''
     target_path_offset: ''
-    files_and_folders: []    
+    files_and_folders: []
 - project_name: art_pi2_sdcard
   project_description: creat this peoject if user choose rt-thread project
   project_type: rt-thread|@full|@5.1.0
@@ -241,6 +241,56 @@ example_projects:
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
   - source_path_offset: projects/art_pi2_mongoose
+    target_path_offset: ''
+    files_and_folders:
+    - "*"
+  - source_path_offset: ''
+    target_path_offset: ''
+    files_and_folders:
+    - libraries
+    - rt-thread
+  - source_path_offset: 'tools/download_algorithm/stldr'
+    target_path_offset: 'board/stldr'
+    files_and_folders:
+    - ART-Pi2_ST_winbond_64MB.stldr
+  external_files:
+  - package_type: Chip_Support_Packages
+    package_vendor: RealThread
+    package_name: STM32H7
+    package_version: 0.1.9
+    source_path_offset: ''
+    target_path_offset: ''
+    files_and_folders: []
+- project_name: art_pi2_cherryusb_usbdev_cdc_acm
+  project_description: creat this peoject if user choose rt-thread project
+  project_type: rt-thread|@full|@5.1.0
+  builtin_files:
+  - source_path_offset: projects/art_pi2_cherryusb_usbdev_cdc_acm
+    target_path_offset: ''
+    files_and_folders:
+    - "*"
+  - source_path_offset: ''
+    target_path_offset: ''
+    files_and_folders:
+    - libraries
+    - rt-thread
+  - source_path_offset: 'tools/download_algorithm/stldr'
+    target_path_offset: 'board/stldr'
+    files_and_folders:
+    - ART-Pi2_ST_winbond_64MB.stldr
+  external_files:
+  - package_type: Chip_Support_Packages
+    package_vendor: RealThread
+    package_name: STM32H7
+    package_version: 0.1.9
+    source_path_offset: ''
+    target_path_offset: ''
+    files_and_folders: []
+- project_name: art_pi2_cherryusb_usbhost
+  project_description: creat this peoject if user choose rt-thread project
+  project_type: rt-thread|@full|@5.1.0
+  builtin_files:
+  - source_path_offset: projects/art_pi2_cherryusb_usbhost
     target_path_offset: ''
     files_and_folders:
     - "*"
