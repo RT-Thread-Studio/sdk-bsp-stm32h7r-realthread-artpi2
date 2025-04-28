@@ -1,4 +1,4 @@
-# CherryUSB CDC ACM 例程
+# CherryUSB Host 例程
 
 ## 简介
 
