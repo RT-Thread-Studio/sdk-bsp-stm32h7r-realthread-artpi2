@@ -275,11 +275,6 @@
 
 #define PKG_USING_WIFI_HOST_DRIVER
 #define WHD_USING_CHIP_CYW43438
-#define WHD_RESOURCES_IN_EXTERNAL_STORAGE
-#define WHD_RESOURCES_IN_EXTERNAL_STORAGE_FS
-#define WHD_RESOURCES_FIRMWARE_PATH_NAME "/sdcard/43438A1.bin"
-#define WHD_RESOURCES_CLM_PATH_NAME "/sdcard/43438A1.clm_blob"
-#define WHD_RESOURCES_BLOCK_SIZE 8192
 #define CY_WIFI_WHD_THREAD_PRIORITY 8
 #define CY_WIFI_WHD_THREAD_STACK_SIZE 5120
 #define CYBSP_USING_PIN_NAME
@@ -289,6 +284,7 @@
 #define CYBSP_OOB_INTR_PRIORITY 2
 #define CY_WIFI_USING_THREAD_INIT
 #define CY_WIFI_INIT_THREAD_STACK_SIZE 2048
+#define CY_WIFI_LOG_LEVEL_INFO
 #define PKG_USING_WIFI_HOST_DRIVER_LATEST_VERSION
 #define PKG_WIFI_HOST_DRIVER_VER_NUM 0x99999
 
@@ -393,6 +389,18 @@
 /* WCH HAL & SDK Drivers */
 
 /* end of WCH HAL & SDK Drivers */
+
+/* AT32 HAL & SDK Drivers */
+
+/* end of AT32 HAL & SDK Drivers */
+
+/* HC32 DDL Drivers */
+
+/* end of HC32 DDL Drivers */
+
+/* NXP HAL & SDK Drivers */
+
+/* end of NXP HAL & SDK Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */

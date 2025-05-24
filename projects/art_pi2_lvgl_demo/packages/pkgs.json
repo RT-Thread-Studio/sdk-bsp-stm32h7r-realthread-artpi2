@@ -1,17 +1,17 @@
 [
  {
-  "name": "LVGL",
-  "path": "/packages/multimedia/LVGL/LVGL",
-  "ver": "v8.3.11"
- },
+  "path": "/packages/multimedia/LVGL/LVGL", 
+  "ver": "latest", 
+  "name": "LVGL"
+ }, 
  {
-  "name": "CMBACKTRACE",
-  "path": "/packages/tools/CmBacktrace",
-  "ver": "latest"
- },
+  "path": "/packages/tools/CmBacktrace", 
+  "ver": "latest", 
+  "name": "CMBACKTRACE"
+ }, 
  {
-  "name": "GT9147",
-  "path": "/packages/peripherals/touch/gt9147",
-  "ver": "v1.1.0"
+  "path": "/packages/peripherals/touch/gt9147", 
+  "ver": "v1.1.0", 
+  "name": "GT9147"
  }
 ]

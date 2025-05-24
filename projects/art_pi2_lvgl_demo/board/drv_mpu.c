@@ -74,7 +74,11 @@ int mpu_init(void)
     MPU_InitStruct.BaseAddress = 0x24000000;
     MPU_InitStruct.Size = MPU_REGION_SIZE_512KB;
     MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+#ifdef BSP_SCB_ENABLE_D_CACHE
+    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+#else
     MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
+#endif
     MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
     MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
 

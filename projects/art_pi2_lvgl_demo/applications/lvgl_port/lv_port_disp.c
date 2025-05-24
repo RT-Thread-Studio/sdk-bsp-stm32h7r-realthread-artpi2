@@ -64,25 +64,23 @@ void DMA2D_IRQHandler(void)
     rt_interrupt_leave();
 }
 
-static void lcd_fb_flush(lv_display_t  *disp_drv, const lv_area_t *area, uint8_t *color_p)
+static void lcd_fb_flush(lv_display_t *disp_drv, const lv_area_t *area, uint8_t *color_p)
 {
     lv_coord_t width = lv_area_get_width(area);
     lv_coord_t height = lv_area_get_height(area);
 
-    SCB_CleanInvalidateDCache();
+    /* Clean and invalidate cache for source and destination buffers */
+    SCB_CleanInvalidateDCache_by_Addr((uint32_t *)color_p, width * height * 2);
+    SCB_CleanInvalidateDCache_by_Addr((uint32_t *)(hltdc.LayerCfg[0].FBStartAdress + 2 * (area->y1 * LV_HOR_RES_MAX + area->x1)), width * height * 2);
 
-    DMA2D->CR = 0x0U << DMA2D_CR_MODE_Pos;
-    DMA2D->FGPFCCR = DMA2D_INPUT_RGB565;
+    /* Configure dynamic DMA2D parameters */
     DMA2D->FGMAR = (uint32_t)color_p;
     DMA2D->FGOR = 0;
-    DMA2D->OPFCCR = DMA2D_OUTPUT_RGB565;
-    DMA2D->OMAR = hltdc.LayerCfg[0].FBStartAdress + 2 * \
-                  (area->y1 * LV_HOR_RES_MAX + area->x1);
+    DMA2D->OMAR = hltdc.LayerCfg[0].FBStartAdress + 2 * (area->y1 * LV_HOR_RES_MAX + area->x1);
     DMA2D->OOR = LV_HOR_RES_MAX - width;
     DMA2D->NLR = (width << DMA2D_NLR_PL_Pos) | (height << DMA2D_NLR_NL_Pos);
     DMA2D->IFCR = 0x3FU;
-    DMA2D->CR |= DMA2D_CR_TCIE;
-    DMA2D->CR |= DMA2D_CR_START;
+    DMA2D->CR |= DMA2D_CR_TCIE | DMA2D_CR_START;
 }
 
 void lv_port_disp_init(void)
