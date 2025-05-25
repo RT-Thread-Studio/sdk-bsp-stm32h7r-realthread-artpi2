@@ -1,11 +1,11 @@
 ---
 yaml_version: 3
-pkg_version: 1.0.0
+pkg_version: 1.1.0
 pkg_vendor: RealThread
 pkg_type: Board_Support_Packages
 board:
   name: STM32H7R7-RT-ART-Pi2
-  version: 1.0.0
+  version: 1.1.0
   vendor: RT-Thread
   description_zh: ART-Pi2 是 RT-Thread 团队专门为嵌入式软件工程师、开源创客设计的一款极具扩展功能的 DIY 开源硬件.
   description_en: ART-Pi2 is a DIY open source hardware specially designed for embedded software engineers and open source makers after six months of careful preparation by RT-Thread team
