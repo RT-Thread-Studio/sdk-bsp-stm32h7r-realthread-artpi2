@@ -1,1 +1,7 @@
-[]
+[
+ {
+  "name": "CHERRYUSB",
+  "path": "/packages/system/CherryUSB",
+  "ver": "latest"
+ }
+]
