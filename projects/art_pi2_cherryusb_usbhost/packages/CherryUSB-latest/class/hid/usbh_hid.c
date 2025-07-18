@@ -106,7 +106,7 @@ int usbh_hid_get_idle(struct usbh_hid *hid_class, uint8_t *buffer)
     if (ret < 8) {
         return ret;
     }
-    memcpy(buffer, g_hid_buf[hid_class->minor], ret - 8);
+    memcpy(buffer, g_hid_buf[hid_class->minor], MIN(ret - 8, 1));
     return ret;
 }
 
@@ -148,7 +148,7 @@ int usbh_hid_get_protocol(struct usbh_hid *hid_class, uint8_t *protocol)
     if (ret < 8) {
         return ret;
     }
-    memcpy(protocol, g_hid_buf[hid_class->minor], ret - 8);
+    memcpy(protocol, g_hid_buf[hid_class->minor], MIN(ret - 8, 1));
     return ret;
 }
 
@@ -190,7 +190,7 @@ int usbh_hid_get_report(struct usbh_hid *hid_class, uint8_t report_type, uint8_t
     if (ret < 8) {
         return ret;
     }
-    memcpy(buffer, g_hid_buf[hid_class->minor], ret - 8);
+    memcpy(buffer, g_hid_buf[hid_class->minor], MIN(ret - 8, buflen));
     return ret;
 }
 
@@ -299,6 +299,7 @@ int usbh_hid_disconnect(struct usbh_hubport *hport, uint8_t intf)
         }
 
         if (hport->config.intf[intf].devname[0] != '\0') {
+            usb_osal_thread_schedule_other();
             USB_LOG_INFO("Unregister HID Class:%s\r\n", hport->config.intf[intf].devname);
             usbh_hid_stop(hid_class);
         }

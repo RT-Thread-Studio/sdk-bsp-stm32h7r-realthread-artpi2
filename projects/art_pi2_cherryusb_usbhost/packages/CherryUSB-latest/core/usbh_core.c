@@ -227,21 +227,13 @@ static int parse_config_descriptor(struct usbh_hubport *hport, struct usb_config
                     cur_alt_setting = intf_desc->bAlternateSetting;
                     cur_ep_num = intf_desc->bNumEndpoints;
                     cur_ep = 0;
-                    if (cur_iface > (CONFIG_USBHOST_MAX_INTERFACES - 1)) {
-                        USB_LOG_ERR("Interface num overflow\r\n");
-                        while (1) {
-                        }
-                    }
-                    if (cur_alt_setting > (CONFIG_USBHOST_MAX_INTF_ALTSETTINGS - 1)) {
-                        USB_LOG_ERR("Interface altsetting num overflow\r\n");
-                        while (1) {
-                        }
-                    }
-                    if (cur_ep_num > CONFIG_USBHOST_MAX_ENDPOINTS) {
-                        USB_LOG_ERR("Endpoint num overflow\r\n");
-                        while (1) {
-                        }
-                    }
+
+                    USB_ASSERT_MSG(cur_iface < CONFIG_USBHOST_MAX_INTERFACES,
+                                   "Interface num %d overflow", cur_iface);
+                    USB_ASSERT_MSG(cur_alt_setting < CONFIG_USBHOST_MAX_INTF_ALTSETTINGS,
+                                   "Interface altsetting num %d overflow", cur_alt_setting);
+                    USB_ASSERT_MSG(cur_ep_num <= CONFIG_USBHOST_MAX_ENDPOINTS,
+                                   "Endpoint num %d overflow", cur_ep_num);
 #if 0
                     USB_LOG_DBG("Interface Descriptor:\r\n");
                     USB_LOG_DBG("bLength: 0x%02x            \r\n", intf_desc->bLength);
@@ -330,6 +322,8 @@ static void usbh_print_hubport_info(struct usbh_hubport *hport)
 
 static void usbh_print_setup(struct usb_setup_packet *setup)
 {
+    (void)setup;
+
     USB_LOG_DBG("Setup: "
                 "bmRequestType 0x%02x, bRequest 0x%02x, wValue 0x%04x, wIndex 0x%04x, wLength 0x%04x\r\n",
                 setup->bmRequestType,
@@ -433,7 +427,7 @@ int usbh_enumerate(struct usbh_hubport *hport)
     }
 
     /* Wait device set address completely */
-    usb_osal_msleep(2);
+    usb_osal_msleep(10);
 
     /*Reconfigure EP0 with the correct address */
     hport->dev_addr = dev_addr;

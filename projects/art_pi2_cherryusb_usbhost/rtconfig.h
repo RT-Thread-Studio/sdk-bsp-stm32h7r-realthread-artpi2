@@ -249,10 +249,18 @@
 #define PKG_CHERRYUSB_HOST_CDC_ACM
 #define PKG_CHERRYUSB_HOST_HID
 #define PKG_CHERRYUSB_HOST_MSC
-#define PKG_CHERRYUSB_HOST_TEMPLATE
-#define TEST_USBH_CDC_ACM 1
-#define TEST_USBH_HID 1
-#define TEST_USBH_MSC 0
+#define CONFIG_USBHOST_PSC_PRIO 0
+#define CONFIG_USBHOST_PSC_STACKSIZE 4096
+#define CONFIG_USBHOST_REQUEST_BUFFER_LEN 512
+#define CONFIG_USBHOST_CONTROL_TRANSFER_TIMEOUT 500
+#define RT_LWIP_PBUF_POOL_BUFSIZE 1600
+
+/* Select USB host template, please select class driver first */
+
+#define CONFIG_TEST_USBH_CDC_ACM 0
+#define CONFIG_TEST_USBH_HID 0
+#define CONFIG_TEST_USBH_MSC 0
+/* end of Select USB host template, please select class driver first */
 #define PKG_USING_CHERRYUSB_LATEST_VERSION
 /* end of system packages */
 
@@ -271,6 +279,30 @@
 /* Kendryte SDK */
 
 /* end of Kendryte SDK */
+
+/* WCH HAL & SDK Drivers */
+
+/* end of WCH HAL & SDK Drivers */
+
+/* AT32 HAL & SDK Drivers */
+
+/* end of AT32 HAL & SDK Drivers */
+
+/* HC32 DDL Drivers */
+
+/* end of HC32 DDL Drivers */
+
+/* NXP HAL & SDK Drivers */
+
+/* end of NXP HAL & SDK Drivers */
+
+/* NUVOTON Drivers */
+
+/* end of NUVOTON Drivers */
+
+/* GD32 Drivers */
+
+/* end of GD32 Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */

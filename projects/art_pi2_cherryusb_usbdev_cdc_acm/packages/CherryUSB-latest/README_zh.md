@@ -71,6 +71,7 @@ CherryUSB Device 协议栈当前实现以下功能：
 - 支持 Device Firmware Upgrade CLASS (DFU)
 - 支持 USB MIDI CLASS (MIDI)
 - 支持 Remote NDIS (RNDIS)
+- 支持 Media Transfer Protocol (MTP)
 - 支持 WINUSB1.0、WINUSB2.0、WEBUSB、BOS
 - 支持 Vendor 类 class
 - 支持 UF2
@@ -81,13 +82,15 @@ CherryUSB Device 协议栈资源占用说明（GCC 10.2 with -O2）：
 
 |   file        |  FLASH (Byte)  |  No Cache RAM (Byte)      |  RAM (Byte)   |  Heap (Byte)     |
 |:-------------:|:--------------:|:-------------------------:|:-------------:|:----------------:|
-|usbd_core.c    |  ~4400          | 512(default) + 320        | 0             | 0                |
-|usbd_cdc_acm.c |  ~400           | 0                         | 0             | 0                |
-|usbd_msc.c     |  ~3800          | 128 + 512(default)        | 16            | 0                |
-|usbd_hid.c     |  ~360           | 0                         | 0             | 0                |
-|usbd_audio.c   |  ~1500          | 0                         | 0             | 0                |
-|usbd_video.c   |  ~2600          | 0                         | 84            | 0                |
-|usbd_rndis.c   |  ~2100          | 2 * 1580(default)+156+8     | 76            | 0                |
+|usbd_core.c    |  ~4500          | (512(default) + 320) * bus | 0           | 0                |
+|usbd_cdc_acm.c |  ~900           | 0                         | 0            | 0                |
+|usbd_msc.c     |  ~5000          | (128 + 512(default)) * bus | 16 * bus    | 0                |
+|usbd_hid.c     |  ~300           | 0                         | 0            | 0                |
+|usbd_audio.c   |  ~4000          | 0                         | 0            | 0                |
+|usbd_video.c   |  ~7000          | 0                         | 132 * bus    | 0                |
+|usbd_rndis.c   |  ~2500          | 2 * 1580(default)+156+8   | 80           | 0                |
+|usbd_cdc_ecm.c |  ~900           | 2 * 1514(default)+16      | 42           | 0                |
+|usbd_mtp.c     |  ~9000          | 2048(default)+128         | sizeof(struct mtp_object) * n| 0 |
 
 ## Host 协议栈简介
 
@@ -114,21 +117,23 @@ CherryUSB Host 协议栈当前实现以下功能：
 
 同时，CherryUSB Host 协议栈还提供了 lsusb 的功能，借助 shell 插件可以查看所有挂载设备的信息，包括外部 hub 上的设备的信息。
 
-CherryUSB Host 协议栈资源占用说明（GCC 10.2 with -O2）：
+CherryUSB Host 协议栈资源占用说明（GCC 10.2 with -O2，关闭 log）：
 
 |   file        |  FLASH (Byte)  |  No Cache RAM (Byte)            |  RAM (Byte)                 |  Heap (Byte) |
 |:-------------:|:--------------:|:-------------------------------:|:---------------------------:|:------------:|
-|usbh_core.c    |  ~9000          | 512 + 8 * (1+x) *n              | 28                          | raw_config_desc |
-|usbh_hub.c     |  ~6000          | 32 + 4 * (1+x) | 12 + sizeof(struct usbh_hub) * (1+x)          | 0            |
-|usbh_cdc_acm.c |  ~900           | 7             | 4  + sizeof(struct usbh_cdc_acm) * x          | 0            |
-|usbh_msc.c     |  ~2700          | 64            | 4  + sizeof(struct usbh_msc) * x              | 0            |
-|usbh_hid.c     |  ~1400          | 256           | 4  + sizeof(struct usbh_hid) * x              | 0            |
-|usbh_video.c   |  ~3800          | 128           | 4  + sizeof(struct usbh_video) * x            | 0            |
-|usbh_audio.c   |  ~4100          | 128           | 4  + sizeof(struct usbh_audio) * x            | 0            |
-|usbh_rndis.c   |  ~4200          | 512 + 2 * 2048(default)| sizeof(struct usbh_rndis) * 1       | 0            |
-|usbh_cdc_ecm.c |  ~2200          | 2 * 1514 + 16           | sizeof(struct usbh_cdc_ecm) * 1     | 0            |
-|usbh_cdc_ncm.c |  ~3300          | 2 * 2048(default) + 16 + 32   | sizeof(struct usbh_cdc_ncm) * 1  | 0         |
-|usbh_bluetooth.c |  ~1000        | 2 * 2048(default)   | sizeof(struct usbh_bluetooth) * 1       | 0            |
+|usbh_core.c    |  ~4500 | (512(default) + 8 * (1+x) *n) * bus | sizeof(struct usbh_hub) * bus     | raw_config_desc |
+|usbh_hub.c     |  ~3500          | (32 + 4 * (1+x)) * bus    | 12 + sizeof(struct usbh_hub) * x   | 0          |
+|usbh_cdc_acm.c |  ~600           | 7 * x            | 4  + sizeof(struct usbh_cdc_acm) * x        | 0          |
+|usbh_msc.c     |  ~2000          | 128 * x            | 4  + sizeof(struct usbh_msc) * x          | 0          |
+|usbh_hid.c     |  ~800           | 64 * x           | 4  + sizeof(struct usbh_hid) * x            | 0          |
+|usbh_video.c   |  ~5000          | 128 * x           | 4  + sizeof(struct usbh_video) * x         | 0          |
+|usbh_audio.c   |  ~4000          | 128 * x           | 4  + sizeof(struct usbh_audio) * x         | 0          |
+|usbh_rndis.c   |  ~3000          | 512 + 2 * 2048(default)| sizeof(struct usbh_rndis) * 1         | 0          |
+|usbh_cdc_ecm.c |  ~1500          | 2 * 1514 + 16           | sizeof(struct usbh_cdc_ecm) * 1      | 0          |
+|usbh_cdc_ncm.c |  ~2000          | 2 * 2048(default) + 16 + 32   | sizeof(struct usbh_cdc_ncm) * 1| 0          |
+|usbh_bluetooth.c |  ~1000        | 2 * 2048(default)   | sizeof(struct usbh_bluetooth) * 1        | 0          |
+|usbh_asix.c    |  ~7000          | 2 * 2048(default) + 16 + 32  | sizeof(struct usbh_asix) * 1    | 0          |
+|usbh_rtl8152.c |  ~9000          | 16K+ 2K(default) + 2 + 32 | sizeof(struct usbh_rtl8152) * 1    | 0          |
 
 其中，`sizeof(struct usbh_hub)` 和 `sizeof(struct usbh_hubport)` 受以下宏影响：
 
@@ -185,8 +190,7 @@ TODO
 |   Manufacturer       |  CHIP or Series    | USB IP| Repo Url | Support version     | Support status |
 |:--------------------:|:------------------:|:-----:|:--------:|:------------------:|:-------------:|
 |Bouffalolab    |  BL702/BL616/BL808 | bouffalolab/ehci|[bouffalo_sdk](https://github.com/CherryUSB/bouffalo_sdk)|<= latest | Long-term |
-|ST             |  STM32F1x | fsdev |[stm32_repo](https://github.com/CherryUSB/cherryusb_stm32)|<= latest | Long-term |
-|ST             |  STM32F4/STM32H7 | dwc2 |[stm32_repo](https://github.com/CherryUSB/cherryusb_stm32)|<= latest | Long-term |
+|ST             |  STM32F1x/STM32F4/STM32H7 | fsdev/dwc2 |[stm32_repo](https://github.com/CherryUSB/cherryusb_stm32)|<= latest | Long-term |
 |HPMicro        |  HPM6000/HPM5000 | hpm/ehci |[hpm_sdk](https://github.com/CherryUSB/hpm_sdk)|<= latest | Long-term |
 |Essemi         |  ES32F36xx | musb |[es32f369_repo](https://github.com/CherryUSB/cherryusb_es32)|<= latest | Long-term |
 |Phytium        |  e2000 | pusb2/xhci |[phytium_repo](https://gitee.com/phytium_embedded/phytium-free-rtos-sdk)|>=1.4.0  | Long-term |
@@ -194,11 +198,13 @@ TODO
 |Espressif      |  esp32s2/esp32s3/esp32p4 | dwc2 |[esp32_repo](https://github.com/CherryUSB/cherryusb_esp32)|<= latest | Long-term |
 |NXP            |  mcx | kinetis/chipidea/ehci |[nxp_mcx_repo](https://github.com/CherryUSB/cherryusb_mcx)|<= latest | Long-term |
 |Kendryte       |  k230 | dwc2 |[k230_repo](https://github.com/CherryUSB/k230_sdk)|v1.2.0 | Long-term |
+|Actionstech    |  ATS30xx | dwc2 |[action_zephyr_repo](https://github.com/CherryUSB/lv_port_actions_technology/tree/master/action_technology_sdk)|>=1.4.0 | Long-term |
+|Nationstech    |  n32h4x | dwc2 |[nation_repo](https://github.com/CherryUSB/cherryusb_nation)|>=1.5.0 | Long-term |
 |Raspberry pi   |  rp2040/rp2350 | rp2040 |[pico-examples](https://github.com/CherryUSB/pico-examples)|<= latest | Long-term |
 |AllwinnerTech  |  F1C100S/F1C200S | musb |[cherryusb_rtt_f1c100s](https://github.com/CherryUSB/cherryusb_rtt_f1c100s)|<= latest | the same with musb |
 |Bekencorp      |  bk7256/bk7258 | musb |[bk_idk](https://github.com/CherryUSB/bk_idk)| v0.7.0 | the same with musb |
 |Sophgo         |  cv18xx | dwc2 |[cvi_alios_open](https://github.com/CherryUSB/cvi_alios_open)| v0.7.0 | TBD |
-|WCH            |  CH32V307/ch58x | ch32_usbfs/ch32_usbhs/ch58x |[wch_repo](https://github.com/CherryUSB/cherryusb_wch)|<= v0.10.2 | TBD |
+|WCH            |  CH32V307/ch58x | ch32_usbfs/ch32_usbhs/ch58x |[wch_repo](https://github.com/CherryUSB/cherryusb_wch)|<= v0.10.2/>=v1.5.0 | TBD |
 
 ## 软件包支持
 
@@ -223,3 +229,4 @@ CherryUSB 微信群：与我联系后邀请加入
 感谢以下企业支持（顺序不分先后）：
 
 <img src="docs/assets/bouffalolab.jpg"  width="100" height="80"/> <img src="docs/assets/hpmicro.jpg"  width="100" height="80" /> <img src="docs/assets/eastsoft.jpg"  width="100" height="80" /> <img src="docs/assets/rtthread.jpg"  width="100" height="80" /> <img src="docs/assets/sophgo.jpg"  width="100" height="80" /> <img src="docs/assets/phytium.jpg"  width="100" height="80" /> <img src="docs/assets/thead.jpg"  width="100" height="80" /> <img src="docs/assets/nuvoton.jpg"  width="100" height="80" /> <img src="docs/assets/artinchip.jpg"  width="100" height="80" /> <img src="docs/assets/bekencorp.jpg"  width="100" height="80" /> <img src="docs/assets/nxp.png"  width="100" height="80" /> <img src="docs/assets/espressif.png"  width="100" height="80" /> <img src="docs/assets/canaan.jpg"  width="100" height="80" />
+<img src="docs/assets/actions.jpg"  width="100" height="80" /> <img src="docs/assets/nationstech.jpg"  width="100" height="80" />
