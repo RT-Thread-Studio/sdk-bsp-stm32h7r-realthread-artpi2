@@ -41,7 +41,7 @@ extern "C"
 #define ROM_END                ((uint32_t)(ROM_START + ROM_SIZE * 1024))
 
 #define RAM_START              (0x24000000)
-#define RAM_SIZE               (456 - 64)
+#define RAM_SIZE               (456 - 128)
 #define RAM_END                (RAM_START + RAM_SIZE * 1024)
 
 /*-------------------------- ROM/RAM CONFIG END --------------------------*/
