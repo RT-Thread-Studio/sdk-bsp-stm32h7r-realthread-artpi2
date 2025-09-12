@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>RT_USING_LIBC, STM32H7S7xx, __STDC_LIMIT_MACROS, STM32H7RS, __RTTHREAD__, RT_USING_ARMLIBC, USE_HAL_DRIVER, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine></Undefine>
-              <IncludePath>packages\LVGL-latest\src\widgets\chart;packages\LVGL-latest\src\libs\bin_decoder;libraries\bsp_components;packages\LVGL-latest\src\widgets\lottie;packages\LVGL-latest\src\draw\sw\blend\helium;packages\LVGL-latest\src\libs\gif;packages\LVGL-latest\src\others\xml\parsers;packages\LVGL-latest\src\widgets\buttonmatrix;rt-thread\components\drivers\include;packages\LVGL-latest\src\draw\dma2d;packages\LVGL-latest\src\widgets\spinbox;packages\LVGL-latest\src\drivers\glfw;rt-thread\components\drivers\include;packages\LVGL-latest\src\others\fragment;libraries\CMSIS\Include;packages\LVGL-latest\src\widgets\slider;packages\LVGL-latest\src\libs\ffmpeg;packages\LVGL-latest\src\widgets\imagebutton;packages\LVGL-latest\src\draw\renesas\dave2d;packages\LVGL-latest\src\themes\simple;rt-thread\components\drivers\include;packages\LVGL-latest\src\libs\rle;rt-thread\components\dfs\dfs_v1\include;board\port;rt-thread\components\drivers\include;packages\LVGL-latest\src\drivers\display\lcd;rt-thread\components\drivers\include;packages\LVGL-latest\src\libs\rlottie;packages\LVGL-latest\src\others\xml;packages\LVGL-latest\src\widgets\span;rt-thread\components\libc\posix\io\eventfd;packages\LVGL-latest\src\libs\expat;libraries\CMSIS\Device\ST\STM32H7RSxx\Include;packages\LVGL-latest\src\libs\thorvg\rapidjson\internal;packages\LVGL-latest\src\widgets\property;rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-latest\src\drivers\display\drm;packages\LVGL-latest\src\libs\bmp;packages\LVGL-latest\src\stdlib\builtin;libraries\STM32H7RSxx_HAL_Driver\Inc;packages\LVGL-latest\src\widgets\tabview;packages\LVGL-latest\src\libs\thorvg;packages\LVGL-latest\src\draw\nxp\pxp;packages\LVGL-latest\src\widgets\image;packages\LVGL-latest\src\themes;packages\LVGL-latest\src\others\file_explorer;packages\LVGL-latest\src\others\monkey;packages\LVGL-latest\src\others\sysmon;packages\LVGL-latest\src\libs\tiny_ttf;packages\LVGL-latest\src\widgets\canvas;packages\LVGL-latest\src\misc;packages\LVGL-latest\src\draw\vg_lite;packages\LVGL-latest\src\widgets\table;rt-thread\components\drivers\include;rt-thread\components\drivers\touch;libraries\drivers\include;packages\LVGL-latest\src\drivers\windows;packages\LVGL-latest\src\widgets\msgbox;packages\LVGL-latest\src\drivers\display\renesas_glcdc;packages\LVGL-latest\src\libs\thorvg\rapidjson;packages\LVGL-latest\src\widgets\spinner;packages\LVGL-latest\env_support\rt-thread;rt-thread\components\libc\compilers\common\include;packages\LVGL-latest\src\drivers\display\fb;.;packages\LVGL-latest\src\font;packages\LVGL-latest\src\widgets\menu;packages\LVGL-latest\src\layouts;applications\lvgl_port;packages\LVGL-latest\src\osal;packages\LVGL-latest\src\widgets\line;packages\LVGL-latest\src\drivers\qnx;packages\LVGL-latest\src\layouts\flex;packages\LVGL-latest\src\libs\freetype;packages\LVGL-latest\src\indev;packages\LVGL-latest\src\widgets\calendar;applications\lvgl_port\demo;packages\LVGL-latest\src\widgets\scale;packages\LVGL-latest\src\stdlib;rt-thread\components\dfs\dfs_v1\filesystems\romfs;packages\LVGL-latest\src\drivers\display\st7789;packages\LVGL-latest\src\libs\qrcode;rt-thread\components\libc\posix\io\poll;packages\LVGL-latest\src\others\snapshot;packages\LVGL-latest\src\display;packages\LVGL-latest\src\drivers\nuttx;packages\LVGL-latest\src\widgets\win;packages\LVGL-latest\src\widgets\animimage;packages\LVGL-latest\src\draw\opengles;packages\LVGL-latest\src\libs\libpng;packages\LVGL-latest\src\tick;packages\LVGL-latest\src\others\imgfont;packages\LVGL-latest\src\widgets\roller;packages\LVGL-latest\src\draw\sw\blend;rt-thread\components\drivers\include;rt-thread\components\libc\posix\ipc;rt-thread\components\drivers\include;packages\LVGL-latest\src\drivers\display\st7735;packages\LVGL-latest\src\drivers\display\st7796;packages\LVGL-latest\src\core;packages\LVGL-latest\src\draw\nema_gfx;packages\LVGL-latest\src\draw;packages\LVGL-latest\src\draw\nxp\vglite;packages\LVGL-latest\src\widgets\bar;packages\LVGL-latest\src\libs\lz4;packages\LVGL-latest\src\widgets\list;rt-thread\components\finsh;packages\LVGL-latest\src\others\gridnav;board;packages\LVGL-latest\src\widgets\led;packages\LVGL-latest\src\drivers\libinput;packages\LVGL-latest\src;libraries\drivers\include\config;packages\LVGL-latest\src\drivers\display\st_ltdc;packages\LVGL-latest\src\drivers\x11;rt-thread\components\drivers\spi;applications;packages\LVGL-latest\src\themes\mono;rt-thread\components\libc\compilers\common\extension;packages\LVGL-latest\src\widgets\arc;packages\LVGL-latest\src\widgets\textarea;packages\LVGL-latest\src\draw\sw\blend\neon;packages\LVGL-latest\src\drivers\sdl;packages\LVGL-latest\src\libs\fsdrv;packages\LVGL-latest\src\libs\tjpgd;board\CubeMX_Config\Appli\Core\Inc;packages\LVGL-latest\src\draw\sdl;rt-thread\components\drivers\spi\sfud\inc;packages\LVGL-latest\src\libs\libjpeg_turbo;packages\LVGL-latest\src\drivers\evdev;packages\LVGL-latest\src\widgets\label;packages\LVGL-latest\src\widgets\checkbox;packages\LVGL-latest\src\others\font_manager;rt-thread\libcpu\arm\common;packages\LVGL-latest\src\others\vg_lite_tvg;libraries\drivers;packages\LVGL-latest\src\drivers\display\ili9341;packages\LVGL-latest\src\widgets\button;rt-thread\include;packages\LVGL-latest\src\others\observer;rt-thread\components\libc\compilers\common\extension\fcntl\octal;packages\LVGL-latest\src\draw\sw\blend\arm2d;packages\LVGL-latest\src\drivers\wayland;rt-thread\components\libc\posix\io\epoll;packages\LVGL-latest\src\libs\lodepng;packages\LVGL-latest\src\drivers\display\tft_espi;packages\LVGL-latest\src\widgets\switch;packages\LVGL-latest\src\widgets\keyboard;packages\LVGL-latest\src\layouts\grid;packages\LVGL-latest\src\libs\barcode;rt-thread\libcpu\arm\cortex-m7;packages\LVGL-latest\src\draw\sw\arm2d;packages\LVGL-latest\src\widgets\objx_templ;packages\LVGL-latest\src\libs\thorvg\rapidjson\error;packages\gt9147-v1.1.0\inc;packages\LVGL-latest\src\widgets\dropdown;packages\LVGL-latest\src\draw\sw;packages\LVGL-latest\src\widgets\tileview;packages\LVGL-latest\src\libs\svg;packages\LVGL-latest\src\themes\default;packages\LVGL-latest\src\others\ime;packages\LVGL-latest\src\misc\cache;packages\LVGL-latest\src\drivers</IncludePath>
+              <IncludePath>packages\LVGL-latest\src\widgets\chart;packages\LVGL-latest\src\libs\bin_decoder;..\..\libraries\bsp_components;packages\LVGL-latest\src\widgets\lottie;packages\LVGL-latest\src\draw\sw\blend\helium;packages\LVGL-latest\src\libs\gif;packages\LVGL-latest\src\others\xml\parsers;packages\LVGL-latest\src\widgets\buttonmatrix;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\draw\dma2d;packages\LVGL-latest\src\widgets\spinbox;packages\LVGL-latest\src\drivers\glfw;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\others\fragment;..\..\libraries\CMSIS\Include;packages\LVGL-latest\src\widgets\slider;packages\LVGL-latest\src\libs\ffmpeg;packages\LVGL-latest\src\widgets\imagebutton;packages\LVGL-latest\src\draw\renesas\dave2d;packages\LVGL-latest\src\themes\simple;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\libs\rle;..\..\rt-thread\components\dfs\dfs_v1\include;board\port;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\drivers\display\lcd;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\libs\rlottie;packages\LVGL-latest\src\others\xml;packages\LVGL-latest\src\widgets\span;..\..\rt-thread\components\libc\posix\io\eventfd;packages\LVGL-latest\src\libs\expat;..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Include;packages\LVGL-latest\src\libs\thorvg\rapidjson\internal;packages\LVGL-latest\src\widgets\property;..\..\rt-thread\components\dfs\dfs_v1\filesystems\devfs;packages\LVGL-latest\src\drivers\display\drm;packages\LVGL-latest\src\libs\bmp;packages\LVGL-latest\src\stdlib\builtin;..\..\libraries\STM32H7RSxx_HAL_Driver\Inc;packages\LVGL-latest\src\widgets\tabview;packages\LVGL-latest\src\libs\thorvg;packages\LVGL-latest\src\draw\nxp\pxp;packages\LVGL-latest\src\widgets\image;packages\LVGL-latest\src\themes;packages\LVGL-latest\src\others\file_explorer;packages\LVGL-latest\src\others\monkey;packages\LVGL-latest\src\others\sysmon;packages\LVGL-latest\src\libs\tiny_ttf;packages\LVGL-latest\src\widgets\canvas;packages\LVGL-latest\src\misc;packages\LVGL-latest\src\draw\vg_lite;packages\LVGL-latest\src\widgets\table;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\touch;..\..\libraries\drivers\include;packages\LVGL-latest\src\drivers\windows;packages\LVGL-latest\src\widgets\msgbox;packages\LVGL-latest\src\drivers\display\renesas_glcdc;packages\LVGL-latest\src\libs\thorvg\rapidjson;packages\LVGL-latest\src\widgets\spinner;packages\LVGL-latest\env_support\rt-thread;..\..\rt-thread\components\libc\compilers\common\include;packages\LVGL-latest\src\drivers\display\fb;.;packages\LVGL-latest\src\font;packages\LVGL-latest\src\widgets\menu;packages\LVGL-latest\src\layouts;applications\lvgl_port;packages\LVGL-latest\src\osal;packages\LVGL-latest\src\widgets\line;packages\LVGL-latest\src\drivers\qnx;packages\LVGL-latest\src\layouts\flex;packages\LVGL-latest\src\libs\freetype;packages\LVGL-latest\src\indev;packages\LVGL-latest\src\widgets\calendar;applications\lvgl_port\demo;packages\LVGL-latest\src\widgets\scale;packages\LVGL-latest\src\stdlib;..\..\rt-thread\components\dfs\dfs_v1\filesystems\romfs;packages\LVGL-latest\src\drivers\display\st7789;packages\LVGL-latest\src\libs\qrcode;..\..\rt-thread\components\libc\posix\io\poll;packages\LVGL-latest\src\others\snapshot;packages\LVGL-latest\src\display;packages\LVGL-latest\src\drivers\nuttx;packages\LVGL-latest\src\widgets\win;packages\LVGL-latest\src\widgets\animimage;packages\LVGL-latest\src\draw\opengles;packages\LVGL-latest\src\libs\libpng;packages\LVGL-latest\src\tick;packages\LVGL-latest\src\others\imgfont;packages\LVGL-latest\src\widgets\roller;packages\LVGL-latest\src\draw\sw\blend;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\posix\ipc;..\..\rt-thread\components\drivers\include;packages\LVGL-latest\src\drivers\display\st7735;packages\LVGL-latest\src\drivers\display\st7796;packages\LVGL-latest\src\core;packages\LVGL-latest\src\draw\nema_gfx;packages\LVGL-latest\src\draw;packages\LVGL-latest\src\draw\nxp\vglite;packages\LVGL-latest\src\widgets\bar;packages\LVGL-latest\src\libs\lz4;packages\LVGL-latest\src\widgets\list;..\..\rt-thread\components\finsh;packages\LVGL-latest\src\others\gridnav;board;packages\LVGL-latest\src\widgets\led;packages\LVGL-latest\src\drivers\libinput;packages\LVGL-latest\src;..\..\libraries\drivers\include\config;packages\LVGL-latest\src\drivers\display\st_ltdc;packages\LVGL-latest\src\drivers\x11;..\..\rt-thread\components\drivers\spi;applications;packages\LVGL-latest\src\themes\mono;..\..\rt-thread\components\libc\compilers\common\extension;packages\LVGL-latest\src\widgets\arc;packages\LVGL-latest\src\widgets\textarea;packages\LVGL-latest\src\draw\sw\blend\neon;packages\LVGL-latest\src\drivers\sdl;packages\LVGL-latest\src\libs\fsdrv;packages\LVGL-latest\src\libs\tjpgd;board\CubeMX_Config\Appli\Core\Inc;packages\LVGL-latest\src\draw\sdl;..\..\rt-thread\components\drivers\spi\sfud\inc;packages\LVGL-latest\src\libs\libjpeg_turbo;packages\LVGL-latest\src\drivers\evdev;packages\LVGL-latest\src\widgets\label;packages\LVGL-latest\src\widgets\checkbox;packages\LVGL-latest\src\others\font_manager;..\..\rt-thread\libcpu\arm\common;packages\LVGL-latest\src\others\vg_lite_tvg;..\..\libraries\drivers;packages\LVGL-latest\src\drivers\display\ili9341;packages\LVGL-latest\src\widgets\button;..\..\rt-thread\include;packages\LVGL-latest\src\others\observer;..\..\rt-thread\components\libc\compilers\common\extension\fcntl\octal;packages\LVGL-latest\src\draw\sw\blend\arm2d;packages\LVGL-latest\src\drivers\wayland;..\..\rt-thread\components\libc\posix\io\epoll;packages\LVGL-latest\src\libs\lodepng;packages\LVGL-latest\src\drivers\display\tft_espi;packages\LVGL-latest\src\widgets\switch;packages\LVGL-latest\src\widgets\keyboard;packages\LVGL-latest\src\layouts\grid;packages\LVGL-latest\src\libs\barcode;..\..\rt-thread\libcpu\arm\cortex-m7;packages\LVGL-latest\src\draw\sw\arm2d;packages\LVGL-latest\src\widgets\objx_templ;packages\LVGL-latest\src\libs\thorvg\rapidjson\error;packages\gt9147-v1.1.0\inc;packages\LVGL-latest\src\widgets\dropdown;packages\LVGL-latest\src\draw\sw;packages\LVGL-latest\src\widgets\tileview;packages\LVGL-latest\src\libs\svg;packages\LVGL-latest\src\themes\default;packages\LVGL-latest\src\others\ime;packages\LVGL-latest\src\misc\cache;packages\LVGL-latest\src\drivers</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -397,42 +397,42 @@
             <File>
               <FileName>syscall_mem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\armlibc\syscall_mem.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\armlibc\syscall_mem.c</FilePath>
             </File>
             <File>
               <FileName>syscalls.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\armlibc\syscalls.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\armlibc\syscalls.c</FilePath>
             </File>
             <File>
               <FileName>cctype.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\cctype.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\cctype.c</FilePath>
             </File>
             <File>
               <FileName>cstdlib.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\cstdlib.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\cstdlib.c</FilePath>
             </File>
             <File>
               <FileName>cstring.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\cstring.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\cstring.c</FilePath>
             </File>
             <File>
               <FileName>ctime.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\ctime.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\ctime.c</FilePath>
             </File>
             <File>
               <FileName>cunistd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\cunistd.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\cunistd.c</FilePath>
             </File>
             <File>
               <FileName>cwchar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\libc\compilers\common\cwchar.c</FilePath>
+              <FilePath>..\..\rt-thread\components\libc\compilers\common\cwchar.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -442,7 +442,7 @@
             <File>
               <FileName>device.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\core\device.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\core\device.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -498,7 +498,7 @@
             <File>
               <FileName>i2c-bit-ops.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\i2c\i2c-bit-ops.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\i2c\i2c-bit-ops.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -554,7 +554,7 @@
             <File>
               <FileName>i2c_core.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\i2c\i2c_core.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\i2c\i2c_core.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -610,7 +610,7 @@
             <File>
               <FileName>i2c_dev.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\i2c\i2c_dev.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\i2c\i2c_dev.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -666,7 +666,7 @@
             <File>
               <FileName>completion.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\completion.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\completion.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -722,7 +722,7 @@
             <File>
               <FileName>condvar.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\condvar.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\condvar.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -778,7 +778,7 @@
             <File>
               <FileName>dataqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\dataqueue.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\dataqueue.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -834,7 +834,7 @@
             <File>
               <FileName>pipe.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\pipe.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\pipe.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -890,7 +890,7 @@
             <File>
               <FileName>ringblk_buf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\ringblk_buf.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\ringblk_buf.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -946,7 +946,7 @@
             <File>
               <FileName>ringbuffer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\ringbuffer.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\ringbuffer.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1002,7 +1002,7 @@
             <File>
               <FileName>waitqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\waitqueue.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\waitqueue.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1058,7 +1058,7 @@
             <File>
               <FileName>workqueue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\ipc\workqueue.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\ipc\workqueue.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1114,7 +1114,7 @@
             <File>
               <FileName>mtd_nor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\mtd\mtd_nor.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\mtd\mtd_nor.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1170,7 +1170,7 @@
             <File>
               <FileName>pin.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\pin\pin.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\pin\pin.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1226,7 +1226,7 @@
             <File>
               <FileName>dev_serial.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\serial\dev_serial.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\serial\dev_serial.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1282,7 +1282,7 @@
             <File>
               <FileName>sfud.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\spi\sfud\src\sfud.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\spi\sfud\src\sfud.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1338,7 +1338,7 @@
             <File>
               <FileName>sfud_sfdp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\spi\sfud\src\sfud_sfdp.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\spi\sfud\src\sfud_sfdp.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1394,7 +1394,7 @@
             <File>
               <FileName>spi_core.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\spi\spi_core.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\spi\spi_core.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1450,7 +1450,7 @@
             <File>
               <FileName>spi_dev.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\spi\spi_dev.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\spi\spi_dev.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1506,7 +1506,7 @@
             <File>
               <FileName>spi_flash_sfud.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\spi\spi_flash_sfud.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\spi\spi_flash_sfud.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1562,7 +1562,7 @@
             <File>
               <FileName>touch.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\drivers\touch\touch.c</FilePath>
+              <FilePath>..\..\rt-thread\components\drivers\touch\touch.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1648,37 +1648,37 @@
             <File>
               <FileName>drv_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_common.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_common.c</FilePath>
             </File>
             <File>
               <FileName>drv_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_gpio.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_gpio.c</FilePath>
             </File>
             <File>
               <FileName>drv_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_lcd.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_lcd.c</FilePath>
             </File>
             <File>
               <FileName>drv_psram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_psram.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_psram.c</FilePath>
             </File>
             <File>
               <FileName>drv_soft_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_soft_i2c.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_soft_i2c.c</FilePath>
             </File>
             <File>
               <FileName>drv_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_spi.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_spi.c</FilePath>
             </File>
             <File>
               <FileName>drv_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\drivers\drv_usart.c</FilePath>
+              <FilePath>..\..\libraries\drivers\drv_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1688,32 +1688,32 @@
             <File>
               <FileName>devfs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\filesystems\devfs\devfs.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\filesystems\devfs\devfs.c</FilePath>
             </File>
             <File>
               <FileName>dfs_romfs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\filesystems\romfs\dfs_romfs.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\filesystems\romfs\dfs_romfs.c</FilePath>
             </File>
             <File>
               <FileName>dfs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\src\dfs.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\src\dfs.c</FilePath>
             </File>
             <File>
               <FileName>dfs_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\src\dfs_file.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_file.c</FilePath>
             </File>
             <File>
               <FileName>dfs_fs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\src\dfs_fs.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_fs.c</FilePath>
             </File>
             <File>
               <FileName>dfs_posix.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\dfs\dfs_v1\src\dfs_posix.c</FilePath>
+              <FilePath>..\..\rt-thread\components\dfs\dfs_v1\src\dfs_posix.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1723,27 +1723,27 @@
             <File>
               <FileName>shell.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\shell.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\shell.c</FilePath>
             </File>
             <File>
               <FileName>msh_parse.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\msh_parse.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\msh_parse.c</FilePath>
             </File>
             <File>
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\cmd.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\cmd.c</FilePath>
             </File>
             <File>
               <FileName>msh.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\msh.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\msh.c</FilePath>
             </File>
             <File>
               <FileName>msh_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\components\finsh\msh_file.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\msh_file.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1763,7 +1763,7 @@
             <File>
               <FileName>clock.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\clock.c</FilePath>
+              <FilePath>..\..\rt-thread\src\clock.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1819,7 +1819,7 @@
             <File>
               <FileName>components.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\components.c</FilePath>
+              <FilePath>..\..\rt-thread\src\components.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1875,7 +1875,7 @@
             <File>
               <FileName>idle.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\idle.c</FilePath>
+              <FilePath>..\..\rt-thread\src\idle.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1931,7 +1931,7 @@
             <File>
               <FileName>ipc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\ipc.c</FilePath>
+              <FilePath>..\..\rt-thread\src\ipc.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1987,7 +1987,7 @@
             <File>
               <FileName>irq.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\irq.c</FilePath>
+              <FilePath>..\..\rt-thread\src\irq.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2043,7 +2043,7 @@
             <File>
               <FileName>kstdio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\klibc\kstdio.c</FilePath>
+              <FilePath>..\..\rt-thread\src\klibc\kstdio.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2099,7 +2099,7 @@
             <File>
               <FileName>kstring.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\klibc\kstring.c</FilePath>
+              <FilePath>..\..\rt-thread\src\klibc\kstring.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2155,7 +2155,7 @@
             <File>
               <FileName>kservice.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\kservice.c</FilePath>
+              <FilePath>..\..\rt-thread\src\kservice.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2211,7 +2211,7 @@
             <File>
               <FileName>memheap.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\memheap.c</FilePath>
+              <FilePath>..\..\rt-thread\src\memheap.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2267,7 +2267,7 @@
             <File>
               <FileName>mempool.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\mempool.c</FilePath>
+              <FilePath>..\..\rt-thread\src\mempool.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2323,7 +2323,7 @@
             <File>
               <FileName>object.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\object.c</FilePath>
+              <FilePath>..\..\rt-thread\src\object.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2379,7 +2379,7 @@
             <File>
               <FileName>scheduler_comm.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\scheduler_comm.c</FilePath>
+              <FilePath>..\..\rt-thread\src\scheduler_comm.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2435,7 +2435,7 @@
             <File>
               <FileName>scheduler_up.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\scheduler_up.c</FilePath>
+              <FilePath>..\..\rt-thread\src\scheduler_up.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2491,7 +2491,7 @@
             <File>
               <FileName>thread.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\thread.c</FilePath>
+              <FilePath>..\..\rt-thread\src\thread.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2547,7 +2547,7 @@
             <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\src\timer.c</FilePath>
+              <FilePath>..\..\rt-thread\src\timer.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2608,27 +2608,27 @@
             <File>
               <FileName>div0.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\libcpu\arm\common\div0.c</FilePath>
+              <FilePath>..\..\rt-thread\libcpu\arm\common\div0.c</FilePath>
             </File>
             <File>
               <FileName>showmem.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\libcpu\arm\common\showmem.c</FilePath>
+              <FilePath>..\..\rt-thread\libcpu\arm\common\showmem.c</FilePath>
             </File>
             <File>
               <FileName>context_rvds.S</FileName>
               <FileType>2</FileType>
-              <FilePath>rt-thread\libcpu\arm\cortex-m7\context_rvds.S</FilePath>
+              <FilePath>..\..\rt-thread\libcpu\arm\cortex-m7\context_rvds.S</FilePath>
             </File>
             <File>
               <FileName>cpu_cache.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\libcpu\arm\cortex-m7\cpu_cache.c</FilePath>
+              <FilePath>..\..\rt-thread\libcpu\arm\cortex-m7\cpu_cache.c</FilePath>
             </File>
             <File>
               <FileName>cpuport.c</FileName>
               <FileType>1</FileType>
-              <FilePath>rt-thread\libcpu\arm\cortex-m7\cpuport.c</FilePath>
+              <FilePath>..\..\rt-thread\libcpu\arm\cortex-m7\cpuport.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -22949,152 +22949,152 @@
             <File>
               <FileName>stm32h7rsxx_hal_cryp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_crc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_gpio.c</FilePath>
             </File>
             <File>
               <FileName>startup_stm32h7r7xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
+              <FilePath>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\arm\startup_stm32h7r7xx.s</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_cryp_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cryp_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_dma.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_usart.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_cortex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cortex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_adc_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_adc_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_dma2d.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma2d.c</FilePath>
             </File>
             <File>
               <FileName>system_stm32h7rsxx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</FilePath>
+              <FilePath>..\..\libraries\CMSIS\Device\ST\STM32H7RSxx\Source\Templates\system_stm32h7rsxx.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_spi.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_flash_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_flash_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_jpeg.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_jpeg.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_pwr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_ltdc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_ltdc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rcc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_rng.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_rng.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_sram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_sram.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_xspi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_xspi.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_cec.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_cec.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_crc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_crc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_dma_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_dma_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_pwr_ex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_pwr_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7rsxx_hal_uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
+              <FilePath>..\..\libraries\STM32H7RSxx_HAL_Driver\Src\stm32h7rsxx_hal_uart.c</FilePath>
             </File>
           </Files>
         </Group>
